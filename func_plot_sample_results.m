@@ -8,7 +8,13 @@ scatter3(sample.tip_exp(end,2),sample.tip_exp(end,3),sample.tip_exp(end,4),'b')
 hold on
 plot3(sample.tip_exp(:,2),sample.tip_exp(:,3),sample.tip_exp(:,4))
 hold on
-legend('Start','End','Path')
+scatter3(sample.r_p{1}(1),sample.r_p{1}(2),sample.r_p{1}(3))
+hold on
+scatter3(sample.r_p{2}(1),sample.r_p{2}(2),sample.r_p{2}(3))
+hold on
+scatter3(sample.r_p{3}(1),sample.r_p{3}(2),sample.r_p{3}(3))
+hold on
+legend('Start','End','Path','p1','p2','p3')
 title('Tip Position(m)')
 xlabel('X');ylabel('Y');zlabel('Z');
 
