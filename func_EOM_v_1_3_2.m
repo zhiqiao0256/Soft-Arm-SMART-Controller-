@@ -119,16 +119,24 @@ for i1 = 1:par.n
 %     Phi = Phi;
 end
 %% EOM rigid
-syms f_x f_y f_z tau_x tau_y tau_z
-ddxi = sym('ddxi', [par.n 1], 'real'); % "q double dot" - the second derivative of the q's in time (joint accelerations)
+syms f_p1 f_p2 f_p3
+ddxi = sym('ddxi', [par.n 1], 'rational'); % "q double dot" - the second derivative of the q's in time (joint accelerations)
 eom_lhs = D*ddxi+cor*dxi+Phi;
-f_ext=[f_x f_y f_z tau_x tau_y tau_z].';
-eom_rhs=par.J_xyz{end}.'*f_ext;
-par.f_xi=eom_rhs;
+
 par.B_rigid=D;
 par.C_rigid=cor;
 par.G_rigid=Phi;
-par.sym_wrench=[f_x f_y f_z tau_x tau_y tau_z].';
+for i =1:3
+    T_p{i}=Ti{end}*[eye(3),par.r_p{i};0 0 0 1];
+    r_p_base{i}=T_p{i}(1:3,4);
+end
+par.sym_wrench=[f_p1*T_p{1}(1:3,3);cross(r_p_base{1},f_p1*T_p{1}(1:3,3))]+...
+    [f_p2*T_p{2}(1:3,3);cross(r_p_base{2},f_p2*T_p{2}(1:3,3))]+...
+    [f_p3*T_p{3}(1:3,3);cross(r_p_base{3},f_p3*T_p{3}(1:3,3))];
+
+eom_rhs=par.J_xyz{end}.'*par.sym_wrench;
+par.f_xi=eom_rhs;
+% par.sym_wrench=[f_x f_y f_z tau_x tau_y tau_z].';
 %% mapping
 temp_var=[];
 syms phi theta L dphi dtheta ddphi ddtheta phi_t(t) theta_t(t) 
