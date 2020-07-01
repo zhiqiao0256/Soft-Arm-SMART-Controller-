@@ -1,19 +1,16 @@
 clear all
 close all
 clc
-% load('sili_data.mat')
 %% Initialize the system
 par=[];
 par.EOM=0;%flag for EOM deriviation
+par.c_plot_figure=0;%flag for plot
 exp_case=1;% 1:Step response 2-2-2 to 25-2-2 to 2-25-25 five times 
 %2: Step response 25-2-2 to 25-25-2 to 25-2-2 to 25-2-25 five times
 par=func_exp_04_21(par,exp_case);
 par.trianlge_length=70*1e-03;% fabric triangle edge length
-par.c_plot_figure=0;%flag for plot
 par.L=0.19;%actuator length
 par.n=6;% # of joints for augmented rigid arm
-% par.a0=15*1e-03;par.coeff_of_Area=0.1;
-% temp.b=[];temp.c=[];
 par.m0=0.35;%kg segment weight
 par.g=9.8;%% gravity constant
 par.a0=15*1e-03;
@@ -24,15 +21,22 @@ for i =1:3
     par.r_p{i}=[par.r_f*cosd(par.p1_angle-120*(i-1)),par.r_f*sind(par.p1_angle-120*(i-1)),0].';
     par.f_p{i}=588.31*par.pm_MPa(:,i+1);
 end
+%% Symbolic EOM
+if par.EOM==1
+par=func_EOM_v_1_3_2(par);
+end
 %% Get sample from the exp. data
 sample=[];
-temp.start=100;
-temp.end=4800;
+temp.start=500;
+temp.end=1500;
 sample.pd_psi=par.pd_psi(temp.start:temp.end,1:end);
 sample.pm_psi=par.pm_psi(temp.start:temp.end,1:end);
 sample.pd_MPa=par.pd_MPa(temp.start:temp.end,1:end);
 sample.pm_MPa=par.pm_MPa(temp.start:temp.end,1:end);
 sample.tip_exp=par.tip_exp(temp.start:temp.end,1:end);
+sample.r_p=par.r_p;
+%% Plot Sample data 
+func_plot_sample_results(sample)
 %% Calculate Phi from the data
 % % Rotate w/ z-axis 0 deg
 par.Rz_angle=0;%deg
@@ -41,7 +45,7 @@ par.Rz=[cosd(par.Rz_angle) sind(par.Rz_angle) 0;
         0 0 1];
 temp.phi_vector=sample.tip_exp(:,2:4); %xyz in Global frame
 temp.angle_phi=[];
-% Calculate phi anlge ranging [0,2pi]
+% Calculate phi anlge ranging [0,2pi] atan(y_top/x_top)
 for i =1:length(sample.pd_psi)
     temp.angle_phi(i,1)=rad2deg(func_myatan(temp.phi_vector(i,2),temp.phi_vector(i,1)));
 end
@@ -55,17 +59,15 @@ for i =1 : length(temp.phi_vector)
     temp.Rz=[cosd(temp.angle_phi(i)) sind(temp.angle_phi(i)) 0;
         -sind(temp.angle_phi(i)) cosd(temp.angle_phi(i)) 0;
         0 0 1];
-    temp_var=temp.phi_vector(i,1:3)*temp.Rz';
-    tip_segi(i,2:4)=temp_var;
+    temp.new_xyz=temp.phi_vector(i,1:3)*temp.Rz';
+    tip_segi(i,2:4)=temp.new_xyz;
 end
 sample.tip_segi=tip_segi;
 %% Theta calculation in X-Z plane no beta offset
-base_exp=zeros(length(sample.tip_exp(:,1)),3);
-vector=[0,0,0.01]';
 theta_vector=[sample.tip_segi(:,2),sample.tip_segi(:,4)]; %xyz in Segittal frame z/x'
-angle_theta=90-atan2d(theta_vector(:,2),theta_vector(:,1));
-sample.theta=2*angle_theta;
-sample.theta_rad=deg2rad(angle_theta);
+angle_haf_theta=90-atan2d(theta_vector(:,2),theta_vector(:,1));
+sample.theta=2*angle_haf_theta;
+sample.theta_rad=deg2rad(2*angle_haf_theta);
 %% Inextensible layer on the Edge
 % find points (x_e,y_e) on three edges where (x_e,y_e)=beta*(x_top,y_top)
 % beta <0 and min(|beta|)
@@ -87,11 +89,6 @@ for i=1:length(beta_array)% find beta <0 and min(beta)
         sample.beta(i,1)=norm(beta_value*temp.phi_vector(i,1:2));
         sample.x_y_edge(i,1:2)=-beta_value*temp.phi_vector(i,1:2);
 end
-
-for i =1:3
-    sample.r_p{i}=par.Rz*par.r_p{i};
-end
-
 %% Plot Edege position
 x1=linspace(0,0.035,100);
 x2=linspace(-0.035,0,100);
@@ -105,7 +102,7 @@ for i=1:length(x1)
     edge2(:,i)=par.Rz(1:2,1:2)*[x2(i);y2(i)];
     edge3(:,i)=par.Rz(1:2,1:2)*[x3(i);y3(i)];
 end
-% par.c_plot_figure=1;
+par.c_plot_figure=1;
 if par.c_plot_figure==1
     figure('Position',[100;100;600;600])
     for i =1:3
@@ -140,8 +137,10 @@ if par.c_plot_figure==1
     ylim([-0.07,.07]) 
 end
 %% Augmented Rigid tip Estimation maps to Eq. (4) in the paper
-xi_vector=[deg2rad(sample.phi), deg2rad(sample.theta/2), (par.L./deg2rad(sample.theta)-sample.beta).*sind(sample.theta/2),...
-    (par.L./deg2rad(sample.theta)-sample.beta).*sind(sample.theta/2), deg2rad(sample.theta/2), -deg2rad(sample.phi)];
+xi_vector=[sample.phi_rad, sample.theta_rad/2, (par.L./sample.theta_rad-sample.beta).*sin(sample.theta_rad/2),...
+    (par.L./sample.theta_rad-sample.beta).*sin(sample.theta_rad/2),sample.theta_rad/2, -sample.phi_rad];
+% xi_vector=[deg2rad(sample.phi), deg2rad(sample.theta/2), (par.L./deg2rad(sample.theta)-sample.beta).*sind(sample.theta/2),...
+%     (par.L./deg2rad(sample.theta)-sample.beta).*sind(sample.theta/2), deg2rad(sample.theta/2), -deg2rad(sample.phi)];
 for j=1:length(xi_vector)
     xi=xi_vector(j,:);
     rigid_b0=sample.beta(j);thetad=sample.theta_rad(j);L=par.L;a0=par.a0;
@@ -210,6 +209,8 @@ wrench_base_pm{j}=[f_p1*T_p{1}(1:3,3);cross(r_p_base{1},f_p1*T_p{1}(1:3,3))]+...
     [f_p2*T_p{2}(1:3,3);cross(r_p_base{2},f_p2*T_p{2}(1:3,3))]+...
     [f_p3*T_p{3}(1:3,3);cross(r_p_base{3},f_p3*T_p{3}(1:3,3))];
 end
+%%
+func_compare_kinematic(temp.phi_vector,xyz_estimation,par)
 %% Project froce in base frame to joint frame and arc frame
 % Wrech Force for sample maps to Eq. (10) and (11)
 for i =1:length(sample.pm_MPa)
