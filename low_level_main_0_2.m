@@ -45,7 +45,7 @@ end
 par_set=func_low_level_full_set(par_set);
 %% Plot Overlay Results
 % func_plot_low_level_overlayResult(par_set);
-%% Estimate controller parameters d_pm=a * pm + b * pd
+%% Estimate controller parameters d_pm=-a * pm + b * pd
 par_set=func_EstiamtePressCntrlParams_noplot(par_set);
 %% Compare averaged model with different trails
-par_set=func_CompareAveragedModel(par_set);
+% par_set=func_CompareAveragedModel(par_set);
