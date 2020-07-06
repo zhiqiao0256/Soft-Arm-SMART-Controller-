@@ -34,7 +34,7 @@ addBody(robot, body, 'link3');
 
 %% RP-PR 4-DOFs
 % phi_rad=deg2rad(90);
-theta_rad=deg2rad(-20);
+theta_rad=deg2rad(90);
 showdetails(robot)
 figure(1)
 show(robot,[-theta_rad/2,0.17,0.17,-theta_rad/2]');
