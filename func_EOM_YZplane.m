@@ -10,11 +10,11 @@ xi = sym('xi', [par.n 1]);
 %q1=phi_i, q2=theta_i/2 - zeta_theta_i, q3 = zeta_theta_i,q4=bi
 dxi = sym('dxi', [par.n 1]);
 rigid_a=zeros(1,par.n);
-rigid_alpha=[-pi/2,pi/2,  0,   -pi/2,pi/2,0];%alpha
-rigid_d=    [0      0   xi(3) xi(4) 0     0 ];
-theta=      [xi(1) xi(2) 0    0    xi(5) xi(6)];
+rigid_alpha=[-pi/2,    0,  pi/2, -pi/2];%alpha
+rigid_d=    [0,    xi(2), xi(3),   0 ];
+theta=      [xi(1),    0,     0, xi(4)];
 syms m0 g
-m=[0 0  m0 0 0 0 ];
+m=[0 m0 0 0];
 % n=length(q);% DOF
 % cell array of your homogeneous transformations; each Ti{i} is a 4x4 symbolic transform matrix
 Ti = cell(par.n+1,1);% z0 z_end_effector
@@ -29,7 +29,7 @@ end
 %% Protential energy
 E_p=0;
 for link_i=1:par.n
-    E_p=E_p+m(link_i)*[0;0;g].'*p_i{link_i+1};
+    E_p=E_p+m(link_i)*[0;g;0].'*p_i{link_i+1};
 end
 %% Linear Velocity
 J_v=cell(par.n,1);
@@ -72,7 +72,7 @@ I=cell(par.n,1);
 % I = [0 0 0 0 I_u 0 0 0 0 0];
 for link_i =1:par.n
     t_Ti=Ti{link_i+1}.';
-    if link_i == 3 %%%%%%par.n/2
+    if link_i == 2 %%%%%%par.n/2
         xyz_i=Ti{link_i+1}(1:3,4).^2;
         I_x=m(link_i)*(xyz_i(2)+xyz_i(3));
         I_y=m(link_i)*(xyz_i(1)+xyz_i(3));
@@ -142,18 +142,15 @@ temp_var=[];
 syms phi theta L dphi dtheta ddphi ddtheta phi_t(t) theta_t(t) 
 b_theta= (L/theta-b0)*sin(theta/2);
 
-m_q=[phi theta/2 b_theta b_theta theta/2 -phi].';
-for i =1:length(m_q)
-    dif_f1=diff(m_q(i),phi);
-    dif_f2=diff(m_q(i),theta);
-    J_f(i,1:2)=[dif_f1,dif_f2];
-end
-temp.dJ_f=diff(subs(J_f,[phi theta],[phi_t(t) theta_t(t)]),t);
-dJ_fdt=subs(temp.dJ_f,[theta_t(t),phi_t(t),diff(theta_t(t), t),diff(phi_t(t), t)],[theta,phi,dtheta,dphi]);
+m_q=[theta/2 b_theta b_theta theta/2 ].';
+J_f=diff(m_q,theta)
+
+temp.dJ_f=diff(subs(J_f,[theta],[theta_t(t)]),t);
+dJ_fdt=subs(temp.dJ_f,[theta_t(t),diff(theta_t(t), t)],[theta,dtheta]);
 par.J_xi2q=J_f;
 temp.xi=m_q;
 temp.dxi=J_f*[dphi dtheta].';
-temp.ddxi=dJ_fdt*[dphi dtheta].'+J_f*[ddphi ddtheta].';
+temp.ddxi=dJ_fdt*[dtheta].'+J_f*[ddtheta].';
 % %%
 B_xi_q=subs(D,xi,m_q);
 par.sym_J_xi2q=subs(par.J_xyz{end},xi,m_q);
