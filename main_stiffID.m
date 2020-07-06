@@ -62,7 +62,7 @@ for i =1:3
 end
 %% Symbolic EOM
 if par_set.EOM==1
-par_set=func_EOM_v_1_3_2(par_set);
+par_set=func_EOM_YZplane(par_set);
 end
 %% Get sample from the exp. data
 sample=[];
