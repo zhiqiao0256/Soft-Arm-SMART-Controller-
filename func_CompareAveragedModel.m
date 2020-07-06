@@ -1,4 +1,5 @@
 function [par_set]=func_CompareAveragedModel(par_set)
+fprintf('Averaged a is %.4f, b is %.4f',par_set.mean_a,par_set.mean_b)
 %% d_pm=a*pm+b*pd
 a=1;b=1;
 fcn_type='d';
