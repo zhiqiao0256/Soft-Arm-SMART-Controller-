@@ -1,5 +1,5 @@
 function [par_set]=func_CompareAveragedModel(par_set)
-fprintf('Averaged a is %.4f, b is %.4f',par_set.mean_a,par_set.mean_b)
+
 %% d_pm=a*pm+b*pd
 a=1;b=1;
 fcn_type='d';
@@ -27,6 +27,7 @@ par_set.mean_a=mean(para(:,1));
 par_set.std_a=std(para(:,1));
 par_set.mean_b=mean(para(:,2));
 par_set.std_b=std(para(:,2));
+fprintf('Averaged a is %.4f, b is %.4f',par_set.mean_a,par_set.mean_b)
 averaged_model=idgrey('func_pressrueController',{par_set.mean_a,par_set.mean_b},'d');
 %%
 
