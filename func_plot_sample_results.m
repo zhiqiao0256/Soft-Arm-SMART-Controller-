@@ -22,20 +22,20 @@ figure(2)% figure for pd pm zyz roll pitch yall
 set(gcf,'OuterPosition', [400,500,400,300]);
 subplot(2,1,1)
 title('Pressure')
-plot(sample.pd_MPa(:,1),sample.pd_MPa(:,2),'Color','r','LineWidth',2)
+plot(sample.pd_psi(:,1),sample.pd_psi(:,2),'Color','r','LineWidth',2)
 hold on
-plot(sample.pd_MPa(:,1),sample.pd_MPa(:,3),'Color','b','LineWidth',2)
+plot(sample.pd_psi(:,1),sample.pd_psi(:,3),'Color','b','LineWidth',2)
 hold on
-plot(sample.pd_MPa(:,1),sample.pd_MPa(:,4),'Color','k','LineWidth',2)
+plot(sample.pd_psi(:,1),sample.pd_psi(:,4),'Color','k','LineWidth',2)
 hold on
-plot(sample.pm_MPa(:,1),sample.pm_MPa(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
+plot(sample.pm_psi(:,1),sample.pm_psi(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
 hold on
-plot(sample.pm_MPa(:,1),sample.pm_MPa(:,3),'Color','b','LineWidth',2,'LineStyle','-.')
+plot(sample.pm_psi(:,1),sample.pm_psi(:,3),'Color','b','LineWidth',2,'LineStyle','-.')
 hold on
-plot(sample.pm_MPa(:,1),sample.pm_MPa(:,4),'Color','k','LineWidth',2,'LineStyle','-.')
+plot(sample.pm_psi(:,1),sample.pm_psi(:,4),'Color','k','LineWidth',2,'LineStyle','-.')
 legend('Pd1','Pd2','Pd3')
 xlabel('Time')
-ylabel('MPa')
+ylabel('psi')
 % xlim([0 50])
 subplot(2,1,2)
 title('Position')
