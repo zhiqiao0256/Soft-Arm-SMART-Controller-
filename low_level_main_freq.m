@@ -47,71 +47,71 @@ end
 %% Plot time domain 
 figure('Name','Time domain p track','Position',[400,200,600,800])
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];test_time=[];
-data_set=par_set.trail_1_25_01Hzpsi;
+data_set=[];testOutput=[];testInput=[];test_time=[];
+data_set=par_set.trail_0_25_01Hzpsi;
 test_time=data_set.pd_psi(:,1);
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 subplot(5,1,1)
-plot(test_time,test_input,'LineWidth',2,'Color','r')
+plot(test_time,testOutput,'LineWidth',2,'Color','r')
 hold on
-plot(test_time,test_output,'LineWidth',2,'Color','b')
+plot(test_time,testInput,'LineWidth',2,'Color','b')
 hold on
 title(' 0.1Hz')
 % xlim([5,90])
 xlabel('Time(s)')
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];test_time=[];
-data_set=par_set.trail_1_25_0125Hzpsi;
+data_set=[];testOutput=[];testInput=[];test_time=[];
+data_set=par_set.trail_0_25_0125Hzpsi;
 test_time=data_set.pd_psi(:,1);
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 subplot(5,1,2)
-plot(test_time,test_input,'LineWidth',2,'Color','r')
+plot(test_time,testOutput,'LineWidth',2,'Color','r')
 hold on
-plot(test_time,test_output,'LineWidth',2,'Color','b')
+plot(test_time,testInput,'LineWidth',2,'Color','b')
 hold on
 title(' 0.125Hz')
 % xlim([5,70])
 xlabel('Time(s)')
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];test_time=[];
-data_set=par_set.trail_1_25_025Hzpsi;
+data_set=[];testOutput=[];testInput=[];test_time=[];
+data_set=par_set.trail_0_25_025Hzpsi;
 test_time=data_set.pd_psi(:,1);
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 subplot(5,1,3)
-plot(test_time,test_input,'LineWidth',2,'Color','r')
+plot(test_time,testOutput,'LineWidth',2,'Color','r')
 hold on
-plot(test_time,test_output,'LineWidth',2,'Color','b')
+plot(test_time,testInput,'LineWidth',2,'Color','b')
 hold on
 title(' 0.25Hz')
 % xlim([5,35])
 xlabel('Time(s)')
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];test_time=[];
-data_set=par_set.trail_1_25_05Hzpsi;
+data_set=[];testOutput=[];testInput=[];test_time=[];
+data_set=par_set.trail_0_25_05Hzpsi;
 test_time=data_set.pd_psi(:,1);
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 subplot(5,1,4)
-plot(test_time,test_input,'LineWidth',2,'Color','r')
+plot(test_time,testOutput,'LineWidth',2,'Color','r')
 hold on
-plot(test_time,test_output,'LineWidth',2,'Color','b')
+plot(test_time,testInput,'LineWidth',2,'Color','b')
 hold on
 title(' 0.5Hz')
 % xlim([5,25])
 xlabel('Time(s)')
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];test_time=[];
-data_set=par_set.trail_1_25_1Hzpsi;
+data_set=[];testOutput=[];testInput=[];test_time=[];
+data_set=par_set.trail_0_25_1Hzpsi;
 test_time=data_set.pd_psi(:,1);
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 subplot(5,1,5)
-plot(test_time,test_input,'LineWidth',2,'Color','r')
+plot(test_time,testOutput,'LineWidth',2,'Color','r')
 hold on
-plot(test_time,test_output,'LineWidth',2,'Color','b')
+plot(test_time,testInput,'LineWidth',2,'Color','b')
 hold on
 title(' 1Hz')
 % xlim([5,15])
@@ -125,13 +125,13 @@ Ts=0.05;
 %%
 figure('Position',[600,200,600,800])
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_0_25_01Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
@@ -145,13 +145,13 @@ legend('0.1Hz','Avg. model','Orientation','vertical','Location','eastoutside')
 
 %%%%%%%
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_0_25_0125Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
@@ -164,13 +164,13 @@ hold on
 legend('0.125Hz','Avg. model','Orientation','vertical','Location','eastoutside')
 %%%%%%%
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_0_25_025Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
@@ -184,13 +184,13 @@ legend('0.25Hz','Avg. model','Orientation','vertical','Location','eastoutside')
 
 %%%%%%%
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_0_25_05Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
@@ -204,13 +204,13 @@ legend('0.5Hz','Avg. model','Orientation','vertical','Location','eastoutside')
 
 %%%%%%%
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_0_25_1Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
@@ -226,13 +226,13 @@ hold on
 
 figure('Position',[600,200,600,800])
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_1_25_01Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
@@ -246,13 +246,13 @@ legend('0.1Hz','Avg. model','Orientation','vertical','Location','eastoutside')
 
 %%%%%%%
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_1_25_0125Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
@@ -265,13 +265,13 @@ hold on
 legend('0.125Hz','Avg. model','Orientation','vertical','Location','eastoutside')
 %%%%%%%
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_1_25_025Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
@@ -285,13 +285,13 @@ legend('0.25Hz','Avg. model','Orientation','vertical','Location','eastoutside')
 
 %%%%%%%
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_1_25_05Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
@@ -305,13 +305,13 @@ legend('0.5Hz','Avg. model','Orientation','vertical','Location','eastoutside')
 
 %%%%%%%
 %%%%%%%%%%
-data_set=[];test_input=[];test_output=[];
+data_set=[];testOutput=[];testInput=[];
 data_set=par_set.trail_1_25_1Hzpsi;
 %%%%%%%%%%
-test_output=data_set.pd_psi(:,2);
-test_input=data_set.pm_psi(:,2);
+testInput=data_set.pd_psi(:,2);
+testOutput=data_set.pm_psi(:,2)-data_set.pm_psi(1,2);
 
-test_data=iddata([test_input],[test_output],Ts);
+test_data=iddata([testOutput],[testInput],Ts);
 test_data.OutputName='Pressure';
 test_data.OutputUnit='psi';
 test_data.Tstart = 0;
