@@ -9,7 +9,7 @@ par_set.EOM=0;
 %flag for plot
 par_set.flag_plot_rawData=1;
 %flag for read txt file or mat file 1: txt 0: mat
-par_set.flag_read_exp=1;
+par_set.flag_read_exp=0;
 % p1 > p2,3
 par_set.trial_2_25psi=[];
 par_set.trial_5_25psi=[];
@@ -23,6 +23,7 @@ par_set.m0=0.35;%kg segment weight
 par_set.g=9.8;%% gravity constant
 par_set.a0=15*1e-03;%% 1/2 of pillow width
 par_set.r_f=sqrt(3)/6*par_set.trianlge_length+par_set.a0; % we assume the force are evenly spread on a cirlce with radius of r_f
+fprintf('System initialization done \n')
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
     par_set.trial_2_25psi=func_high_level_exp(par_set.trial_2_25psi,1);
@@ -39,7 +40,7 @@ end
 %% Configure where p1 is located 
 %%%%%%%%%%%%%%%%%%
 test_tip_pos=[];
-test_tip_pos=par_set.trial_1_25psi.tip_exp;
+test_tip_pos=par_set.trial_0_25psi.tip_exp;
 if par_set.flag_plot_rawData==1
     figure('Name','Raw 3D position')
     plot3(test_tip_pos(:,2),test_tip_pos(:,3),test_tip_pos(:,4),'LineWidth',1,'LineStyle','-.','Color','k')
@@ -65,15 +66,28 @@ if par_set.EOM==1
 par_set=func_EOM_YZplane(par_set);
 end
 %% Get sample from the exp. data
-sample=[];
-temp.start=500;
-temp.end=1500;
-sample.pd_psi=par_set.pd_psi(temp.start:temp.end,1:end);
-sample.pm_psi=par_set.pm_psi(temp.start:temp.end,1:end);
-sample.pd_MPa=par_set.pd_MPa(temp.start:temp.end,1:end);
-sample.pm_MPa=par_set.pm_MPa(temp.start:temp.end,1:end);
-sample.tip_exp=par_set.tip_exp(temp.start:temp.end,1:end);
+sample=[];test_data=[];
+test_data=par_set.trial_5_25psi;
+sample.pd_psi=test_data.pd_psi(:,1:end);
+sample.pm_psi=test_data.pm_psi(:,1:end);
+sample.pd_MPa=test_data.pd_MPa(:,1:end);
+sample.pm_MPa=test_data.pm_MPa(:,1:end);
+sample.tip_exp=test_data.tip_exp(:,1:end);
+[val,pos]=findpeaks(sample.pd_psi(:,2));
 sample.r_p=par_set.r_p;
+%%%%%%%%%%%%%%%
+trainSet.pd_psi=test_data.pd_psi(1:pos(6)-10,1:end);
+trainSet.pm_psi=test_data.pm_psi(1:pos(6)-10,1:end);
+trainSet.pd_MPa=test_data.pd_MPa(1:pos(6)-10,1:end);
+trainSet.pm_MPa=test_data.pm_MPa(1:pos(6)-10,1:end);
+trainSet.tip_exp=test_data.tip_exp(1:pos(6)-10,1:end);
+%%%%%%%%%%%%
+validSet.pd_psi=test_data.pd_psi(pos(6)-9,1:end);
+validSet.pm_psi=test_data.pm_psi(pos(6)-9,1:end);
+validSet.pd_MPa=test_data.pd_MPa(pos(6)-9,1:end);
+validSet.pm_MPa=test_data.pm_MPa(pos(6)-9,1:end);
+validSet.tip_exp=test_data.tip_exp(pos(6)-9,1:end);
+fprintf('Dividing trainning set and validation set\n')
 %% Plot Sample data 
 func_plot_sample_results(sample)
 %% Calculate Phi from the data
