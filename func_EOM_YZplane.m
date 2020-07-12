@@ -10,7 +10,7 @@ xi = sym('xi', [par.n 1]);
 %q1=phi_i, q2=theta_i/2 - zeta_theta_i, q3 = zeta_theta_i,q4=bi
 dxi = sym('dxi', [par.n 1]);
 rigid_a=zeros(1,par.n);
-rigid_alpha=[-pi/2,    0,  pi/2, -pi/2];%alpha
+rigid_alpha=[-pi/2,    0,  pi/2, 0];%alpha
 rigid_d=    [0,    xi(2), xi(3),   0 ];
 theta=      [xi(1),    0,     0, xi(4)];
 syms m0 g
@@ -19,6 +19,10 @@ m=[0 m0 0 0];
 % cell array of your homogeneous transformations; each Ti{i} is a 4x4 symbolic transform matrix
 Ti = cell(par.n+1,1);% z0 z_end_effector
 Ti(1) = {[1 0 0 0;0 1 0 0; 0 0 1 0; 0 0 0 1]};
+%     Ti(1)= {[0 0 1 0;
+%              1 0 0 0; 
+%              0 1 0 0; 
+%              0 0 0 1]};
     p_i{1}=Ti{1}(1:3,4);
     z_i{1}=Ti{1}(1:3,3);
 for i = 2:par.n+1
@@ -26,6 +30,7 @@ for i = 2:par.n+1
     p_i{i}=Ti{i}(1:3,4);
     z_i{i}=Ti{i}(1:3,3);
 end
+par.Ti=Ti;
 %% Protential energy
 E_p=0;
 for link_i=1:par.n
@@ -140,16 +145,16 @@ par.f_xi=eom_rhs;
 %% mapping
 temp_var=[];
 syms phi theta L dphi dtheta ddphi ddtheta phi_t(t) theta_t(t) 
-b_theta= (L/theta-b0)*sin(theta/2);
+b_theta= (L/(sign(theta)*theta)-b0)*sin(sign(theta)*theta/2);
 
 m_q=[theta/2 b_theta b_theta theta/2 ].';
-J_f=diff(m_q,theta)
+J_f=diff(m_q,theta);
 
 temp.dJ_f=diff(subs(J_f,[theta],[theta_t(t)]),t);
 dJ_fdt=subs(temp.dJ_f,[theta_t(t),diff(theta_t(t), t)],[theta,dtheta]);
 par.J_xi2q=J_f;
 temp.xi=m_q;
-temp.dxi=J_f*[dphi dtheta].';
+temp.dxi=J_f*[dtheta].';
 temp.ddxi=dJ_fdt*[dtheta].'+J_f*[ddtheta].';
 % %%
 B_xi_q=subs(D,xi,m_q);
@@ -173,4 +178,5 @@ G_q=J_f.'*subs(Phi,xi,m_q);
 par.B_q=B_q;
 par.C_q=C_q;
 par.G_q=G_q;
+fprintf('EOM Done\n')
 end
