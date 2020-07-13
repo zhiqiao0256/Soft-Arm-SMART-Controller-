@@ -209,5 +209,6 @@ temp.tau=[-sind(30) -sind(30) sind(90);
             0 0 -1
             0 1 0]; 
  temp.tauBaseFrame=temp.Rphi.'*temp.tau;
+ par.tauBaseFrame= simplify(temp.tauBaseFrame);
 fprintf('EOM Done\n')
 end
