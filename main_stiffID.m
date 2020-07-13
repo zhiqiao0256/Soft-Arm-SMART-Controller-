@@ -5,11 +5,11 @@ clc
 %% Initialize the system
 par_set=[];
 %flag for EOM deriviation
-par_set.EOM=0;
+par_set.EOM=1;
 %flag for plot
 par_set.flag_plot_rawData = 1;
 %flag for read txt file or mat file 1: txt 0: mat
-par_set.flag_read_exp = 1;
+par_set.flag_read_exp = 0;
 %flag for plotting moving constant layer
 par_set.flag_plot_movingCC =0;
 % p1 > p2,3
@@ -87,39 +87,9 @@ end
 trainSet.phi=temp.angle_phi;
 trainSet.phi_rad=deg2rad(temp.angle_phi);
 trainSet.tip_exp_baseFrame=temp.tip_exp_baseFrame;
-%%% %%%
+%%%%%%%
 if par_set.flag_plot_rawData==1
-    test_tip_pos=[];
-    test_tip_pos=trainSet.tip_exp;
-    figure('Name','3D position Cam vs. Base')
-    subplot(1,2,1)
-    plot3(test_tip_pos(:,2),test_tip_pos(:,3),test_tip_pos(:,4),'LineWidth',1,'LineStyle','-.','Color','k')
-    hold on
-    scatter3(test_tip_pos(1,2),test_tip_pos(1,3),test_tip_pos(1,4),'LineWidth',4,'Marker','hexagram','MarkerFaceColor','r')
-    hold on
-    xlim([-0.2,0.2])
-    ylim([-0.2,0.2])
-    zlim([-0.2,0.2])
-    hold on
-    grid on
-    title('Camera Frame')
-    xlabel('X(m)')
-    ylabel('Y(m)')
-    subplot(1,2,2)
-    test_tip_pos=[];
-    test_tip_pos=trainSet.tip_exp_baseFrame;
-    plot3(test_tip_pos(:,2),test_tip_pos(:,3),test_tip_pos(:,4),'LineWidth',1,'LineStyle','-.','Color','b')
-    hold on
-    scatter3(test_tip_pos(1,2),test_tip_pos(1,3),test_tip_pos(1,4),'LineWidth',4,'Marker','hexagram','MarkerFaceColor','g')
-    hold on
-    xlim([-0.2,0.2])
-    ylim([-0.2,0.2])
-    zlim([-0.2,0.2])
-    hold on
-    grid on
-    title('Base Frame')
-    xlabel('X(m)')
-    ylabel('Y(m)')
+func_compareCamWithBase(trainSet)
 end
 %% Calculate b_i in Camera frame
 beta_array=zeros(length(trainSet.phi),3);
@@ -148,149 +118,60 @@ for i=1:length(beta_array)% find beta <0 and ||beta*(xt,yt)|| <= a0/sqrt(3)
         end
     end
 end
-%%% %%%
-%%% %%%
+%%%%%%
+%%%%%%
 if par_set.flag_plot_movingCC==1
-    x2=linspace(0,0.035,100);
-    x3=linspace(-0.035,0.035,100);
-    x1=linspace(-0.035,0,100);
-    y1= -sqrt(3)*x1-1/sqrt(3)*par_set.trianlge_length;
-    y2= +sqrt(3)*x2-1/sqrt(3)*par_set.trianlge_length;
-    y3= ones(length(x3),1)*sqrt(3)/6*par_set.trianlge_length;
-    for i=1:length(x1)
-
-        edge1(:,i)=[x1(i);y1(i);0];
-        edge2(:,i)=[x2(i);y2(i);0];
-        edge3(:,i)=[x3(i);y3(i);0];
-
-    end
-    figure('Position',[100;100;600;600])
-    for i =1:3
-        scatter3(trainSet.r_p{i}(1),trainSet.r_p{i}(2),trainSet.r_p{i}(3),'*')
-        hold on
-    end
-    scatter3(trainSet.tip_exp(1,2),trainSet.tip_exp(1,3),trainSet.tip_exp(1,4),'g','*','LineWidth',4)
-    hold on
-    scatter3(trainSet.tip_exp(end,2),trainSet.tip_exp(end,3),trainSet.tip_exp(end,4),'c','*','LineWidth',4)
-    hold on
-    scatter3(trainSet.x_y_edge(:,1),trainSet.x_y_edge(:,2),trainSet.x_y_edge(:,3),'k')
-    hold on
-    scatter3(trainSet.tip_exp(:,2),trainSet.tip_exp(:,3),trainSet.tip_exp(:,4),'r','hexagram')
-    hold on
-    scatter3(0,0,0,'r','diamond')
-    hold on
-    plot3(edge1(1,:),edge1(2,:),edge1(3,:),'LineStyle',':','Color','k','LineWidth',2)
-    hold on
-    plot3(edge2(1,:),edge2(2,:),edge2(3,:),'LineStyle',':','Color','k','LineWidth',2)
-    hold on
-    plot3(edge3(1,:),edge3(2,:),edge3(3,:),'LineStyle',':','Color','k','LineWidth',2)
-    hold on
-    legend('Chamber 1','Chamber 2','Chamber 3','Start','End','Intersection point','Top center','Bottom center','Inextensible edge','Location','northwest')
-    xlabel('X-axis (m)')
-    ylabel('Y-axis (m)')
-    zlabel('Z-axis (m)')
-    xlim([-0.1,0.1])
-    ylim([-0.1,.1])
-    zlim([0,0.2])
-    view([1,-1,1])
+   func_camFramePlotMovingCC(trainSet);
 end
-%% Calculate theta in base frame -pi/2,pi/2t
+%% Calculate theta in base frame ranging -pi/2,pi/2 
 trainSet.theta_rad=2*-sign(trainSet.tip_exp_baseFrame(:,2)).*asin(sqrt(trainSet.tip_exp_baseFrame(:,2).^2)./sqrt(trainSet.tip_exp_baseFrame(:,2).^2+trainSet.tip_exp_baseFrame(:,3).^2));
 trainSet.theta_deg=rad2deg(trainSet.theta_rad);
 
-%% Augmented Rigid tip Estimation maps to Eq. (4) in the paper
-xi_vector=[trainSet.theta_rad/2,(par_set.L./trainSet.theta_rad-trainSet.beta).*sin(trainSet.theta_rad/2),(par_set.L./trainSet.theta_rad-trainSet.beta).*(sin(trainSet.theta_rad/2)),trainSet.theta_rad/2];
-% xi_vector=[trainSet.phi_rad, trainSet.theta_rad/2, (par_set.L./trainSet.theta_rad-trainSet.beta).*sin(trainSet.theta_rad/2),-trainSet.phi_rad,...
-%     trainSet.phi_rad,(par_set.L./trainSet.theta_rad-trainSet.beta).*sin(trainSet.theta_rad/2),trainSet.theta_rad/2, -trainSet.phi_rad];
+%% Augmented Rigid tip Estimation in Base frame
+trainSet.xi_vector=[trainSet.theta_rad/2,(par_set.L./trainSet.theta_rad-trainSet.beta).*sin(trainSet.theta_rad/2),(par_set.L./trainSet.theta_rad-trainSet.beta).*(sin(trainSet.theta_rad/2)),trainSet.theta_rad/2];
 
-% xi_vector=[deg2rad(sample.phi), deg2rad(sample.theta/2), (par.L./deg2rad(sample.theta)-sample.beta).*sind(sample.theta/2),...
-%     (par.L./deg2rad(sample.theta)-sample.beta).*sind(sample.theta/2), deg2rad(sample.theta/2), -deg2rad(sample.phi)];
-for j=1:length(xi_vector)
-    xi=xi_vector(j,:);
-    rigid_b0=trainSet.beta(j);thetad=trainSet.theta_rad(j);L=par_set.L;a0=par_set.a0;
-     p1=trainSet.pm_MPa(j,2);p2=trainSet.pm_MPa(j,3);p3=trainSet.pm_MPa(j,4);
-% % Maps to Table 1. DH parameters  
-    rigid_a=zeros(1,par_set.n);
-    rigid_alpha=[-pi/2 0     pi/2      0];
-    rigid_d=    [0     xi(2) xi(3)    0 ];
-    rigid_theta=[xi(1) 0        0   xi(4)];
-    m=[0 par_set.m0];
-% %
-% % Maps to Table 1. DH parameters  
-%     rigid_a=zeros(1,8);
-%     rigid_alpha=[-pi/2 pi/2    0     0      0  -pi/2 pi/2      0];
-%     rigid_d=    [0      0   xi(3)    0      0  xi(6)    0      0];
-%     rigid_theta=[xi(1) xi(2)   0  xi(4)  xi(5)    0  xi(7) xi(8)];
-%     m=[0 0  par_set.m0];
-% Get HTM T{i}, p{i}, z{i}, for Jacobian calculation    
-    Ti = cell(par_set.n+1,1);
-    Ti(1) = {[1 0 0 0;0 1 0 0; 0 0 1 0; 0 0 0 1]};
-%     R_base2Cam=[-1 0 0;
-%                 0 0 -1;
-%                 0 1 0];
-%     Ti{1}=[R_base2Cam',zeros(3,1);
-%         0 0 0 1];
-    p_i{1}=Ti{1}(1:3,4);
-    z_i{1}=Ti{1}(1:3,3);
-for i = 2:par_set.n+1
-    Ti{i} =  Ti{i-1} * ([cos(rigid_theta(i-1)) -sin(rigid_theta(i-1)) 0 0; sin(rigid_theta(i-1)) cos(rigid_theta(i-1)) 0 0; 0 0 1 0; 0 0 0 1] *[1 0 0 0; 0 1 0 0; 0 0 1 rigid_d(i-1); 0 0 0 1]*[1 0 0 rigid_a(i-1); 0 1 0 0; 0 0 1 0; 0 0 0 1]*[1 0 0 0; 0 cos(rigid_alpha(i-1)) -sin(rigid_alpha(i-1)) 0 ; 0 sin(rigid_alpha(i-1)) cos(rigid_alpha(i-1)) 0; 0 0 0 1]);
-    p_i{i}=Ti{i}(1:3,4);
-    z_i{i}=Ti{i}(1:3,3);
-end
-%% Linear Velocity J_v
-J_v=cell(par_set.n,1);
-i=par_set.n;
-    j_v=(zeros(3,par_set.n));
-    for j_counter =1:i
-        if rigid_theta(j_counter) == 0 %% Prismatic Joint
-            j_v(:,j_counter)=z_i{j_counter};
-        else %% Rotational Joint
-            j_v(:,j_counter)=cross(z_i{j_counter},(p_i{i+1}-p_i{j_counter}));
-        end
-    end
-    J_v{i}=j_v;
-%% Angular Velocity J_w
-J_w=cell(par_set.n,1);
-i = par_set.n;
-    j_w=(zeros(3,par_set.n));
-    for j_counter =1:i
-        if rigid_theta(j_counter) == 0 %% Prismatic Joint
-            j_w(:,j_counter)=zeros(3,1);
-        else %% Rotational Joint
-            j_w(:,j_counter)=z_i{j_counter};
-        end
-    end
-    J_w{i}=j_w;
-
-%% Jacobian maps to Eq.(8)
-J_xi2q{j}=[0.5, - (cos(thetad/2)*(rigid_b0 - L/thetad))/2 - (L*sin(thetad/2))/thetad^2,- (cos(thetad/2)*(rigid_b0 - L/thetad))/2 - (L*sin(thetad/2))/thetad^2, 0.5]';
-
-J_x2xi{j}=[J_v{end};J_w{end}];
-xyz_estimation(j,1:3)=(Ti{end}(1:3,4))';
-% %% Wrech force w/ base frame
-% f_p1=588.31*p1;%mpa
-% f_p2=588.31*p2;%mpa
-% f_p3=588.31*p3;%mpa
-% for i =1:3
-%     T_p{i}=Ti{end}*[eye(3),trainSet.r_p{i};0 0 0 1];
-%     r_p_base{i}=T_p{i}(1:3,4);
-% end
-% 
-% trainSet.top_p1_xyz(j,1:3)=r_p_base{1};
-% trainSet.top_p2_xyz(j,1:3)=r_p_base{2};
-% trainSet.top_p3_xyz(j,1:3)=r_p_base{3};
-% 
-% wrench_base_pm{j}=[f_p1*T_p{1}(1:3,3);cross(r_p_base{1},f_p1*T_p{1}(1:3,3))]+...
-%     [f_p2*T_p{2}(1:3,3);cross(r_p_base{2},f_p2*T_p{2}(1:3,3))]+...
-%     [f_p3*T_p{3}(1:3,3);cross(r_p_base{3},f_p3*T_p{3}(1:3,3))];
-end
-func_compare_kinematic_YZ(trainSet,xyz_estimation,par_set)
+trainSet=func_fwdKinematic(trainSet,par_set);
+func_compare_kinematic_YZ(trainSet,trainSet.xyz_estimation,par_set);
 %% Symbolic EOM
-par_set.EOM=1;
 if par_set.EOM==1
 par_set=func_EOM_baseFrame(par_set);
 end
-par_set.EOM=0;
-%% 
-b=Izz/4 + m0*((cos(theta/2)*(b0 - L/theta))/2 + (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(b0 - L/theta)^2)/4;
-c11
+%% Getting velocity and acceleration
+% 5 sample moving average method is used
+windowSize = 5; 
+filter_b = (1/windowSize)*ones(1,windowSize);
+filter_a = 1;
+trainSet.velocity_phi_rad=zeros(length(trainSet.phi_rad),1);
+trainSet.velocity_phi_rad(2:end)=filter(filter_b,filter_a,(trainSet.phi_rad(2:end)-trainSet.phi_rad(1:end-1))/(1/20));
+trainSet.acc_phi_rad=zeros(length(trainSet.phi_rad),1);
+trainSet.acc_phi_rad(2:end)=filter(filter_b,filter_a,(trainSet.velocity_phi_rad(2:end)-trainSet.velocity_phi_rad(1:end-1))/(1/20));
+
+trainSet.velocity_theta_rad=zeros(length(trainSet.theta_rad),1);
+trainSet.velocity_theta_rad(2:end)=smooth((trainSet.theta_rad(2:end)-trainSet.theta_rad(1:end-1))/(1/20));
+trainSet.acc_theta_rad=zeros(length(trainSet.theta_rad),1);
+trainSet.acc_theta_rad(2:end)=smooth((trainSet.velocity_theta_rad(2:end)-trainSet.velocity_theta_rad(1:end-1))/(1/20));
+%% leat square estimation for alpha k d
+m0=par_set.m0;L=par_set.L;g=9.8;
+for i =1:length(trainSet.pd_MPa)
+theta=trainSet.theta_rad(i);phi=trainSet.phi_rad(i);b0=trainSet.beta(i);
+dtheta=trainSet.velocity_theta_rad(i);dphi=trainSet.velocity_phi_rad(i);
+pm1=trainSet.pm_MPa(i,2);pm2=trainSet.pm_MPa(i,3);pm3=trainSet.pm_MPa(i,4);
+Izz=m0*b0^2;
+M(i,1)=Izz/4 + m0*((cos(theta/2)*(b0 - L/theta))/2 + (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(b0 - L/theta)^2)/4;
+C(i,1)= (dtheta*m0*sin(theta/2)*(b0 - L/theta)*((cos(theta/2)*(b0 - L/theta))/2 + (L*sin(theta/2))/theta^2))/4 - m0*((cos(theta/2)*(b0 - L/theta))/2 + (L*sin(theta/2))/theta^2)*((dtheta*sin(theta/2)*(b0 - L/theta))/4 - (L*dtheta*cos(theta/2))/theta^2 + (2*L*dtheta*sin(theta/2))/theta^3);
+C_simp(i,1)=-(L*dtheta*m0*(2*sin(theta/2) - theta*cos(theta/2))*(2*L*sin(theta/2) - L*theta*cos(theta/2) + b0*theta^2*cos(theta/2)))/(2*theta^5);
+G(i,1)=(g*m0*sin(theta/2)^2*(b0 - L/theta))/2 - g*m0*cos(theta/2)*((cos(theta/2)*(b0 - L/theta))/2 + (L*sin(theta/2))/theta^2);
+G_simp(i,1)=-(g*m0*(L*sin(theta) + b0*theta^2*cos(theta) - L*theta*cos(theta)))/(2*theta^2);
+pi_alpha(i,1)=sin(phi)*(0.5*pm1+0.5*pm2-pm3)-sqrt(3)*cos(phi)*(0.5*pm1-0.5*pm2);
+pi_k(i,1)=theta;
+pi_d(i,1)=dtheta;
+end
+%%%%
+tau_bar=M+C_simp+G_simp;
+Y_bar=[pi_alpha,pi_k,pi_d];
+%%%%
+start_pt=2000;
+end_pt=length(Y_bar);
+%%%%
+temp.result=inv(Y_bar(start_pt:end_pt,:).'*Y_bar(start_pt:end_pt,:))*Y_bar(start_pt:end_pt,:).'*tau_bar(start_pt:end_pt,:);
+fprintf('Estimated [alpha,k,d] is [%.4f,%.4f,%.4f] \n',temp.result(1),temp.result(2),temp.result(3))
