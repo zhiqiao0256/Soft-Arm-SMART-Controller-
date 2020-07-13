@@ -11,7 +11,7 @@ par_set.flag_plot_rawData = 1;
 %flag for read txt file or mat file 1: txt 0: mat
 par_set.flag_read_exp = 1;
 %flag for plotting moving constant layer
-par_set.flag_plot_movingCC =1;
+par_set.flag_plot_movingCC =0;
 % p1 > p2,3
 par_set.trial_2_25psi=[];
 par_set.trial_5_25psi=[];
@@ -65,7 +65,7 @@ validSet.pd_MPa=test_data.pd_MPa(pos(6)-9,1:end);
 validSet.pm_MPa=test_data.pm_MPa(pos(6)-9,1:end);
 validSet.tip_exp=test_data.tip_exp(pos(6)-9,1:end);
 fprintf('Dividing trainning set and validation set\n')
-%% Calculate Phi in camera frame then maps to robot base frame
+%% Calculate Phi in camera frame then maps to robot base frame 0,2pi
 temp.phi_vector=trainSet.tip_exp(:,2:4); %xyz in Camera frame
 temp.angle_phi=[];
 %%% Calculate phi anlge ranging [0,2pi] atan(y_top/x_top)
@@ -136,13 +136,19 @@ for i=1:length(beta_array)% find beta <0 and ||beta*(xt,yt)|| <= a0/sqrt(3)
         r_beta_k(i,k)=norm(beta_k(k).*trainSet.tip_exp(i,2:3));
         if beta_k(k)<0
             if  r_beta_k(i,k)<= par_set.trianlge_length/sqrt(3)
-                trainSet.beta(i,1)=r_beta_k(i,k);
+                temp.Rz=[cosd(temp.angle_phi(i,1)) -sind(temp.angle_phi(i,1))  0;
+                        sind(temp.angle_phi(i,1)) cosd(temp.angle_phi(i,1))   0;
+                        0                   0                   1];
+%                 trainSet.beta(i,1)=r_beta_k(i,k);
                 trainSet.x_y_edge(i,1:2)=beta_k(k)*trainSet.tip_exp(i,2:3);
                 trainSet.x_y_edge(i,3)=0;
+                temp_r=temp.Rz'*trainSet.x_y_edge(i,:)';
+                trainSet.beta(i,1)=temp_r(1);
             end
         end
     end
 end
+%%% %%%
 %%% %%%
 if par_set.flag_plot_movingCC==1
     x2=linspace(0,0.035,100);
@@ -188,12 +194,12 @@ if par_set.flag_plot_movingCC==1
     zlim([0,0.2])
     view([1,-1,1])
 end
-%% Calculate theta in base frame
+%% Calculate theta in base frame -pi/2,pi/2t
 trainSet.theta_rad=2*-sign(trainSet.tip_exp_baseFrame(:,2)).*asin(sqrt(trainSet.tip_exp_baseFrame(:,2).^2)./sqrt(trainSet.tip_exp_baseFrame(:,2).^2+trainSet.tip_exp_baseFrame(:,3).^2));
 trainSet.theta_deg=rad2deg(trainSet.theta_rad);
 
 %% Augmented Rigid tip Estimation maps to Eq. (4) in the paper
-xi_vector=[trainSet.theta_rad/2,(par_set.L./abs(trainSet.theta_rad)-trainSet.beta).*abs(sin(trainSet.theta_rad/2)),(par_set.L./abs(trainSet.theta_rad)-trainSet.beta).*abs(sin(trainSet.theta_rad/2)),trainSet.theta_rad/2];
+xi_vector=[trainSet.theta_rad/2,(par_set.L./trainSet.theta_rad-trainSet.beta).*sin(trainSet.theta_rad/2),(par_set.L./trainSet.theta_rad-trainSet.beta).*(sin(trainSet.theta_rad/2)),trainSet.theta_rad/2];
 % xi_vector=[trainSet.phi_rad, trainSet.theta_rad/2, (par_set.L./trainSet.theta_rad-trainSet.beta).*sin(trainSet.theta_rad/2),-trainSet.phi_rad,...
 %     trainSet.phi_rad,(par_set.L./trainSet.theta_rad-trainSet.beta).*sin(trainSet.theta_rad/2),trainSet.theta_rad/2, -trainSet.phi_rad];
 
@@ -279,11 +285,12 @@ xyz_estimation(j,1:3)=(Ti{end}(1:3,4))';
 %     [f_p3*T_p{3}(1:3,3);cross(r_p_base{3},f_p3*T_p{3}(1:3,3))];
 end
 func_compare_kinematic_YZ(trainSet,xyz_estimation,par_set)
-
 %% Symbolic EOM
 par_set.EOM=1;
 if par_set.EOM==1
-par_set=func_EOM_YZplane(par_set);
+par_set=func_EOM_baseFrame(par_set);
 end
 par_set.EOM=0;
-%%
+%% 
+b=Izz/4 + m0*((cos(theta/2)*(b0 - L/theta))/2 + (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(b0 - L/theta)^2)/4;
+c11
