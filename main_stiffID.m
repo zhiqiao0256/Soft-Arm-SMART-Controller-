@@ -24,6 +24,9 @@ par_set.trial_25_0psi=[];
 par_set.trial_25_1psi=[];
 par_set.trial_25_2psi=[];
 par_set.trial_25_3psi=[];
+par_set.trial_25_4psi=[];
+par_set.trial_25_5psi=[];
+
 % Geometric para.
 par_set.trianlge_length=70*1e-03;% fabric triangle edge length
 par_set.L=0.19;%actuator length
@@ -46,8 +49,8 @@ if par_set.flag_read_exp==1
     par_set.trial_2_25psi=func_high_level_exp(par_set.trial_2_25psi,5);
     par_set.trial_1_25psi=func_high_level_exp(par_set.trial_1_25psi,6);
     
-    par_set.trial_25_5psi=func_high_level_exp(par_set.trial_25_2psi,8);
-    par_set.trial_25_4psi=func_high_level_exp(par_set.trial_25_1psi,9);
+    par_set.trial_25_5psi=func_high_level_exp(par_set.trial_25_5psi,8);
+    par_set.trial_25_4psi=func_high_level_exp(par_set.trial_25_4psi,9);
     par_set.trial_25_3psi=func_high_level_exp(par_set.trial_25_3psi,3);
     par_set.trial_25_2psi=func_high_level_exp(par_set.trial_25_2psi,2);
     par_set.trial_25_1psi=func_high_level_exp(par_set.trial_25_1psi,1);
@@ -65,5 +68,58 @@ par_set=func_EOM_baseFrame(par_set);
 end
 %% system ID sets
 par_set.trial_1_25psi=func_sysID(par_set.trial_1_25psi,par_set);
-
+par_set.trial_2_25psi=func_sysID(par_set.trial_2_25psi,par_set);
+par_set.trial_3_25psi=func_sysID(par_set.trial_3_25psi,par_set);
+%
+par_set.trial_25_1psi=func_sysID(par_set.trial_25_1psi,par_set);
+par_set.trial_25_2psi=func_sysID(par_set.trial_25_2psi,par_set);
+par_set.trial_25_3psi=func_sysID(par_set.trial_25_3psi,par_set);
+par_set.trial_25_4psi=func_sysID(par_set.trial_25_4psi,par_set);
+par_set.trial_25_5psi=func_sysID(par_set.trial_25_5psi,par_set);
 %%
+figure
+xx_posi=[1,2,3]';
+xx_neg=[-1,-2,-3,-4,-5]';
+alpha_neg=[par_set.trial_25_1psi.trainSet.pi_set(1);par_set.trial_25_2psi.trainSet.pi_set(1);par_set.trial_25_3psi.trainSet.pi_set(1);par_set.trial_25_4psi.trainSet.pi_set(1);par_set.trial_25_5psi.trainSet.pi_set(1)];
+alpha_posi=[par_set.trial_1_25psi.trainSet.pi_set(1);par_set.trial_2_25psi.trainSet.pi_set(1);par_set.trial_3_25psi.trainSet.pi_set(1);];
+
+k_neg=[par_set.trial_25_1psi.trainSet.pi_set(2);par_set.trial_25_2psi.trainSet.pi_set(2);par_set.trial_25_3psi.trainSet.pi_set(2);par_set.trial_25_4psi.trainSet.pi_set(2);par_set.trial_25_5psi.trainSet.pi_set(2)];
+k_posi=[par_set.trial_1_25psi.trainSet.pi_set(2);par_set.trial_2_25psi.trainSet.pi_set(2);par_set.trial_3_25psi.trainSet.pi_set(2);];
+
+b_neg=[par_set.trial_25_1psi.trainSet.pi_set(3);par_set.trial_25_2psi.trainSet.pi_set(3);par_set.trial_25_3psi.trainSet.pi_set(3);par_set.trial_25_4psi.trainSet.pi_set(3);par_set.trial_25_5psi.trainSet.pi_set(3)];
+b_posi=[par_set.trial_1_25psi.trainSet.pi_set(3);par_set.trial_2_25psi.trainSet.pi_set(3);par_set.trial_3_25psi.trainSet.pi_set(3);];
+
+subplot(3,1,1)
+scatter(-xx_neg,alpha_neg)
+title('p_1\in[0,25]psi, p_{2,3}\in[1-5]psi')
+ylabel('\alpha')
+hold on
+
+subplot(3,1,2)
+scatter(-xx_neg,k_neg)
+ylabel('k')
+hold on
+
+subplot(3,1,3)
+scatter(-xx_neg,b_neg)
+ylabel('b')
+xlabel('p_{2,3} pd')
+hold on
+
+figure
+subplot(3,1,1)
+scatter(xx_posi,alpha_posi)
+title('p_{2,3}\in[0,25]psi, p_1\in[1-3]psi')
+ylabel('\alpha')
+hold on
+
+subplot(3,1,2)
+scatter(xx_posi,k_posi)
+ylabel('k')
+hold on
+
+subplot(3,1,3)
+scatter(xx_posi,b_posi)
+ylabel('b')
+xlabel('p_1 pd')
+hold on
