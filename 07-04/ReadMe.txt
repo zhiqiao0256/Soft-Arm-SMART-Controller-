@@ -1,4 +1,4 @@
-ReadMe 06-25
+ReadMe 0704
 data collect index explain:
 1. step responses 2-2-2 to 25-2-2 repeated 5 times.
 2. step responses 5-5-5 to 25-5-5 repeated 5 times.

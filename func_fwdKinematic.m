@@ -1,4 +1,5 @@
 function trainSet=func_fwdKinematic(trainSet,par_set)
+trainSet.xi_vector=[trainSet.theta_rad/2,(par_set.L./trainSet.theta_rad-trainSet.beta).*sin(trainSet.theta_rad/2),(par_set.L./trainSet.theta_rad-trainSet.beta).*(sin(trainSet.theta_rad/2)),trainSet.theta_rad/2];
 for j=1:length(trainSet.xi_vector)
     xi=trainSet.xi_vector(j,:);
     rigid_b0=trainSet.beta(j);thetad=trainSet.theta_rad(j);L=par_set.L;a0=par_set.a0;
@@ -79,4 +80,7 @@ xyz_estimation(j,1:3)=(Ti{end}(1:3,4))';
 %     [f_p3*T_p{3}(1:3,3);cross(r_p_base{3},f_p3*T_p{3}(1:3,3))];
 end
 trainSet.xyz_estimation=xyz_estimation;
+if par_set.plot_fwdKinematic ==1
+    func_compare_kinematic_YZ(trainSet,trainSet.xyz_estimation,par_set);
+end
 end

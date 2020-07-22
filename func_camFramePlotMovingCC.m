@@ -1,4 +1,4 @@
-function []=func_camFramePlotMovingCC(trainSet)
+function []=func_camFramePlotMovingCC(trainSet,par_set)
     x2=linspace(0,0.035,100);
     x3=linspace(-0.035,0.035,100);
     x1=linspace(-0.035,0,100);
@@ -14,7 +14,7 @@ function []=func_camFramePlotMovingCC(trainSet)
     end
     figure('Position',[100;100;600;600])
     for i =1:3
-        scatter3(trainSet.r_p{i}(1),trainSet.r_p{i}(2),trainSet.r_p{i}(3),'*')
+        scatter3(par_set.r_p{i}(1),par_set.r_p{i}(2),par_set.r_p{i}(3),'*')
         hold on
     end
     scatter3(trainSet.tip_exp(1,2),trainSet.tip_exp(1,3),trainSet.tip_exp(1,4),'g','*','LineWidth',4)
