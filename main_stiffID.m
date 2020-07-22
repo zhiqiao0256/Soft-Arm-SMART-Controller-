@@ -1,4 +1,4 @@
-%% Main function for stiffness ID use data 0714
+%% Main function for stiffness ID use data 0721
 clear all
 close all
 clc
@@ -15,17 +15,17 @@ par_set.flag_plot_movingCC =0;
 %flag for plotting fwd kinematic results
 par_set.plot_fwdKinematic =0;
 % p1 < p2,3
-par_set.trial_5_25psi=[];
+par_set.trial_4_25psi=[];
 par_set.trial_3_25psi=[];
 par_set.trial_2_25psi=[];
 par_set.trial_1_25psi=[];
+par_set.trial_0_25psi=[];
 % p1 > p2,3
 par_set.trial_25_0psi=[];
 par_set.trial_25_1psi=[];
 par_set.trial_25_2psi=[];
 par_set.trial_25_3psi=[];
 par_set.trial_25_4psi=[];
-par_set.trial_25_5psi=[];
 
 % Geometric para.
 par_set.trianlge_length=70*1e-03;% fabric triangle edge length
@@ -45,15 +45,18 @@ end
 fprintf('System initialization done \n')
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
-    par_set.trial_3_25psi=func_high_level_exp(par_set.trial_3_25psi,4);
-    par_set.trial_2_25psi=func_high_level_exp(par_set.trial_2_25psi,5);
-    par_set.trial_1_25psi=func_high_level_exp(par_set.trial_1_25psi,6);
+    par_set.trial_0_25psi=func_high_level_exp(par_set.trial_0_25psi,2);
+    par_set.trial_4_25psi=func_high_level_exp(par_set.trial_4_25psi,10);
+    par_set.trial_3_25psi=func_high_level_exp(par_set.trial_3_25psi,9);
+    par_set.trial_2_25psi=func_high_level_exp(par_set.trial_2_25psi,8);
+    par_set.trial_1_25psi=func_high_level_exp(par_set.trial_1_25psi,7);
     
-    par_set.trial_25_5psi=func_high_level_exp(par_set.trial_25_5psi,8);
-    par_set.trial_25_4psi=func_high_level_exp(par_set.trial_25_4psi,9);
-    par_set.trial_25_3psi=func_high_level_exp(par_set.trial_25_3psi,3);
-    par_set.trial_25_2psi=func_high_level_exp(par_set.trial_25_2psi,2);
-    par_set.trial_25_1psi=func_high_level_exp(par_set.trial_25_1psi,1);
+    
+    par_set.trial_25_0psi=func_high_level_exp(par_set.trial_25_0psi,1);
+    par_set.trial_25_4psi=func_high_level_exp(par_set.trial_25_4psi,6);
+    par_set.trial_25_3psi=func_high_level_exp(par_set.trial_25_3psi,5);
+    par_set.trial_25_2psi=func_high_level_exp(par_set.trial_25_2psi,4);
+    par_set.trial_25_1psi=func_high_level_exp(par_set.trial_25_1psi,3);
     
     save('raw_id_data.mat','par_set');
     fprintf( 'Saved \n' )
@@ -67,44 +70,77 @@ if par_set.EOM==1
 par_set=func_EOM_baseFrame(par_set);
 end
 %% system ID sets
+par_set.trial_0_25psi=func_sysID(par_set.trial_0_25psi,par_set);
 par_set.trial_1_25psi=func_sysID(par_set.trial_1_25psi,par_set);
 par_set.trial_2_25psi=func_sysID(par_set.trial_2_25psi,par_set);
 par_set.trial_3_25psi=func_sysID(par_set.trial_3_25psi,par_set);
+par_set.trial_4_25psi=func_sysID(par_set.trial_4_25psi,par_set);
 %
+par_set.trial_25_0psi=func_sysID(par_set.trial_25_0psi,par_set);
 par_set.trial_25_1psi=func_sysID(par_set.trial_25_1psi,par_set);
 par_set.trial_25_2psi=func_sysID(par_set.trial_25_2psi,par_set);
 par_set.trial_25_3psi=func_sysID(par_set.trial_25_3psi,par_set);
 par_set.trial_25_4psi=func_sysID(par_set.trial_25_4psi,par_set);
-par_set.trial_25_5psi=func_sysID(par_set.trial_25_5psi,par_set);
+
 %%
 figure
-xx_posi=[1,2,3]';
-xx_neg=[-1,-2,-3,-4,-5]';
-alpha_neg=[par_set.trial_25_1psi.trainSet.pi_set(1);par_set.trial_25_2psi.trainSet.pi_set(1);par_set.trial_25_3psi.trainSet.pi_set(1);par_set.trial_25_4psi.trainSet.pi_set(1);par_set.trial_25_5psi.trainSet.pi_set(1)];
-alpha_posi=[par_set.trial_1_25psi.trainSet.pi_set(1);par_set.trial_2_25psi.trainSet.pi_set(1);par_set.trial_3_25psi.trainSet.pi_set(1);];
+xx_posi=[0,1,2,3,4]';
+xx_neg=[-0,-1,-2,-3,-4]';
+alpha_neg=[par_set.trial_25_0psi.trainSet.pi_set(1);
+            par_set.trial_25_1psi.trainSet.pi_set(1);
+            par_set.trial_25_2psi.trainSet.pi_set(1);
+            par_set.trial_25_3psi.trainSet.pi_set(1);
+            par_set.trial_25_4psi.trainSet.pi_set(1)];
+alpha_posi=[par_set.trial_0_25psi.trainSet.pi_set(1);
+            par_set.trial_1_25psi.trainSet.pi_set(1);
+            par_set.trial_2_25psi.trainSet.pi_set(1);
+            par_set.trial_3_25psi.trainSet.pi_set(1);
+            par_set.trial_4_25psi.trainSet.pi_set(1);];
 
-k_neg=[par_set.trial_25_1psi.trainSet.pi_set(2);par_set.trial_25_2psi.trainSet.pi_set(2);par_set.trial_25_3psi.trainSet.pi_set(2);par_set.trial_25_4psi.trainSet.pi_set(2);par_set.trial_25_5psi.trainSet.pi_set(2)];
-k_posi=[par_set.trial_1_25psi.trainSet.pi_set(2);par_set.trial_2_25psi.trainSet.pi_set(2);par_set.trial_3_25psi.trainSet.pi_set(2);];
+k_neg=[par_set.trial_25_0psi.trainSet.pi_set(2);
+        par_set.trial_25_1psi.trainSet.pi_set(2);
+        par_set.trial_25_2psi.trainSet.pi_set(2);
+        par_set.trial_25_3psi.trainSet.pi_set(2);
+        par_set.trial_25_4psi.trainSet.pi_set(2)];
+k_posi=[par_set.trial_0_25psi.trainSet.pi_set(2);
+    par_set.trial_1_25psi.trainSet.pi_set(2);
+    par_set.trial_2_25psi.trainSet.pi_set(2);
+    par_set.trial_3_25psi.trainSet.pi_set(2);
+    par_set.trial_4_25psi.trainSet.pi_set(2);];
 
-b_neg=[par_set.trial_25_1psi.trainSet.pi_set(3);par_set.trial_25_2psi.trainSet.pi_set(3);par_set.trial_25_3psi.trainSet.pi_set(3);par_set.trial_25_4psi.trainSet.pi_set(3);par_set.trial_25_5psi.trainSet.pi_set(3)];
-b_posi=[par_set.trial_1_25psi.trainSet.pi_set(3);par_set.trial_2_25psi.trainSet.pi_set(3);par_set.trial_3_25psi.trainSet.pi_set(3);];
+b_neg=[par_set.trial_25_0psi.trainSet.pi_set(3);
+    par_set.trial_25_1psi.trainSet.pi_set(3);
+    par_set.trial_25_2psi.trainSet.pi_set(3);
+    par_set.trial_25_3psi.trainSet.pi_set(3);
+    par_set.trial_25_4psi.trainSet.pi_set(3)];
+b_posi=[par_set.trial_0_25psi.trainSet.pi_set(3);
+    par_set.trial_1_25psi.trainSet.pi_set(3);
+    par_set.trial_2_25psi.trainSet.pi_set(3);
+    par_set.trial_3_25psi.trainSet.pi_set(3);
+    par_set.trial_4_25psi.trainSet.pi_set(3);];
 
 subplot(3,1,1)
 scatter(-xx_neg,alpha_neg)
 title('p_1\in[0,25]psi, p_{2,3}\in[1-5]psi')
 ylabel('\alpha')
 hold on
+ylim([-1,5])
+xlim([0,4])
 
 subplot(3,1,2)
 scatter(-xx_neg,k_neg)
 ylabel('k')
 hold on
+ylim([0,1])
+xlim([0,4])
 
 subplot(3,1,3)
 scatter(-xx_neg,b_neg)
 ylabel('b')
 xlabel('p_{2,3} pd')
 hold on
+ylim([0,1])
+xlim([0,4])
 
 figure
 subplot(3,1,1)
@@ -112,14 +148,20 @@ scatter(xx_posi,alpha_posi)
 title('p_{2,3}\in[0,25]psi, p_1\in[1-3]psi')
 ylabel('\alpha')
 hold on
+ylim([-1,5])
+xlim([0,4])
 
 subplot(3,1,2)
 scatter(xx_posi,k_posi)
 ylabel('k')
 hold on
+ylim([0,1])
+xlim([0,4])
 
 subplot(3,1,3)
 scatter(xx_posi,b_posi)
 ylabel('b')
 xlabel('p_1 pd')
 hold on
+ylim([0,1])
+xlim([0,4])
