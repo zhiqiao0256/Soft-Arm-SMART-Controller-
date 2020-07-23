@@ -33,12 +33,13 @@ end
         time_set=[];
         time_set=timevec';
         NoLoad=time_set;NoLoad(:,2:18)=resampleData(:,4:20);
+        par.p_offset=(resampleData(end,1:3)-NoLoad(end,2:4));
         par.pd_Pa = NoLoad(1:end,1) ; par.pd_Pa(:,2:4) = 1e5 *resampleData(:,1:3)* 0.0689476;
         par.pd_MPa=NoLoad(1:end,1) ; par.pd_MPa(:,2:4) = 1e-1 *resampleData(:,1:3)* 0.0689476;
         par.pd_psi = NoLoad(1:end,1) ; par.pd_psi(:,2:4) = resampleData(:,1:3);
-        par.pm_Pa = NoLoad(1:end,1) ; par.pm_Pa(:,2:4) = 1e5 *( NoLoad(1:end,2:4))* 0.0689476;
-        par.pm_psi = NoLoad(1:end,1) ; par.pm_psi(:,2:4) = ( NoLoad(1:end,2:4));
-        par.pm_MPa=NoLoad(1:end,1) ; par.pm_MPa(:,2:4) = 1e-1 *( NoLoad(1:end,2:4))* 0.0689476;
+        par.pm_Pa = NoLoad(1:end,1) ; par.pm_Pa(:,2:4) = 1e5 *( NoLoad(1:end,2:4)+par.p_offset)* 0.0689476;
+        par.pm_psi = NoLoad(1:end,1) ; par.pm_psi(:,2:4) = ( NoLoad(1:end,2:4)+par.p_offset);
+        par.pm_MPa=NoLoad(1:end,1) ; par.pm_MPa(:,2:4) = 1e-1 *( NoLoad(1:end,2:4)+par.p_offset)* 0.0689476;
         par.f_ex = NoLoad(1:end,1) ; par.f_ex(:,2:7) = 0 ;
         par.tip_exp = NoLoad(1:end,1) ; par.tip_exp(:,2:4) = ( NoLoad(1:end,12:14) - mean(NoLoad(1:end,5:7)) ) ;
         par.base_exp = NoLoad(1:end,1) ; par.base_exp(:,2:4) = ( NoLoad(1:end,5:7) ) ;
