@@ -1,0 +1,5 @@
+ReadMe 07-21
+data collect index explain:
+1. ramp responses 1 1 1 to 25 1 1 to 1 1 1 repeated 6 times.
+2. ramp responses 1 1 1 to 25 1 1 to 1 1 1 repeated 6 times.
+2. ramp responses 1 1 1 to 25 1 1 to 1 1 1 repeated 6 times.
