@@ -70,6 +70,7 @@ if par_set.EOM==1
 par_set=func_EOM_baseFrame(par_set);
 end
 %% system ID sets
+% func_plot_pressure_3chambers(par_set.trial_25_0psi)
 par_set.trial_0_25psi=func_sysID(par_set.trial_0_25psi,par_set);
 par_set.trial_1_25psi=func_sysID(par_set.trial_1_25psi,par_set);
 par_set.trial_2_25psi=func_sysID(par_set.trial_2_25psi,par_set);
