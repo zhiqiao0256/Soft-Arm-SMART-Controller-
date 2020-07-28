@@ -1,4 +1,4 @@
-%% Main function for stiffness ID use data 0721
+%% Main function for stiffness ID use data 0722
 clear all
 close all
 clc
@@ -25,7 +25,7 @@ par_set.trial_25_0psi=[];
 par_set.trial_25_1psi=[];
 par_set.trial_25_2psi=[];
 par_set.trial_25_3psi=[];
-
+par_set.trial_25_4psi=[];
 
 % Geometric para.
 par_set.trianlge_length=70*1e-03;% fabric triangle edge length
@@ -53,7 +53,7 @@ if par_set.flag_read_exp==1
     
     
     par_set.trial_25_0psi=func_high_level_exp(par_set.trial_25_0psi,1);
-%     par_set.trial_25_4psi=func_high_level_exp(par_set.trial_25_4psi,6);
+    par_set.trial_25_4psi=func_high_level_exp(par_set.trial_25_4psi,5);
     par_set.trial_25_3psi=func_high_level_exp(par_set.trial_25_3psi,4);
     par_set.trial_25_2psi=func_high_level_exp(par_set.trial_25_2psi,3);
     par_set.trial_25_1psi=func_high_level_exp(par_set.trial_25_1psi,2);
@@ -87,5 +87,69 @@ par_set.trial_25_2psi=func_sysID(par_set.trial_25_2psi,par_set);
 
 func_plot_pressure_3chambers(par_set.trial_25_3psi)
 par_set.trial_25_3psi=func_sysID(par_set.trial_25_3psi,par_set);
-% par_set.trial_25_4psi=func_sysID(par_set.trial_25_4psi,par_set);
+func_plot_pressure_3chambers(par_set.trial_25_4psi)
+par_set.trial_25_4psi=func_sysID(par_set.trial_25_4psi,par_set);
+%%
+xx=[min(max(par_set.trial_25_1psi.pd_psi));
+    min(max(par_set.trial_25_2psi.pd_psi));min(max(par_set.trial_25_3psi.pd_psi));
+    min(max(par_set.trial_25_4psi.pd_psi));];
+y_alpha=[par_set.trial_25_1psi.trainSet.pi_set(1);
+    par_set.trial_25_2psi.trainSet.pi_set(1);par_set.trial_25_3psi.trainSet.pi_set(1);
+    par_set.trial_25_4psi.trainSet.pi_set(1);];
+y_k=[par_set.trial_25_1psi.trainSet.pi_set(2);
+    par_set.trial_25_2psi.trainSet.pi_set(2);par_set.trial_25_3psi.trainSet.pi_set(2);
+    par_set.trial_25_4psi.trainSet.pi_set(2);];
+y_b=[par_set.trial_25_1psi.trainSet.pi_set(3);
+    par_set.trial_25_2psi.trainSet.pi_set(3);par_set.trial_25_3psi.trainSet.pi_set(3);
+    par_set.trial_25_4psi.trainSet.pi_set(3);];
+%%
+[curv1,gof1]=fit(xx,y_alpha,'poly1');
+[curv2,gof2]=fit(xx,y_k,'poly1');
+[curv3,gof3]=fit(xx,y_b,'poly1');
+figure
+subplot(3,1,1)
+plot(xx,y_alpha,'o')
+hold on
+plot(curv1)
+hold off
+xlabel('')
+ylabel('\alpha')
+legend('data','fitted line','Orientation','horizontal')
+subplot(3,1,2)
+plot(xx,y_k,'o')
+hold on
+plot(curv2)
+hold off
+xlabel('')
+ylabel('k')
+legend OFF
+% ylim([0,4])
+subplot(3,1,3)
+plot(xx,y_b,'o')
+hold on
+plot(curv3)
+hold off
+xlabel('')
+ylabel('b')
+legend OFF
+xlabel('pm_{2,3}')
+%%
 
+%%
+x=[];
+test_data=par_set.trial_25_0psi.trainSet;
+test_tspan=test_data.pd_psi(:,1);
+test_x=[test_data.theta_rad,test_data.velocity_theta_rad]';
+test_u=test_data.pd_psi(:,2:4)';
+test_b0=test_data.beta;
+test_phi=test_data.phi_rad;
+test_piSet=test_data.pi_set;
+test_x0=test_x(:,1);
+[t,x]=ode45(@(t,x) func_ode(t,x,test_u,test_tspan,test_b0,test_phi,test_piSet),test_tspan,test_x0);
+figure
+plot(t,x(:,1))
+hold on
+plot(t,test_x(1,:))
+legend('ode45','exp.')
+xlabel('time s')
+ylabel('\theta rad')
