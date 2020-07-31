@@ -37,6 +37,6 @@ start_pt=300;
 end_pt=length(Y_bar);
 %%%%
 temp.result=inv(Y_bar(start_pt:end_pt,:).'*Y_bar(start_pt:end_pt,:))*Y_bar(start_pt:end_pt,:).'*tau_bar(start_pt:end_pt,:);
-fprintf('Estimated [alpha,k,d] is [%.4f,%.4f,%.4f] \n',temp.result(1),temp.result(2),temp.result(3))
+% fprintf('Estimated [alpha,k,d] is [%.4f,%.4f,%.4f] \n',temp.result(1),temp.result(2),temp.result(3))
 trainSet.pi_set=temp.result;
 end
