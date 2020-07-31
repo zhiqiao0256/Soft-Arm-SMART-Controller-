@@ -27,6 +27,7 @@ trainSet=func_fwdKinematic(trainSet,par_set);
 validSet=func_fwdKinematic(validSet,par_set);
 %% least square 
 trainSet=func_lestSquareWith5ptFilter(trainSet,par_set);
+trainSet=func_greyBox(trainSet);
 test_data.trainSet=trainSet;
 test_data.validSet=validSet;
 end
