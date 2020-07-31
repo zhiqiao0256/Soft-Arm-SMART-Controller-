@@ -9,17 +9,17 @@ par_set.EOM=0;
 %flag for plot
 par_set.flag_plot_rawData = 0;
 %flag for read txt file or mat file 1: txt 0: mat
-par_set.flag_read_exp = 1;
+par_set.flag_read_exp = 0;
 %flag for plotting moving constant layer
 par_set.flag_plot_movingCC =0;
 %flag for plotting fwd kinematic results
 par_set.plot_fwdKinematic =0;
 % p1 < p2,3
 % par_set.trial_4_25psi=[];
-% par_set.trial_3_25psi=[];
-% par_set.trial_2_25psi=[];
-% par_set.trial_1_25psi=[];
-% par_set.trial_0_25psi=[];
+par_set.trial_3_25psi=[];
+par_set.trial_2_25psi=[];
+par_set.trial_1_25psi=[];
+par_set.trial_0_25psi=[];
 % p1 > p2,3
 par_set.trial_25_0psi=[];
 par_set.trial_25_1psi=[];
@@ -45,11 +45,12 @@ end
 fprintf('System initialization done \n')
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
-%     par_set.trial_0_25psi=func_high_level_exp(par_set.trial_0_25psi,2);
+
 %     par_set.trial_4_25psi=func_high_level_exp(par_set.trial_4_25psi,10);
-%     par_set.trial_3_25psi=func_high_level_exp(par_set.trial_3_25psi,9);
-%     par_set.trial_2_25psi=func_high_level_exp(par_set.trial_2_25psi,8);
-%     par_set.trial_1_25psi=func_high_level_exp(par_set.trial_1_25psi,7);
+    par_set.trial_3_25psi=func_high_level_exp(par_set.trial_3_25psi,9);
+    par_set.trial_2_25psi=func_high_level_exp(par_set.trial_2_25psi,8);
+    par_set.trial_1_25psi=func_high_level_exp(par_set.trial_1_25psi,7);
+    par_set.trial_0_25psi=func_high_level_exp(par_set.trial_0_25psi,6);
     
     
     par_set.trial_25_0psi=func_high_level_exp(par_set.trial_25_0psi,1);
@@ -87,21 +88,50 @@ par_set.trial_25_2psi=func_sysID(par_set.trial_25_2psi,par_set);
 
 func_plot_pressure_3chambers(par_set.trial_25_3psi)
 par_set.trial_25_3psi=func_sysID(par_set.trial_25_3psi,par_set);
+
 func_plot_pressure_3chambers(par_set.trial_25_4psi)
 par_set.trial_25_4psi=func_sysID(par_set.trial_25_4psi,par_set);
+
+func_plot_pressure_3chambers(par_set.trial_0_25psi)
+par_set.trial_0_25psi=func_sysID(par_set.trial_0_25psi,par_set);
+
+func_plot_pressure_3chambers(par_set.trial_1_25psi)
+par_set.trial_1_25psi=func_sysID(par_set.trial_1_25psi,par_set);
+
+func_plot_pressure_3chambers(par_set.trial_2_25psi)
+par_set.trial_2_25psi=func_sysID(par_set.trial_2_25psi,par_set);
+
+func_plot_pressure_3chambers(par_set.trial_3_25psi)
+par_set.trial_3_25psi=func_sysID(par_set.trial_3_25psi,par_set);
 %%
-xx=[min(max(par_set.trial_25_1psi.pd_psi));
-    min(max(par_set.trial_25_2psi.pd_psi));min(max(par_set.trial_25_3psi.pd_psi));
-    min(max(par_set.trial_25_4psi.pd_psi));];
-y_alpha=[par_set.trial_25_1psi.trainSet.pi_set(1);
-    par_set.trial_25_2psi.trainSet.pi_set(1);par_set.trial_25_3psi.trainSet.pi_set(1);
-    par_set.trial_25_4psi.trainSet.pi_set(1);];
-y_k=[par_set.trial_25_1psi.trainSet.pi_set(2);
-    par_set.trial_25_2psi.trainSet.pi_set(2);par_set.trial_25_3psi.trainSet.pi_set(2);
-    par_set.trial_25_4psi.trainSet.pi_set(2);];
-y_b=[par_set.trial_25_1psi.trainSet.pi_set(3);
-    par_set.trial_25_2psi.trainSet.pi_set(3);par_set.trial_25_3psi.trainSet.pi_set(3);
-    par_set.trial_25_4psi.trainSet.pi_set(3);];
+xx=[
+    min(max(par_set.trial_25_0psi.pd_psi));
+    min(max(par_set.trial_25_1psi.pd_psi));
+    min(max(par_set.trial_25_2psi.pd_psi));
+    min(max(par_set.trial_25_3psi.pd_psi));
+    min(max(par_set.trial_25_4psi.pd_psi));
+    ];
+y_alpha=[
+    par_set.trial_25_0psi.trainSet.pi_grey(1);
+    par_set.trial_25_1psi.trainSet.pi_grey(1);
+    par_set.trial_25_2psi.trainSet.pi_grey(1);
+    par_set.trial_25_3psi.trainSet.pi_grey(1);
+    par_set.trial_25_4psi.trainSet.pi_grey(1);
+    ];
+y_k=[
+    par_set.trial_25_0psi.trainSet.pi_grey(2);
+    par_set.trial_25_1psi.trainSet.pi_grey(2);
+    par_set.trial_25_2psi.trainSet.pi_grey(2);
+    par_set.trial_25_3psi.trainSet.pi_grey(2);
+    par_set.trial_25_4psi.trainSet.pi_grey(2);
+    ];
+y_b=[
+    par_set.trial_25_0psi.trainSet.pi_grey(3);
+    par_set.trial_25_1psi.trainSet.pi_grey(3);
+    par_set.trial_25_2psi.trainSet.pi_grey(3);
+    par_set.trial_25_3psi.trainSet.pi_grey(3);
+    par_set.trial_25_4psi.trainSet.pi_grey(3);
+    ];
 %%
 [curv1,gof1]=fit(xx,y_alpha,'poly1');
 [curv2,gof2]=fit(xx,y_k,'poly1');
@@ -134,22 +164,58 @@ ylabel('b')
 legend OFF
 xlabel('pm_{2,3}')
 %%
-
+xx2=[
+    min(max(par_set.trial_0_25psi.pd_psi));
+    min(max(par_set.trial_1_25psi.pd_psi));
+    min(max(par_set.trial_2_25psi.pd_psi));
+    min(max(par_set.trial_3_25psi.pd_psi));
+    ];
+y_alpha2=[
+    par_set.trial_0_25psi.trainSet.pi_grey(1);
+    par_set.trial_1_25psi.trainSet.pi_grey(1);
+    par_set.trial_2_25psi.trainSet.pi_grey(1);
+    par_set.trial_3_25psi.trainSet.pi_grey(1);
+    ];
+y_k2=[
+    par_set.trial_0_25psi.trainSet.pi_grey(2);
+    par_set.trial_1_25psi.trainSet.pi_grey(2);
+    par_set.trial_2_25psi.trainSet.pi_grey(2);
+    par_set.trial_3_25psi.trainSet.pi_grey(2);
+    ];
+y_b2=[
+    par_set.trial_0_25psi.trainSet.pi_grey(3);
+    par_set.trial_1_25psi.trainSet.pi_grey(3);
+    par_set.trial_2_25psi.trainSet.pi_grey(3);
+    par_set.trial_3_25psi.trainSet.pi_grey(3);
+    ];
 %%
-x=[];
-test_data=par_set.trial_25_0psi.trainSet;
-test_tspan=test_data.pd_psi(:,1);
-test_x=[test_data.theta_rad,test_data.velocity_theta_rad]';
-test_u=test_data.pd_psi(:,2:4)';
-test_b0=test_data.beta;
-test_phi=test_data.phi_rad;
-test_piSet=test_data.pi_set;
-test_x0=test_x(:,1);
-[t,x]=ode45(@(t,x) func_ode(t,x,test_u,test_tspan,test_b0,test_phi,test_piSet),test_tspan,test_x0);
+[curv12,gof12]=fit(xx2,y_alpha2,'poly1');
+[curv22,gof22]=fit(xx2,y_k2,'poly1');
+[curv32,gof32]=fit(xx2,y_b2,'poly1');
 figure
-plot(t,x(:,1))
+subplot(3,1,1)
+plot(xx2,y_alpha2,'o')
 hold on
-plot(t,test_x(1,:))
-legend('ode45','exp.')
-xlabel('time s')
-ylabel('\theta rad')
+plot(curv12)
+hold off
+xlabel('')
+ylabel('\alpha')
+legend('data','fitted line','Orientation','horizontal')
+subplot(3,1,2)
+plot(xx2,y_k2,'o')
+hold on
+plot(curv22)
+hold off
+xlabel('')
+ylabel('k')
+legend OFF
+% ylim([0,4])
+subplot(3,1,3)
+plot(xx2,y_b2,'o')
+hold on
+plot(curv32)
+hold off
+xlabel('')
+ylabel('b')
+legend OFF
+xlabel('pm_{1}')
