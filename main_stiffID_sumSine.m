@@ -131,31 +131,41 @@ ylim([0,25])
 
 %%
 func_plot_pressure_3chambers(par_set.trial_25_0psi)
-par_set.trial_25_0psi=func_sysID(par_set.trial_25_0psi,par_set);
+par_set.trial_25_0psi=func_sysID_02(par_set.trial_25_0psi,par_set);
 
 func_plot_pressure_3chambers(par_set.trial_25_1psi)
-par_set.trial_25_1psi=func_sysID(par_set.trial_25_1psi,par_set);
+par_set.trial_25_1psi=func_sysID_02(par_set.trial_25_1psi,par_set);
 
-% func_plot_pressure_3chambers(par_set.trial_25_2psi)
-% par_set.trial_25_2psi=func_sysID(par_set.trial_25_2psi,par_set);
+func_plot_pressure_3chambers(par_set.trial_25_2psi)
+par_set.trial_25_2psi=func_sysID_02(par_set.trial_25_2psi,par_set);
+
+func_plot_pressure_3chambers(par_set.trial_25_3psi)
+par_set.trial_25_3psi=func_sysID_02(par_set.trial_25_3psi,par_set);
+
+func_plot_pressure_3chambers(par_set.trial_25_4psi)
+par_set.trial_25_4psi=func_sysID_02(par_set.trial_25_4psi,par_set);
 % 
-% func_plot_pressure_3chambers(par_set.trial_25_3psi)
-% par_set.trial_25_3psi=func_sysID(par_set.trial_25_3psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_25_4psi)
-% par_set.trial_25_4psi=func_sysID(par_set.trial_25_4psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_0_25psi)
-% par_set.trial_0_25psi=func_sysID(par_set.trial_0_25psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_1_25psi)
-% par_set.trial_1_25psi=func_sysID(par_set.trial_1_25psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_2_25psi)
-% par_set.trial_2_25psi=func_sysID(par_set.trial_2_25psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_3_25psi)
-% par_set.trial_3_25psi=func_sysID(par_set.trial_3_25psi,par_set);
+kk=[par_set.trial_25_0psi.trainSet.pi_set]
+%% ODE testing with time dependent paramters
+testData=par_set.trial_25_0psi.trainSet;
+x=[testData.theta_rad';testData.velocity_theta_rad'];
+IC=x(:,30/0.05);
+TSPAN=[30 55];
+phit=testData.pd_psi(:,1)';
+r0t=testData.pd_psi(:,1)';
+phi=testData.phi_rad;
+r0=testData.beta;
+pi_set=testData.pi_set;
+ut=testData.pm_MPa(:,1)';
+u1=testData.pm_MPa(:,2)';
+u2=testData.pm_MPa(:,3)';
+u3=testData.pm_MPa(:,4)';
+[T X]=ode45(@(t,x)func_myODEwithTimeDependentPara(t,x,phit,phi,r0t,r0,ut,u1,u2,u3,pi_set),TSPAN,IC);% func_myODEwithTimeDependentPara(t,x,phit,phi,r0t,r0,ut,u1,u2,u3,pi_set)
+plot(T, X(:,1));
+hold on
+plot(phit,testData.theta_rad)
+title('Plot of y as a function of time');
+xlabel('Time'); ylabel('X(t)');
 %%
 xx=[
     min(max(par_set.trial_25_0psi.pd_psi));
