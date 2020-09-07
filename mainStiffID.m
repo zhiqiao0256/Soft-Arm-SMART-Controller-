@@ -9,7 +9,7 @@ par_set.EOM=0;
 %flag for plot
 par_set.flag_plot_rawData = 0;
 %flag for read txt file or mat file 1: txt 0: mat
-par_set.flag_read_exp = 0;
+par_set.flag_read_exp = 1;
 %flag for plotting moving constant layer
 par_set.flag_plot_movingCC =0;
 %flag for plotting fwd kinematic results
@@ -19,7 +19,7 @@ par_set.plot_fwdKinematic =0;
 par_set.trial_3_25psi=[];
 par_set.trial_2_25psi=[];
 par_set.trial_1_25psi=[];
-par_set.trial_0_25psi=[];
+par_set.trial_1_25psi=[];
 % p1 > p2,3
 par_set.trial_25_0psi=[];
 par_set.trial_25_1psi=[];
@@ -47,10 +47,10 @@ fprintf('System initialization done \n')
 if par_set.flag_read_exp==1
 
 %     par_set.trial_4_25psi=func_high_level_exp(par_set.trial_4_25psi,10);
-    par_set.trial_3_25psi=func_high_level_exp(par_set.trial_3_25psi,9);
-    par_set.trial_2_25psi=func_high_level_exp(par_set.trial_2_25psi,8);
-    par_set.trial_1_25psi=func_high_level_exp(par_set.trial_1_25psi,7);
-    par_set.trial_0_25psi=func_high_level_exp(par_set.trial_0_25psi,6);
+%     par_set.trial_3_25psi=func_high_level_exp(par_set.trial_3_25psi,9);
+%     par_set.trial_2_25psi=func_high_level_exp(par_set.trial_2_25psi,8);
+%     par_set.trial_1_25psi=func_high_level_exp(par_set.trial_1_25psi,7);
+%     par_set.trial_0_25psi=func_high_level_exp(par_set.trial_0_25psi,6);
     
     
     par_set.trial_25_0psi=func_high_level_exp(par_set.trial_25_0psi,1);
@@ -77,32 +77,50 @@ end
 % par_set.trial_3_25psi=func_sysID(par_set.trial_3_25psi,par_set);
 % par_set.trial_4_25psi=func_sysID(par_set.trial_4_25psi,par_set);
 %
-func_plot_pressure_3chambers(par_set.trial_25_0psi)
-par_set.trial_25_0psi=func_sysID(par_set.trial_25_0psi,par_set);
-
-func_plot_pressure_3chambers(par_set.trial_25_1psi)
-par_set.trial_25_1psi=func_sysID(par_set.trial_25_1psi,par_set);
-
-func_plot_pressure_3chambers(par_set.trial_25_2psi)
-par_set.trial_25_2psi=func_sysID(par_set.trial_25_2psi,par_set);
-
-func_plot_pressure_3chambers(par_set.trial_25_3psi)
-par_set.trial_25_3psi=func_sysID(par_set.trial_25_3psi,par_set);
-
-func_plot_pressure_3chambers(par_set.trial_25_4psi)
-par_set.trial_25_4psi=func_sysID(par_set.trial_25_4psi,par_set);
-
-func_plot_pressure_3chambers(par_set.trial_0_25psi)
-par_set.trial_0_25psi=func_sysID(par_set.trial_0_25psi,par_set);
-
-func_plot_pressure_3chambers(par_set.trial_1_25psi)
-par_set.trial_1_25psi=func_sysID(par_set.trial_1_25psi,par_set);
-
-func_plot_pressure_3chambers(par_set.trial_2_25psi)
-par_set.trial_2_25psi=func_sysID(par_set.trial_2_25psi,par_set);
-
-func_plot_pressure_3chambers(par_set.trial_3_25psi)
-par_set.trial_3_25psi=func_sysID(par_set.trial_3_25psi,par_set);
+func_plot_pressure_3chambers(par_set.trial_25_0psi);
+%%
+trainSet.r_p=par_set.r_p;
+test_data=[];
+test_data=par_set.trial_25_2psi;
+%%%%%%%%%%%%%%%
+trainSet.pd_psi=test_data.pd_psi(:,1:end);
+trainSet.pm_psi=test_data.pm_psi(:,1:end);
+trainSet.pd_MPa=test_data.pd_MPa(:,1:end);
+trainSet.pm_MPa=test_data.pm_MPa(:,1:end);
+trainSet.tip_exp=test_data.tip_exp(:,1:end);
+trainSet=func_getPhiThetaBfromXYZ(trainSet,par_set);
+figure
+subplot(2,1,1)
+plot(trainSet.pd_psi(:,1),trainSet.theta_deg)
+subplot(2,1,2)
+plot(trainSet.pd_psi(:,1),trainSet.pm_psi(:,2))
+hold on
+plot(trainSet.pd_psi(:,1),trainSet.pd_psi(:,2))
+% par_set.trial_25_0psi=func_sysID(par_set.trial_25_0psi,par_set);
+% 
+% func_plot_pressure_3chambers(par_set.trial_25_1psi)
+% par_set.trial_25_1psi=func_sysID(par_set.trial_25_1psi,par_set);
+% 
+% func_plot_pressure_3chambers(par_set.trial_25_2psi)
+% par_set.trial_25_2psi=func_sysID(par_set.trial_25_2psi,par_set);
+% 
+% func_plot_pressure_3chambers(par_set.trial_25_3psi)
+% par_set.trial_25_3psi=func_sysID(par_set.trial_25_3psi,par_set);
+% 
+% func_plot_pressure_3chambers(par_set.trial_25_4psi)
+% par_set.trial_25_4psi=func_sysID(par_set.trial_25_4psi,par_set);
+% 
+% func_plot_pressure_3chambers(par_set.trial_0_25psi)
+% par_set.trial_0_25psi=func_sysID(par_set.trial_0_25psi,par_set);
+% 
+% func_plot_pressure_3chambers(par_set.trial_1_25psi)
+% par_set.trial_1_25psi=func_sysID(par_set.trial_1_25psi,par_set);
+% 
+% func_plot_pressure_3chambers(par_set.trial_2_25psi)
+% par_set.trial_2_25psi=func_sysID(par_set.trial_2_25psi,par_set);
+% 
+% func_plot_pressure_3chambers(par_set.trial_3_25psi)
+% par_set.trial_3_25psi=func_sysID(par_set.trial_3_25psi,par_set);
 %%
 xx=[
     min(max(par_set.trial_25_0psi.pd_psi));
