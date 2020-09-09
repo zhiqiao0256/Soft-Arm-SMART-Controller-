@@ -1,9 +1,4 @@
 function test_data =func_greyBox(test_data)
-%  %% Greay box testing
-%  clc
-%  close all
-%  clear all
-% load('update_0728.mat');
 %%
 % test_data=par_set.trial_25_0psi.trainSet;
 z=iddata([test_data.theta_rad,test_data.velocity_theta_rad],...
