@@ -1,5 +1,15 @@
 function trainSet = func_getPhiThetaBfromXYZ(trainSet,par_set)
 %% Calculate Phi in camera frame then maps to robot base frame 0,2pi
+%%%% Y-up to Z-up rotate -90deg w/ x axis
+temp.Yup=trainSet.tip_exp;
+temp.Zup=trainSet.tip_exp;
+Rx=[1 0 0;
+    0 cosd(-90) -sind(-90)
+    0 sind(-90) cosd(-90)];
+for i =1:length(trainSet.pd_psi)
+    temp.Zup(i,2:4)=((Rx)'*(temp.Yup(i,2:4)'))';
+end
+trainSet.tip_exp=temp.Zup;
 temp.phi_vector=trainSet.tip_exp(:,2:4); %xyz in Camera frame
 temp.angle_phi=[];
 %%% Calculate phi anlge ranging [0,2pi] atan(y_top/x_top)

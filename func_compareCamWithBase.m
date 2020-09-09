@@ -12,6 +12,7 @@ function []=func_compareCamWithBase(trainSet)
     zlim([-0.2,0.2])
     hold on
     grid on
+    legend('data','start')
     title('Camera Frame')
     xlabel('X(m)')
     ylabel('Y(m)')
