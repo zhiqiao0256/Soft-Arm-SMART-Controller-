@@ -14,18 +14,13 @@ par_set.flag_read_exp = 1;
 par_set.flag_plot_movingCC =0;
 %flag for plotting fwd kinematic results
 par_set.plot_fwdKinematic =0;
-% p1 < p2,3
-% par_set.trial_4_25psi=[];
-par_set.trial_3_25psi=[];
-par_set.trial_2_25psi=[];
-par_set.trial_1_25psi=[];
-par_set.trial_1_25psi=[];
-% p1 > p2,3
-par_set.trial_25_0psi=[];
-par_set.trial_25_1psi=[];
-par_set.trial_25_2psi=[];
-par_set.trial_25_3psi=[];
-par_set.trial_25_4psi=[];
+% Check data readme.txt for detail input reference
+par_set.trial1=[];
+par_set.trial2=[];
+par_set.trial3=[];
+par_set.trial4=[];
+par_set.trial5=[];
+
 
 % Geometric para.
 par_set.trianlge_length=70*1e-03;% fabric triangle edge length
@@ -53,11 +48,11 @@ if par_set.flag_read_exp==1
 %     par_set.trial_0_25psi=func_high_level_exp(par_set.trial_0_25psi,6);
     
     
-    par_set.trial_25_0psi=func_high_level_exp(par_set.trial_25_0psi,1);
-    par_set.trial_25_4psi=func_high_level_exp(par_set.trial_25_4psi,5);
-    par_set.trial_25_3psi=func_high_level_exp(par_set.trial_25_3psi,4);
-    par_set.trial_25_2psi=func_high_level_exp(par_set.trial_25_2psi,3);
-    par_set.trial_25_1psi=func_high_level_exp(par_set.trial_25_1psi,2);
+    par_set.trial1=func_high_level_exp(par_set.trial1,1);
+    par_set.trial2=func_high_level_exp(par_set.trial2,2);
+    par_set.trial3=func_high_level_exp(par_set.trial3,3);
+    par_set.trial4=func_high_level_exp(par_set.trial4,4);
+    par_set.trial5=func_high_level_exp(par_set.trial5,5);
     
     save('raw_id_data.mat','par_set');
     fprintf( 'Saved \n' )
@@ -70,170 +65,10 @@ end
 if par_set.EOM==1
 par_set=func_EOM_baseFrame(par_set);
 end
-%% system ID sets
-% par_set.trial_0_25psi=func_sysID(par_set.trial_0_25psi,par_set);
-% par_set.trial_1_25psi=func_sysID(par_set.trial_1_25psi,par_set);
-% par_set.trial_2_25psi=func_sysID(par_set.trial_2_25psi,par_set);
-% par_set.trial_3_25psi=func_sysID(par_set.trial_3_25psi,par_set);
-% par_set.trial_4_25psi=func_sysID(par_set.trial_4_25psi,par_set);
-%
-func_plot_pressure_3chambers(par_set.trial_25_0psi);
+%% Grey-box system ID
+testData=[];
+testData=par_set.trial1;
+testData=funcGreyBoxSysID(testData,par_set);
+testData=func_greyBox(testData);
 %%
-trainSet.r_p=par_set.r_p;
-test_data=[];
-test_data=par_set.trial_25_2psi;
-%%%%%%%%%%%%%%%
-trainSet.pd_psi=test_data.pd_psi(:,1:end);
-trainSet.pm_psi=test_data.pm_psi(:,1:end);
-trainSet.pd_MPa=test_data.pd_MPa(:,1:end);
-trainSet.pm_MPa=test_data.pm_MPa(:,1:end);
-trainSet.tip_exp=test_data.tip_exp(:,1:end);
-trainSet=func_getPhiThetaBfromXYZ(trainSet,par_set);
-figure
-subplot(2,1,1)
-plot(trainSet.pd_psi(:,1),trainSet.theta_deg)
-subplot(2,1,2)
-plot(trainSet.pd_psi(:,1),trainSet.pm_psi(:,2))
-hold on
-plot(trainSet.pd_psi(:,1),trainSet.pd_psi(:,2))
-% par_set.trial_25_0psi=func_sysID(par_set.trial_25_0psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_25_1psi)
-% par_set.trial_25_1psi=func_sysID(par_set.trial_25_1psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_25_2psi)
-% par_set.trial_25_2psi=func_sysID(par_set.trial_25_2psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_25_3psi)
-% par_set.trial_25_3psi=func_sysID(par_set.trial_25_3psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_25_4psi)
-% par_set.trial_25_4psi=func_sysID(par_set.trial_25_4psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_0_25psi)
-% par_set.trial_0_25psi=func_sysID(par_set.trial_0_25psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_1_25psi)
-% par_set.trial_1_25psi=func_sysID(par_set.trial_1_25psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_2_25psi)
-% par_set.trial_2_25psi=func_sysID(par_set.trial_2_25psi,par_set);
-% 
-% func_plot_pressure_3chambers(par_set.trial_3_25psi)
-% par_set.trial_3_25psi=func_sysID(par_set.trial_3_25psi,par_set);
-%%
-xx=[
-    min(max(par_set.trial_25_0psi.pd_psi));
-    min(max(par_set.trial_25_1psi.pd_psi));
-    min(max(par_set.trial_25_2psi.pd_psi));
-    min(max(par_set.trial_25_3psi.pd_psi));
-    min(max(par_set.trial_25_4psi.pd_psi));
-    ];
-y_alpha=[
-    par_set.trial_25_0psi.trainSet.pi_grey(1);
-    par_set.trial_25_1psi.trainSet.pi_grey(1);
-    par_set.trial_25_2psi.trainSet.pi_grey(1);
-    par_set.trial_25_3psi.trainSet.pi_grey(1);
-    par_set.trial_25_4psi.trainSet.pi_grey(1);
-    ];
-y_k=[
-    par_set.trial_25_0psi.trainSet.pi_grey(2);
-    par_set.trial_25_1psi.trainSet.pi_grey(2);
-    par_set.trial_25_2psi.trainSet.pi_grey(2);
-    par_set.trial_25_3psi.trainSet.pi_grey(2);
-    par_set.trial_25_4psi.trainSet.pi_grey(2);
-    ];
-y_b=[
-    par_set.trial_25_0psi.trainSet.pi_grey(3);
-    par_set.trial_25_1psi.trainSet.pi_grey(3);
-    par_set.trial_25_2psi.trainSet.pi_grey(3);
-    par_set.trial_25_3psi.trainSet.pi_grey(3);
-    par_set.trial_25_4psi.trainSet.pi_grey(3);
-    ];
-%%
-[curv1,gof1]=fit(xx,y_alpha,'poly1');
-[curv2,gof2]=fit(xx,y_k,'poly1');
-[curv3,gof3]=fit(xx,y_b,'poly1');
-figure
-subplot(3,1,1)
-plot(xx,y_alpha,'o')
-hold on
-plot(curv1)
-hold off
-xlabel('')
-ylabel('\alpha')
-legend('data','fitted line','Orientation','horizontal')
-subplot(3,1,2)
-plot(xx,y_k,'o')
-hold on
-plot(curv2)
-hold off
-xlabel('')
-ylabel('k')
-legend OFF
-% ylim([0,4])
-subplot(3,1,3)
-plot(xx,y_b,'o')
-hold on
-plot(curv3)
-hold off
-xlabel('')
-ylabel('b')
-legend OFF
-xlabel('pm_{2,3}')
-%%
-xx2=[
-    min(max(par_set.trial_0_25psi.pd_psi));
-    min(max(par_set.trial_1_25psi.pd_psi));
-    min(max(par_set.trial_2_25psi.pd_psi));
-    min(max(par_set.trial_3_25psi.pd_psi));
-    ];
-y_alpha2=[
-    par_set.trial_0_25psi.trainSet.pi_grey(1);
-    par_set.trial_1_25psi.trainSet.pi_grey(1);
-    par_set.trial_2_25psi.trainSet.pi_grey(1);
-    par_set.trial_3_25psi.trainSet.pi_grey(1);
-    ];
-y_k2=[
-    par_set.trial_0_25psi.trainSet.pi_grey(2);
-    par_set.trial_1_25psi.trainSet.pi_grey(2);
-    par_set.trial_2_25psi.trainSet.pi_grey(2);
-    par_set.trial_3_25psi.trainSet.pi_grey(2);
-    ];
-y_b2=[
-    par_set.trial_0_25psi.trainSet.pi_grey(3);
-    par_set.trial_1_25psi.trainSet.pi_grey(3);
-    par_set.trial_2_25psi.trainSet.pi_grey(3);
-    par_set.trial_3_25psi.trainSet.pi_grey(3);
-    ];
-%%
-[curv12,gof12]=fit(xx2,y_alpha2,'poly1');
-[curv22,gof22]=fit(xx2,y_k2,'poly1');
-[curv32,gof32]=fit(xx2,y_b2,'poly1');
-figure
-subplot(3,1,1)
-plot(xx2,y_alpha2,'o')
-hold on
-plot(curv12)
-hold off
-xlabel('')
-ylabel('\alpha')
-legend('data','fitted line','Orientation','horizontal')
-subplot(3,1,2)
-plot(xx2,y_k2,'o')
-hold on
-plot(curv22)
-hold off
-xlabel('')
-ylabel('k')
-legend OFF
-% ylim([0,4])
-subplot(3,1,3)
-plot(xx2,y_b2,'o')
-hold on
-plot(curv32)
-hold off
-xlabel('')
-ylabel('b')
-legend OFF
-xlabel('pm_{1}')
+
