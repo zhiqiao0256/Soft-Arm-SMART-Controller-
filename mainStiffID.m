@@ -24,6 +24,12 @@ par_set.trial6=[];
 par_set.trial7=[];
 par_set.trial8=[];
 par_set.trial9=[];
+par_set.trial10=[];
+par_set.trial11=[];
+par_set.trial12=[];
+par_set.trial13=[];
+par_set.trial14=[];
+par_set.trial15=[];
 
 
 
@@ -54,7 +60,12 @@ if par_set.flag_read_exp==1
     par_set.trial7=func_high_level_exp(par_set.trial7,7);
     par_set.trial8=func_high_level_exp(par_set.trial8,8);
     par_set.trial9=func_high_level_exp(par_set.trial9,9);
-
+    par_set.trial10=func_high_level_exp(par_set.trial10,10);
+    par_set.trial11=func_high_level_exp(par_set.trial11,11);
+    par_set.trial12=func_high_level_exp(par_set.trial12,12);
+    par_set.trial13=func_high_level_exp(par_set.trial13,13);
+    par_set.trial14=func_high_level_exp(par_set.trial14,14);
+    par_set.trial15=func_high_level_exp(par_set.trial15,15);
     save('raw_id_data.mat','par_set');
     fprintf( 'Saved \n' )
 else
@@ -120,6 +131,42 @@ testData=par_set.trial9;
 testData=funcGreyBoxSysID(testData,par_set);
 % testData=func_greyBox(testData);
 par_set.trial9=testData;
+
+testData=[];
+testData=par_set.trial10;
+testData=funcGreyBoxSysID(testData,par_set);
+% testData=func_greyBox(testData);
+par_set.trial10=testData;
+
+testData=[];
+testData=par_set.trial11;
+testData=funcGreyBoxSysID(testData,par_set);
+% testData=func_greyBox(testData);
+par_set.trial11=testData;
+
+testData=[];
+testData=par_set.trial12;
+testData=funcGreyBoxSysID(testData,par_set);
+% testData=func_greyBox(testData);
+par_set.trial12=testData;
+
+testData=[];
+testData=par_set.trial13;
+testData=funcGreyBoxSysID(testData,par_set);
+% testData=func_greyBox(testData);
+par_set.trial13=testData;
+
+testData=[];
+testData=par_set.trial14;
+testData=funcGreyBoxSysID(testData,par_set);
+% testData=func_greyBox(testData);
+par_set.trial14=testData;
+
+testData=[];
+testData=par_set.trial15;
+testData=funcGreyBoxSysID(testData,par_set);
+% testData=func_greyBox(testData);
+par_set.trial15=testData;
 %% crossValidation MPa
 testData=par_set.trial1;
 testData2=par_set.trial2;
@@ -198,7 +245,7 @@ funcCompareTwoGreyBoxModel(testData,testData2);
 %% parameter distribution
 figure
 subplot(3,1,1)
-plot([par_set.trail1.pi_grey(1);par_set.trail2.pi_grey(1);par_set.trail3.pi_grey(1);par_set.trail4.pi_grey(1);par_set.trail5.pi_grey(1);],'o');
+plot([par_set.trial1.pi_grey(1);par_set.trial2.pi_grey(1);par_set.trail3.pi_grey(1);par_set.trail4.pi_grey(1);par_set.trail5.pi_grey(1);],'o');
 ylabel('\alpha')
 subplot(3,1,2)
 plot([par_set.trail1.pi_grey(2);par_set.trail2.pi_grey(2);par_set.trail3.pi_grey(2);par_set.trail4.pi_grey(2);par_set.trail5.pi_grey(2);],'o');
@@ -225,3 +272,92 @@ funcCompareTwoGreyBoxModel(avgModel,testData2);
 nlgr=funcBuildFullModel();
 testData=[];
 testData=par_set.trial1;
+%% bar plot for SMC
+par_set.allAlpha=([par_set.trial1.pi_grey(1);par_set.trial2.pi_grey(1);par_set.trial3.pi_grey(1);...
+                par_set.trial4.pi_grey(1);par_set.trial5.pi_grey(1);par_set.trial6.pi_grey(1);...
+                par_set.trial7.pi_grey(1);par_set.trial8.pi_grey(1);par_set.trial9.pi_grey(1);...
+                par_set.trial10.pi_grey(1);par_set.trial11.pi_grey(1);par_set.trial12.pi_grey(1);...
+                par_set.trial13.pi_grey(1);par_set.trial14.pi_grey(1);par_set.trial15.pi_grey(1);]);
+            
+par_set.allK=([par_set.trial1.pi_grey(2);par_set.trial2.pi_grey(2);par_set.trial3.pi_grey(2);...
+            par_set.trial4.pi_grey(2);par_set.trial5.pi_grey(2);par_set.trial6.pi_grey(2);...
+            par_set.trial7.pi_grey(2);par_set.trial8.pi_grey(2);par_set.trial9.pi_grey(2);...
+            par_set.trial10.pi_grey(2);par_set.trial11.pi_grey(2);par_set.trial12.pi_grey(2);...
+            par_set.trial13.pi_grey(2);par_set.trial14.pi_grey(2);par_set.trial15.pi_grey(2);]);
+        
+par_set.allB=([par_set.trial1.pi_grey(3);par_set.trial2.pi_grey(3);par_set.trial3.pi_grey(3);...
+            par_set.trial4.pi_grey(3);par_set.trial5.pi_grey(3);par_set.trial6.pi_grey(3);...
+            par_set.trial7.pi_grey(3);par_set.trial8.pi_grey(3);par_set.trial9.pi_grey(3);...
+            par_set.trial10.pi_grey(3);par_set.trial11.pi_grey(3);par_set.trial12.pi_grey(3);...
+            par_set.trial13.pi_grey(3);par_set.trial14.pi_grey(3);par_set.trial15.pi_grey(3);]);
+     
+x1=par_set.allK;
+SEM = std(x1)/sqrt(length(x1));               % Standard Error
+ts = tinv([0.025  0.975],length(x1)-1);% T-Score
+CI951 = max(ts*SEM);% Confidence Intervals
+
+x2=par_set.allB;
+SEM = std(x2)/sqrt(length(x2));               % Standard Error
+ts = tinv([0.025  0.975],length(x2)-1);% T-Score
+CI952 =max(ts*SEM);% Confidence Intervals
+
+x3=par_set.allAlpha;
+SEM = std(x3)/sqrt(length(x3));               % Standard Error
+ts = tinv([0.025  0.975],length(x3)-1);% T-Score
+CI953 =max(ts*SEM);% Confidence Intervals
+%% CI95%
+fp=figure('Position',[100,100,600,300]);
+f3=plot(1,x1,'k*');
+        hold on
+plot(2,x2,'k*')
+        hold on
+plot(3,x3,'k*')
+        hold on
+        
+f1=plot([1,2,3],[mean(x1),mean(x2),mean(x3)],'r*');
+f1.LineWidth=4;
+hold on
+f2=errorbar(1,[mean(x1)],[CI951],'b');
+f2.LineWidth=1.5;
+f2.CapSize=40;
+hold on
+f2=errorbar(2,[mean(x2)],[CI952],'b');
+f2.LineWidth=1.5;
+f2.CapSize=40;
+hold on
+f2=errorbar(3,[mean(x3)],[CI953],'b');
+f2.LineWidth=1.5;
+f2.CapSize=40;
+hold on
+legend([f1,f2,f3(1)],'mean','95%CI','sample','Location','northwest')
+xlim([0.5,3.5])
+xticks([1,2,3])
+xticklabels({'k','b','\alpha'})
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=16;
+% for i =1:length(x1)
+%     if x1(i)<mean(x1)-CI951 || x1(i)>mean(x1)+CI951
+%         plot(1,x1(i),'ko')
+%         hold on
+%     end
+% end
+% for i =1:length(x2)
+%     if x2(i)<mean(x2)-CI952 || x2(i)>mean(x2)+CI952
+%         plot(2,x2(i),'ko')
+%         hold on
+%     end
+% end
+% for i =1:length(x3)
+%     if x3(i)<mean(x3)-CI953 || x3(i)>mean(x3)+CI953
+%         plot(3,x3(i),'ko')
+%         hold on
+%     end
+% end
+%%
+figure
+subplot(3,1,1)
+histogram(par_set.allK)
+subplot(3,1,2)
+histogram(par_set.allB)
+subplot(3,1,3)
+histogram(par_set.allAlpha)
