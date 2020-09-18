@@ -21,6 +21,16 @@ switch exp_case
         set1=importdata('data_collect_9.txt');
      case 10
         set1=importdata('data_collect_10.txt');
+     case 11
+        set1=importdata('data_collect_11.txt');
+     case 12
+        set1=importdata('data_collect_12.txt');
+     case 13
+        set1=importdata('data_collect_13.txt');
+     case 14
+        set1=importdata('data_collect_14.txt');
+     case 15
+        set1=importdata('data_collect_15.txt');
 end
 		time_set=set1(1:end,1)-set1(1,1);
         NoLoad=[];
