@@ -20,5 +20,5 @@ function nlgr =funcBuildGreyBox()
                       'Damper';});       ... % alpha
     nlgr = setpar(nlgr, 'Unit', {'None';'Nm/rad'; 'Nm/(rad/s)'});
     nlgr = setpar(nlgr, 'Minimum', num2cell(eps(0)*ones(3, 1)));   % All parameters > 0!
-    present(nlgr);
+%     present(nlgr);
 
