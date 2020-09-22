@@ -35,7 +35,7 @@ par_set.trial15=[];
 
 % Geometric para.
 par_set.trianlge_length=70*1e-03;% fabric triangle edge length
-par_set.L=0.19;%actuator length
+par_set.L=0.17;%actuator length
 par_set.n=4;% # of joints for augmented rigid arm
 par_set.m0=0.35;%kg segment weight
 par_set.g=9.8;%% gravity constant
