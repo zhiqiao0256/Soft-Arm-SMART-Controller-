@@ -1,7 +1,7 @@
 function nlgr =funcBuildGreyBox()
     FileName      = 'funcGreyBoxOde';       % File describing the model structure.
     Order         = [2 5 2];           % Model orders [ny nu nx].
-    Parameters    = [1; 0.1;0.1];         % Initial parameters. Np = 3.
+    Parameters    = [10; 1;1];         % Initial parameters. Np = 3.
     InitialStates = [0; 0];            % Initial initial states.
     Ts            = 0;                 % Time-continuous system.
     nlgr = idnlgrey(FileName, Order, Parameters, InitialStates, Ts, ...
