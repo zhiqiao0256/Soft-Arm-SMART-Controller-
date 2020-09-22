@@ -1,4 +1,6 @@
 %% Main function for stiffness ID use data 0722
+%%% Major chanages:
+%%%
 clear all
 close all
 clc
@@ -15,24 +17,7 @@ par_set.flag_plot_movingCC =0;
 %flag for plotting fwd kinematic results
 par_set.plot_fwdKinematic =0;
 % Check data readme.txt for detail input reference
-par_set.trial1=[];
-par_set.trial2=[];
-par_set.trial3=[];
-par_set.trial4=[];
-par_set.trial5=[];
-par_set.trial6=[];
-par_set.trial7=[];
-par_set.trial8=[];
-par_set.trial9=[];
-par_set.trial10=[];
-par_set.trial11=[];
-par_set.trial12=[];
-par_set.trial13=[];
-par_set.trial14=[];
-par_set.trial15=[];
-
-
-
+par_set.Ts=1/20;
 % Geometric para.
 par_set.trianlge_length=70*1e-03;% fabric triangle edge length
 par_set.L=0.17;%actuator length
@@ -51,21 +36,21 @@ end
 fprintf('System initialization done \n')
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
-    par_set.trial1=func_high_level_exp(par_set.trial1,1);
-    par_set.trial2=func_high_level_exp(par_set.trial2,2);
-    par_set.trial3=func_high_level_exp(par_set.trial3,3);
-    par_set.trial4=func_high_level_exp(par_set.trial4,4);
-    par_set.trial5=func_high_level_exp(par_set.trial5,5);
-    par_set.trial6=func_high_level_exp(par_set.trial6,6);
-    par_set.trial7=func_high_level_exp(par_set.trial7,7);
-    par_set.trial8=func_high_level_exp(par_set.trial8,8);
-    par_set.trial9=func_high_level_exp(par_set.trial9,9);
-    par_set.trial10=func_high_level_exp(par_set.trial10,10);
-    par_set.trial11=func_high_level_exp(par_set.trial11,11);
-    par_set.trial12=func_high_level_exp(par_set.trial12,12);
-    par_set.trial13=func_high_level_exp(par_set.trial13,13);
-    par_set.trial14=func_high_level_exp(par_set.trial14,14);
-    par_set.trial15=func_high_level_exp(par_set.trial15,15);
+    par_set=funcHighLevelExp100Hz(par_set,1);
+    par_set=funcHighLevelExp100Hz(par_set,2);
+    par_set=funcHighLevelExp100Hz(par_set,3);
+    par_set=funcHighLevelExp100Hz(par_set,4);
+    par_set=funcHighLevelExp100Hz(par_set,5);
+    par_set=funcHighLevelExp100Hz(par_set,6);
+    par_set=funcHighLevelExp100Hz(par_set,7);
+    par_set=funcHighLevelExp100Hz(par_set,8);
+    par_set=funcHighLevelExp100Hz(par_set,9);
+    par_set=funcHighLevelExp100Hz(par_set,10);
+    par_set=funcHighLevelExp100Hz(par_set,11);
+    par_set=funcHighLevelExp100Hz(par_set,12);
+    par_set=funcHighLevelExp100Hz(par_set,13);
+    par_set=funcHighLevelExp100Hz(par_set,14);
+    par_set=funcHighLevelExp100Hz(par_set,15);
     save('raw_id_data.mat','par_set');
     fprintf( 'Saved \n' )
 else
@@ -75,7 +60,7 @@ else
 end
 %% Symbolic EOM
 if par_set.EOM==1
-par_set=func_EOM_baseFrame(par_set);
+    par_set=func_EOM_baseFrame(par_set);
 end
 %% Grey-box system ID
 testData=[];
@@ -167,6 +152,8 @@ testData=par_set.trial15;
 testData=funcGreyBoxSysID(testData,par_set);
 % testData=func_greyBox(testData);
 par_set.trial15=testData;
+
+beep;
 %% crossValidation MPa
 testData=par_set.trial1;
 testData2=par_set.trial2;
@@ -222,56 +209,7 @@ testData2=par_set.trial8;
 funcCompareAverageModel(avgModel,testData2);
 testData2=par_set.trial9;
 funcCompareAverageModel(avgModel,testData2);
-%% CrossValidation psi
-testData2=par_set.trial2;
-% testData2=func_getPhiThetaBfromXYZ(testData2,par_set); 
-% testData2= func3ptFilter(testData2);
-funcCompareTwoGreyBoxModel(testData,testData2);
 
-testData2=par_set.trial3;
-testData2=func_getPhiThetaBfromXYZ(testData2,par_set); 
-testData2= func3ptFilter(testData2);
-funcCompareTwoGreyBoxModel(testData,testData2);
-
-testData2=par_set.trial4;
-testData2=func_getPhiThetaBfromXYZ(testData2,par_set); 
-testData2= func3ptFilter(testData2);
-funcCompareTwoGreyBoxModel(testData,testData2);
-
-testData2=par_set.trial5;
-testData2=func_getPhiThetaBfromXYZ(testData2,par_set); 
-testData2= func3ptFilter(testData2);
-funcCompareTwoGreyBoxModel(testData,testData2);
-%% parameter distribution
-figure
-subplot(3,1,1)
-plot([par_set.trial1.pi_grey(1);par_set.trial2.pi_grey(1);par_set.trail3.pi_grey(1);par_set.trail4.pi_grey(1);par_set.trail5.pi_grey(1);],'o');
-ylabel('\alpha')
-subplot(3,1,2)
-plot([par_set.trail1.pi_grey(2);par_set.trail2.pi_grey(2);par_set.trail3.pi_grey(2);par_set.trail4.pi_grey(2);par_set.trail5.pi_grey(2);],'o');
-ylabel('k')
-subplot(3,1,3)
-plot([par_set.trail1.pi_grey(3);par_set.trail2.pi_grey(3);par_set.trail3.pi_grey(3);par_set.trail4.pi_grey(3);par_set.trail5.pi_grey(3);],'o');
-ylabel('b')
-%% Average Model
-meanAlpha=mean([par_set.trail1.pi_grey(1);par_set.trail2.pi_grey(1);par_set.trail3.pi_grey(1);par_set.trail4.pi_grey(1);par_set.trail5.pi_grey(1);]);
-meanK=mean([par_set.trail1.pi_grey(2);par_set.trail2.pi_grey(2);par_set.trail3.pi_grey(2);par_set.trail4.pi_grey(2);par_set.trail5.pi_grey(2);]);
-meanB=mean([par_set.trail1.pi_grey(3);par_set.trail2.pi_grey(3);par_set.trail3.pi_grey(3);par_set.trail4.pi_grey(3);par_set.trail5.pi_grey(3);]);
-avgModel.pi_grey=[meanAlpha,meanK,meanB];
-testData2=par_set.trail1;
-funcCompareTwoGreyBoxModel(avgModel,testData2);
-testData2=par_set.trail2;
-funcCompareTwoGreyBoxModel(avgModel,testData2);
-testData2=par_set.trail3;
-funcCompareTwoGreyBoxModel(avgModel,testData2);
-testData2=par_set.trail4;
-funcCompareTwoGreyBoxModel(avgModel,testData2);
-testData2=par_set.trail5;
-funcCompareTwoGreyBoxModel(avgModel,testData2);
-%% Full Model
-nlgr=funcBuildFullModel();
-testData=[];
-testData=par_set.trial1;
 %% bar plot for SMC
 par_set.allAlpha=([par_set.trial1.pi_grey(1);par_set.trial2.pi_grey(1);par_set.trial3.pi_grey(1);...
                 par_set.trial4.pi_grey(1);par_set.trial5.pi_grey(1);par_set.trial6.pi_grey(1);...
