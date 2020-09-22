@@ -10,7 +10,7 @@ opt.SearchMethod='lsqnonlin';
 
 %%%% Input Output Data
     z=iddata([testData.theta_rad,testData.velocity_theta_rad],...
-        [testData.pm_MPa(:,2:4),testData.beta,testData.phi_rad],0.05);
+        [testData.pm_MPa(:,2:4),testData.beta,testData.phi_rad],par_set.Ts);
     z.InputName=nlgr.InputName;
     z.InputUnit=nlgr.InputUnit;
     z.OutputName=nlgr.OutputName;
