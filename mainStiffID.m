@@ -20,7 +20,7 @@ par_set.plot_fwdKinematic = 0;
 par_set.Ts=1/40;
 % Geometric para.
 par_set.trianlge_length=70*1e-03;% fabric triangle edge length
-par_set.L=0.17;%actuator length
+par_set.L=0.185;%actuator length
 par_set.n=4;% # of joints for augmented rigid arm
 par_set.m0=0.35;%kg segment weight
 par_set.g=9.8;%% gravity constant
@@ -62,6 +62,14 @@ end
 if par_set.EOM==1
     par_set=func_EOM_baseFrame(par_set);
 end
+%% FwdKinmatic Checking
+% testData=[];
+% testData=par_set.trial11;
+% testData=func_getPhiThetaBfromXYZ(testData,par_set);
+% if par_set.plot_fwdKinematic == 1
+%     testData=func_fwdKinematic(testData,par_set);
+% end
+% testData= func3ptFilter(testData);
 %% Grey-box system ID
 testData=[];
 testData=par_set.trial1;
@@ -70,6 +78,7 @@ testData=funcGreyBoxSysID(testData,par_set);
 par_set.trial1=testData;
 
 testData=[];
+
 testData=par_set.trial2;
 testData=funcGreyBoxSysID(testData,par_set);
 % testData=func_greyBox(testData);

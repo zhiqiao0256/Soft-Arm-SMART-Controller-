@@ -1,7 +1,7 @@
 function nlgr =funcBuildGreyBox()
     FileName      = 'funcGreyBoxOde';       % File describing the model structure.
     Order         = [2 5 2];           % Model orders [ny nu nx].
-    Parameters    = [2; 0.5; 0.5];         % Initial parameters. Np = 3.
+    Parameters    = [1; 0.5; 0.5];         % Initial parameters. Np = 3.
     InitialStates = [0; 0];            % Initial initial states.
     Ts            = 0;                 % Time-continuous system.
     nlgr = idnlgrey(FileName, Order, Parameters, InitialStates, Ts, ...
@@ -20,8 +20,8 @@ function nlgr =funcBuildGreyBox()
                       'Damper';});       ... % alpha
     nlgr = setpar(nlgr, 'Unit', {'None';'Nm/rad'; 'Nm/(rad/s)'});
     nlgr = setpar(nlgr, 'Minimum',{eps(0)*1;eps(0)*1;eps(0)*1});   % All parameters > 0!
-%     nlgr.Parameters(1).Maximum=10;
-%     nlgr.Parameters(2).Maximum=5;
-%     nlgr.Parameters(2).Maximum=5;
+    nlgr.Parameters(1).Maximum=5;
+    nlgr.Parameters(2).Maximum=5;
+    nlgr.Parameters(2).Maximum=5;
 %     present(nlgr);
 

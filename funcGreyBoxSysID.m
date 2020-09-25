@@ -1,11 +1,12 @@
 function testData=funcGreyBoxSysID(testData,par_set)
 testData=func_getPhiThetaBfromXYZ(testData,par_set);    % get phi,theta,r0
 testData= func3ptFilter(testData);  % get d_phi d_theta
+% testData= funcArcFrameTorque(testData,par_set);
 nlgr =funcBuildGreyBox();   % get grey box model
 %%%% Estimation Options
 opt = nlgreyestOptions;
 opt.Display='on';
-opt.SearchOptions.MaxIterations = 20;
+% opt.SearchOptions.MaxIterations = 20;
 opt.SearchMethod='lsqnonlin';
 %%%% Segment data into half half
 halfPt=uint32(length(testData.theta_rad)/2);
@@ -26,14 +27,16 @@ z.OutputName=nlgr1.OutputName;
 z.OutputName=nlgr1.OutputName;
 nlgr1.initial(1).Value=z.OutputData(1,1);
 nlgr1.initial(2).Value=z.OutputData(1,2);
+% figure
+% plot(z);
 nlgr1 = nlgreyest(z,nlgr1,opt);
 figure
 compare(z,nlgr1)
 %%%%
-% z2=iddata([testData.theta_rad(halfPt:end),testData.velocity_theta_rad(halfPt:end)],...
-%     [testData.pm_MPa(halfPt:end,2:4),testData.beta(halfPt:end),testData.phi_rad(halfPt:end)],par_set.Ts);
-z2=iddata([testData.theta_rad(1:end),testData.velocity_theta_rad(1:end)],...
-    [testData.pm_MPa(1:end,2:4),testData.beta(1:end),testData.phi_rad(1:end)],par_set.Ts);
+z2=iddata([testData.theta_rad(halfPt:end),testData.velocity_theta_rad(halfPt:end)],...
+    [testData.pm_MPa(halfPt:end,2:4),testData.beta(halfPt:end),testData.phi_rad(halfPt:end)],par_set.Ts);
+% z2=iddata([testData.theta_rad(1:end),testData.velocity_theta_rad(1:end)],...
+%     [testData.pm_MPa(1:end,2:4),testData.beta(1:end),testData.phi_rad(1:end)],par_set.Ts);
 z2.InputName=nlgr1.InputName;
 z2.InputUnit=nlgr1.InputUnit;
 z2.OutputName=nlgr1.OutputName;
