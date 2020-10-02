@@ -276,6 +276,13 @@ ts = tinv([0.025  0.975],length(x3)-1);% T-Score
 CI953 =max(ts*SEM);% Confidence Intervals
 CI953=mean(x3)-std(x3)*1.96/sqrt(length(x3));
 meanAlpha=mean(x3);
+%%
+par_set.meanK=meanK;
+par_set.meanB=meanB;
+par_set.meanAlpha=meanAlpha;
+par_set.maxK=meanK+CI951;
+par_set.maxB=meanB+CI952;
+par_set.maxAlpha=meanAlpha+CI953;
 %% CI95%
 fp=figure('Position',[100,100,600,300]);
 f3=plot(1,x1,'k*');
