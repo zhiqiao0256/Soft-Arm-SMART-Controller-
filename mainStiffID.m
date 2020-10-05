@@ -9,13 +9,13 @@ par_set=[];
 %flag for EOM deriviation
 par_set.EOM=0;
 %flag for plot
-par_set.flag_plot_rawData = 0;
+par_set.flag_plot_rawData =1;
 %flag for read txt file or mat file 1: txt 0: mat
 par_set.flag_read_exp = 1;
 %flag for plotting moving constant layer
-par_set.flag_plot_movingCC = 0;
+par_set.flag_plot_movingCC = 1;
 %flag for plotting fwd kinematic results
-par_set.plot_fwdKinematic = 0;
+par_set.plot_fwdKinematic = 1;
 % Check data readme.txt for detail input reference
 par_set.Ts=1/40;
 % Geometric para.
@@ -27,7 +27,7 @@ par_set.g=9.8;%% gravity constant
 par_set.a0=15*1e-03;%% 1/2 of pillow width
 par_set.r_f=sqrt(3)/6*par_set.trianlge_length+par_set.a0; % we assume the force are evenly spread on a cirlce with radius of r_f
 %% Update location of 3 chambers P1, P2, P3
-par_set.p1_angle=-150;%deg p1 position w/ the base frame
+par_set.p1_angle=150;%deg p1 position w/ the base frame
 % update force position of p1 p2 and p3
 for i =1:3
     par_set.r_p{i}=[par_set.r_f*cosd(par_set.p1_angle+120*(i-1)),par_set.r_f*sind(par_set.p1_angle+120*(i-1)),0].';

@@ -91,4 +91,6 @@ end
 %% Calculate theta in base frame ranging -pi/2,pi/2
 trainSet.theta_rad=2*-sign(trainSet.tip_exp_baseFrame(:,2)).*asin(sqrt(trainSet.tip_exp_baseFrame(:,2).^2)./sqrt(trainSet.tip_exp_baseFrame(:,2).^2+trainSet.tip_exp_baseFrame(:,3).^2));
 trainSet.theta_deg=rad2deg(trainSet.theta_rad);
+
+func_fwdKinematic(trainSet,par_set);
 end

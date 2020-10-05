@@ -20,7 +20,7 @@ Amp=deg2rad(10);
 Boff=deg2rad(-40);
 freq=0.1;%Hz
 xd=-Amp*sin(2*pi*freq*timeArray)+Boff;
-ddxd=-Amp*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
+ddxd=Amp*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
 %%
 % xd=deg2rad(-40)*ones(length(timeArray),1);
 % ddxd=0*sin(timeArray);
@@ -60,6 +60,7 @@ deltaK=Kmax;
 %         -sqrt(3)*cos(phi).*(0.5*pm1-0.5*pm2))));
 uMax= max(abs((alpha)*(sin(phi).*(0.5*pm1+0.5*pm2-pm3)...
     -sqrt(3)*cos(phi).*(0.5*pm1-0.5*pm2))));
+uMin=0.0;
 for i=2:length(timeArray)-1
     %% Sliding Mode controller
     e(i,1)=xd(i,1)-x1(i,1);
@@ -83,8 +84,10 @@ for i=2:length(timeArray)-1
 %         sign(s(i,1))*(Km*abs(x1(i,1)/M)+Dm*abs(x2(i,1)/M)));
     % %     uUnbound(i,1)=M/alpha*(lambda*e(i,1)+ddxd(i,1)-f+eta*sign(s(i,1)));
     %     %%% Input Signal bound
-    if abs(u_alpha(i,1))>=uMax
+    if u_alpha(i,1)>=uMax
         uBound(i,1)=uMax*sign(u_alpha(i,1));
+    elseif u_alpha(i,1)<=uMin
+        uBound(i,1)=0.0;
     else
         uBound(i,1)=u_alpha(i,1);
     end
