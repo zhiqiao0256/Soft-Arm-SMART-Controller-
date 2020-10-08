@@ -1,4 +1,4 @@
-function par_set=funcSimSMC_inputUncertain(par_set)
+function par_set=funcSimSMC_inputUncertain_saturation(par_set)
 %% Input Output data
 testData=par_set.trial1;
 Ts=0.01;
@@ -38,9 +38,11 @@ pm3=testData.pm_MPa(:,4);
 alpha=par_set.meanAlpha;
 k=par_set.meanK;
 b=par_set.meanB;
+%%% smc tunning parameters
 lambda=10;
 eta=10;
 epsi=10;
+saturationBound=deg2rad(1);
 Km=par_set.maxK-k;
 Dm= par_set.maxB-b;
 Alpham= (par_set.maxAlpha-alpha)/alpha;
@@ -90,10 +92,28 @@ for i=2:length(timeArray)-1
     f=M\(-k*x1(i,1) -(b+C_simp)*x2(i,1)- G_simp);
     %%%% Update input u
     u_alpha(i,1)=M*(lambda*de(i,1)+ddxd(i,1) - f+ eta*sign(s(i,1))+sign(s(i,1))*(Km*abs(x1(i,1)/M)+Dm*abs(x2(i,1)/M)));
+    %%%% Update input u with saturation bound
+%     sat=0;
+%     if abs(s(i,1)/saturationBound)<=1
+%         sat=s(i,1)/saturationBound;
+%     else
+%         sat=sign(s(i,1));
+%     end
+%      u_alpha(i,1)=M*(lambda*de(i,1)+ddxd(i,1) - f+ eta*sat+sat*(Km*abs(x1(i,1)/M)+Dm*abs(x2(i,1)/M)));
+     
+%     %%%% Update input u with input uncetainty
+%     B_star=Alphamax*abs(1/M);
+%     eta=1/(1+B_star)*(B_star*abs(lambda*de(i,1)+ddxd(i,1) - f)+Km*abs(x1(i,1)/M)+Dm*abs(x2(i,1)/M)+epsi);
+%     u_alpha(i,1)=M/alpha*(lambda*de(i,1)+ddxd(i,1) - f+ eta*sign(s(i,1)));
     %%%% Update input u with input uncetainty
+    if abs(s(i,1)/saturationBound)<=1
+        sat=s(i,1)/saturationBound;
+    else
+        sat=sign(s(i,1));
+    end
     B_star=Alphamax*abs(1/M);
     eta=1/(1+B_star)*(B_star*abs(lambda*de(i,1)+ddxd(i,1) - f)+Km*abs(x1(i,1)/M)+Dm*abs(x2(i,1)/M)+epsi);
-    u_alpha(i,1)=M/alpha*(lambda*de(i,1)+ddxd(i,1) - f+ eta*sign(s(i,1)));
+    u_alpha(i,1)=M/alpha*(lambda*de(i,1)+ddxd(i,1) - f+ eta*sat);
     %     %%% Input Signal bound
     if u_alpha(i,1)>=uMax
         uBound(i,1)=uMax*sign(u_alpha(i,1));
