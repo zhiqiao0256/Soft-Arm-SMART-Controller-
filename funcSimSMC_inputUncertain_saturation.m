@@ -73,6 +73,14 @@ deltaAlpha=Alphamax;
 %         -sqrt(3)*cos(phi).*(0.5*pm1-0.5*pm2))));
 uMax= max(abs((alpha)*(sin(phi).*(0.5*pm1+0.5*pm2-pm3)...
     -sqrt(3)*cos(phi).*(0.5*pm1-0.5*pm2))));
+
+p1_max_psi=40;
+% p1_min_psi=1;
+p1_max_MPa=p1_max_psi/145.038;
+uMax= max(abs((alpha)*(sin(phi).*(0.5*p1_max_MPa+0.5*pm2-pm3)...
+    -sqrt(3)*cos(phi).*(0.5*p1_max_MPa-0.5*pm2))));
+
+
 uMin=0.0;
 for i=2:length(timeArray)-1
     %% Sliding Mode controller
