@@ -1,6 +1,7 @@
 function par_set=funcSimSMC_inputUncertain_saturation(par_set)
 %% Input Output data
 testData=par_set.trial1;
+
 Ts=0.01;
 timeArray=[0:Ts:60]';%sec
 x1=zeros(length(timeArray),1);
