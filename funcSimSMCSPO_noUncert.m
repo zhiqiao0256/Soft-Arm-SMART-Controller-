@@ -1,8 +1,10 @@
-function par_set=funcSimSMCSPO(par_set,flag_input_bound)
+function par_set=funcSimSMCSPO_noUncert(par_set,flag_input_bound)
+%%%%%% Updates
+% Line 75-95 is the tuuning section for system uncertainty and disturbance
+% Line 109-120 
 %%%%%% Import data
 testData=par_set.trial1;
 %%%%%%
-
 %%%%%% State Ini.
 Ts=0.01; % sampling period
 timeArray=[0:Ts:180]';%sec
@@ -59,69 +61,94 @@ seed1=rng;
 Kmax = Km;
 Kmin= -Km;
 deltaK = (Kmax-Kmin).*rand(1,1) + Kmin;
-deltaK=0.01*deltaK;
 
 seed2=rng;
 Dmax =Dm;
 Dmin= -Dm;
 deltaD = (Dmax-Dmin).*rand(1,1) + Dmin;
-deltaD=Dmax;
-deltaD=0.01*deltaD;
 
 seed3=rng;
 Alphamax =Alpham;
 Alphamin= -Alpham;
 deltaAlpha = (Alphamax-Alphamin).*rand(1,1) + Alphamin;
-deltaAlpha=0.01*deltaAlpha;
-%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Max uncertainty
-% deltaD=0;
-% deltaK=0;
-% deltaAlpha=0;
+deltaK=Kmax*0.4;
+% deltaAlpha=Alphamax;
+% deltaD=Dmax;
 %%%
-%%%%%%
+%%% No uncertainty
+deltaD=0;
+% deltaK=0;
+deltaAlpha=0;
+%%%
 %%%%%% Input reference
-Amp=deg2rad(10);
-Boff=deg2rad(-40);
+Amp=deg2rad(20);
+Boff=deg2rad(-50);
 freq=0.1;%Hz
 xd=-Amp*sin(2*pi*freq*timeArray)+Boff;
 dxd=-Amp*(2*pi*freq)*cos(2*pi*freq*timeArray);
 ddxd=Amp*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
-%%%%%%
-%% SMCSPO design parameter
-smc_lambda_d=0.1;
-smc_epsil=1;
-smc_k1_epsil=3*smc_lambda_d;
-smc_k1=100;
-smc_k2_epsil=smc_lambda_d;
-smc_k2=smc_k2_epsil*smc_epsil;
-smc_alpha_3=sqrt(smc_lambda_d/3);
-smc_c=smc_lambda_d;
-smc_eta=smc_lambda_d*smc_epsil;
-%%
-% smc_epsil=0.1;
-% smc_k1=
-% smc_k2=abs(Kmax*deg2rad(90))+abs(Alphamax*0.1805)
-%%
 u_bar=zeros(length(timeArray),1); %unbounded input
+
 disturb=zeros(length(timeArray),1);
-%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SMCSPO design parameter
+% smc_epsil=1;
+% smc_k1=10;
+% smc_k2=100;
+% smc_k1_epsil=smc_k1/smc_epsil;
+% smc_k2_epsil=smc_k2/smc_epsil;
+% smc_alpha_3=1;
+% smc_c=1;
+% smc_eta=1;
+%%%%%%% lambda_d based tuning 1997
+smc_lambda_d=100;
+smc_epsil_o=1;
+smc_epsil_s=1;
+smc_k1_epsil=3*smc_lambda_d;
+smc_k1=3*smc_lambda_d*smc_epsil_o;
+smc_k2=smc_lambda_d*smc_k1;
+smc_k2_epsil=smc_lambda_d;
+smc_alpha_3=sqrt(smc_lambda_d/3);
+smc_c=100;
+smc_eta=100;
+smc_alpha_1=0;
+smc_alpha_2=0;
+%%%%%%%%%%%%%
+%%% Initial position and disturbance
 x1(1)=xd(1);
 x1_hat(1)=x1(1);
+x2_hat(1)=x2(1);
+theta=x1(1);
+Izz=m0*r0^2;
+ M=Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
+        (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4;
+x3_hat(1)=(Kmax*0.1*x1(1)+ Dmax*x2(1))/M;
 for i=1:length(timeArray)-1
     %% SMCSPO
     x1_e(i,1)=x1_hat(i,1)-x1(i,1);
     x2_e(i,1)=x2_hat(i,1)-x2(i,1);
     per_ob_hat(i,1)=smc_alpha_3*(-x3_hat(i,1)+smc_alpha_3*x2_hat(i,1));
-    s_hat(i,1)=x2_hat(i,1)-smc_k1*sign(x1_e(i,1))-dxd(i,1)+smc_c*(x1_hat(i,1)-xd(i,1));
+    %%%%%% Add 11-18
+    if x1_e(i,1)>smc_epsil_o
+        sat_x1_e=x1_e(i,1)/abs(x1_e(i,1));
+    else
+        sat_x1_e=x1_e(i,1)/smc_epsil_o;
+    end
+    %%%%%% Add 11-18
+%     sat_x1_e=sign(x1_e(i,1));
+    s_hat(i,1)=x2_hat(i,1)-smc_k1*sat_x1_e-dxd(i,1)+smc_c*(x1_hat(i,1)-xd(i,1))-smc_alpha_1*x1_e(i,1);
     % Saturation function of sat(s_hat)
-    if s_hat(i,1)>smc_epsil
+    if s_hat(i,1)>smc_epsil_s
         sat_s_hat=s_hat(i,1)/abs(s_hat(i,1));
     else
-        sat_s_hat=s_hat(i,1)/smc_epsil;
+        sat_s_hat=s_hat(i,1)/smc_epsil_s;
     end
     u_bar(i,1)=1/smc_alpha_3*...
-        (-smc_eta*sat_s_hat + smc_k1_epsil*x2_e(i,1)+...
+        (-smc_eta*sat_s_hat +...
+        -smc_k1_epsil*x2_e(i,1)+...
         (smc_k2_epsil + smc_c * smc_k1_epsil - smc_k1_epsil^2)*x1_e(i,1)+...
         ddxd(i,1)-smc_c*(x2_hat(i,1)-dxd(i,1))...
         - per_ob_hat(i,1));
@@ -150,14 +177,15 @@ for i=1:length(timeArray)-1
     u_raw(i,1)=(1/(alpha/M_hat))*(smc_alpha_3*u_bar(i,1)-f_x_hat);
     
     %% Switch between bounded 
+
     if flag_input_bound==0
         % State feedback controller
         per_ob(i,1)=(deltaK*x1(i,1)+deltaD*x2(i,1) + deltaAlpha*u_raw(i,1) + disturb(i,1))/M;
         dx1(i,1)=x2(i,1);
         dx2(i,1)=smc_alpha_3*u_bar(i,1)+per_ob(i,1);
         % State Observer
-        dx1_hat(i,1)=x2_hat(i,1)-smc_k1*sign(x1_e(i,1));
-        dx2_hat(i,1)=-smc_k2*sign(x1_e(i,1))+ smc_alpha_3*u_bar(i,1)+per_ob_hat(i,1);
+        dx1_hat(i,1)=x2_hat(i,1)-smc_k1*sat_x1_e-smc_alpha_1*x1_e(i,1);
+        dx2_hat(i,1)=-smc_k2*sat_x1_e+ smc_alpha_3*u_bar(i,1)+per_ob_hat(i,1)-smc_alpha_2*x1_e(i,1);
         dx3_hat(i,1)=smc_alpha_3^2*(-x3_hat(i,1)+smc_alpha_3*x2_hat(i,1)+u_bar(i,1));
     else
         %% Bound control signal smc_alpha3*u_bar= f_x_hat+alpha/M_hat*u_bound
@@ -175,8 +203,8 @@ for i=1:length(timeArray)-1
 %         dx2(i,1)=u_bound(i,1)*(alpha/M)+f+per_ob(i,1);
         dx2(i,1)=u_bound(i,1)*(alpha/M_hat)+f_x_hat+per_ob(i,1);
         % State Observer
-        dx1_hat(i,1)=x2_hat(i,1)-smc_k1*sign(x1_e(i,1));
-        dx2_hat(i,1)=-smc_k2*sign(x1_e(i,1))+ u_bound(i,1)*(alpha/M_hat)+f_x_hat+per_ob_hat(i,1);
+        dx1_hat(i,1)=x2_hat(i,1)-smc_k1*sat_x1_e-smc_alpha_1*x1_e(i,1);
+        dx2_hat(i,1)=-smc_k2*sat_x1_e+ u_bound(i,1)*(alpha/M_hat)+f_x_hat+per_ob_hat(i,1)-smc_alpha_2*x1_e(i,1);
         dx3_hat(i,1)=smc_alpha_3^2*(-x3_hat(i,1)+smc_alpha_3*x2_hat(i,1)+ (u_bound(i,1)*(alpha/M_hat)+f_x_hat)/smc_alpha_3);
     end
     %% Update State Variable
@@ -190,26 +218,35 @@ end
 close all
 if flag_input_bound==0
 figure(1)
-subplot(3,1,1)
-plot(timeArray(2:end),xd(2:end),'r')
+subplot(4,1,1)
+plot(timeArray(2:end),xd(2:end),'r','LineWidth',2)
 hold on
-plot(timeArray(2:end),x1_hat(2:end),'k','LineWidth',2)
+plot(timeArray(2:end),x1_hat(2:end),'k')
 hold on
 plot(timeArray(2:end),x1(2:end),'b')
 legend('ref','x1_hat','x1')
 ylim([-5,5])
 title(['Unbonded Control Signal with'...
-    ' \Delta k =',num2str(deltaK),' \Delta d =',num2str(deltaD),' \Delta \alpha=',num2str(deltaAlpha),'\lambda_d=',num2str(smc_lambda_d)])
+    ' \Delta k =',num2str(deltaK),' \Delta d =',num2str(deltaD),' \Delta \alpha=',num2str(deltaAlpha),' \lambda_d=',num2str(smc_lambda_d)])
 ylabel('Angle(rad)')
 hold on
-subplot(3,1,2)
+subplot(4,1,2)
+plot(timeArray(2:end),x2_hat(2:end),'k','LineWidth',2)
+hold on
+plot(timeArray(2:end),x2(2:end),'b')
+legend('x2_hat','x2')
+ylim([-5,5])
+title(['x2 tracking'])
+ylabel('Anguler Vel.(rad/s)')
+hold on
+subplot(4,1,3)
 plot(timeArray(2:end),u_raw(2:end),'r')
 hold on
 title(['Control Signal u'])
 ylabel('Torque(N\cdotm)')
 xlabel('time')
-subplot(3,1,3)
-plot(timeArray(2:end),per_ob(2:end),'r')
+subplot(4,1,4)
+plot(timeArray(2:end),per_ob(2:end),'r','LineWidth',2)
 hold on
 plot(timeArray(2:end),per_ob_hat(2:end),'b')
 legend('\Psi','\Psi_{est}')
@@ -218,24 +255,35 @@ ylabel('Torque(N\cdotm)')
 xlabel('time')
 else
 figure(1)
-subplot(3,1,1)
-plot(timeArray(2:end),xd(2:end),'r')
+subplot(4,1,1)
+plot(timeArray(2:end),xd(2:end),'r','LineWidth',2)
+hold on
+plot(timeArray(2:end),x1_hat(2:end),'k')
 hold on
 plot(timeArray(2:end),x1(2:end),'b')
-legend('ref','x1')
+legend('ref','x1_hat','x1')
 ylim([-5,5])
 title(['Bonded Control Signal with'...
-    ' \Delta k =',num2str(deltaK),' \Delta d =',num2str(deltaD),' \Delta \alpha=',num2str(deltaAlpha),'\lambda_d=',num2str(smc_lambda_d)])
+    ' \Delta k =',num2str(deltaK),' \Delta d =',num2str(deltaD),' \Delta \alpha=',num2str(deltaAlpha),' \lambda_d=',num2str(smc_lambda_d)])
 ylabel('Angle(rad)')
 hold on
-subplot(3,1,2)
-plot(timeArray(2:end),u_bound(2:end),'r')
+subplot(4,1,2)
+plot(timeArray(2:end),x2_hat(2:end),'k','LineWidth',2)
+hold on
+plot(timeArray(2:end),x2(2:end),'b')
+legend('x2_hat','x2')
+ylim([-5,5])
+title(['x2 tracking'])
+ylabel('Anguler Vel.(rad/s)')
+hold on
+subplot(4,1,3)
+plot(timeArray(2:end),u_raw(2:end),'r')
+hold on
 title(['Control Signal u'])
-ylim([-0.5,0.5])
 ylabel('Torque(N\cdotm)')
 xlabel('time')
-subplot(3,1,3)
-plot(timeArray(2:end),per_ob(2:end),'r')
+subplot(4,1,4)
+plot(timeArray(2:end),per_ob(2:end),'r','LineWidth',2)
 hold on
 plot(timeArray(2:end),per_ob_hat(2:end),'b')
 legend('\Psi','\Psi_{est}')

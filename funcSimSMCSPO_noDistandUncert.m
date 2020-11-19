@@ -1,4 +1,4 @@
-function par_set=funcSimSMCSPO(par_set,flag_input_bound)
+function par_set=funcSimSMCSPO_noDistandUncert(par_set,flag_input_bound)
 %%%%%% Import data
 testData=par_set.trial1;
 %%%%%%
@@ -75,9 +75,9 @@ deltaAlpha = (Alphamax-Alphamin).*rand(1,1) + Alphamin;
 deltaAlpha=0.01*deltaAlpha;
 %%%
 %%% Max uncertainty
-% deltaD=0;
-% deltaK=0;
-% deltaAlpha=0;
+deltaD=0;
+deltaK=0;
+deltaAlpha=0;
 %%%
 %%%%%%
 %%%%%% Input reference
@@ -89,12 +89,21 @@ dxd=-Amp*(2*pi*freq)*cos(2*pi*freq*timeArray);
 ddxd=Amp*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
 %%%%%%
 %% SMCSPO design parameter
-smc_lambda_d=0.1;
+% smc_epsil=1;
+% smc_k1=10;
+% smc_k2=100;
+% smc_k1_epsil=smc_k1/smc_epsil;
+% smc_k2_epsil=smc_k2/smc_epsil;
+% smc_alpha_3=1;
+% smc_c=1;
+% smc_eta=1;
+% lambda_d based tuning 1997
+smc_lambda_d=1/(5);
 smc_epsil=1;
 smc_k1_epsil=3*smc_lambda_d;
-smc_k1=100;
+smc_k1=3*smc_lambda_d*smc_epsil;
+smc_k2=smc_lambda_d*smc_k1;
 smc_k2_epsil=smc_lambda_d;
-smc_k2=smc_k2_epsil*smc_epsil;
 smc_alpha_3=sqrt(smc_lambda_d/3);
 smc_c=smc_lambda_d;
 smc_eta=smc_lambda_d*smc_epsil;
@@ -157,7 +166,7 @@ for i=1:length(timeArray)-1
         dx2(i,1)=smc_alpha_3*u_bar(i,1)+per_ob(i,1);
         % State Observer
         dx1_hat(i,1)=x2_hat(i,1)-smc_k1*sign(x1_e(i,1));
-        dx2_hat(i,1)=-smc_k2*sign(x1_e(i,1))+ smc_alpha_3*u_bar(i,1)+per_ob_hat(i,1);
+        dx2_hat(i,1)=-smc_k2*sign(x1_e(i,1))+ smc_alpha_3*u_bar(i,1);
         dx3_hat(i,1)=smc_alpha_3^2*(-x3_hat(i,1)+smc_alpha_3*x2_hat(i,1)+u_bar(i,1));
     else
         %% Bound control signal smc_alpha3*u_bar= f_x_hat+alpha/M_hat*u_bound
@@ -176,7 +185,7 @@ for i=1:length(timeArray)-1
         dx2(i,1)=u_bound(i,1)*(alpha/M_hat)+f_x_hat+per_ob(i,1);
         % State Observer
         dx1_hat(i,1)=x2_hat(i,1)-smc_k1*sign(x1_e(i,1));
-        dx2_hat(i,1)=-smc_k2*sign(x1_e(i,1))+ u_bound(i,1)*(alpha/M_hat)+f_x_hat+per_ob_hat(i,1);
+        dx2_hat(i,1)=-smc_k2*sign(x1_e(i,1))+ u_bound(i,1)*(alpha/M_hat)+f_x_hat;
         dx3_hat(i,1)=smc_alpha_3^2*(-x3_hat(i,1)+smc_alpha_3*x2_hat(i,1)+ (u_bound(i,1)*(alpha/M_hat)+f_x_hat)/smc_alpha_3);
     end
     %% Update State Variable
@@ -190,7 +199,7 @@ end
 close all
 if flag_input_bound==0
 figure(1)
-subplot(3,1,1)
+subplot(4,1,1)
 plot(timeArray(2:end),xd(2:end),'r')
 hold on
 plot(timeArray(2:end),x1_hat(2:end),'k','LineWidth',2)
@@ -199,16 +208,25 @@ plot(timeArray(2:end),x1(2:end),'b')
 legend('ref','x1_hat','x1')
 ylim([-5,5])
 title(['Unbonded Control Signal with'...
-    ' \Delta k =',num2str(deltaK),' \Delta d =',num2str(deltaD),' \Delta \alpha=',num2str(deltaAlpha),'\lambda_d=',num2str(smc_lambda_d)])
+    ' \Delta k =',num2str(deltaK),' \Delta d =',num2str(deltaD),' \Delta \alpha=',num2str(deltaAlpha),' \lambda_d=',num2str(smc_lambda_d)])
 ylabel('Angle(rad)')
 hold on
-subplot(3,1,2)
+subplot(4,1,2)
+plot(timeArray(2:end),x2_hat(2:end),'k','LineWidth',2)
+hold on
+plot(timeArray(2:end),x2(2:end),'b')
+legend('x2_hat','x2')
+ylim([-5,5])
+title(['x2 tracking'])
+ylabel('Anguler Vel.(rad/s)')
+hold on
+subplot(4,1,3)
 plot(timeArray(2:end),u_raw(2:end),'r')
 hold on
 title(['Control Signal u'])
 ylabel('Torque(N\cdotm)')
 xlabel('time')
-subplot(3,1,3)
+subplot(4,1,4)
 plot(timeArray(2:end),per_ob(2:end),'r')
 hold on
 plot(timeArray(2:end),per_ob_hat(2:end),'b')
@@ -218,23 +236,34 @@ ylabel('Torque(N\cdotm)')
 xlabel('time')
 else
 figure(1)
-subplot(3,1,1)
+subplot(4,1,1)
 plot(timeArray(2:end),xd(2:end),'r')
 hold on
+plot(timeArray(2:end),x1_hat(2:end),'k','LineWidth',2)
+hold on
 plot(timeArray(2:end),x1(2:end),'b')
-legend('ref','x1')
+legend('ref','x1_hat','x1')
 ylim([-5,5])
 title(['Bonded Control Signal with'...
-    ' \Delta k =',num2str(deltaK),' \Delta d =',num2str(deltaD),' \Delta \alpha=',num2str(deltaAlpha),'\lambda_d=',num2str(smc_lambda_d)])
+    ' \Delta k =',num2str(deltaK),' \Delta d =',num2str(deltaD),' \Delta \alpha=',num2str(deltaAlpha),' \lambda_d=',num2str(smc_lambda_d)])
 ylabel('Angle(rad)')
 hold on
-subplot(3,1,2)
-plot(timeArray(2:end),u_bound(2:end),'r')
+subplot(4,1,2)
+plot(timeArray(2:end),x2_hat(2:end),'k','LineWidth',2)
+hold on
+plot(timeArray(2:end),x2(2:end),'b')
+legend('x2_hat','x2')
+ylim([-5,5])
+title(['x2 tracking'])
+ylabel('Anguler Vel.(rad/s)')
+hold on
+subplot(4,1,3)
+plot(timeArray(2:end),u_raw(2:end),'r')
+hold on
 title(['Control Signal u'])
-ylim([-0.5,0.5])
 ylabel('Torque(N\cdotm)')
 xlabel('time')
-subplot(3,1,3)
+subplot(4,1,4)
 plot(timeArray(2:end),per_ob(2:end),'r')
 hold on
 plot(timeArray(2:end),per_ob_hat(2:end),'b')
