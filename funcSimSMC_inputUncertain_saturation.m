@@ -40,9 +40,9 @@ alpha=par_set.meanAlpha;
 k=par_set.meanK;
 b=par_set.meanB;
 %%% smc tunning parameters
-lambda=10;
+lambda=1;
 eta=10;
-epsi=10;
+epsi=1;
 saturationBound=deg2rad(1);
 Km=par_set.maxK-k;
 Dm= par_set.maxB-b;

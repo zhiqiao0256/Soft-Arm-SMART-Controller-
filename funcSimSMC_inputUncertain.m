@@ -21,6 +21,8 @@ Boff=deg2rad(-40);
 freq=0.1;%Hz
 xd=-Amp*sin(2*pi*freq*timeArray)+Boff;
 ddxd=Amp*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
+xd=timeArray*0.0+Boff;
+ddxd=timeArray*0.0;
 %%
 % xd=deg2rad(-40)*ones(length(timeArray),1);
 % ddxd=0*sin(timeArray);
