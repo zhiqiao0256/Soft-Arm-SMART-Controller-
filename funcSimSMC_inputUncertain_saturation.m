@@ -1,6 +1,7 @@
 function par_set=funcSimSMC_inputUncertain_saturation(par_set)
 %% Input Output data
 testData=par_set.trial1;
+
 Ts=0.01;
 timeArray=[0:Ts:60]';%sec
 x1=zeros(length(timeArray),1);
@@ -39,9 +40,9 @@ alpha=par_set.meanAlpha;
 k=par_set.meanK;
 b=par_set.meanB;
 %%% smc tunning parameters
-lambda=10;
+lambda=1;
 eta=10;
-epsi=10;
+epsi=1;
 saturationBound=deg2rad(1);
 Km=par_set.maxK-k;
 Dm= par_set.maxB-b;
@@ -73,6 +74,14 @@ deltaAlpha=Alphamax;
 %         -sqrt(3)*cos(phi).*(0.5*pm1-0.5*pm2))));
 uMax= max(abs((alpha)*(sin(phi).*(0.5*pm1+0.5*pm2-pm3)...
     -sqrt(3)*cos(phi).*(0.5*pm1-0.5*pm2))));
+
+p1_max_psi=40;
+% p1_min_psi=1;
+p1_max_MPa=p1_max_psi/145.038;
+uMax= max(abs((alpha)*(sin(phi).*(0.5*p1_max_MPa+0.5*pm2-pm3)...
+    -sqrt(3)*cos(phi).*(0.5*p1_max_MPa-0.5*pm2))));
+
+
 uMin=0.0;
 for i=2:length(timeArray)-1
     %% Sliding Mode controller
