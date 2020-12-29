@@ -1,12 +1,12 @@
-function par_set=funcSimDOBmatchDist(par_set)
+function par_set=funcSimDOBmatchDistV2(par_set)
 close all
 %% Input Output data
 testData=par_set.trial1;
 %%%%%%
 
 %%%%%% State Ini.
-Ts=0.001; % sampling period
-timeArray=[0:Ts:60]';%sec
+Ts=0.01; % sampling period
+timeArray=[0:Ts:120]';%sec
 x1=zeros(length(timeArray),1); %state variable theta
 x2=zeros(length(timeArray),1); %state variable dtheta
 x2_filt=x2;% moving average filter
@@ -28,17 +28,17 @@ L=par_set.L;      % segment length
 %% Input signal
 %%% Sine
 Amp=deg2rad(10);
-Boff=deg2rad(-30);
+Boff=deg2rad(-40);
 freq=0.01;%Hz
 xd=-Amp*sin(2*pi*freq*timeArray)+Boff;
 dxd=-Amp*(2*pi*freq)*cos(2*pi*freq*timeArray);
 ddxd=Amp*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
 pd1_MPa=zeros(length(timeArray),1);
 %%% Step
-% xd=0.0*sin(2*pi*freq*timeArray)+Boff;
-% dxd=0.0*(2*pi*freq)*cos(2*pi*freq*timeArray);
-% ddxd=0.0*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
-% pd1_MPa=zeros(length(timeArray),1);
+xd=0.0*sin(2*pi*freq*timeArray)+Boff;
+dxd=0.0*(2*pi*freq)*cos(2*pi*freq*timeArray);
+ddxd=0.0*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
+pd1_MPa=zeros(length(timeArray),1);
 
 %%%% Initial values
 x1(1)=testData.theta_rad(end-1);
@@ -58,8 +58,11 @@ k=par_set.meanK;
 b=par_set.meanB;
 
 %%% smc tunning parameters
-smc_lambda=10;
+smc_lambda=10.0;
 smc_epsilon=1;
+smc_k=100.0;
+smc_eta=50;
+ndob_k_p=2;
 %%%% system uncertainty
 Km=par_set.maxK-k;
 Dm= par_set.maxB-b;
@@ -82,9 +85,9 @@ Alphamax =Alpham;
 Alphamin= -Alpham;
 deltaAlpha = (Alphamax-Alphamin).*rand(1,1) + Alphamin;
 %%% Max uncertainty
-deltaD=Dmax*0.05;
-deltaK=Kmax*0.0;
-deltaAlpha=Alphamax*0;
+deltaD=Dmax*0.2;
+deltaK=Kmax*0.;
+deltaAlpha=Alphamax*0.;
 
 % deltaD=0;
 % deltaK=0;
@@ -128,13 +131,13 @@ for i=1:length(timeArray)-1
     b_x=alpha/M;
     %%% Update SMC
     smc_s=de(i,1)+smc_lambda*e(i,1);
-    smc_eta=0.5*abs(smc_s)+0.1;
+%     smc_eta=0.5*abs(smc_s)+0.1;
     if smc_s > smc_epsilon
         smc_s_sat=smc_s/abs(smc_s);
     else
         smc_s_sat=smc_s/smc_epsilon;
     end
-    u_eq(i,1)=-1/b_x*(f1+smc_lambda*de(i,1)-ddxd(i,1));
+    u_eq(i,1)=-1/b_x*(f1+smc_lambda*de(i,1)-ddxd(i,1)+smc_k*smc_s);
     u_n(i,1)=-1/b_x*ndob_d_est(i,1);
     u_s(i,1)=-1/b_x*smc_eta*smc_s_sat;
     u(i,1)=u_eq(i,1)+u_n(i,1)+u_s(i,1);
@@ -146,8 +149,8 @@ for i=1:length(timeArray)-1
     x1(i+1,1)=x1(i,1)+dx1(i,1)*Ts;
     x2(i+1,1)=x2(i,1)+dx2(i,1)*Ts;
     %%%% Update Observer
-    ndob_p_of_s=35*smc_s;
-    ndob_dpds=35;
+    ndob_p_of_s=ndob_k_p*smc_s;
+    ndob_dpds=ndob_k_p;
     ndob_dz_est(i,1)=-ndob_dpds*(b_x*(u_n(i,1)+u_s(i,1))+ndob_d_est(i,1)); 
     ndob_z_est(i+1,1)=ndob_dz_est(i,1)*Ts+ndob_z_est(i,1);
     ndob_d_est=ndob_z_est+ndob_p_of_s;

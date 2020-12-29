@@ -22,6 +22,8 @@ par_set=funcSimDOB(par_set);
 par_set=funcSimDOBx1disturb(par_set);
 %% Matched distrubance
 par_set=funcSimDOBmatchDist(par_set);
+%% Matched distrubance with reaching law eta*sat(sig)+smc_k*sig
+par_set=funcSimDOBmatchDistV2(par_set);
 %% low level dyn.
 low_beta_1=-1.459;
 low_beta_2=1.421;
