@@ -44,7 +44,7 @@ end
     resampleData=tsout.Data;
     time_set=[];
     time_set=timevec';
-    NoLoad(:,1)=time_set;NoLoad(:,2:20)=resampleData(:,4:end);
+    NoLoad(:,1)=time_set;NoLoad(:,2:26)=resampleData(:,4:28);
     par.p_offset=(resampleData(end,1:3)-NoLoad(end,2:4));
     par.pd_Pa = NoLoad(1:end,1) ; par.pd_Pa(:,2:4) = 1e5 *resampleData(:,1:3)* 0.0689476;
     par.pd_MPa=NoLoad(1:end,1) ; par.pd_MPa(:,2:4) = 1e-1 *resampleData(:,1:3)* 0.0689476;
@@ -58,6 +58,12 @@ end
     par.tip_RQ = NoLoad(1:end,1) ; par.tip_RQ(:,2:5) = ( NoLoad(1:end,15:18) ) ;
     par.xd_exp=NoLoad(1:end,1) ; par.xd_exp(:,2)=NoLoad(1:end,19);
     par.x1_exp=NoLoad(1:end,1) ; par.x1_exp(:,2)=NoLoad(1:end,20);
+    par.p1_ub=NoLoad(1:end,21); par.p1_ub_MPa = 1e-1 *NoLoad(1:end,21)* 0.0689476;
+    par.u_total=NoLoad(1:end,22);
+    par.u_eq=NoLoad(1:end,23);
+    par.u_s=NoLoad(1:end,24);
+    par.u_n=NoLoad(1:end,25);
+    par.dist_est=NoLoad(1:end,26);
 switch exp_case
 	case 1
 		par_set.trial1=par;

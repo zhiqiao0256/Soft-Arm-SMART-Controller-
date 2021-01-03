@@ -52,74 +52,112 @@ else
     fprintf( 'Data loaded \n' );
 end
 %%
-fp=figure('Name','SingleSine','Position',[100,100,400,600]);
+fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial1;
-subplot(4,1,1)
+subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on
 plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
 ylabel('\theta (rad)')
 xlim([0,65])
 ylim([-1.1,0])
-legend('x_d','x','Orientation','horizontal')
-title(['FreqRange(Hz)','[',num2str(0.001),',',num2str(0.1), ']',' \lambda=',num2str(10),' \epsilon=',num2str(10)])
+legend('x_d','x','Orientation','vertical','Location','northeastoutside')
+title(['2 rad/s'])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-subplot(4,1,2)
+subplot(5,1,2)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2)-testData.x1_exp(:,2),'r')
 xlim([0,65])
-ylim([-1.1,0.1])
+ylim([-0.1,0.1])
 ylabel('Error (rad)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-subplot(4,1,3)
+subplot(5,1,3)
 plot(testData.xd_exp(:,1),testData.pd_MPa(:,2),'b')
+hold on
+plot(testData.xd_exp(:,1),testData.p1_ub_MPa,'r')
+hold on
+plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'k')
 xlim([0,65])
-ylabel('Pd (MPa)')
+legend('p_b','p_{ub}','pm','Orientation','vertical','Location','northeastoutside')
+ylabel('Press. (MPa)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-subplot(4,1,4)
-plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'r')
+subplot(5,1,4)
+plot(testData.xd_exp(:,1),testData.u_total,'r')
+hold on
+plot(testData.xd_exp(:,1),testData.u_eq,'b')
+hold on
+plot(testData.xd_exp(:,1),testData.u_s,'k')
+hold on
+plot(testData.xd_exp(:,1),testData.u_n,'g')
+legend('u_{total}','u_{eq}','u_s','u_n','Orientation','vertical','Location','northeastoutside')
 xlim([0,65])
 ylabel('Pm (MPa)')
+xlabel('Time (sec)')
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+subplot(5,1,5)
+plot(testData.xd_exp(:,1),testData.dist_est,'r')
+xlim([0,65])
+ylabel('Lumped Dist.')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 %%
-fp=figure('Name','SumOfSine','Position',[500,100,400,600]);
+fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial2;
-subplot(4,1,1)
+subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on
 plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
 ylabel('\theta (rad)')
-xlim([0,65])
+xlim([0,40])
 ylim([-1.1,0])
-legend('x_d','x','Orientation','horizontal')
-title(['FreqRange(Hz)','[',num2str(0.001),',',num2str(0.1), ']',' \lambda=',num2str(10),' \epsilon=',num2str(10)])
+legend('x_d','x','Orientation','vertical','Location','northeastoutside')
+title(['5 rad/s'])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-subplot(4,1,2)
+subplot(5,1,2)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2)-testData.x1_exp(:,2),'r')
-xlim([0,65])
-ylim([-1.1,0.1])
+xlim([0,40])
+ylim([-0.1,0.1])
 ylabel('Error (rad)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-subplot(4,1,3)
+subplot(5,1,3)
 plot(testData.xd_exp(:,1),testData.pd_MPa(:,2),'b')
-xlim([0,65])
-ylabel('Pd (MPa)')
+hold on
+plot(testData.xd_exp(:,1),testData.p1_ub_MPa,'r')
+hold on
+plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'k')
+xlim([0,40])
+legend('p_b','p_{ub}','pm','Orientation','vertical','Location','northeastoutside')
+ylabel('Press. (MPa)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-subplot(4,1,4)
-plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'r')
-xlim([0,65])
+subplot(5,1,4)
+plot(testData.xd_exp(:,1),testData.u_total,'r')
+hold on
+plot(testData.xd_exp(:,1),testData.u_eq,'b')
+hold on
+plot(testData.xd_exp(:,1),testData.u_s,'k')
+hold on
+plot(testData.xd_exp(:,1),testData.u_n,'g')
+legend('u_{total}','u_{eq}','u_s','u_n','Orientation','vertical','Location','northeastoutside')
+xlim([0,40])
 ylabel('Pm (MPa)')
+xlabel('Time (sec)')
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+subplot(5,1,5)
+plot(testData.xd_exp(:,1),testData.dist_est,'r')
+xlim([0,40])
+ylabel('Lumped Dist.')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
