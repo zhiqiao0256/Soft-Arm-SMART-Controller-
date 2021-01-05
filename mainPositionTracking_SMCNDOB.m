@@ -9,13 +9,13 @@ par_set=[];
 %flag for EOM deriviation
 par_set.EOM=0;
 %flag for plot
-par_set.flag_plot_rawData =1;
+par_set.flag_plot_rawData =0;
 %flag for read txt file or mat file 1: txt 0: mat
 par_set.flag_read_exp = 1;
 %flag for plotting moving constant layer
-par_set.flag_plot_movingCC = 1;
+par_set.flag_plot_movingCC = 0;
 %flag for plotting fwd kinematic results
-par_set.plot_fwdKinematic = 1;
+par_set.plot_fwdKinematic = 0;
 % Check data readme.txt for detail input reference
 par_set.Ts=1/40;
 % Geometric para.
@@ -54,6 +54,23 @@ end
 %%
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial1;
+testData = func_getPhiThetaBfromXYZ(testData,par_set);
+testData.dist_est_tau=[];
+for i =1:length(testData.x1_exp)
+    theta=testData.x1_exp(i,2);
+    r0=testData.beta(i);
+    m0=par_set.m0;
+    L=par_set.L;
+    dist=testData.dist_est(i);
+    if theta==0
+        mx=m0*(L/2)^2;
+    else
+        Izz=m0*r0*r0;
+        mx =(Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
+                (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
+    end
+   testData.dist_est_tau(i,1)=mx*dist;
+end
 subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on
@@ -95,20 +112,37 @@ hold on
 plot(testData.xd_exp(:,1),testData.u_n,'g')
 legend('u_{total}','u_{eq}','u_s','u_n','Orientation','vertical','Location','northeastoutside')
 xlim([0,65])
-ylabel('Pm (MPa)')
+ylabel('Ctrl. Input(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 subplot(5,1,5)
-plot(testData.xd_exp(:,1),testData.dist_est,'r')
+plot(testData.xd_exp(:,1),testData.dist_est_tau,'r')
 xlim([0,65])
-ylabel('Lumped Dist.')
+ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 %%
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial2;
+testData = func_getPhiThetaBfromXYZ(testData,par_set);
+testData.dist_est_tau=[];
+for i =1:length(testData.x1_exp)
+    theta=testData.x1_exp(i,2);
+    r0=testData.beta(i);
+    m0=par_set.m0;
+    L=par_set.L;
+    dist=testData.dist_est(i);
+    if theta==0
+        mx=m0*(L/2)^2;
+    else
+        Izz=m0*r0*r0;
+        mx =(Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
+                (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
+    end
+   testData.dist_est_tau(i,1)=mx*dist;
+end
 subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on
@@ -150,14 +184,14 @@ hold on
 plot(testData.xd_exp(:,1),testData.u_n,'g')
 legend('u_{total}','u_{eq}','u_s','u_n','Orientation','vertical','Location','northeastoutside')
 xlim([0,40])
-ylabel('Pm (MPa)')
+ylabel('Ctrl. Input(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 subplot(5,1,5)
-plot(testData.xd_exp(:,1),testData.dist_est,'r')
+plot(testData.xd_exp(:,1),testData.dist_est_tau,'r')
 xlim([0,40])
-ylabel('Lumped Dist.')
+ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
