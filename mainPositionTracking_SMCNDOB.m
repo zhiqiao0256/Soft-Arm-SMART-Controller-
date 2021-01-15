@@ -367,7 +367,7 @@ ylabel('\theta (rad)')
 xlim([0,65])
 ylim([-1.1,0])
 legend('x_d','x','Orientation','vertical','Location','northeastoutside')
-title(['5 rad/s'])
+title(['2 rad/s contact'])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 subplot(5,1,2)
@@ -439,7 +439,7 @@ ylabel('\theta (rad)')
 xlim([0,65])
 ylim([-1.1,0])
 legend('x_d','x','Orientation','vertical','Location','northeastoutside')
-title(['2 rad/s SMC'])
+title(['2 rad/s contact'])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 subplot(5,1,2)
