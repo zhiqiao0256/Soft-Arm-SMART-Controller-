@@ -11,7 +11,10 @@ x1=zeros(length(timeArray),1); %state variable theta
 x2=zeros(length(timeArray),1); %state variable dtheta
 x2_filt=x2;% moving average filter
 x2_filter=zeros(3,1);
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0d0a90107b4326b608daf6a6952f957ad306a178
 dx1=zeros(length(timeArray),1); % dot theta
 dx2=zeros(length(timeArray),1); % double dot theta
 e=zeros(length(timeArray),1); % e = x1-xd
@@ -25,7 +28,11 @@ g=9.8;       % gravity
 L=par_set.L;      % segment length
 
 
+<<<<<<< HEAD
+% Input signal
+=======
 %% Input signal
+>>>>>>> 0d0a90107b4326b608daf6a6952f957ad306a178
 %%% Sine
 Amp=deg2rad(10);
 Boff=deg2rad(-30);
@@ -35,11 +42,17 @@ dxd=-Amp*(2*pi*freq)*cos(2*pi*freq*timeArray);
 ddxd=Amp*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
 pd1_MPa=zeros(length(timeArray),1);
 %%% Step
+<<<<<<< HEAD
+xd=timeArray*0+Boff;
+dxd=timeArray*0;
+ddxd=timeArray*0;
+=======
 % xd=0.0*sin(2*pi*freq*timeArray)+Boff;
 % dxd=0.0*(2*pi*freq)*cos(2*pi*freq*timeArray);
 % ddxd=0.0*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
 % pd1_MPa=zeros(length(timeArray),1);
 
+>>>>>>> 0d0a90107b4326b608daf6a6952f957ad306a178
 %%%% Initial values
 x1(1)=testData.theta_rad(end-1);
 r0=mean(testData.beta);
@@ -58,8 +71,15 @@ k=par_set.meanK;
 b=par_set.meanB;
 
 %%% smc tunning parameters
+<<<<<<< HEAD
+smc_lambda=5; % converge rate to sliding surface
+smc_epsilon=1; % bandwith for s
+smc_epsilon_2=1; % small positive number for eta
+
+=======
 smc_lambda=10;
 smc_epsilon=1;
+>>>>>>> 0d0a90107b4326b608daf6a6952f957ad306a178
 %%%% system uncertainty
 Km=par_set.maxK-k;
 Dm= par_set.maxB-b;
@@ -80,7 +100,7 @@ deltaK=Kmax;
 seed3=rng;
 Alphamax =Alpham;
 Alphamin= -Alpham;
-deltaAlpha = (Alphamax-Alphamin).*rand(1,1) + Alphamin;
+deltaAlpha = ((Alphamax-Alphamin).*rand(1,1)+Alphamin);
 %%% Max uncertainty
 deltaD=Dmax*0.05;
 deltaK=Kmax*0.0;
@@ -90,6 +110,17 @@ deltaAlpha=Alphamax*0;
 % deltaK=0;
 % deltaAlpha=0;
 
+<<<<<<< HEAD
+deltaD=0;
+deltaK=0;
+deltaAlpha=0;
+
+%%%% disturbance
+tau_d=zeros(length(timeArray),1);
+tau_d(10/Ts:end,1)=0.0;
+disturb=zeros(length(timeArray),1);
+disturb_est=zeros(length(timeArray),1);
+=======
 %%%% disturbance
 tau_d=zeros(length(timeArray),1);
 tau_d(10/Ts:end,1)=-.0;
@@ -97,12 +128,14 @@ lumped_disturb=zeros(length(timeArray),1);
 lumped_disturb_est=zeros(length(timeArray),1);
 lumped_disturb_torque=zeros(length(timeArray),1);
 lumped_disturb_est_torque=zeros(length(timeArray),1);
+>>>>>>> 0d0a90107b4326b608daf6a6952f957ad306a178
 %%%%%% Matched Disturbance estimation
 %%%% d_est= z_est + p(s)
 %%%% dot_z_est = -dp/dt*()
 ndob_z_est=zeros(length(timeArray),1);
 ndob_dz_est=zeros(length(timeArray),1);
 ndob_d_est=zeros(length(timeArray),1);
+%%% Loop Starts
 for i=1:length(timeArray)-1
     e(i,1)=x1(i,1)-xd(i,1);
     %%velocity filter
@@ -126,14 +159,45 @@ for i=1:length(timeArray)-1
     G_simp=-(g*m0*(L*sin(theta) + r0*theta^2*cos(theta) - L*theta*cos(theta)))/(2*theta^2);
     f1=-M\(k*x1(i,1) +(b+C_simp)*x2_filt(i,1)+ G_simp);
     b_x=alpha/M;
+<<<<<<< HEAD
+    %%% sliding surface
+    smc_s=de(i,1)+smc_lambda*e(i,1);
+    %%% Sat function
+=======
     %%% Update SMC
     smc_s=de(i,1)+smc_lambda*e(i,1);
     smc_eta=0.5*abs(smc_s)+0.1;
+>>>>>>> 0d0a90107b4326b608daf6a6952f957ad306a178
     if smc_s > smc_epsilon
         smc_s_sat=smc_s/abs(smc_s);
     else
         smc_s_sat=smc_s/smc_epsilon;
     end
+<<<<<<< HEAD
+    %%% update contorl input u= u_eq + u_n + u_s
+    u_eq(i,1)=-1/b_x*(f1+smc_lambda*de(i,1)-ddxd(i,1));
+    u_n(i,1)= - 1/b_x*ndob_d_est(i,1);
+    smc_eta=0.5*abs(smc_s)+smc_epsilon_2;
+    u_s(i,1)=-1/b_x*smc_eta*smc_s_sat;
+    u(i,1)= u_eq(i,1) + u_n(i,1) + u_s(i,1);
+    %%%
+    lumped_dist(i,1)=1/M*(deltaK*x1(i,1)+deltaD*x2_filt(i,1)+deltaAlpha*alpha*u(i,1)+tau_d(i,1));
+    lumped_torque(i,1)=lumped_dist(i,1)*M;
+    ndob_d_torque(i,1)=ndob_d_est(i,1)*M;
+    %%% Update estimated torque
+    dx1(i,1)=x2_filt(i,1);
+    dx2(i,1)=f1+b_x*u(i,1)+lumped_dist(i,1);
+    x1(i+1,1)=x1(i,1)+dx1(i,1)*Ts;
+    x2(i+1,1)=x2(i,1)+dx2(i,1)*Ts;
+    %%% Update DOB
+    ndob_p_of_s=smc_s;
+    ndob_dp_ds=1;
+    ndob_dz_est(i,1)=-ndob_dp_ds*(b_x*(u_n(i,1)+u_s(i,1))+ndob_d_est(i,1));
+    ndob_z_est(i+1,1)= ndob_z_est(i,1) + ndob_dz_est(i,1)*Ts;
+
+    ndob_d_est(i+1,1)=ndob_z_est(i,1)+ ndob_p_of_s;
+
+=======
     u_eq(i,1)=-1/b_x*(f1+smc_lambda*de(i,1)-ddxd(i,1));
     u_n(i,1)=-1/b_x*ndob_d_est(i,1);
     u_s(i,1)=-1/b_x*smc_eta*smc_s_sat;
@@ -152,6 +216,7 @@ for i=1:length(timeArray)-1
     ndob_z_est(i+1,1)=ndob_dz_est(i,1)*Ts+ndob_z_est(i,1);
     ndob_d_est=ndob_z_est+ndob_p_of_s;
     ndob_d_est_torque(i,1)=ndob_z_est(i,1)*M;
+>>>>>>> 0d0a90107b4326b608daf6a6952f957ad306a178
 end
 % disturb=(Kmax*x1+Dmax*x2_filt+Alphamax*alpha*u+tau_d);
 %% Result compare
@@ -176,6 +241,20 @@ title(['x2'])
 ylabel('Anguler Vel.(rad/s)')
 hold on
 subplot(4,1,3)
+<<<<<<< HEAD
+plot(timeArray(2:end),u(1:end)*145.038,'r')
+hold on
+title(['Control Signal u'])
+ylabel('torque(N\cdotm)')
+xlabel('time')
+subplot(4,1,4)
+plot(timeArray(2:end),ndob_d_torque(1:end),'b','LineWidth',2)
+hold on
+plot(timeArray(2:end),lumped_torque(1:end),'r')
+legend('\Psi_{est}','\Psi_{ref}')
+title(['Lumped Dist. Estimation'])
+ylabel('torque (N\cdot m)')
+=======
 plot(timeArray(1:end-1),u(1:end),'r')
 hold on
 title(['Control Signal u'])
@@ -188,5 +267,6 @@ plot(timeArray(1:end-1),lumped_disturb_torque(1:end-1),'r')
 legend('\Psi_{est}','\Psi_{ref}')
 title(['Lumped Dist. Estimation'])
 ylabel('torque(N\cdot m)')
+>>>>>>> 0d0a90107b4326b608daf6a6952f957ad306a178
 xlabel('time')
 end
