@@ -109,7 +109,7 @@ class pc_client(object):
         self.ftArray=np.linspace(self.sum_sin_freq_low,self.sum_sin_freq_high,num=self.numOfSines)
         self.phasArray=2.0*np.pi*np.random.random_sample((self.numOfSines,))
         # Input MultiStep
-        self.numOfSteps=3
+        self.numOfSteps=5
         self.timeStampSteps=np.linspace(0.0,self.trailDuriation,num=self.numOfSteps)
         indexStampSteps=np.linspace(0,self.ilc_memory_length,num=self.numOfSteps)
         self.indexStampSteps=indexStampSteps.astype(np.int)
@@ -161,6 +161,7 @@ class pc_client(object):
         self.dx3_hat=0. # dx3_hat = smcspo_alpha_3**2 * (-x3_hat + smcspo_alpha_3*x2_hat + u_bar)
         """ SMC+NDOB design"""
         self.smcNDOB_dist_est=0.
+        self.smcNDOB_dist_est_tqr=0.
         self.smcNDOB_dist_est_inner=0.
         self.smcNDOB_th=1.0
         self.flag_first_contact =0
@@ -180,6 +181,9 @@ class pc_client(object):
         self.smcNDOB_u_eq=0.0
         self.smcNDOB_u_s=0.0
         self.smcNDOB_u_n=0.0
+        self.u_fix_value=0.
+        self.x1_error_max_value=np.deg2rad(3.0)
+        self.xd1_new=0.
         # self.step_response(np.array([5.0,1.0,1.0]),5)
 
     def th_pub_raspi_client_pd(self):
@@ -236,7 +240,7 @@ class pc_client(object):
                 self.x1_error_old=self.xd1-self.x1_old
                 while self.t_old<=self.trailDuriation:
                     self.smcNDOBwithInputBoundAndSat()
-                    print "time",np.round(self.t_old,1),"x1",np.round(np.rad2deg(self.xd1),1),"x1e(deg)",np.round(np.rad2deg(self.x1_error_old),1),'pd_ub',np.round(self.smcNDOB_p1,1),'pm',np.round(self.pd_pm_array[3],1),'d',np.round(self.smcNDOB_dist_est,4)
+                    print "time",np.round(self.t_old,1),"Contact?",self.flag_first_contact,"x1",np.round(np.rad2deg(self.xd1),1),"x1e(deg)",np.round(np.rad2deg(self.x1_error_old),1),'pd_ub',np.round(self.smcNDOB_p1,1),'pm',np.round(self.pd_pm_array[3],1),'d',np.round(self.smcNDOB_dist_est_tqr,4)
                     # print 'u_total',np.round(self.smcNDOB_u_total,2),'u_eq',np.round(self.smcNDOB_u_eq,2),'u_s',np.round(self.smcNDOB_u_s,2),'u_n',np.round(self.smcNDOB_u_n,2)               
             elif self.flag_control_mode == 4: # SMCNDO constrained contact
                 self.xd1 =self.positionProfileSelection()
@@ -525,6 +529,8 @@ class pc_client(object):
         G=0.
         f=0.
         uAlpha=0.
+        u_total=0.
+        u_fix_value=0.
         ddxd1=0.
         pd_array=np.array([0.,0.,0.])
         uMin=0.
@@ -588,51 +594,54 @@ class pc_client(object):
         self.smcNDOB_dist_est = self.smcNDOB_z_current+self.smcNDOB_kp_sig*s
         # Swithcing algorithm based on smcNDOB_th
         if self.flag_contact_mode==0:
-        	# Update uAlpha
-        	self.smcNDOB_u_total = u_eq + u_s + u_n
-        	u_total=self.smcNDOB_u_total
+            # Update uAlpha
+            self.smcNDOB_u_total = u_eq + u_s + u_n
+            u_total=self.smcNDOB_u_total
         elif self.flag_contact_mode==1: # fix pressrue
-        	if self.smcNDOB_dist_est>= self.smcNDOB_th:
-        		if self.flag_first_contact ==0: # first contact
-        			u_fix_value=self.smcNDOB_u_total
-        			self.flag_first_contact =1
-        		else:
-        			u_total=u_fix_value
-        	else:
-        		self.smcNDOB_u_total = u_eq + u_s + u_n
-        		u_total=self.smcNDOB_u_total
-        		self.flag_first_contact=0        		
+            if np.absolute(self.smcNDOB_dist_est_tqr)>= self.smcNDOB_th:
+                if self.flag_first_contact ==0: # first contact
+                    self.u_fix_value=self.smcNDOB_u_total
+                    self.flag_first_contact =1
+                else:
+                    u_total=self.u_fix_value
+            else:
+                self.smcNDOB_u_total = u_eq + u_s + u_n
+                u_total=self.smcNDOB_u_total
+                self.flag_first_contact=0               
         elif self.flag_contact_mode ==2: #fix to maximum position errors
-        	if self.smcNDOB_dist_est >= self.smcNDOB_th and np.absolute(self.x1_error_current) >= self.x1_error_max_value:
-        		if self.flag_first_contact ==0: # first contact
-        			xd1=self.x1_current
-        			dxd1 = 0.
-        			ddxd1=0.
-        			self.smcNDOB_dist_est_inner=0.
-        			self.smcNDOB_z_old_inner=0.
-        			self.flag_first_contact =1
-        		s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-        		if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-            		sat_s= s/self.smcNDOB_sat_bound
-        		else:
-            		sat_s= np.sign(s)
-        		# Update u_eq,u_s,u_n
-        		u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-        		u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-        		u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-		        # Update smcNDOB estimation
-        		self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-        		self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-        		self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-		        self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-        	else:
-        		self.smcNDOB_u_total = u_eq + u_s + u_n
-        		u_total=self.smcNDOB_u_total
-        		self.flag_first_contact=0
+            if np.absolute(self.smcNDOB_dist_est_tqr)>= self.smcNDOB_th and np.absolute(self.x1_error_current) >= self.x1_error_max_value:
+                if self.flag_first_contact ==0: # first contact
+                    self.xd1_new=self.x1_current
+                    self.smcNDOB_dist_est_inner=0.
+                    self.smcNDOB_z_old_inner=0.
+                    self.flag_first_contact =1
+                dxd1=0.
+                ddxd1=0.
+                xd1=self.xd1_new
+                s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
+                if np.absolute(s/self.smcNDOB_sat_bound) <=1:
+                    sat_s= s/self.smcNDOB_sat_bound
+                else:
+                    sat_s= np.sign(s)
+                # Update u_eq,u_s,u_n
+                u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
+                u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                # Update smcNDOB estimation
+                self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
+                self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
+                self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
+                u_total = u_eq + u_s + u_n
+            else:
+                self.smcNDOB_u_total = u_eq + u_s + u_n
+                u_total=self.smcNDOB_u_total
+                self.flag_first_contact=0
         # uAlpha=(M*(self.smc_lambda*self.x1_dot_error+ ddxd1 - f + self.smc_eta* np.sign(s)
         #             +np.sign(s)*(self.delta_k_max*np.absolute(self.x1_current/M) + self.delta_b_max*np.absolute(self.x2_current/M)))
         #         )
         # Constrain uMin<=uAlpha<= uMax
+        self.smcNDOB_dist_est_tqr = self.smcNDOB_dist_est*M
         cphi= np.cos(phi)
         sphi= np.sin(phi)
         p1_MPa=(u_total/self.alpha0-(0.5*sphi+0.5*np.sqrt(3)*cphi)*pm2_MPa+sphi*pm3_MPa)/(0.5*sphi-0.5*np.sqrt(3)*cphi)
@@ -1313,8 +1322,9 @@ def main():
                                     # 1: smc+ilc; 
                                     # 2: smc+spo;
                                     # 3: smc+ndob;
-        p_client.flag_contact_mode=0 # 0: default smcndob 
-        							 # 1: contact switch smcndob
+        p_client.flag_contact_mode=1 # 0: default smcndob 
+                                     # 1: contact switch with fix pressure
+                                     # 2: contact swithc with fix position errors
         p_client.trailDuriation=15.
         p_client.smcNDOB_lambda= 10.0
         p_client.smcNDOB_k_sig = 30.0
@@ -1328,8 +1338,8 @@ def main():
         # p_client.Amp=np.radians(1.0)
         # p_client.Boff=np.radians(-20)
         # p_client.Freq=0.1 # Hz
-        p_client.rampRateAbs=np.radians(5.) # 1 deg/sec
-        p_client.rampAmpAbs=np.radians(40) # x1(t0)-rampAmp
+        p_client.rampRateAbs=np.radians(2.) # 1 deg/sec
+        p_client.rampAmpAbs=np.radians(30) # x1(t0)-rampAmp
         p_client.rampFlatTime=5.0 # sec
         # #### Test
         # # p_client.pTypeIlc_smcWithInputBoundAndSat()
