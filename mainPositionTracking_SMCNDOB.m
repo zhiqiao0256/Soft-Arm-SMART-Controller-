@@ -39,8 +39,8 @@ if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
     par_set=funcHighLevelExpPositionTracking(par_set,2);
     par_set=funcHighLevelExpPositionTracking(par_set,3);
-    par_set=funcHighLevelExpPositionTracking(par_set,4);
-    par_set=funcHighLevelExpPositionTracking(par_set,5);
+%     par_set=funcHighLevelExpPositionTracking(par_set,4);
+%     par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
 %     par_set=funcHighLevelExpPositionTracking(par_set,7);
 %     par_set=funcHighLevelExpPositionTracking(par_set,8);
@@ -56,6 +56,11 @@ fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial1;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
 testData.dist_est_tau=[];
+testData.dist_th=0.8; % Nm
+testData.x1e_max_value=deg2rad(3);
+testData.x1e=[];
+testData.x1e=testData.xd_exp-testData.x1_exp;
+flag_first_contact=0;
 for i =1:length(testData.x1_exp)
     theta=testData.x1_exp(i,2);
     r0=testData.beta(i);
@@ -70,15 +75,27 @@ for i =1:length(testData.x1_exp)
                 (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
     end
    testData.dist_est_tau(i,1)=mx*dist;
+
 end
 subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on
 plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
+hold on
+plot(testData.x1_exp(:,1),-testData.contact_est,'k')
+hold on
+plot(testData.x1_exp(:,1),-testData.ctrl_policy,'g')
+hold on
+for i =1:length(testData.x1_exp)
+    if testData.contact_est(i,1) >0
+        plot(testData.x1_exp(i,1),-1,'MarkerSize',10)
+        hold on
+    end
+end
 ylabel('\theta (rad)')
 xlim([0,65])
-ylim([-1.1,0])
-legend('x_d','x','Orientation','vertical','Location','northeastoutside')
+% ylim([-1.1,0])
+legend('x_d','x','Orientation','horizontal','Location','northeast')
 title(['2 rad/s'])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
@@ -98,7 +115,7 @@ hold on
 plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'k')
 xlim([0,65])
 ylim([0,0.3])
-legend('p_b','pm','Orientation','vertical','Location','northeastoutside')
+legend('p_b','pm','Orientation','horizontal','Location','northeast')
 ylabel('Press. (MPa)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
@@ -111,7 +128,7 @@ hold on
 plot(testData.xd_exp(:,1),testData.u_s,'k')
 hold on
 plot(testData.xd_exp(:,1),testData.u_n,'g')
-legend('u_{total}','u_{eq}','u_s','u_n','Orientation','vertical','Location','northeastoutside')
+legend('u_{total}','u_{eq}','u_s','u_n','Orientation','horizontal','Location','northeast')
 xlim([0,65])
 ylabel('Ctrl. Input(N\cdotm)')
 xlabel('Time (sec)')
@@ -148,10 +165,15 @@ subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on
 plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
+hold on
+plot(testData.x1_exp(:,1),-testData.contact_est,'k')
+hold on
+plot(testData.x1_exp(:,1),-testData.ctrl_policy,'g')
+hold on
 ylabel('\theta (rad)')
 xlim([0,65])
 ylim([-1.1,0])
-legend('x_d','x','Orientation','vertical','Location','northeastoutside')
+legend('x_d','x','Orientation','vertical','Location','northeast')
 title(['5 rad/s'])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
@@ -171,7 +193,7 @@ hold on
 plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'k')
 xlim([0,65])
 ylim([0,0.3])
-legend('p_b','pm','Orientation','vertical','Location','northeastoutside')
+legend('p_b','pm','Orientation','vertical','Location','northeast')
 ylabel('Press. (MPa)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
@@ -184,7 +206,7 @@ hold on
 plot(testData.xd_exp(:,1),testData.u_s,'k')
 hold on
 plot(testData.xd_exp(:,1),testData.u_n,'g')
-legend('u_{total}','u_{eq}','u_s','u_n','Orientation','vertical','Location','northeastoutside')
+legend('u_{total}','u_{eq}','u_s','u_n','Orientation','vertical','Location','northeast')
 xlim([0,65])
 ylabel('Ctrl. Input(N\cdotm)')
 xlabel('Time (sec)')
@@ -221,6 +243,11 @@ subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on
 plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
+hold on
+plot(testData.x1_exp(:,1),-testData.contact_est,'k')
+hold on
+plot(testData.x1_exp(:,1),-testData.ctrl_policy,'g')
+hold on
 ylabel('\theta (rad)')
 xlim([0,65])
 ylim([-1.1,0])

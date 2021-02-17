@@ -44,7 +44,7 @@ end
     resampleData=tsout.Data;
     time_set=[];
     time_set=timevec';
-    NoLoad(:,1)=time_set;NoLoad(:,2:26)=resampleData(:,4:28);
+    NoLoad(:,1)=time_set;NoLoad(:,2:28)=resampleData(:,4:30);
     par.p_offset=(resampleData(end,1:3)-NoLoad(end,2:4));
     par.pd_Pa = NoLoad(1:end,1) ; par.pd_Pa(:,2:4) = 1e5 *resampleData(:,1:3)* 0.0689476;
     par.pd_MPa=NoLoad(1:end,1) ; par.pd_MPa(:,2:4) = 1e-1 *resampleData(:,1:3)* 0.0689476;
@@ -64,6 +64,8 @@ end
     par.u_s=NoLoad(1:end,24);
     par.u_n=NoLoad(1:end,25);
     par.dist_est=NoLoad(1:end,26);
+    par.contact_est=NoLoad(1:end,27);
+    par.ctrl_policy=NoLoad(1:end,28);
 switch exp_case
 	case 1
 		par_set.trial1=par;

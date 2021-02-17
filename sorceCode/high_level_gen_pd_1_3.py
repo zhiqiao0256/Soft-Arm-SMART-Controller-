@@ -610,34 +610,34 @@ class pc_client(object):
                 self.flag_first_contact=0               
         elif self.flag_contact_mode ==2: #fix to maximum position errors
             if np.absolute(self.smcNDOB_dist_est_tqr)>= self.smcNDOB_th: 
-                if np.absolute(self.x1_error_current) >= self.x1_error_max_value:
-                    if self.flag_first_contact ==0: # first contact
-                        self.xd1_new=self.xd1
-                        self.smcNDOB_dist_est_inner=self.smcNDOB_dist_est
-                        self.smcNDOB_z_old_inner=smcNDOB_z_old
-                        self.flag_first_contact =1
-                    dxd1=0.
-                    ddxd1=0.
-                    xd1=self.xd1_new
-                    s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                    if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                        sat_s= s/self.smcNDOB_sat_bound
-                    else:
-                        sat_s= np.sign(s)
-                    # Update u_eq,u_s,u_n
-                    u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                    u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                    u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                    # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                    self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                    self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                    self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                    u_total = u_eq + u_s + u_n
-                else:
-                    self.smcNDOB_u_total = u_eq + u_s + u_n
-                    u_total=self.smcNDOB_u_total
-                    self.flag_first_contact=0   
+            	if np.absolute(self.x1_error_current) >= self.x1_error_max_value:
+	                if self.flag_first_contact ==0: # first contact
+	                    self.xd1_new=self.xd1
+	                    self.smcNDOB_dist_est_inner=self.smcNDOB_dist_est
+	                    self.smcNDOB_z_old_inner=smcNDOB_z_old
+	                    self.flag_first_contact =1
+	                dxd1=0.
+	                ddxd1=0.
+	                xd1=self.xd1_new
+	                s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
+	                if np.absolute(s/self.smcNDOB_sat_bound) <=1:
+	                    sat_s= s/self.smcNDOB_sat_bound
+	                else:
+	                    sat_s= np.sign(s)
+	                # Update u_eq,u_s,u_n
+	                u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
+	                u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+	                u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+	                # Update smcNDOB estimation
+	                self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+	                self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
+	                self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
+	                self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
+	                u_total = u_eq + u_s + u_n
+	            else:
+                	self.smcNDOB_u_total = u_eq + u_s + u_n
+                	u_total=self.smcNDOB_u_total
+                	self.flag_first_contact=0   
             else:
                 self.smcNDOB_u_total = u_eq + u_s + u_n
                 u_total=self.smcNDOB_u_total
@@ -1345,7 +1345,7 @@ def main():
         # p_client.Boff=np.radians(-20)
         # p_client.Freq=0.1 # Hz
         p_client.rampRateAbs=np.radians(2.) # 1 deg/sec
-        p_client.rampAmpAbs=np.radians(25) # x1(t0)-rampAmp
+        p_client.rampAmpAbs=np.radians(30) # x1(t0)-rampAmp
         p_client.rampFlatTime=5.0 # sec
         # #### Test
         # # p_client.pTypeIlc_smcWithInputBoundAndSat()
