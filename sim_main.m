@@ -24,6 +24,8 @@ par_set=funcSimDOBx1disturb(par_set);
 par_set=funcSimDOBmatchDist(par_set);
 %% Matched distrubance with reaching law eta*sat(sig)+smc_k*sig
 par_set=funcSimDOBmatchDistV2(par_set);
+%% Matched distrubance with reaching law eta*sat(sig)+smc_k*sig and fit to acutate exp. setup
+par_set=funcSimDOBmatchDistV3(par_set);
 %% low level dyn.
 low_beta_1=-1.459;
 low_beta_2=1.421;

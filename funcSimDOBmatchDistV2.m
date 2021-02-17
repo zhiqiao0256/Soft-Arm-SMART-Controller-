@@ -7,6 +7,8 @@ testData=par_set.trial1;
 %%%%%% State Ini.
 Ts=0.01; % sampling period
 timeArray=[0:Ts:120]';%sec
+trail_duriation=15.0;
+
 x1=zeros(length(timeArray),1); %state variable theta
 x2=zeros(length(timeArray),1); %state variable dtheta
 x2_filt=x2;% moving average filter
@@ -27,19 +29,40 @@ L=par_set.L;      % segment length
 
 %% Input signal
 %%% Sine
-Amp=deg2rad(10);
-Boff=deg2rad(-40);
-freq=0.01;%Hz
-xd=-Amp*sin(2*pi*freq*timeArray)+Boff;
-dxd=-Amp*(2*pi*freq)*cos(2*pi*freq*timeArray);
-ddxd=Amp*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
-pd1_MPa=zeros(length(timeArray),1);
-%%% Step
-xd=0.0*sin(2*pi*freq*timeArray)+Boff;
-dxd=0.0*(2*pi*freq)*cos(2*pi*freq*timeArray);
-ddxd=0.0*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
-pd1_MPa=zeros(length(timeArray),1);
-
+% Amp=deg2rad(10);
+% Boff=deg2rad(-40);
+% freq=0.01;%Hz
+% xd=-Amp*sin(2*pi*freq*timeArray)+Boff;
+% dxd=-Amp*(2*pi*freq)*cos(2*pi*freq*timeArray);
+% ddxd=Amp*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
+% pd1_MPa=zeros(length(timeArray),1);
+% %%% Step
+% xd=0.0*sin(2*pi*freq*timeArray)+Boff;
+% dxd=0.0*(2*pi*freq)*cos(2*pi*freq*timeArray);
+% ddxd=0.0*(2*pi*freq)^2*sin(2*pi*freq*timeArray);
+% pd1_MPa=zeros(length(timeArray),1);
+%%% Ramp from x1
+rampAmpAbs=deg2rad(40);
+rampRateAbs=deg2rad(2);
+t_flatTime=5.0;
+t_ramp=[0:Ts:rampAmpAbs/rampRateAbs*2+t_flatTime];
+xd = zeros(length(t_ramp),1);
+for i =1:length(t_ramp)
+    t_i=t_ramp(i);
+    if t_i <= rampAmpAbs/rampRateAbs
+        xd(i,1)= - rampRateAbs * t_i;
+        dxd(i,1)= - rampRateAbs;
+        ddxd(i,1)=0;
+    elseif  rampAmpAbs/rampRateAbs<= t_i && t_i <= rampAmpAbs/rampRateAbs*+t_flatTime
+        xd(i,1)= - rampAmpAbs;
+        dxd(i,1)= 0;
+        ddxd(i,1)=0;
+    else
+        xd(i,1)= - rampAmpAbs + rampRateAbs * (t_i-(rampAmpAbs/rampRateAbs*+t_flatTime));
+        dxd(i,1)= rampRateAbs;
+        ddxd(i,1)=0;
+    end
+end
 %%%% Initial values
 x1(1)=testData.theta_rad(end-1);
 r0=mean(testData.beta);
@@ -60,9 +83,9 @@ b=par_set.meanB;
 %%% smc tunning parameters
 smc_lambda=10.0;
 smc_epsilon=1;
-smc_k=100.0;
-smc_eta=50;
-ndob_k_p=2;
+smc_k=30.0;
+smc_eta=40;
+ndob_k_p=10;
 %%%% system uncertainty
 Km=par_set.maxK-k;
 Dm= par_set.maxB-b;
