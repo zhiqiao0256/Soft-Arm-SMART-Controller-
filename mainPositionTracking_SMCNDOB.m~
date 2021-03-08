@@ -38,8 +38,8 @@ fprintf('System initialization done \n')
 if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
     par_set=funcHighLevelExpPositionTracking(par_set,2);
-%     par_set=funcHighLevelExpPositionTracking(par_set,3);
-%     par_set=funcHighLevelExpPositionTracking(par_set,4);
+    par_set=funcHighLevelExpPositionTracking(par_set,3);
+    par_set=funcHighLevelExpPositionTracking(par_set,4);
 %     par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
 %     par_set=funcHighLevelExpPositionTracking(par_set,7);
@@ -51,7 +51,7 @@ else
     load('raw_id_data.mat');
     fprintf( 'Data loaded \n' );
 end
-%% data1
+%% 2rad smcndob
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial1;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
@@ -143,7 +143,7 @@ ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-%% data2
+%% 5 rad smcndob
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial2;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
@@ -223,7 +223,7 @@ ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-%% data3
+%% 2rad smc
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial3;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
@@ -303,7 +303,7 @@ ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-%% data4
+%% 2rad smc
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial4;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
@@ -383,40 +383,35 @@ ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-%% data5
+%% 2 rad smcndob+contact failed at deflation
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial5;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
-% testData.dist_est_tau=[];
-% for i =1:length(testData.x1_exp)
-%     theta=testData.x1_exp(i,2);
-%     r0=testData.beta(i);
-%     m0=par_set.m0;
-%     L=par_set.L;
-%     dist=testData.dist_est(i);
-%     if theta==0
-%         mx=m0*(L/2)^2;
-%     else
-%         Izz=m0*r0*r0;
-%         mx =(Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
-%                 (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
-%     end
-%    testData.dist_est_tau(i,1)=mx*dist;
-% end
+testData.dist_est_tau=[];
+for i =1:length(testData.x1_exp)
+    theta=testData.x1_exp(i,2);
+    r0=testData.beta(i);
+    m0=par_set.m0;
+    L=par_set.L;
+    dist=testData.dist_est(i);
+    if theta==0
+        mx=m0*(L/2)^2;
+    else
+        Izz=m0*r0*r0;
+        mx =(Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
+                (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
+    end
+   testData.dist_est_tau(i,1)=mx*dist;
+end
 subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on
 plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
-hold on
-plot(testData.x1_exp(:,1),testData.xdNew,'k')
-hold on
-plot(testData.x1_exp(:,1),-testData.ctrl_policy,'g')
-hold on
 ylabel('\theta (rad)')
 xlim([0,65])
 ylim([-1.1,0])
 legend('x_d','x','Orientation','vertical','Location','northeastoutside')
-title(['2 rad/s SMC'])
+title(['2 rad/s contact'])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 subplot(5,1,2)
@@ -456,10 +451,81 @@ fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 subplot(5,1,5)
 plot(testData.xd_exp(:,1),testData.dist_est_tau,'r')
-hold on
-plot(testData.xd_exp(:,1),testData.dist_est_inner_tau,'b')
 xlim([0,65])
 ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
+% %% 2rad smcndob failed at inflation
+% fp=figure('Name','ramp','Position',[100,100,600,800]);
+% testData=par_set.trial6;
+% testData = func_getPhiThetaBfromXYZ(testData,par_set);
+% testData.dist_est_tau=[];
+% %for i =1:length(testData.x1_exp)
+%     theta=testData.x1_exp(i,2);
+%     r0=testData.beta(i);
+%     m0=par_set.m0;
+%     L=par_set.L;
+%     dist=testData.dist_est(i);
+%     if theta==0
+%         mx=m0*(L/2)^2;
+%     else
+%         Izz=m0*r0*r0;
+%         mx =(Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
+%                 (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
+%     end
+%    testData.dist_est_tau(i,1)=mx*dist;
+% end
+% subplot(5,1,1)
+% plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
+% hold on
+% plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
+% ylabel('\theta (rad)')
+% xlim([0,65])
+% ylim([-1.1,0])
+% legend('x_d','x','Orientation','vertical','Location','northeastoutside')
+% title(['2 rad/s contact'])
+% fp.CurrentAxes.FontWeight='Bold';
+% fp.CurrentAxes.FontSize=10;
+% subplot(5,1,2)
+% plot(testData.xd_exp(:,1),testData.xd_exp(:,2)-testData.x1_exp(:,2),'r')
+% xlim([0,65])
+% ylim([-0.1,0.1])
+% ylabel('Error (rad)')
+% xlabel('Time (sec)')
+% fp.CurrentAxes.FontWeight='Bold';
+% fp.CurrentAxes.FontSize=10;
+% subplot(5,1,3)
+% plot(testData.xd_exp(:,1),testData.pd_MPa(:,2),'b')
+% hold on
+% plot(testData.xd_exp(:,1),testData.p1_ub_MPa,'r')
+% hold on
+% plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'k')
+% xlim([0,65])
+% ylim([0,0.3])
+% legend('p_b','p_{ub}','pm','Orientation','vertical','Location','northeastoutside')
+% ylabel('Press. (MPa)')
+% xlabel('Time (sec)')
+% fp.CurrentAxes.FontWeight='Bold';
+% fp.CurrentAxes.FontSize=10;
+% subplot(5,1,4)
+% plot(testData.xd_exp(:,1),testData.u_total,'r')
+% hold on
+% plot(testData.xd_exp(:,1),testData.u_eq,'b')
+% hold on
+% plot(testData.xd_exp(:,1),testData.u_s,'k')
+% hold on
+% plot(testData.xd_exp(:,1),testData.u_n,'g')
+% legend('u_{total}','u_{eq}','u_s','u_n','Orientation','vertical','Location','northeastoutside')
+% xlim([0,65])
+% ylabel('Ctrl. Input(N\cdotm)')
+% xlabel('Time (sec)')
+% fp.CurrentAxes.FontWeight='Bold';
+% fp.CurrentAxes.FontSize=10;
+% subplot(5,1,5)
+% plot(testData.xd_exp(:,1),testData.dist_est_tau,'r')
+% xlim([0,65])
+% ylabel('Lumped Dist.(N\cdotm)')
+% xlabel('Time (sec)')
+% fp.CurrentAxes.FontWeight='Bold';
+% fp.CurrentAxes.FontSize=10;
