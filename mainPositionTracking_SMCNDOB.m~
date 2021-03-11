@@ -39,8 +39,8 @@ if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
     par_set=funcHighLevelExpPositionTracking(par_set,2);
     par_set=funcHighLevelExpPositionTracking(par_set,3);
-    par_set=funcHighLevelExpPositionTracking(par_set,4);
-    par_set=funcHighLevelExpPositionTracking(par_set,5);
+%     par_set=funcHighLevelExpPositionTracking(par_set,4);
+%     par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
 %     par_set=funcHighLevelExpPositionTracking(par_set,7);
 %     par_set=funcHighLevelExpPositionTracking(par_set,8);
@@ -257,7 +257,7 @@ ylabel('\theta (rad)')
 xlim([0,65])
 ylim([-1.1,0])
 legend('x_d','x','Orientation','vertical','Location','northeast')
-title(['data 3'])
+title(['2 rad/s SMC'])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 subplot(5,1,2)
@@ -304,7 +304,7 @@ ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-% return
+return
 %% data4
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial4;
@@ -385,7 +385,7 @@ ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-% return
+return
 %% data5
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial5;
@@ -419,7 +419,7 @@ ylabel('\theta (rad)')
 xlim([0,65])
 ylim([-1.1,0])
 legend('x_d','x','Orientation','vertical','Location','northeast')
-title(['data5'])
+title(['2 rad/s SMC'])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 subplot(5,1,2)
