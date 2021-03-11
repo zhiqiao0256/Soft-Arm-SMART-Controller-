@@ -55,36 +55,34 @@ end
 fp=figure('Name','baseline','Position',[100,100,600,800]);
 testData=par_set.trial1;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
-testData.dist_est_tau=[];
-testData.dist_th=0.8; % Nm
-testData.x1e_max_value=deg2rad(3);
-testData.x1e=[];
-testData.x1e=testData.xd_exp-testData.x1_exp;
-flag_first_contact=0;
-for i =1:length(testData.x1_exp)
-    theta=testData.x1_exp(i,2);
-    r0=testData.beta(i);
-    m0=par_set.m0;
-    L=par_set.L;
-    dist=testData.dist_est(i);
-    if theta==0
-        mx=m0*(L/2)^2;
-    else
-        Izz=m0*r0*r0;
-        mx =(Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
-                (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
-    end
-   testData.dist_est_tau(i,1)=mx*dist;
-
-end
+% testData.dist_est_tau=[];
+% testData.dist_th=0.8; % Nm
+% testData.x1e_max_value=deg2rad(3);
+% testData.x1e=[];
+% testData.x1e=testData.xd_exp-testData.x1_exp;
+% flag_first_contact=0;
+% for i =1:length(testData.x1_exp)
+%     theta=testData.x1_exp(i,2);
+%     r0=testData.beta(i);
+%     m0=par_set.m0;
+%     L=par_set.L;
+%     dist=testData.dist_est(i);
+%     if theta==0
+%         mx=m0*(L/2)^2;
+%     else
+%         Izz=m0*r0*r0;
+%         mx =(Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
+%                 (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
+%     end
+%    testData.dist_est_tau(i,1)=mx*dist;
+% 
+% end
 subplot(4,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on
 plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
 hold on
-plot(testData.x1_exp(:,1),-testData.contact_est,'k')
-hold on
-plot(testData.x1_exp(:,1),-testData.ctrl_policy,'c')
+plot(testData.x1_exp(:,1),-testData.ctrl_policy,'g')
 hold on
 for i =1:length(testData.x1_exp)
     if testData.contact_est(i,1) >0

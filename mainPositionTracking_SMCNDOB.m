@@ -40,7 +40,7 @@ if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,2);
     par_set=funcHighLevelExpPositionTracking(par_set,3);
     par_set=funcHighLevelExpPositionTracking(par_set,4);
-%     par_set=funcHighLevelExpPositionTracking(par_set,5);
+    par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
 %     par_set=funcHighLevelExpPositionTracking(par_set,7);
 %     par_set=funcHighLevelExpPositionTracking(par_set,8);
