@@ -143,6 +143,7 @@ ylabel('Lumped Dist.(N\cdotm)')
 xlabel('Time (sec)')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
+% return
 %% data2
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial2;
