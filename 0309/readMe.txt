@@ -1,4 +1,5 @@
-Date 0309
+Date 0316
+
 1. baseline smcndob+contact+stay
 2. smcndob + contact + time_gap = 100 sec
 3. smcndob + contact + time_gap = 3 sec
