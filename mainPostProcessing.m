@@ -51,6 +51,34 @@ else
     load('raw_id_data.mat');
     fprintf( 'Data loaded \n' );
 end
+%% Segment data
+close all
+testData= par_set.trial1;
+fp=figure('Name','ramp','Position',[100,100,600,800]);
+plot(testData.xd_exp(:,2))
+s_pt=403;e_pt=2399;
+fp=figure('Name','fig1','Position',[100,100,800,400]);
+subplot(2,1,1)
+plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xd_exp(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',2)
+hold on
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.x1_exp(s_pt:e_pt,2),'b','LineStyle','-.','LineWidth',2)
+hold on
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'k','LineStyle','--','LineWidth',2)
+ylabel('\theta (rad)')
+xlim([0,50])
+% ylim([-1.1,0])
+legend('\theta_d','\theta','\theta_a','Orientation','horizontal','Location','north')
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+subplot(2,1,2)
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_inner_tau(s_pt:e_pt),'r')
+%%
+testData= par_set.trail1;
+fp=figure('Name','ramp','Position',[100,100,600,800]);
+plot(testData.xd_exp(:,2))
+testData= par_set.trail1;
+fp=figure('Name','ramp','Position',[100,100,600,800]);
+plot(testData.xd_exp(:,2))
 %% data1
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial1;
