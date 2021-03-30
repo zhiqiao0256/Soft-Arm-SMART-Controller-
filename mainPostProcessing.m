@@ -51,267 +51,86 @@ else
     load('raw_id_data.mat');
     fprintf( 'Data loaded \n' );
 end
-%% Segment data
-close all
+%% Segment data1 
+% close all
 testData= par_set.trial1;
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 plot(testData.xd_exp(:,2))
-s_pt=403;e_pt=2399;
-fp=figure('Name','fig1','Position',[100,100,800,400]);
+s_pt=403;e_pt=2403;
+fp=figure('Name','fig1','Position',[100,100,800,600]);
 subplot(2,1,1)
 plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xd_exp(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',2)
 hold on
 plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.x1_exp(s_pt:e_pt,2),'b','LineStyle','-.','LineWidth',2)
 hold on
-plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'k','LineStyle','--','LineWidth',2)
-ylabel('\theta (rad)')
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'k','LineStyle',':','LineWidth',2)
+ylabel('Angle (rad)')
 xlim([0,50])
-% ylim([-1.1,0])
+ylim([-0.9,-0.1])
+legend('\theta_d','\theta','\theta_a','Orientation','horizontal','Location','north')
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=20;
+subplot(2,1,2)
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_inner_tau(s_pt:e_pt),'r','LineWidth',2)
+legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
+ylabel('Disturbance (Nm)')
+xlabel('Time (second)')
+ylim([-0.2,2])
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=20;
+testData = funcPostProcess(testData,s_pt,e_pt);
+%% Segment data4 smcndob
+% close all
+testData= par_set.trial4;
+fp=figure('Name','ramp','Position',[100,100,600,800]);
+plot(testData.xd_exp(:,2))
+s_pt=358;e_pt=2357;
+fp=figure('Name','fig1','Position',[100,100,800,600]);
+subplot(2,1,1)
+plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xd_exp(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',2)
+hold on
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.x1_exp(s_pt:e_pt,2),'b','LineStyle','-.','LineWidth',2)
+hold on
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'k','LineStyle',':','LineWidth',2)
+ylabel('Angle (rad)')
+xlim([0,50])
+ylim([-0.9,-0.1])
 legend('\theta_d','\theta','\theta_a','Orientation','horizontal','Location','north')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 subplot(2,1,2)
-plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_inner_tau(s_pt:e_pt),'r')
-%%
-testData= par_set.trail1;
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_tau(s_pt:e_pt),'r','LineWidth',2)
+legend('\Delta','Orientation','horizontal','Location','northeast')
+ylabel('Disturbance (Nm)')
+xlabel('Time (second)')
+ylim([-0.2,2])
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+testData = funcPostProcess(testData,s_pt,e_pt);
+%% segment data 5 smcndob with switch
+testData= par_set.trial5;
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 plot(testData.xd_exp(:,2))
-testData= par_set.trail1;
-fp=figure('Name','ramp','Position',[100,100,600,800]);
-plot(testData.xd_exp(:,2))
-%% data1
-fp=figure('Name','ramp','Position',[100,100,600,800]);
-testData=par_set.trial1;
-testData = func_getPhiThetaBfromXYZ(testData,par_set);
-subplot(5,1,1)
-plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
+s_pt=380;e_pt=2379;
+fp=figure('Name','fig1','Position',[100,100,800,600]);
+subplot(2,1,1)
+plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xd_exp(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',2)
 hold on
-plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.x1_exp(s_pt:e_pt,2),'b','LineStyle','-.','LineWidth',2)
 hold on
-plot(testData.x1_exp(:,1),testData.xdNew,'k')
-hold on
-plot(testData.x1_exp(:,1),-testData.ctrl_policy,'g')
-hold on
-%for i =1:length(testData.x1_exp)
-%     if testData.contact_est(i,1) >0
-%         plot(testData.x1_exp(i,1),-1,'MarkerSize',10)
-%         hold on
-%     end
-% end
-ylabel('\theta (rad)')
-xlim([0,65])
-% ylim([-1.1,0])
-legend('x_d','x','Orientation','horizontal','Location','northeast')
-title(['data 1'])
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'k','LineStyle',':','LineWidth',2)
+ylabel('Angle (rad)')
+xlim([0,50])
+ylim([-0.9,-0.1])
+legend('\theta_d','\theta','\theta_a','Orientation','horizontal','Location','north')
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-subplot(5,1,2)
-plot(testData.xd_exp(:,1),testData.xd_exp(:,2)-testData.x1_exp(:,2),'r')
-xlim([0,65])
-ylim([-0.1,0.1])
-ylabel('Error (rad)')
-xlabel('Time (sec)')
+subplot(2,1,2)
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_inner_tau(s_pt:e_pt),'r','LineWidth',2)
+legend('\Delta','Orientation','horizontal','Location','northeast')
+ylabel('Disturbance (Nm)')
+xlabel('Time (second)')
+ylim([-0.2,2])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-subplot(5,1,3)
-plot(testData.xd_exp(:,1),testData.pd_MPa(:,2),'b')
-hold on
-% plot(testData.xd_exp(:,1),testData.p1_ub_MPa,'r')
-hold on
-plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'k')
-xlim([0,65])
-ylim([0,0.3])
-legend('p_b','pm','Orientation','horizontal','Location','northeast')
-ylabel('Press. (MPa)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,4)
-plot(testData.xd_exp(:,1),testData.u_total,'r')
-hold on
-plot(testData.xd_exp(:,1),testData.u_eq,'b')
-hold on
-plot(testData.xd_exp(:,1),testData.u_s,'k')
-hold on
-plot(testData.xd_exp(:,1),testData.u_n,'g')
-legend('u_{total}','u_{eq}','u_s','u_n','Orientation','horizontal','Location','northeast')
-xlim([0,65])
-ylabel('Ctrl. Input(N\cdotm)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,5)
-plot(testData.xd_exp(:,1),testData.dist_est_tau,'r')
-hold on
-plot(testData.xd_exp(:,1),testData.dist_est_inner_tau,'b')
-xlim([0,65])
-ylabel('Lumped Dist.(N\cdotm)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-%% data4
-fp=figure('Name','ramp','Position',[100,100,600,800]);
-testData=par_set.trial4;
-testData = func_getPhiThetaBfromXYZ(testData,par_set);
-subplot(5,1,1)
-plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
-hold on
-plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
-hold on
-plot(testData.x1_exp(:,1),testData.xdNew,'k')
-hold on
-plot(testData.x1_exp(:,1),-testData.ctrl_policy,'g')
-hold on
-%for i =1:length(testData.x1_exp)
-%     if testData.contact_est(i,1) >0
-%         plot(testData.x1_exp(i,1),-1,'MarkerSize',10)
-%         hold on
-%     end
-% end
-ylabel('\theta (rad)')
-xlim([0,65])
-% ylim([-1.1,0])
-legend('x_d','x','Orientation','horizontal','Location','northeast')
-title(['data 4'])
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,2)
-plot(testData.xd_exp(:,1),testData.xd_exp(:,2)-testData.x1_exp(:,2),'r')
-xlim([0,65])
-ylim([-0.1,0.1])
-ylabel('Error (rad)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,3)
-plot(testData.xd_exp(:,1),testData.pd_MPa(:,2),'b')
-hold on
-% plot(testData.xd_exp(:,1),testData.p1_ub_MPa,'r')
-hold on
-plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'k')
-xlim([0,65])
-ylim([0,0.3])
-legend('p_b','pm','Orientation','horizontal','Location','northeast')
-ylabel('Press. (MPa)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,4)
-plot(testData.xd_exp(:,1),testData.u_total,'r')
-hold on
-plot(testData.xd_exp(:,1),testData.u_eq,'b')
-hold on
-plot(testData.xd_exp(:,1),testData.u_s,'k')
-hold on
-plot(testData.xd_exp(:,1),testData.u_n,'g')
-legend('u_{total}','u_{eq}','u_s','u_n','Orientation','horizontal','Location','northeast')
-xlim([0,65])
-ylabel('Ctrl. Input(N\cdotm)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,5)
-plot(testData.xd_exp(:,1),testData.dist_est_tau,'r')
-hold on
-plot(testData.xd_exp(:,1),testData.dist_est_inner_tau,'b')
-xlim([0,65])
-ylabel('Lumped Dist.(N\cdotm)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-%% data5
-fp=figure('Name','ramp','Position',[100,100,600,800]);
-testData=par_set.trial5;
-testData = func_getPhiThetaBfromXYZ(testData,par_set);
-% testData.dist_est_tau=[];
-% for i =1:length(testData.x1_exp)
-%     theta=testData.x1_exp(i,2);
-%     r0=testData.beta(i);
-%     m0=par_set.m0;
-%     L=par_set.L;
-%     dist=testData.dist_est(i);
-%     if theta==0
-%         mx=m0*(L/2)^2;
-%     else
-%         Izz=m0*r0*r0;
-%         mx =(Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
-%                 (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
-%     end
-%    testData.dist_est_tau(i,1)=mx*dist;
-% end
-subplot(5,1,1)
-plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
-hold on
-plot(testData.x1_exp(:,1),testData.x1_exp(:,2),'b')
-hold on
-plot(testData.x1_exp(:,1),testData.xdNew,'k')
-hold on
-plot(testData.x1_exp(:,1),-testData.ctrl_policy,'g')
-hold on
-ylabel('\theta (rad)')
-xlim([0,65])
-ylim([-1.1,0])
-legend('x_d','x','Orientation','vertical','Location','northeast')
-title(['data5'])
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,2)
-plot(testData.xd_exp(:,1),testData.xd_exp(:,2)-testData.x1_exp(:,2),'r')
-xlim([0,65])
-ylim([-0.1,0.1])
-ylabel('Error (rad)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,3)
-plot(testData.xd_exp(:,1),testData.pd_MPa(:,2),'b')
-hold on
-% plot(testData.xd_exp(:,1),testData.p1_ub_MPa,'r')
-hold on
-plot(testData.xd_exp(:,1),testData.pm_MPa(:,2),'k')
-xlim([0,65])
-ylim([0,0.3])
-legend('p_b','pm','Orientation','vertical','Location','northeast')
-ylabel('Press. (MPa)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,4)
-plot(testData.xd_exp(:,1),testData.u_total,'r')
-hold on
-plot(testData.xd_exp(:,1),testData.u_eq,'b')
-hold on
-plot(testData.xd_exp(:,1),testData.u_s,'k')
-hold on
-plot(testData.xd_exp(:,1),testData.u_n,'g')
-legend('u_{total}','u_{eq}','u_s','u_n','Orientation','vertical','Location','northeast')
-xlim([0,65])
-ylabel('Ctrl. Input(N\cdotm)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-subplot(5,1,5)
-plot(testData.xd_exp(:,1),testData.dist_est_tau,'r')
-
-hold on
-plot(testData.xd_exp(:,1),testData.dist_est_inner_tau,'b')
-xlim([0,65])
-ylabel('Lumped Dist.(N\cdotm)')
-xlabel('Time (sec)')
-fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=10;
-%% RMSE and InputEnergy
-testData=par_set.trial1;
-testData = funcPostProcess(testData);
-testData=par_set.trial4;
-testData = funcPostProcess(testData);
-testData=par_set.trial5;
-testData = funcPostProcess(testData);
-% x_i=[];x_i_est=[];
-% x_i=testData.xd_exp(:,2);
-% x_i_est=testData.x1_exp(:,2);
-% testData.rmse=sqrt(sum((x_i-x_i_est).^2)/length(x_i));
-% %% Energy of control input E = sum(u^2)
-% u_i=[];
-% u_i=testData.pd_MPa(:,1);
-% testData.inputEnergy=sum(u_i.^2);
+testData = funcPostProcess(testData,s_pt,e_pt);
