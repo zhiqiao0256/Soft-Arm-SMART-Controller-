@@ -1,6 +1,6 @@
-% close all
-% clear all
-% clc
+close all
+clear all
+clc
 %% Create Rigid Body Obj.
 robot = robotics.RigidBodyTree('DataFormat','column','MaxNumBodies',3);
 %J1

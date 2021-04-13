@@ -15,11 +15,14 @@ par_set.flag_read_exp = 1;
 %flag for plotting moving constant layer
 par_set.flag_plot_movingCC = 0;
 %flag for plotting fwd kinematic results
-par_set.plot_fwdKinematic = 0;
+par_set.plot_fwdKinematic = 1;
+% Check data readme.txt for detail input reference
+par_set.flag_fixed_beta = 1;
 % Check data readme.txt for detail input reference
 par_set.Ts=1/40;
 % Geometric para.
 par_set.trianlge_length=70*1e-03;% fabric triangle edge length
+par_set.fixed_beta=sqrt(3)/6*par_set.trianlge_length*0.3;
 par_set.L=0.185;%actuator length
 par_set.n=4;% # of joints for augmented rigid arm
 par_set.m0=0.35;%kg segment weight
@@ -55,28 +58,8 @@ end
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial1;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
-% testData.dist_est_tau=[];
-% testData.dist_th=0.8; % Nm
-% testData.x1e_max_value=deg2rad(3);
-% testData.x1e=[];
-% testData.x1e=testData.xd_exp-testData.x1_exp;
-% flag_first_contact=0;
-% for i =1:length(testData.x1_exp)
-%     theta=testData.x1_exp(i,2);
-%     r0=testData.beta(i);
-%     m0=par_set.m0;
-%     L=par_set.L;
-%     dist=testData.dist_est(i);
-%     if theta==0
-%         mx=m0*(L/2)^2;
-%     else
-%         Izz=m0*r0*r0;
-%         mx =(Izz/4 + m0*((cos(theta/2)*(r0 - L/theta))/2 +...
-%                 (L*sin(theta/2))/theta^2)^2 + (m0*sin(theta/2)^2*(r0 - L/theta)^2)/4);
-%     end
-%    testData.dist_est_tau(i,1)=mx*dist;
-% 
-% end
+return
+%%
 subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
 hold on

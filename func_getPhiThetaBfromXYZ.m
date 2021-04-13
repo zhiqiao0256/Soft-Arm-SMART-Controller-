@@ -78,6 +78,9 @@ for i=1:length(beta_array)% find beta <0 and ||beta*(xt,yt)|| <= a0/sqrt(3)
                 trainSet.x_y_edge(i,3)=0;
                 temp_r=temp.Rz'*trainSet.x_y_edge(i,:)';
                 trainSet.beta(i,1)=temp_r(1);
+                if par_set.flag_fixed_beta ==1
+                    trainSet.beta(i,1)=par_set.fixed_beta;
+                end
             end
         end
     end
