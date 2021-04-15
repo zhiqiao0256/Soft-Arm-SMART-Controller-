@@ -15,9 +15,9 @@ par_set.flag_read_exp = 1;
 %flag for plotting moving constant layer
 par_set.flag_plot_movingCC = 0;
 %flag for plotting fwd kinematic results
-par_set.plot_fwdKinematic = 1;
+par_set.plot_fwdKinematic = 0;
 % Check data readme.txt for detail input reference
-par_set.flag_fixed_beta = 1;
+par_set.flag_fixed_beta = 0;
 % Check data readme.txt for detail input reference
 par_set.Ts=1/40;
 % Geometric para.
@@ -58,7 +58,7 @@ end
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial1;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
-return
+% return
 %%
 subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')
