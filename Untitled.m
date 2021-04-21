@@ -1,10 +1,18 @@
-close all
+% close all
 x = 0 : .01 : 2 * pi;
-polarplot(x, 0.75 + asin(sin(2*x+pi/2))./(sin(2*x+pi/2)*pi^2));
-n=3
-rr=cos(pi/n)./(cos(mod(x,2*pi/n)-pi/n))
-hold on
+% polarplot(x, 0.75 + asin(sin(2*x+pi/2))./(sin(2*x+pi/2)*pi^2));
+n=3;
+xx=x-pi/6;
+rr=cos(pi/n)./(cos(mod(xx,2*pi/n)-pi/n));
+% hold on
+figure
 polarplot(x,rr)
+hold on
+polarplot(x(1),rr(1),'o')
+hold on
+polarplot(x(10),rr(10),'o')
+
+return
 for i =1 :length(x)
     xi=x(i);
     if xi < 2*pi/3

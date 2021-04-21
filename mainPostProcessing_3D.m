@@ -13,11 +13,11 @@ par_set.flag_plot_rawData =0;
 %flag for read txt file or mat file 1: txt 0: mat
 par_set.flag_read_exp = 1;
 %flag for plotting moving constant layer
-par_set.flag_plot_movingCC = 0;
+par_set.flag_plot_movingCC = 1;
 %flag for plotting fwd kinematic results
 par_set.plot_fwdKinematic = 0;
 %flag for using fixed beta value
-par_set.flag_fixed_beta =1;
+par_set.flag_fixed_beta =0;
 % Check data readme.txt for detail input reference
 par_set.Ts=1/40;
 % Geometric para.
@@ -40,7 +40,7 @@ fprintf('System initialization done \n')
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
-%     par_set=funcHighLevelExpPositionTracking(par_set,2);
+    par_set=funcHighLevelExpPositionTracking(par_set,2);
 %     par_set=funcHighLevelExpPositionTracking(par_set,3);
 %     par_set=funcHighLevelExpPositionTracking(par_set,4);
 %     par_set=funcHighLevelExpPositionTracking(par_set,5);
@@ -57,6 +57,9 @@ end
 %% Calculate RMSE and Energy of Pm
 testData= par_set.trial1;
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
-testData = funcPostProcess(testData,s_pt,e_pt);
-fp=figure('Name','ramp','Position',[100,100,600,800]);
+% testData = funcPostProcess(testData,s_pt,e_pt);
+% fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
+%%
+testData= par_set.trial2;
+testData = funcGetPhiThetaRifromXYZ(testData,par_set);
