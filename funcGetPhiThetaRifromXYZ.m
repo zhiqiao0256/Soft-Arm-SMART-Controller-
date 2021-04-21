@@ -49,7 +49,7 @@ end
 %% Calculate Ri in Arc Frame using phi only
 trainSet.Ri=[];
 Ri_array=zeros(length(trainSet.phi),3);
-Ri_array=par_set.r_f*cos(pi/3)./cos(mod(trainSet.phi_rad-pi/6,2*pi/3)-pi/3);
+Ri_array=par_set.trianlge_length*cos(pi/3)./cos(mod(trainSet.phi_rad-pi/6,2*pi/3)-pi/3);
 for i=1:length(Ri_array)
     Ri_k=Ri_array(i,:);
     phi_rad_k=trainSet.phi_rad(i);
@@ -57,7 +57,7 @@ for i=1:length(Ri_array)
     trainSet.x_y_edge(i,:)=[Ri_k*cos(phi_rad_k-pi),Ri_k*sin(phi_rad_k-pi),0];
 end
 if par_set.flag_plot_movingCC==1
-    func_camFramePlotMovingCC(trainSet,par_set);
+    funcCamFramePlotMovingCC(trainSet,par_set);
 end
 %% Calculate theta in base frame ranging -pi/2,pi/2
 trainSet.theta_rad=2*-sign(trainSet.tip_exp_baseFrame(:,2)).*asin(sqrt(trainSet.tip_exp_baseFrame(:,2).^2)./sqrt(trainSet.tip_exp_baseFrame(:,2).^2+trainSet.tip_exp_baseFrame(:,3).^2));
