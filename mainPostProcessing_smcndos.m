@@ -39,8 +39,8 @@ if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
     par_set=funcHighLevelExpPositionTracking(par_set,2);
     par_set=funcHighLevelExpPositionTracking(par_set,3);
-    par_set=funcHighLevelExpPositionTracking(par_set,4);
-    par_set=funcHighLevelExpPositionTracking(par_set,5);
+%     par_set=funcHighLevelExpPositionTracking(par_set,4);
+%     par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
 %     par_set=funcHighLevelExpPositionTracking(par_set,7);
 %     par_set=funcHighLevelExpPositionTracking(par_set,8);
@@ -51,34 +51,35 @@ else
     load('raw_id_data.mat');
     fprintf( 'Data loaded \n' );
 end
+return
 %%
-testData= par_set.trial1;
-s_pt=1;e_pt=length(testData.xd_exp(:,2));
-testData = funcPostProcess(testData,s_pt,e_pt);
-rmse=testData.rmse;
-Ep=testData.inputEnergy;
-testData= par_set.trial2;
-s_pt=1;e_pt=length(testData.xd_exp(:,2));
-testData = funcPostProcess(testData,s_pt,e_pt);
-rmse=testData.rmse+rmse;
-Ep=testData.inputEnergy+Ep;
+% testData= par_set.trial1;
+% s_pt=1;e_pt=length(testData.xd_exp(:,2));
+% testData = funcPostProcess(testData,s_pt,e_pt);
+% rmse=testData.rmse;
+% Ep=testData.inputEnergy;
+% testData= par_set.trial2;
+% s_pt=1;e_pt=length(testData.xd_exp(:,2));
+% testData = funcPostProcess(testData,s_pt,e_pt);
+% rmse=testData.rmse+rmse;
+% Ep=testData.inputEnergy+Ep;
 testData= par_set.trial3;
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
 testData = funcPostProcess(testData,s_pt,e_pt);
-rmse=testData.rmse+rmse;
-Ep=testData.inputEnergy+Ep;
-testData= par_set.trial4;
-s_pt=1;e_pt=length(testData.xd_exp(:,2));
-testData = funcPostProcess(testData,s_pt,e_pt);
-rmse=testData.rmse+rmse;
-Ep=testData.inputEnergy+Ep;
-testData= par_set.trial5;
-s_pt=1;e_pt=length(testData.xd_exp(:,2));
-testData = funcPostProcess(testData,s_pt,e_pt);
-rmse=testData.rmse+rmse;
-Ep=testData.inputEnergy+Ep;
-rmse=rmse/5;
-Ep=Ep/5;
+% rmse=testData.rmse+rmse;
+% Ep=testData.inputEnergy+Ep;
+% testData= par_set.trial4;
+% s_pt=1;e_pt=length(testData.xd_exp(:,2));
+% testData = funcPostProcess(testData,s_pt,e_pt);
+% rmse=testData.rmse+rmse;
+% Ep=testData.inputEnergy+Ep;
+% testData= par_set.trial5;
+% s_pt=1;e_pt=length(testData.xd_exp(:,2));
+% testData = funcPostProcess(testData,s_pt,e_pt);
+% rmse=testData.rmse+rmse;
+% Ep=testData.inputEnergy+Ep;
+% rmse=rmse/5;
+% Ep=Ep/5;
 return
 %% Segment data1 
 % close all
@@ -119,7 +120,7 @@ hold on
 plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'k','LineStyle',':','LineWidth',2)
 ylabel('Angle (rad)')
 xlabel('Time (second)')
-xlim([0,50])
+% xlim([0,50])
 ylim([-0.7,-0.1])
 legend('\theta_d','\theta','\theta_a','Orientation','horizontal','Location','north')
 fp.CurrentAxes.FontWeight='Bold';
@@ -131,7 +132,7 @@ legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Locati
 ylabel('Disturbance (Nm)')
 xlabel('Time (second)')
 ylim([-0.2,2])
-xlim([0,50])
+% xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=20;
 
@@ -142,7 +143,7 @@ legend('$p_{m_1}$','Interpreter','latex','Orientation','horizontal','Location','
 ylabel('Air Pressrue (MPa)')
 xlabel('Time (second)')
 ylim([0,0.3])
-xlim([0,50])
+% xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=20;
 testData = funcPostProcess(testData,s_pt,e_pt);
