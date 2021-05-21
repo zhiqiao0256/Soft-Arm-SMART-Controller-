@@ -49,7 +49,7 @@ end
 %% Calculate Ri in Arc Frame using phi only
 trainSet.Ri=[];
 Ri_array=zeros(length(trainSet.phi),3);
-Ri_array=par_set.trianlge_length*cos(pi/3)./cos(mod(trainSet.phi_rad-pi/6,2*pi/3)-pi/3);
+Ri_array=par_set.trianlge_length/sqrt(3)*cos(pi/3)./cos(mod((trainSet.phi_rad)-pi/6,2*pi/3)-pi/3);
 for i=1:length(Ri_array)
     Ri_k=Ri_array(i,:);
     phi_rad_k=trainSet.phi_rad(i);

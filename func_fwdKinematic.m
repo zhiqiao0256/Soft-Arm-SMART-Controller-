@@ -1,5 +1,5 @@
 function trainSet=func_fwdKinematic(trainSet,par_set)
-trainSet.xi_vector=[trainSet.theta_rad/2,(par_set.L./trainSet.theta_rad-trainSet.beta).*sin(trainSet.theta_rad/2),(par_set.L./trainSet.theta_rad-trainSet.beta).*(sin(trainSet.theta_rad/2)),trainSet.theta_rad/2];
+trainSet.xi_vector=[trainSet.theta_rad/2,(par_set.L./trainSet.theta_rad+abs(trainSet.beta)).*sin(trainSet.theta_rad/2),(par_set.L./trainSet.theta_rad+abs(trainSet.beta)).*(sin(trainSet.theta_rad/2)),trainSet.theta_rad/2];
 for j=1:length(trainSet.xi_vector)
     xi=trainSet.xi_vector(j,:);
     rigid_b0=trainSet.beta(j);thetad=trainSet.theta_rad(j);L=par_set.L;a0=par_set.a0;

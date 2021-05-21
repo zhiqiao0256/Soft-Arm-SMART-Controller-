@@ -13,16 +13,16 @@ par_set.flag_plot_rawData =0;
 %flag for read txt file or mat file 1: txt 0: mat
 par_set.flag_read_exp = 1;
 %flag for plotting moving constant layer
-par_set.flag_plot_movingCC = 0;
+par_set.flag_plot_movingCC = 1;
 %flag for plotting fwd kinematic results
-par_set.plot_fwdKinematic = 0;
+par_set.plot_fwdKinematic = 1;
 % Check data readme.txt for detail input reference
 par_set.flag_fixed_beta = 0;
 % Check data readme.txt for detail input reference
 par_set.Ts=1/40;
 % Geometric para.
 par_set.trianlge_length=70*1e-03;% fabric triangle edge length
-par_set.fixed_beta=sqrt(3)/6*par_set.trianlge_length*0.3;
+par_set.fixed_beta=0;
 par_set.L=0.185;%actuator length
 par_set.n=4;% # of joints for augmented rigid arm
 par_set.m0=0.35;%kg segment weight
@@ -40,10 +40,10 @@ fprintf('System initialization done \n')
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
-    par_set=funcHighLevelExpPositionTracking(par_set,2);
-    par_set=funcHighLevelExpPositionTracking(par_set,3);
-    par_set=funcHighLevelExpPositionTracking(par_set,4);
-    par_set=funcHighLevelExpPositionTracking(par_set,5);
+%     par_set=funcHighLevelExpPositionTracking(par_set,2);
+%     par_set=funcHighLevelExpPositionTracking(par_set,3);
+%     par_set=funcHighLevelExpPositionTracking(par_set,4);
+%     par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
 %     par_set=funcHighLevelExpPositionTracking(par_set,7);
 %     par_set=funcHighLevelExpPositionTracking(par_set,8);
@@ -58,7 +58,7 @@ end
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData=par_set.trial1;
 testData = func_getPhiThetaBfromXYZ(testData,par_set);
-% return
+return
 %%
 subplot(5,1,1)
 plot(testData.xd_exp(:,1),testData.xd_exp(:,2),'r')

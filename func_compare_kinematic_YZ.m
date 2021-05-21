@@ -1,30 +1,35 @@
 function []=func_compare_kinematic_YZ(trainSet,xyz_estimation,par_set)
-figure('Position',[100,400,600,400])
-subplot(3,1,1)
-plot(trainSet.tip_exp_baseFrame(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
-hold on
-plot(xyz_estimation(:,1),'Color','b','LineWidth',2)
-title('Tip Position(m) on X-Axis')
-legend('Experiment','Model')
-ylim([-0.05,0.2])
-subplot(3,1,2)
-plot(trainSet.tip_exp_baseFrame(:,3),'Color','r','LineWidth',2,'LineStyle','-.')
-hold on
-plot(xyz_estimation(:,2),'Color','b','LineWidth',2)
-title('Tip Position(m) on Y-Axis')
-ylim([-0.05,0.2])
-subplot(3,1,3)
-plot(trainSet.tip_exp_baseFrame(:,4),'Color','r','LineWidth',2,'LineStyle','-.')
-hold on
-plot(xyz_estimation(:,3),'Color','b','LineWidth',2)
-title('Tip Position(m) on Z-Axis')
-ylim([0,0.2])
-
-error_matrix=trainSet.tip_exp_baseFrame(:,2:4)-xyz_estimation;
-RMSE_x = sqrt(mean((error_matrix(:,1)).^2))
-RMSE_y = sqrt(mean((error_matrix(:,2)).^2))
-RMSE_z = sqrt(mean((error_matrix(:,3)).^2))
+% figure('Position',[100,400,600,400])
+% subplot(3,1,1)
+% plot(trainSet.tip_exp_baseFrame(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
+% hold on
+% plot(xyz_estimation(:,1),'Color','b','LineWidth',2)
+% title('Tip Position(m) on X-Axis')
+% legend('Experiment','Model')
+% ylim([-0.05,0.2])
+% subplot(3,1,2)
+% plot(trainSet.tip_exp_baseFrame(:,3),'Color','r','LineWidth',2,'LineStyle','-.')
+% hold on
+% plot(xyz_estimation(:,2),'Color','b','LineWidth',2)
+% title('Tip Position(m) on Y-Axis')
+% ylim([-0.05,0.2])
+% subplot(3,1,3)
+% plot(trainSet.tip_exp_baseFrame(:,4),'Color','r','LineWidth',2,'LineStyle','-.')
+% hold on
+% plot(xyz_estimation(:,3),'Color','b','LineWidth',2)
+% title('Tip Position(m) on Z-Axis')
+% ylim([0,0.2])
+% 
+% error_matrix=trainSet.tip_exp_baseFrame(:,2:4)-xyz_estimation;
+% RMSE_x = sqrt(mean((error_matrix(:,1)).^2))
+% RMSE_y = sqrt(mean((error_matrix(:,2)).^2))
+% RMSE_z = sqrt(mean((error_matrix(:,3)).^2))
 %%%%%%%%%%
+% %%%%%%%%%%%Debug
+% temp_b=(par_set.L./abs(trainSet.theta_rad)-abs(trainSet.beta)).*sin(abs(trainSet.theta_rad/2));
+% temp_x=2*temp_b.*cos(pi/2+trainSet.theta_rad/2);
+% temp_y=2*temp_b.*sin(pi/2+trainSet.theta_rad/2);
+% %%%%%%%%%%%
 f1=figure('Position',[100,400,600,400]);
 subplot(2,1,1)
 plot(trainSet.pm_MPa(:,1),trainSet.tip_exp_baseFrame(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
@@ -34,6 +39,10 @@ hold on
 plot(trainSet.pm_MPa(:,1),trainSet.tip_exp_baseFrame(:,3),'Color','b','LineWidth',2,'LineStyle','-.')
 hold on
 plot(trainSet.pm_MPa(:,1),xyz_estimation(:,2),'Color','b','LineWidth',2)
+hold on
+plot(trainSet.pm_MPa(:,1),temp_x)
+hold on
+plot(trainSet.pm_MPa(:,1),temp_y)
 ylim([0,0.3])
 legend('o_{exp}','o_{model}','s_{exp}','s_{model}','Location','northeast','Orientation','horizontal')
 title('Forward Kinematics Performance')

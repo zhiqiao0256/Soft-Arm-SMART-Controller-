@@ -1,7 +1,7 @@
 function []=funcCamFramePlotMovingCC(trainSet,par_set)
     x = 0 : .01 : 2 * pi;
     xx=x-deg2rad(par_set.p1_angle)+pi/3;
-    rr=par_set.trianlge_length*cos(pi/3)./(cos(mod(xx,2*pi/3)-pi/3));
+    rr=par_set.trianlge_length/sqrt(3)*cos(pi/3)./(cos(mod(xx,2*pi/3)-pi/3));
     edge_full=[];
     edge_full=[rr.*cos(x);rr.*sin(x);0*rr];
     figure('Position',[100;100;600;600])

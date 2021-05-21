@@ -13,9 +13,9 @@ par_set.flag_plot_rawData =0;
 %flag for read txt file or mat file 1: txt 0: mat
 par_set.flag_read_exp = 1;
 %flag for plotting moving constant layer
-par_set.flag_plot_movingCC = 0;
+par_set.flag_plot_movingCC = 1;
 %flag for plotting fwd kinematic results
-par_set.plot_fwdKinematic = 0;
+par_set.plot_fwdKinematic = 1;
 % Check data readme.txt for detail input reference
 par_set.Ts=1/40;
 % Geometric para.
@@ -39,8 +39,8 @@ if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
 %     par_set=funcHighLevelExpPositionTracking(par_set,2);
 %     par_set=funcHighLevelExpPositionTracking(par_set,3);
-    par_set=funcHighLevelExpPositionTracking(par_set,4);
-    par_set=funcHighLevelExpPositionTracking(par_set,5);
+%     par_set=funcHighLevelExpPositionTracking(par_set,4);
+%     par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
 %     par_set=funcHighLevelExpPositionTracking(par_set,7);
 %     par_set=funcHighLevelExpPositionTracking(par_set,8);
@@ -79,6 +79,7 @@ ylim([-0.2,2])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=20;
 testData = funcPostProcess(testData,s_pt,e_pt);
+return
 %% Segment data4 smcndob
 % close all
 testData= par_set.trial4;

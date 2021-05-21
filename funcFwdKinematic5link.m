@@ -1,15 +1,16 @@
 function trainSet=funcFwdKinematic5link(trainSet,par_set)
-trainSet.xi_vector=[trainSet.phi_rad,trainSet.theta_rad/2,(par_set.L./trainSet.theta_rad-trainSet.Ri).*sin(trainSet.theta_rad/2),(par_set.L./trainSet.theta_rad-trainSet.Ri).*(sin(trainSet.theta_rad/2)),trainSet.theta_rad/2];
+temp_b=(par_set.L./trainSet.theta_rad-sign(trainSet.theta_rad).*trainSet.Ri).*sin(trainSet.theta_rad/2);
+trainSet.xi_vector=[trainSet.phi_rad,trainSet.theta_rad/2,temp_b,temp_b,trainSet.theta_rad/2];
 for j=1:length(trainSet.xi_vector)
     xi=trainSet.xi_vector(j,:);
     rigid_b0=trainSet.Ri(j);thetad=trainSet.theta_rad(j);L=par_set.L;a0=par_set.a0;
      p1=trainSet.pm_MPa(j,2);p2=trainSet.pm_MPa(j,3);p3=trainSet.pm_MPa(j,4);
 % % Maps to Table 1. DH parameters  
     rigid_a=zeros(1,5);
-    rigid_alpha=[-pi/2 pi/2 0 -pi/2 pi/2];
-    rigid_d=    [0  0 xi(3) xi(4)    0 ];
-    rigid_theta=[xi(1)+pi xi(2) 0        0   xi(5)];
-    m=[0 par_set.m0];
+    rigid_alpha=[-pi/2 pi/2 0      -pi/2    pi/2];
+    rigid_d=    [0     0    xi(3)   xi(4)    0 ];
+    rigid_theta=[xi(1)+pi   xi(2)   0        0   xi(5)];
+    m=[0 0 par_set.m0];
 % %
 % Get HTM T{i}, p{i}, z{i}, for Jacobian calculation    
     Ti = cell(par_set.n+1,1);

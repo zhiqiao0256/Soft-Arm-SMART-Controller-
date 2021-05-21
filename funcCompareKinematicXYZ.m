@@ -25,35 +25,35 @@ RMSE_x = sqrt(mean((error_matrix(:,1)).^2))
 RMSE_y = sqrt(mean((error_matrix(:,2)).^2))
 RMSE_z = sqrt(mean((error_matrix(:,3)).^2))
 %%%%%%%%%%
-f1=figure('Position',[100,400,600,400]);
-subplot(2,1,1)
-plot(trainSet.pm_MPa(:,1),trainSet.tip_exp_baseFrame(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
-hold on
-plot(trainSet.pm_MPa(:,1),xyz_estimation(:,1),'Color','r','LineWidth',2)
-hold on
-plot(trainSet.pm_MPa(:,1),trainSet.tip_exp_baseFrame(:,3),'Color','b','LineWidth',2,'LineStyle','-.')
-hold on
-plot(trainSet.pm_MPa(:,1),xyz_estimation(:,2),'Color','b','LineWidth',2)
-ylim([0,0.3])
-legend('o_{exp}','o_{model}','s_{exp}','s_{model}','Location','northeast','Orientation','horizontal')
-title('Forward Kinematics Performance')
-f1.CurrentAxes.FontWeight='bold';
-f1.CurrentAxes.FontSize=14;
-subplot(2,1,2)
-plot(trainSet.pm_MPa(:,1),abs((trainSet.tip_exp_baseFrame(:,2)-xyz_estimation(:,1))./par_set.L),'Color','k','LineWidth',2,'LineStyle','-.')
-hold on
-plot(trainSet.pm_MPa(:,1),abs((trainSet.tip_exp_baseFrame(:,3)-xyz_estimation(:,2))./par_set.L),'Color','k','LineWidth',2)
-title('Normalized Error ||e||/L')
-ylim([0,0.04])
-
-legend('o','s','Location','northeast','Orientation','horizontal')
-f1.CurrentAxes.FontWeight='bold';
-f1.CurrentAxes.FontSize=14;
-
-error_matrix=trainSet.tip_exp_baseFrame(:,2:4)-xyz_estimation;
-RMSE_x = sqrt(mean((error_matrix(:,1)).^2))
-RMSE_y = sqrt(mean((error_matrix(:,2)).^2))
-RMSE_z = sqrt(mean((error_matrix(:,3)).^2))
+% f1=figure('Position',[100,400,600,400]);
+% subplot(2,1,1)
+% plot(trainSet.pm_MPa(:,1),trainSet.tip_exp_baseFrame(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
+% hold on
+% plot(trainSet.pm_MPa(:,1),xyz_estimation(:,1),'Color','r','LineWidth',2)
+% hold on
+% plot(trainSet.pm_MPa(:,1),trainSet.tip_exp_baseFrame(:,3),'Color','b','LineWidth',2,'LineStyle','-.')
+% hold on
+% plot(trainSet.pm_MPa(:,1),xyz_estimation(:,2),'Color','b','LineWidth',2)
+% ylim([0,0.3])
+% legend('o_{exp}','o_{model}','s_{exp}','s_{model}','Location','northeast','Orientation','horizontal')
+% title('Forward Kinematics Performance')
+% f1.CurrentAxes.FontWeight='bold';
+% f1.CurrentAxes.FontSize=14;
+% subplot(2,1,2)
+% plot(trainSet.pm_MPa(:,1),abs((trainSet.tip_exp_baseFrame(:,2)-xyz_estimation(:,1))./par_set.L),'Color','k','LineWidth',2,'LineStyle','-.')
+% hold on
+% plot(trainSet.pm_MPa(:,1),abs((trainSet.tip_exp_baseFrame(:,3)-xyz_estimation(:,2))./par_set.L),'Color','k','LineWidth',2)
+% title('Normalized Error ||e||/L')
+% ylim([0,0.04])
+% 
+% legend('o','s','Location','northeast','Orientation','horizontal')
+% f1.CurrentAxes.FontWeight='bold';
+% f1.CurrentAxes.FontSize=14;
+% 
+% error_matrix=trainSet.tip_exp_baseFrame(:,2:4)-xyz_estimation;
+% RMSE_x = sqrt(mean((error_matrix(:,1)).^2))
+% RMSE_y = sqrt(mean((error_matrix(:,2)).^2))
+% RMSE_z = sqrt(mean((error_matrix(:,3)).^2))
 %%%%%%%%%%
 
 
