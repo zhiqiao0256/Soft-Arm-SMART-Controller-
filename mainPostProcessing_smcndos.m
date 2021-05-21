@@ -83,7 +83,7 @@ testData = funcPostProcess(testData,s_pt,e_pt);
 return
 %% Segment data1 
 % close all
-testData= par_set.trial2;
+testData= par_set.trial3;
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 plot(testData.xd_exp(:,2))
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
