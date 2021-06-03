@@ -53,19 +53,23 @@ else
 end
 return
 %%
-% testData= par_set.trial1;
-% s_pt=1;e_pt=length(testData.xd_exp(:,2));
-% testData = funcPostProcess(testData,s_pt,e_pt);
-% rmse=testData.rmse;
-% Ep=testData.inputEnergy;
-% testData= par_set.trial2;
-% s_pt=1;e_pt=length(testData.xd_exp(:,2));
-% testData = funcPostProcess(testData,s_pt,e_pt);
-% rmse=testData.rmse+rmse;
-% Ep=testData.inputEnergy+Ep;
+testData= par_set.trial1;
+s_pt=1;e_pt=length(testData.xd_exp(:,2));
+testData = funcPostProcess(testData,s_pt,e_pt);
+rmse=testData.rmse;
+Ep=testData.inputEnergy;
+testData= par_set.trial2;
+s_pt=1;e_pt=length(testData.xd_exp(:,2));
+testData = funcPostProcess(testData,s_pt,e_pt);
+rmse=testData.rmse+rmse;
+Ep=testData.inputEnergy+Ep;
 testData= par_set.trial3;
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
 testData = funcPostProcess(testData,s_pt,e_pt);
+%%%%% 
+rmse=rmse/3
+Ep=Ep/3
+%%%%%%
 % rmse=testData.rmse+rmse;
 % Ep=testData.inputEnergy+Ep;
 % testData= par_set.trial4;
@@ -84,32 +88,15 @@ return
 %% Segment data1 
 % close all
 testData= par_set.trial3;
+%%% fig 1
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 plot(testData.xd_exp(:,2))
+hold on
+plot(testData.x1_exp(:,2))
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
-%%% fig 1
-% fp=figure('Name','fig1','Position',[100,100,800,600]);
-% subplot(2,1,1)
-% plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xd_exp(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',2)
-% hold on
-% plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.x1_exp(s_pt:e_pt,2),'b','LineStyle','-.','LineWidth',2)
-% hold on
-% plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'k','LineStyle',':','LineWidth',2)
-% ylabel('Angle (rad)')
-% xlim([0,50])
-% ylim([-0.9,-0.1])
-% legend('\theta_d','\theta','\theta_a','Orientation','horizontal','Location','north')
-% fp.CurrentAxes.FontWeight='Bold';
-% fp.CurrentAxes.FontSize=20;
-% subplot(2,1,2)
-% plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_inner_tau(s_pt:e_pt),'r','LineWidth',2)
-% legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
-% ylabel('Disturbance (Nm)')
-% xlabel('Time (second)')
-% ylim([-0.2,2])
-% xlim([0,50])
-% fp.CurrentAxes.FontWeight='Bold';
-% fp.CurrentAxes.FontSize=20;
+%%% calcualte avg. pressure during contact
+p_s_pt=148;p_e_pt=822;
+p_avg=mean(testData.pm_MPa(p_s_pt:p_e_pt,2))
 %%% fig 2
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
 fp=figure('Name','fig1','Position',[100,100,800,600]);
@@ -120,7 +107,7 @@ hold on
 plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'k','LineStyle',':','LineWidth',2)
 ylabel('Angle (rad)')
 xlabel('Time (second)')
-% xlim([0,50])
+xlim([0,50])
 ylim([-0.7,-0.1])
 legend('\theta_d','\theta','\theta_a','Orientation','horizontal','Location','north')
 fp.CurrentAxes.FontWeight='Bold';
@@ -131,8 +118,8 @@ plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_tau(
 legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
 ylabel('Disturbance (Nm)')
 xlabel('Time (second)')
-ylim([-0.2,2])
-% xlim([0,50])
+ylim([-0.2,6])
+xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=20;
 
@@ -143,13 +130,13 @@ legend('$p_{m_1}$','Interpreter','latex','Orientation','horizontal','Location','
 ylabel('Air Pressrue (MPa)')
 xlabel('Time (second)')
 ylim([0,0.3])
-% xlim([0,50])
+xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=20;
 testData = funcPostProcess(testData,s_pt,e_pt);
 %% Segment data4 smcndob
 % close all
-testData= par_set.trial4;
+testData= par_set.trial2;
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 plot(testData.xd_exp(:,2))
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
@@ -177,7 +164,7 @@ fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 testData = funcPostProcess(testData,s_pt,e_pt);
 %% segment data 5 smcndob with switch
-testData= par_set.trial5;
+testData= par_set.trial1;
 fp=figure('Name','ramp','Position',[100,100,600,800]);
 plot(testData.xd_exp(:,2))
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
