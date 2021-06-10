@@ -84,11 +84,13 @@ Ep=Ep/3
 % rmse=rmse/5;
 % Ep=Ep/5;
 return
-%% Segment data1 
-% close all
-testData= par_set.trial3;
+%%
+close all
+testData= par_set.trial2;
+fig_width=7/2.8;
+fig_height=7/4;
 %%% fig 1
-fp=figure('Name','ramp','Position',[100,100,600,800]);
+fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
 plot(testData.xd_exp(:,2))
 hold on
 plot(testData.x1_exp(:,2))
@@ -97,41 +99,47 @@ s_pt=1;e_pt=length(testData.xd_exp(:,2));
 p_s_pt=148;p_e_pt=822;
 p_avg=mean(testData.pm_MPa(p_s_pt:p_e_pt,2))
 %%% fig 2
-fp=figure('Name','fig1','Position',[100,100,800,600]);
-plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xd_exp(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',2)
+s_pt=1;e_pt=length(testData.xd_exp(:,2));
+fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xd_exp(s_pt:e_pt,2),'r','LineStyle','-.','LineWidth',2)
 hold on
-plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.x1_exp(s_pt:e_pt,2),'b','LineStyle','-.','LineWidth',2)
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'b','LineStyle',':','LineWidth',2)
 hold on
-plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'k','LineStyle',':','LineWidth',2)
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.x1_exp(s_pt:e_pt,2),'k','LineStyle','-','LineWidth',1)
 ylabel('Angle (rad)')
 xlabel('Time (second)')
-% xlim([0,50])
+xlim([0,50])
 ylim([-0.7,-0.1])
-legend('\theta_d','\theta','\theta_a','Orientation','horizontal','Location','north')
+leg=legend({'${\theta_d}$','$\theta_a$','$\theta$'},'Orientation','horizontal','Location','south','Units','inches','Interpreter','latex')
+leg.ItemTokenSize = [20,20];
 fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=20;
+fp.CurrentAxes.FontSize=10;
+
 %%% fig 3
-fp=figure('Name','fig1','Position',[100,100,800,600]);
-plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_inner_tau(s_pt:e_pt),'r','LineWidth',2)
-legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
+fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_tau(s_pt:e_pt),'r','LineWidth',2)
+leg=legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
+leg.ItemTokenSize = [20,20];
 ylabel('Disturbance (Nm)')
 xlabel('Time (second)')
 ylim([-0.2,2])
-% xlim([0,50])
+xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=20;
+fp.CurrentAxes.FontSize=10;
 
 %%% fig 4
-fp=figure('Name','fig1','Position',[100,100,800,600]);
-plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.pm_MPa(s_pt:e_pt,2),'k','LineWidth',2)
-legend('$p_{m_1}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
+fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.pm_MPa(s_pt:e_pt,2),'b','LineWidth',2)
+leg=legend('$p_{m_1}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
+leg.ItemTokenSize = [20,20];
 ylabel('Air Pressrue (MPa)')
 xlabel('Time (second)')
 ylim([0,0.3])
-% xlim([0,50])
+xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
-fp.CurrentAxes.FontSize=20;
+fp.CurrentAxes.FontSize=10;
 testData = funcPostProcess(testData,s_pt,e_pt);
+return
 return
 %% Segment data4 smcndob
 % close all
