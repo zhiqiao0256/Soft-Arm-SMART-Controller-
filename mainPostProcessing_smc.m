@@ -83,32 +83,32 @@ Ep=Ep/3
 % Ep=testData.inputEnergy+Ep;
 % rmse=rmse/5;
 % Ep=Ep/5;
-return
+% return
 %%
-testData= par_set.trial3;
-par_set.flag_fixed_beta=0;
-testData = funcGetPhiThetaRifromXYZ(testData,par_set)
-testData=funcFwdKinematic5link(testData,par_set)
-fig_width=3.25;
-fig_height=3.25/6*4*3;
-fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
-s_pt=1;e_pt=length(testData.xd_exp(:,2));
-subplot(3,1,1)
-plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.tip_exp(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
-hold on
-plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xyz_estimation(:,1),'Color','b','LineWidth',2)
-legend('Experiment','Model')
-subplot(3,1,2)
-plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.tip_exp(:,3),'Color','r','LineWidth',2,'LineStyle','-.')
-hold on
-plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xyz_estimation(:,2),'Color','b','LineWidth',2)
-subplot(3,1,3)
-plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.tip_exp(:,4),'Color','r','LineWidth',2,'LineStyle','-.')
-hold on
-plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xyz_estimation(:,3),'Color','b','LineWidth',2)
-ylabel('Angle (rad)')
-xlabel('Time (second)')
-xlim([0,50])
+% testData= par_set.trial3;
+% par_set.flag_fixed_beta=0;
+% testData = funcGetPhiThetaRifromXYZ(testData,par_set)
+% testData=funcFwdKinematic5link(testData,par_set)
+% fig_width=3.25;
+% fig_height=3.25/6*4*3;
+% fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+% s_pt=1;e_pt=length(testData.xd_exp(:,2));
+% subplot(3,1,1)
+% plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.tip_exp(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
+% hold on
+% plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xyz_estimation(:,1),'Color','b','LineWidth',2)
+% legend('Experiment','Model')
+% subplot(3,1,2)
+% plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.tip_exp(:,3),'Color','r','LineWidth',2,'LineStyle','-.')
+% hold on
+% plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xyz_estimation(:,2),'Color','b','LineWidth',2)
+% subplot(3,1,3)
+% plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.tip_exp(:,4),'Color','r','LineWidth',2,'LineStyle','-.')
+% hold on
+% plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xyz_estimation(:,3),'Color','b','LineWidth',2)
+% ylabel('Angle (rad)')
+% xlabel('Time (second)')
+% xlim([0,50])
 
 %% Segment data1 
 
@@ -167,6 +167,68 @@ fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 testData = funcPostProcess(testData,s_pt,e_pt);
 return
+%% animation
+close all
+testData= par_set.trial2;
+% Animi 1
+fig_width=7/2.8*2;
+fig_height=7/4*2;
+fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+frame_speed =20;
+curve1= animatedline('Color','r','LineStyle','-.','LineWidth',2);
+% curve2= animatedline('Color','b','LineStyle',':','LineWidth',2);
+curve3= animatedline('Color','k','LineStyle','-','LineWidth',1);
+set(gca,'Xlim',[0,50],'Ylim',[-0.7,-0.1],'Color','none')
+ylabel('Angle (rad)')
+xlabel('Time (second)')
+leg=legend({'${\theta_d}$','$\theta$'},'Orientation','horizontal','Location','south','Units','inches','Interpreter','latex')
+leg.ItemTokenSize = [20,20];
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+
+obj = VideoWriter('smc_contact_pos_1_0.avi');
+obj.Quality = 100;
+obj.FrameRate=40;
+open(obj)
+for cnt = 1:length(testData.xd_exp(:,2))
+  addpoints(curve1,testData.xd_exp(cnt,1)-testData.xd_exp(1,1),testData.xd_exp(cnt,2))
+%   hold on
+%   addpoints(curve2,testData.x1_exp(cnt,1)-testData.xd_exp(1,1),testData.xdNew(cnt))
+    hold on
+   addpoints(curve3,testData.x1_exp(cnt,1)-testData.xd_exp(1,1),testData.x1_exp(cnt,2))
+%   pause(par_set.Ts/frame_speed);
+    f =getframe(gcf);
+    writeVideo(obj,f);
+end
+obj.close();
+return
+%% Animation 2
+close all
+fig_width=7/2.8*2;
+fig_height=7/4*2;
+fp=figure('units','inches','Position',[1,1,fig_width,fig_height]);
+ylabel('Air Pressrue (MPa)')
+xlabel('Time (second)')
+set(gca,'Xlim',[0,50],'Ylim',[0,0.3],'Color','none')
+% ylim([0,0.3])
+% xlim([0,50])
+curve1=animatedline('Color','b','LineWidth',2);
+leg=legend('$p_{m_1}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
+leg.ItemTokenSize = [20,20];
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+obj = VideoWriter('smc_contact_pm_1_0.avi');
+obj.Quality = 100;
+obj.FrameRate=40;
+open(obj)
+for cnt = 1:length(testData.xd_exp(:,2))
+addpoints(curve1,testData.x1_exp(cnt,1)-testData.xd_exp(1,1),testData.pm_MPa(cnt,2))
+% pause(par_set.Ts/frame_speed);
+    f =getframe(gcf);
+    writeVideo(obj,f);
+end
+obj.close();
+
 %% Segment data4 smcndob
 % close all
 testData= par_set.trial4;

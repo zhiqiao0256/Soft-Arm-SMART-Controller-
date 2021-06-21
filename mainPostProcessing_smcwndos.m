@@ -83,10 +83,10 @@ Ep=Ep/3
 % Ep=testData.inputEnergy+Ep;
 % rmse=rmse/5;
 % Ep=Ep/5;
-return
+% return
 %%
 close all
-testData= par_set.trial2;
+testData= par_set.trial1;
 fig_width=7/2.8;
 fig_height=7/4;
 %%% fig 1
@@ -140,7 +140,64 @@ fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 testData = funcPostProcess(testData,s_pt,e_pt);
 return
+%% animation
+close all
+% Animi 1
+fig_width=7/2.8*2;
+fig_height=7/4*2;
+fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+frame_speed =20;
+curve1= animatedline('Color','r','LineStyle','-.','LineWidth',2);
+curve2= animatedline('Color','b','LineStyle',':','LineWidth',2);
+curve3= animatedline('Color','k','LineStyle','-','LineWidth',1);
+set(gca,'Xlim',[0,50],'Ylim',[-0.7,-0.1],'Color','none')
+ylabel('Angle (rad)')
+xlabel('Time (second)')
+leg=legend({'${\theta_d}$','$\theta_a$','$\theta$'},'Orientation','horizontal','Location','south','Units','inches','Interpreter','latex')
+leg.ItemTokenSize = [20,20];
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+
+obj = VideoWriter('smart_contact_pos_1_1.avi');
+obj.Quality = 100;
+obj.FrameRate=40;
+open(obj)
+for cnt = 1:length(testData.xd_exp(:,2))
+  addpoints(curve1,testData.xd_exp(cnt,1)-testData.xd_exp(1,1),testData.xd_exp(cnt,2))
+  hold on
+  addpoints(curve2,testData.x1_exp(cnt,1)-testData.xd_exp(1,1),testData.xdNew(cnt))
+    hold on
+   addpoints(curve3,testData.x1_exp(cnt,1)-testData.xd_exp(1,1),testData.x1_exp(cnt,2))
+%   pause(par_set.Ts/frame_speed);
+    f =getframe(gcf);
+    writeVideo(obj,f);
+end
+obj.close();
 return
+%% Animation 2
+close all
+fig_width=7/2.8*2;
+fig_height=7/4*2;
+fp=figure('units','inches','Position',[1,1,fig_width,fig_height]);
+ylabel('Air Pressrue (MPa)')
+xlabel('Time (second)')
+set(gca,'Xlim',[0,50],'Ylim',[0,0.3],'Color','none')
+curve1=animatedline('Color','b','LineWidth',2);
+leg=legend('$p_{m_1}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
+leg.ItemTokenSize = [20,20];
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+obj = VideoWriter('smart_contact_pm_1_1.avi');
+obj.Quality = 100;
+obj.FrameRate=40;
+open(obj)
+for cnt = 1:length(testData.xd_exp(:,2))
+addpoints(curve1,testData.x1_exp(cnt,1)-testData.xd_exp(1,1),testData.pm_MPa(cnt,2))
+% pause(par_set.Ts/frame_speed);
+    f =getframe(gcf);
+    writeVideo(obj,f);
+end
+obj.close();
 %% Segment data4 smcndob
 % close all
 testData= par_set.trial2;
