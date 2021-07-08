@@ -37,8 +37,8 @@ fprintf('System initialization done \n')
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
-    par_set=funcHighLevelExpPositionTracking(par_set,2);
-    par_set=funcHighLevelExpPositionTracking(par_set,3);
+%     par_set=funcHighLevelExpPositionTracking(par_set,2);
+%     par_set=funcHighLevelExpPositionTracking(par_set,3);
 %     par_set=funcHighLevelExpPositionTracking(par_set,4);
 %     par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
@@ -158,7 +158,7 @@ leg.ItemTokenSize = [20,20];
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 
-obj = VideoWriter('smart_contact_pos_1_1.avi');
+obj = VideoWriter('smart_base_pos_1_2.avi');
 obj.Quality = 100;
 obj.FrameRate=40;
 open(obj)
@@ -187,7 +187,7 @@ leg=legend('$p_{m_1}$','Interpreter','latex','Orientation','horizontal','Locatio
 leg.ItemTokenSize = [20,20];
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-obj = VideoWriter('smart_contact_pm_1_1.avi');
+obj = VideoWriter('smart_base_pm_1_2.avi');
 obj.Quality = 100;
 obj.FrameRate=40;
 open(obj)

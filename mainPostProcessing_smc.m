@@ -113,7 +113,7 @@ Ep=Ep/3
 %% Segment data1 
 
 close all
-testData= par_set.trial2;
+testData= par_set.trial1;
 fig_width=7/2.8;
 fig_height=7/4;
 %%% fig 1
@@ -169,7 +169,7 @@ testData = funcPostProcess(testData,s_pt,e_pt);
 return
 %% animation
 close all
-testData= par_set.trial2;
+testData= par_set.trial1;
 % Animi 1
 fig_width=7/2.8*2;
 fig_height=7/4*2;
@@ -186,7 +186,7 @@ leg.ItemTokenSize = [20,20];
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 
-obj = VideoWriter('smc_contact_pos_1_0.avi');
+obj = VideoWriter('smc_base_pos_1_1.avi');
 obj.Quality = 100;
 obj.FrameRate=40;
 open(obj)
@@ -217,7 +217,7 @@ leg=legend('$p_{m_1}$','Interpreter','latex','Orientation','horizontal','Locatio
 leg.ItemTokenSize = [20,20];
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-obj = VideoWriter('smc_contact_pm_1_0.avi');
+obj = VideoWriter('smc_base_pm_1_1.avi');
 obj.Quality = 100;
 obj.FrameRate=40;
 open(obj)
