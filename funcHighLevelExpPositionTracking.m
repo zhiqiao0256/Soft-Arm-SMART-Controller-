@@ -56,17 +56,17 @@ end
     par.tip_exp = NoLoad(1:end,1) ; par.tip_exp(:,2:4) = ( NoLoad(1:end,12:14) - mean(NoLoad(1:end,5:7)) ) ;
     par.base_exp = NoLoad(1:end,1) ; par.base_exp(:,2:4) = ( NoLoad(1:end,5:7) ) ;
     par.tip_RQ = NoLoad(1:end,1) ; par.tip_RQ(:,2:5) = ( NoLoad(1:end,15:18) ) ;
-    par.xd_exp=NoLoad(1:end,1) ; par.xd_exp(:,2)=NoLoad(1:end,19);
-    par.x1_exp=NoLoad(1:end,1) ; par.x1_exp(:,2)=NoLoad(1:end,20);
-    par.p1_ub=NoLoad(1:end,21); par.p1_ub_MPa = 1e-1 *NoLoad(1:end,21)* 0.0689476;
-    par.u_total=NoLoad(1:end,22);
-    par.u_eq=NoLoad(1:end,23);
-    par.u_s=NoLoad(1:end,24);
-    par.u_n=NoLoad(1:end,25);
-    par.dist_est_tau=NoLoad(1:end,26);
-    par.dist_est_inner_tau = NoLoad(1:end,29);
-    par.ctrl_policy=NoLoad(1:end,28);
-    par.xdNew=NoLoad(1:end,27);
+%     par.xd_exp=NoLoad(1:end,1) ; par.xd_exp(:,2)=NoLoad(1:end,19);
+%     par.x1_exp=NoLoad(1:end,1) ; par.x1_exp(:,2)=NoLoad(1:end,20);
+%     par.p1_ub=NoLoad(1:end,21); par.p1_ub_MPa = 1e-1 *NoLoad(1:end,21)* 0.0689476;
+%     par.u_total=NoLoad(1:end,22);
+%     par.u_eq=NoLoad(1:end,23);
+%     par.u_s=NoLoad(1:end,24);
+%     par.u_n=NoLoad(1:end,25);
+%     par.dist_est_tau=NoLoad(1:end,26);
+%     par.dist_est_inner_tau = NoLoad(1:end,29);
+%     par.ctrl_policy=NoLoad(1:end,28);
+%     par.xdNew=NoLoad(1:end,27);
 switch exp_case
 	case 1
 		par_set.trial1=par;

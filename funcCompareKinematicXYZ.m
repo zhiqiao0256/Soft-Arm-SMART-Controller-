@@ -1,78 +1,65 @@
 function []=funcCompareKinematicXYZ(trainSet,xyz_estimation,par_set)
-figure('Position',[100,400,600,400])
-subplot(3,1,1)
-plot(trainSet.tip_exp(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
+fig_width=7/2;
+fig_height=7/2;
+%%% fig 1
+fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+subplot(2,1,1)
+plot(trainSet.pd_MPa(:,1),trainSet.tip_exp(:,2),'Color','r','LineWidth',2)
 hold on
-plot(xyz_estimation(:,1),'Color','b','LineWidth',2)
-title('Tip Position(m) on X-Axis')
-legend('Experiment','Model')
+plot(trainSet.pd_MPa(:,1),xyz_estimation(:,1),'Color','r','LineWidth',2,'LineStyle','-.')
+% title('Tip Position(m) on X-Axis')
+% legend('Experiment','Model')
 ylim([-0.05,0.2])
-subplot(3,1,2)
-plot(trainSet.tip_exp(:,3),'Color','r','LineWidth',2,'LineStyle','-.')
+% subplot(3,1,2)
+plot(trainSet.pd_MPa(:,1),trainSet.tip_exp(:,3),'Color','b','LineWidth',2)
 hold on
-plot(xyz_estimation(:,2),'Color','b','LineWidth',2)
-title('Tip Position(m) on Y-Axis')
+plot(trainSet.pd_MPa(:,1),xyz_estimation(:,2),'Color','b','LineWidth',2,'LineStyle','-.')
+% title('Tip Position(m) on Y-Axis')
 ylim([-0.05,0.2])
-subplot(3,1,3)
-plot(trainSet.tip_exp(:,4),'Color','r','LineWidth',2,'LineStyle','-.')
+% subplot(3,1,3)
+plot(trainSet.pd_MPa(:,1),trainSet.tip_exp(:,4),'Color','k','LineWidth',2)
 hold on
-plot(xyz_estimation(:,3),'Color','b','LineWidth',2)
-title('Tip Position(m) on Z-Axis')
-ylim([0,0.2])
+plot(trainSet.pd_MPa(:,1),xyz_estimation(:,3),'Color','k','LineWidth',2,'LineStyle','-.')
+% title('Tip Position(m) on Z-Axis')
+% ylim([-0.025,0.2])
+ylabel('Position (m)')
+xlabel('Time (second)')
 
+xlim([0,60])
 error_matrix=trainSet.tip_exp(:,2:4)-xyz_estimation;
 RMSE_x = sqrt(mean((error_matrix(:,1)).^2))
 RMSE_y = sqrt(mean((error_matrix(:,2)).^2))
 RMSE_z = sqrt(mean((error_matrix(:,3)).^2))
-%%%%%%%%%%
-% f1=figure('Position',[100,400,600,400]);
-% subplot(2,1,1)
-% plot(trainSet.pm_MPa(:,1),trainSet.tip_exp_baseFrame(:,2),'Color','r','LineWidth',2,'LineStyle','-.')
-% hold on
-% plot(trainSet.pm_MPa(:,1),xyz_estimation(:,1),'Color','r','LineWidth',2)
-% hold on
-% plot(trainSet.pm_MPa(:,1),trainSet.tip_exp_baseFrame(:,3),'Color','b','LineWidth',2,'LineStyle','-.')
-% hold on
-% plot(trainSet.pm_MPa(:,1),xyz_estimation(:,2),'Color','b','LineWidth',2)
-% ylim([0,0.3])
-% legend('o_{exp}','o_{model}','s_{exp}','s_{model}','Location','northeast','Orientation','horizontal')
-% title('Forward Kinematics Performance')
-% f1.CurrentAxes.FontWeight='bold';
-% f1.CurrentAxes.FontSize=14;
-% subplot(2,1,2)
-% plot(trainSet.pm_MPa(:,1),abs((trainSet.tip_exp_baseFrame(:,2)-xyz_estimation(:,1))./par_set.L),'Color','k','LineWidth',2,'LineStyle','-.')
-% hold on
-% plot(trainSet.pm_MPa(:,1),abs((trainSet.tip_exp_baseFrame(:,3)-xyz_estimation(:,2))./par_set.L),'Color','k','LineWidth',2)
-% title('Normalized Error ||e||/L')
-% ylim([0,0.04])
-% 
-% legend('o','s','Location','northeast','Orientation','horizontal')
-% f1.CurrentAxes.FontWeight='bold';
-% f1.CurrentAxes.FontSize=14;
-% 
-% error_matrix=trainSet.tip_exp_baseFrame(:,2:4)-xyz_estimation;
-% RMSE_x = sqrt(mean((error_matrix(:,1)).^2))
-% RMSE_y = sqrt(mean((error_matrix(:,2)).^2))
-% RMSE_z = sqrt(mean((error_matrix(:,3)).^2))
-%%%%%%%%%%
-
-
-figure('Position',[500,400,600,400])
-subplot(3,1,1)
-plot((trainSet.tip_exp(:,2)-xyz_estimation(:,1))./par_set.L,'Color','r','LineWidth',2,'LineStyle','-.')
-title('Normalized Error on X-Axis')
+leg=legend({'$n_{exp}$','$n_m$','$o_{exp}$','$o_m$','$s_{exp}$','$s_m$'},'Orientation','vertical','Location','eastoutside','Units','inches','Interpreter','latex')
+leg.ItemTokenSize = [20,20];
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+subplot(2,1,2)
+plot(trainSet.pd_MPa(:,1),abs(trainSet.tip_exp(:,2)-xyz_estimation(:,1))./par_set.L,'Color','r','LineWidth',2)
+% title('Normalized Error on X-Axis')
 % legend('Experiment','Model')
 % ylim([-0.2,0.2])
-subplot(3,1,2)
-plot((trainSet.tip_exp(:,3)-xyz_estimation(:,2))./par_set.L,'Color','r','LineWidth',2,'LineStyle','-.')
-title('Normalized Error on Y-Axis')
+hold on
+plot(trainSet.pd_MPa(:,1),abs(trainSet.tip_exp(:,3)-xyz_estimation(:,2))./par_set.L,'Color','b','LineWidth',2)
+% title('Normalized Error on Y-Axis')
 % legend('Experiment','Model')
 % ylim([-0.2,0.2])
-subplot(3,1,3)
-plot((trainSet.tip_exp(:,4)-xyz_estimation(:,3))./par_set.L,'Color','r','LineWidth',2,'LineStyle','-.')
-title('Normalized Error on Z-Axis')
-legend('Experiment','Model')
-ylim([-0.2,0.2])
+% subplot(3,1,3)
+hold on
+plot(trainSet.pd_MPa(:,1),abs(trainSet.tip_exp(:,4)-xyz_estimation(:,3))./par_set.L,'Color','k','LineWidth',2)
+% title('Normalized Error on Z-Axis')
+% legend('Experiment','Model')
+hold on
+ylabel('Normalized Error')
+xlabel('Time (second)')
+xlim([0,60])
+ylim([0,0.03])
+leg=legend({'$n_{err}$','$o_{err}$','$s_{err}$'},'Orientation','vertical','Location','eastoutside','Units','inches','Interpreter','latex')
+leg.ItemTokenSize = [20,20];
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+return
+
 figure('Position',[600,400,400,400])
     test_tip_pos=[];
     test_tip_pos=trainSet.tip_exp;

@@ -22,7 +22,7 @@ par_set.flag_fixed_beta =0;
 par_set.Ts=1/40;
 % Geometric para.
 par_set.trianlge_length=0.07;% fabric triangle edge length
-par_set.L=0.185;%actuator length
+par_set.L=0.18;%actuator length
 par_set.n=5;% # of joints for augmented rigid arm
 par_set.m0=0.35;%kg segment weight
 par_set.g=9.8;%% gravity constant
@@ -40,10 +40,10 @@ fprintf('System initialization done \n')
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
-%     par_set=funcHighLevelExpPositionTracking(par_set,2);
-%     par_set=funcHighLevelExpPositionTracking(par_set,3);
-%     par_set=funcHighLevelExpPositionTracking(par_set,4);
-%     par_set=funcHighLevelExpPositionTracking(par_set,5);
+    par_set=funcHighLevelExpPositionTracking(par_set,2);
+    par_set=funcHighLevelExpPositionTracking(par_set,3);
+    par_set=funcHighLevelExpPositionTracking(par_set,4);
+    par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
 %     par_set=funcHighLevelExpPositionTracking(par_set,7);
 %     par_set=funcHighLevelExpPositionTracking(par_set,8);
@@ -55,11 +55,13 @@ else
     fprintf( 'Data loaded \n' );
 end
 %% Calculate RMSE and Energy of Pm
-testData= par_set.trial1;
-s_pt=1;e_pt=length(testData.xd_exp(:,2));
+testData= par_set.trial5;
+s_pt=1;e_pt=length(testData.pd_MPa(:,2));
 % close all
 % testData = funcPostProcess(testData,s_pt,e_pt);
 % fp=figure('Name','ramp','Position',[100,100,600,800]);
 testData = funcGetPhiThetaRifromXYZ(testData,par_set);
 testData = funcFwdKinematic5link(testData,par_set);
 %% Debug
+close all
+funcCompareKinematicXYZ(testData,testData.xyz_estimation,par_set);
