@@ -37,8 +37,8 @@ fprintf('System initialization done \n')
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
-%     par_set=funcHighLevelExpPositionTracking(par_set,2);
-%     par_set=funcHighLevelExpPositionTracking(par_set,3);
+    par_set=funcHighLevelExpPositionTracking(par_set,2);
+    par_set=funcHighLevelExpPositionTracking(par_set,3);
 %     par_set=funcHighLevelExpPositionTracking(par_set,4);
 %     par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
@@ -122,7 +122,7 @@ leg=legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Lo
 leg.ItemTokenSize = [20,20];
 ylabel('Disturbance (Nm)')
 xlabel('Time (second)')
-ylim([-0.2,2])
+% ylim([-0.2,2])
 xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
