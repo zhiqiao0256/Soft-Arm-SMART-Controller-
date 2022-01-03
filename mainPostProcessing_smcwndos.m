@@ -86,7 +86,7 @@ Ep=Ep/3
 % return
 %%
 close all
-testData= par_set.trial1;
+testData= par_set.trial2;
 fig_width=7/2.8;
 fig_height=7/4;
 %%% fig 1
