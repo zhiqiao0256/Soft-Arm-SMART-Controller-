@@ -121,7 +121,7 @@ fp.CurrentAxes.FontSize=10;
 
 %%% fig 3
 fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
-plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_inner_tau(s_pt:e_pt),'r','LineWidth',2)
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_tau(s_pt:e_pt),'r','LineWidth',2)
 leg=legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
 leg.ItemTokenSize = [20,20];
 ylabel('Disturbance (Nm)')
@@ -317,3 +317,7 @@ xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 testData = funcPostProcess(testData,s_pt,e_pt);
+%% Update 1/3/2022 save data into new set for later overlapped
+smcndob=[];
+smcndob=testData;
+save('smcndob_wood.mat','smcndob');

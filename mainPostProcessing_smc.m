@@ -286,3 +286,11 @@ xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 testData = funcPostProcess(testData,s_pt,e_pt);
+%% Update 1/3/2022 save data into new set for later overlapped
+smc=[];
+smc=testData;
+save('smc_base.mat','smc');
+%% Update 1/3/2022 save data into new set for later overlapped
+smc=[];
+smc=testData;
+save('smc_wood.mat','smc');

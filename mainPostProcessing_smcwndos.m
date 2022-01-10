@@ -39,8 +39,8 @@ if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
     par_set=funcHighLevelExpPositionTracking(par_set,2);
     par_set=funcHighLevelExpPositionTracking(par_set,3);
-%     par_set=funcHighLevelExpPositionTracking(par_set,4);
-%     par_set=funcHighLevelExpPositionTracking(par_set,5);
+    par_set=funcHighLevelExpPositionTracking(par_set,4);
+    par_set=funcHighLevelExpPositionTracking(par_set,5);
 %     par_set=funcHighLevelExpPositionTracking(par_set,6);
 %     par_set=funcHighLevelExpPositionTracking(par_set,7);
 %     par_set=funcHighLevelExpPositionTracking(par_set,8);
@@ -117,7 +117,7 @@ fp.CurrentAxes.FontSize=10;
 
 %%% fig 3
 fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
-plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_tau(s_pt:e_pt),'r','LineWidth',2)
+plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_inner_tau(s_pt:e_pt),'r','LineWidth',2)
 leg=legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
 leg.ItemTokenSize = [20,20];
 ylabel('Disturbance (Nm)')
@@ -241,6 +241,8 @@ fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=20;
 testData = funcPostProcess(testData,s_pt,e_pt);
 %% segment data 5 smcndob with switch
+close all
+
 testData= par_set.trial1;
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
 %%% fig 2
@@ -279,3 +281,11 @@ xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=20;
 testData = funcPostProcess(testData,s_pt,e_pt);
+%% Update 1/3/2022 save data into new set for later overlapped
+smart=[];
+smart=testData;
+save('smart_base.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_wood.mat','smart');
