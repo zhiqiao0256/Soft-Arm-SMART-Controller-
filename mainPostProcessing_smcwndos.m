@@ -52,7 +52,7 @@ else
     fprintf( 'Data loaded \n' );
 end
 %%
-testData= par_set.trial1;
+testData= par_set.trial2;
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
 testData = funcPostProcess(testData,s_pt,e_pt);
 rmse=testData.rmse;
@@ -85,8 +85,8 @@ Ep=Ep/3
 % Ep=Ep/5;
 % return
 %%
-close all
-testData= par_set.trial3;
+% close all
+testData= par_set.trial1;
 fig_width=7/2.8;
 fig_height=7/4;
 %%% fig 1
