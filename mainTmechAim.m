@@ -30,7 +30,7 @@ hold on
 s_pt=1;e_pt=length(testData2.xd_exp(:,2));
 % plot(testData2.xd_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.xd_exp(s_pt:e_pt,2),'b','LineStyle','-.','LineWidth',2)
 hold on
-plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.x1_exp(s_pt:e_pt,2),'b','LineStyle','-','LineWidth',1)
+% plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.x1_exp(s_pt:e_pt,2),'b','LineStyle','-','LineWidth',1)
 hold on
 s_pt=1;e_pt=length(testData3.xd_exp(:,2));
 % plot(testData3.xd_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.xd_exp(s_pt:e_pt,2),'k','LineStyle','-.','LineWidth',2)
@@ -46,7 +46,7 @@ fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 %%%% disturbance
 fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
-plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.dist_est_inner_tau(s_pt:e_pt),'r','LineWidth',2)
+plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.dist_est_inner_tau(s_pt:e_pt),'r','LineWidth',2)
 leg=legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
 leg.ItemTokenSize = [20,20];
 ylabel('Disturbance (Nm)')
@@ -79,7 +79,7 @@ fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 %%%% disturbance
 fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
-plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.dist_est_inner_tau(s_pt:e_pt),'k','LineWidth',2)
+plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.dist_est_inner_tau(s_pt:e_pt),'k','LineWidth',2)
 leg=legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
 leg.ItemTokenSize = [20,20];
 ylabel('Disturbance (Nm)')
@@ -91,7 +91,7 @@ fp.CurrentAxes.FontSize=10;
 %%%% Pressure compare
 fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
 s_pt=1;e_pt=length(testData1.xd_exp(:,2));
-plot(testData1.x1_exp(s_pt:e_pt,1)-testData1.xd_exp(s_pt,1),testData1.pm_MPa(s_pt:e_pt,2)+0.07,'b','LineWidth',1)
+plot(testData1.x1_exp(s_pt:e_pt,1)-testData1.xd_exp(s_pt,1),testData1.pm_MPa(s_pt:e_pt,2),'b','LineWidth',1)%+0.07
 hold on
 s_pt=1;e_pt=length(testData3.xd_exp(:,2));
 plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.pm_MPa(s_pt:e_pt,2),'k','LineWidth',2)
