@@ -320,4 +320,4 @@ testData = funcPostProcess(testData,s_pt,e_pt);
 %% Update 1/3/2022 save data into new set for later overlapped
 smcndob=[];
 smcndob=testData;
-save('smcndob_wood.mat','smcndob');
+save('smcndob_base.mat','smcndob');
