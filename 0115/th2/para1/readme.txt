@@ -1,0 +1,19 @@
+ p_client.positionProfile_flag=3 
+        p_client.flag_use_mocap=1
+        p_client.trailDuriation=60.
+        p_client.smcNDOB_lambda= 10.0
+        p_client.smcNDOB_k_sig = 30.0# ori 30
+        p_client.smcNDOB_eta = 40.0
+        p_client.smcNDOB_kp_sig = 10.0# ori 10 ksf in paper
+        p_client.smcNDOB_kw=5.0
+        p_client.smcNDOB_th=0.3# N.m # N to C th
+        p_client.mode_C_to_R_th=0.17
+        p_client.mode_R_to_C_th=0.3
+        p_client.tau_max=10.0 #N.m
+        p_client.x1_error_max_value=np.deg2rad(1)
+
+        p_client.x1_t0=np.deg2rad(-20)
+        p_client.rampRateAbs=np.radians(0.5) # 1 deg/sec
+        p_client.rampAmpAbs=np.radians(15) # x1(t0)-rampAmp
+        p_client.rampFlatTime=5.0 # sec
+        p_client.timer_th=3.0#sec
