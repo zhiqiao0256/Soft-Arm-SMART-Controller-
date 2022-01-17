@@ -38,7 +38,7 @@ hold on
 plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.x1_exp(s_pt:e_pt,2),'k','LineStyle','-','LineWidth',1)
 ylabel('Angle (rad)')
 xlabel('Time (second)')
-xlim([0,90])
+xlim([0,60])
 ylim([-0.9,-0.05])
 leg=legend({'${\theta_d}$','$\theta_{b1}$','$\theta_{b2}$','$\theta_{p}$'},'Orientation','vertical','Location','south','Units','inches','Interpreter','latex')
 leg.ItemTokenSize = [20,20];
@@ -52,7 +52,7 @@ leg.ItemTokenSize = [20,20];
 ylabel('Disturbance (Nm)')
 xlabel('Time (second)')
 ylim([-0.0,0.5])
-xlim([0,90])
+xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 %% base pos tracking only smart as example
@@ -104,19 +104,3 @@ ylim([0,0.25])
 xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
-%% Fwd kinematic 
-clear all
-close all
-clc
-load('fk_data.mat');
-%%
-close all
-testData=[];
-par_set.L=0.18;%actuator length
-testData=par_set.trial3;
-testData = funcGetPhiThetaRifromXYZ(testData,par_set);
-testData=funcFwdKinematic5link(testData,par_set);
-testData2=testData;
-testData2.Ri=testData.Ri*0.0;
-testData2=funcFwdKinematic5link(testData2,par_set);
-funcCompareKinematicXYZ2models(testData,testData2,testData.xyz_estimation,testData2.xyz_estimation,par_set)
