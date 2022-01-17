@@ -104,3 +104,19 @@ ylim([0,0.25])
 xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
+%% Fwd kinematic 
+clear all
+close all
+clc
+load('fk_data.mat');
+%%
+close all
+testData=[];
+par_set.L=0.18;%actuator length
+testData=par_set.trial3;
+testData = funcGetPhiThetaRifromXYZ(testData,par_set);
+testData=funcFwdKinematic5link(testData,par_set);
+testData2=testData;
+testData2.Ri=testData.Ri*0.0;
+testData2=funcFwdKinematic5link(testData2,par_set);
+funcCompareKinematicXYZ2models(testData,testData2,testData.xyz_estimation,testData2.xyz_estimation,par_set)

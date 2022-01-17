@@ -87,20 +87,21 @@ Ep=Ep/3
 %%
 close all
 testData= par_set.trial3;
-fig_width=7/2.8;
-fig_height=7/4;
+fig_width=4.25;
+fig_height=4.25;
 %%% fig 1
-fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
-plot(testData.xd_exp(:,2))
-hold on
-plot(testData.x1_exp(:,2))
-s_pt=1;e_pt=length(testData.xd_exp(:,2));
-%%% calcualte avg. pressure during contact
-p_s_pt=148;p_e_pt=822;
-p_avg=mean(testData.pm_MPa(p_s_pt:p_e_pt,2))
+% fp=figure('units','centimeters','Position',[4,4,fig_width,fig_height]);
+% plot(testData.xd_exp(:,2))
+% hold on
+% plot(testData.x1_exp(:,2))
+% s_pt=1;e_pt=length(testData.xd_exp(:,2));
+% %%% calcualte avg. pressure during contact
+% p_s_pt=148;p_e_pt=822;
+% p_avg=mean(testData.pm_MPa(p_s_pt:p_e_pt,2))
+
 %%% fig 2
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
-fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+fp=figure('units','centimeters','Position',[4,10,fig_width,fig_height]);
 plot(testData.xd_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xd_exp(s_pt:e_pt,2),'r','LineStyle','-.','LineWidth',2)
 hold on
 plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.xdNew(s_pt:e_pt),'b','LineStyle',':','LineWidth',2)
@@ -116,7 +117,7 @@ fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 
 %%% fig 3
-fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+fp=figure('units','centimeters','Position',[4,15,fig_width,fig_height]);
 plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.dist_est_inner_tau(s_pt:e_pt),'r','LineWidth',2)
 leg=legend('$\hat{\Delta}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
 leg.ItemTokenSize = [20,20];
@@ -127,8 +128,8 @@ xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 
-%%% fig 4
-fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+% fig 4
+fp=figure('units','centimeters','Position',[4,20,fig_width,fig_height]);
 plot(testData.x1_exp(s_pt:e_pt,1)-testData.xd_exp(s_pt,1),testData.pm_MPa(s_pt:e_pt,2),'b','LineWidth',2)
 leg=legend('$p_{m_1}$','Interpreter','latex','Orientation','horizontal','Location','northeast')
 leg.ItemTokenSize = [20,20];
@@ -289,3 +290,5 @@ save('smart_base.mat','smart');
 smart=[];
 smart=testData;
 save('smart_wood.mat','smart');
+%% Update 1/13/2022 save data for fk.
+save('fk_data.mat','par_set');
