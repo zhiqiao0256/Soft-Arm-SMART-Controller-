@@ -85,9 +85,9 @@ Ep=Ep/3
 % Ep=Ep/5;
 % return
 %%
-% close all
-testData= par_set.trial1;
-fig_width=7/2.8;
+close all
+testData= par_set.trial3;
+fig_width=7;
 fig_height=7/4;
 %%% fig 1
 fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
@@ -289,3 +289,31 @@ save('smart_base.mat','smart');
 smart=[];
 smart=testData;
 save('smart_wood.mat','smart');
+%% ksf
+smart=[];
+smart=testData;
+save('smart_ksf_base_10.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_ksf_low_01.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_ksf_low_50.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_ksf_high_100.mat','smart');
+%% kw
+smart=[];
+smart=testData;
+save('smart_kw_base_5.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_kw_low_01.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_kw_high_20.mat','smart');

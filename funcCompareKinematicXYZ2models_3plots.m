@@ -1,42 +1,58 @@
-function []=funcCompareKinematicXYZ2models(trainSet1,trainSet2,xyz_estimation1,xyz_estimation2,par_set)
+function []=funcCompareKinematicXYZ2models_3plots(trainSet1,trainSet2,xyz_estimation1,xyz_estimation2,par_set)
 fig_width=8.5;
 fig_height=4.25;
 %%% fig 1
 fp=figure('units','centimeters','Position',[4,4,fig_width,fig_height]);
-% subplot(3,1,1)
+subplot(3,1,1)
 plot(trainSet1.pd_MPa(:,1),trainSet1.tip_exp(:,2),'Color','r','LineWidth',1)
 hold on
 plot(trainSet1.pd_MPa(:,1),xyz_estimation1(:,1),'Color','b','LineWidth',2,'LineStyle','-.')
 hold on
-plot(trainSet2.pd_MPa(:,1),xyz_estimation2(:,1),'Color','k','LineWidth',1.5,'LineStyle','--')
+plot(trainSet1.pd_MPa(:,1),xyz_estimation1(:,1),'Color','k','LineWidth',1.5,'LineStyle','--')
+leg=legend({'$n_{exp}$','$n_{m1}$','$n_{m2}$'},'Orientation','vertical','Location','eastoutside','Units','centimeters','Interpreter','latex')
+leg.ItemTokenSize = [10,10];
+xlim([0,60])
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=8;
 % title('Tip Position(m) on X-Axis')
 % legend('Experiment','Model')
 % ylim([-0.025,0.2])
-% subplot(3,1,2)
+subplot(3,1,2)
 plot(trainSet1.pd_MPa(:,1),trainSet1.tip_exp(:,3),'Color','r','LineWidth',1)
 hold on
 plot(trainSet1.pd_MPa(:,1),xyz_estimation1(:,2),'Color','b','LineWidth',2,'LineStyle','-.')
 hold on
-plot(trainSet2.pd_MPa(:,1),xyz_estimation2(:,2),'Color','k','LineWidth',2,'LineStyle','--')
+plot(trainSet1.pd_MPa(:,1),xyz_estimation1(:,2),'Color','k','LineWidth',2,'LineStyle','--')
+leg=legend({'$o_{exp}$','$o_{m1}$','$o_{m2}$'},'Orientation','vertical','Location','eastoutside','Units','centimeters','Interpreter','latex')
+leg.ItemTokenSize = [10,10];
+xlim([0,60])
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=8;
 % title('Tip Position(m) on Y-Axis')
 % ylim([-0.025,0.2])
-% subplot(3,1,3)
+subplot(3,1,3)
 plot(trainSet1.pd_MPa(:,1),trainSet1.tip_exp(:,4),'Color','r','LineWidth',1)
 hold on
 plot(trainSet1.pd_MPa(:,1),xyz_estimation1(:,3),'Color','b','LineWidth',2,'LineStyle','-.')
 hold on
 plot(trainSet2.pd_MPa(:,1),xyz_estimation2(:,3),'Color','k','LineWidth',2,'LineStyle','--')
-% title('Tip Position(m) on Z-Axis')
-ylim([-0.025,0.2])
-ylabel('Position (m)')
-xlabel('Time (second)')
+leg=legend({'$s_{exp}$','$s_{m1}$','$s_{m2}$'},'Orientation','vertical','Location','eastoutside','Units','centimeters','Interpreter','latex')
+leg.ItemTokenSize = [10,10];
 xlim([0,60])
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=8;
+% title('Tip Position(m) on Z-Axis')
+% ylim([-0.025,0.2])
+% ylabel('Position (m)')
+% xlabel('Time (second)')
+
 error_matrix=trainSet1.tip_exp(:,2:4)-xyz_estimation1;
 RMSE_x = sqrt(mean((error_matrix(:,1)).^2))
 RMSE_y = sqrt(mean((error_matrix(:,2)).^2))
 RMSE_z = sqrt(mean((error_matrix(:,3)).^2))
 leg=legend({'$n_{exp}$','$n_{m1}$','$n_{m2}$','$o_{exp}$','$o_{m1}$','$o_{m2}$','$s_{exp}$','$s_{m1}$','$s_{m2}$'},'Orientation','vertical','Location','eastoutside','Units','centimeters','Interpreter','latex')
 leg.ItemTokenSize = [10,10];
+xlim([0,60])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=8;
 % subplot(1,2,2)
