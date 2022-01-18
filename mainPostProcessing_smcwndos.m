@@ -86,7 +86,7 @@ Ep=Ep/3
 % return
 %%
 close all
-testData= par_set.trial3;
+testData= par_set.trial2;
 fig_width=7;
 fig_height=7/4;
 %%% fig 1
@@ -96,8 +96,8 @@ hold on
 plot(testData.x1_exp(:,2))
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
 %%% calcualte avg. pressure during contact
-p_s_pt=148;p_e_pt=822;
-p_avg=mean(testData.pm_MPa(p_s_pt:p_e_pt,2))
+% p_s_pt=148;p_e_pt=822;
+% p_avg=mean(testData.pm_MPa(p_s_pt:p_e_pt,2))
 %%% fig 2
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
 fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
@@ -317,3 +317,7 @@ save('smart_kw_low_01.mat','smart');
 smart=[];
 smart=testData;
 save('smart_kw_high_20.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_grape','smart');

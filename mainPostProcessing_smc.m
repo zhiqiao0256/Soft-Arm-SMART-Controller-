@@ -113,18 +113,18 @@ Ep=Ep/3
 %% Segment data1 
 
 close all
-testData= par_set.trial1;
+testData= par_set.trial3;
 fig_width=7/2.8;
 fig_height=7/4;
 %%% fig 1
-fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
-plot(testData.xd_exp(:,2))
-hold on
-plot(testData.x1_exp(:,2))
-s_pt=1;e_pt=length(testData.xd_exp(:,2));
-%%% calcualte avg. pressure during contact
-p_s_pt=148;p_e_pt=822;
-p_avg=mean(testData.pm_MPa(p_s_pt:p_e_pt,2))
+% fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+% plot(testData.xd_exp(:,2))
+% hold on
+% plot(testData.x1_exp(:,2))
+% s_pt=1;e_pt=length(testData.xd_exp(:,2));
+% %%% calcualte avg. pressure during contact
+% p_s_pt=148;p_e_pt=822;
+% p_avg=mean(testData.pm_MPa(p_s_pt:p_e_pt,2))
 %%% fig 2
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
 fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
@@ -294,3 +294,7 @@ save('smc_base.mat','smc');
 smc=[];
 smc=testData;
 save('smc_wood.mat','smc');
+%%
+smc=[];
+smc=testData;
+save('smc_grape.mat','smc');
