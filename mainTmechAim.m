@@ -139,7 +139,7 @@ smart_ksf_low=load('smart_ksf_low_01.mat');
 smart_ksf_base=load('smart_ksf_base_10.mat');
 smart_ksf_high=load('smart_ksf_high_100.mat');
 
-smart_kw_low=load('smart_kw_low_01.mat');
+smart_kw_low=load('smart_kw_low_1.mat');
 smart_kw_base=load('smart_kw_base_5.mat');
 smart_kw_high=load('smart_kw_high_20.mat');
 %% ksf contact combo
@@ -368,7 +368,7 @@ smart_ksf_low=load('smart_ksf_base_10.mat');
 smart_ksf_base=load('smart_ksf_low_50.mat');
 smart_ksf_high=load('smart_ksf_high_100.mat');
 
-smart_kw_low=load('smart_kw_low_01.mat');
+smart_kw_low=load('smart_kw_low_1.mat');
 smart_kw_base=load('smart_ksf_base_10.mat');
 smart_kw_high=load('smart_kw_high_20.mat');
 close all

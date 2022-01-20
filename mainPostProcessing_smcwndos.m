@@ -86,7 +86,7 @@ Ep=Ep/3
 % return
 %%
 close all
-testData= par_set.trial2;
+testData= par_set.trial1;
 fig_width=7;
 fig_height=7/4;
 %%% fig 1
@@ -312,7 +312,7 @@ save('smart_kw_base_5.mat','smart');
 %%
 smart=[];
 smart=testData;
-save('smart_kw_low_01.mat','smart');
+save('smart_kw_low_1.mat','smart');
 %%
 smart=[];
 smart=testData;
