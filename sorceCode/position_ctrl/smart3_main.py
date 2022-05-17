@@ -26,7 +26,7 @@ class pc_client(object):
         context = zmq.Context()
         self.socket0 = context.socket(zmq.PUB)
         self.socket0.setsockopt(zmq.CONFLATE,True)
-        self.socket0.bind("tcp://10.203.53.226:4444")## PUB pd to Raspi Client
+        self.socket0.bind("tcp://10.203.49.209:4444")## PUB pd to Raspi Client
 
         self.socket1 = context.socket(zmq.PUB)##PUb to Record
         self.socket1.setsockopt(zmq.CONFLATE,True)
@@ -76,7 +76,7 @@ class pc_client(object):
         self.r0=0.
         # SMC state variable and time stamps
         self.x1_old=0. # state for last iteration
-        self.x1_t0=0.
+        self.x1_t0=-np.deg2rad(-15)
         self.x2_old=0. # state for last iteration
         self.x1_current=0. # state for current iteration
         self.x2_current=0. # state for current iteration
@@ -170,6 +170,8 @@ class pc_client(object):
         self.smcNDOB_dist_est_inner=0.
         self.smcNDOB_th=1.0
         self.flag_first_contact =0
+        self.smcNDOB_update_iteration=0
+        self.smcNDOB_update_array=np.array([0.]*3)
         self.smcNDOB_lambda= 1.0
         self.smcNDOB_k_sig = 1.0
         self.smcNDOB_eta = 1.0
@@ -197,8 +199,9 @@ class pc_client(object):
         self.timer_attampt =2.0 
         self.timer_th=100.0
         self.flag_reset=1
-        self.mode_C_to_R_th=0.5
-        self.mode_R_to_C_th=0.3
+        self.mode_N_to_C_th=0.1
+        self.mode_C_to_R_th=0.1
+        self.mode_R_to_C_th=0.1
         self.xdc=0.
         # self.step_response(np.array([5.0,1.0,1.0]),5)
 
@@ -212,7 +215,7 @@ class pc_client(object):
             vector_phiTheta=np.array([0., 0.])
             vector_phiTheta=self.getThetaPhiAndr0FromXYZ()
             self.x1_old=vector_phiTheta[1]
-            self.x1_t0=vector_phiTheta[1]
+            # self.x1_t0=vector_phiTheta[1]
             # self.pd_pm_array=self.recv_zipped_socket3()
             # print 1
             """Input Signal selection"""
@@ -521,12 +524,12 @@ class pc_client(object):
         f_x=(self.k0* self.x1_current + (self.b0+C)* self.x2_current + G)/M
 
         if self.flag_contact_mode ==4: #N-C-R-C-R-N
-            if self.flag_stage==0: # normal mode
+            if self.flag_stage==0 or self.flag_stage ==20: # normal mode
                 self.xd1_new = self.xd1
                 dxd1=self.positionSingleDerevativeSelection()
                 ddxd1=self.positionDoubleDerevativeSelection()
                 xd1=self.xd1_new
-                self.x1_new_error=self.x1_current-self.xd1_new
+                self.x1_new_error=self.x1_current-xd1
                 s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
                 if np.absolute(s/self.smcNDOB_sat_bound) <=1:
                     sat_s= s/self.smcNDOB_sat_bound
@@ -538,7 +541,11 @@ class pc_client(object):
                 u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                 # Update smcNDOB estimation 1229
                 self.smcNDOB_dz_inner = -self.smcNDOB_kw*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner-self.smcNDOB_kp_sig*s)
+                #update 1230
+                # self.smcNDOB_dz_inner = -self.smcNDOB_kw*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)    
                 self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
+                #update 1230
+                # self.update_z_estimation()
                 self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kw*s
                 self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
                 self.smcNDOB_dist_est_inner_tqr_kw_s=self.smcNDOB_kw*s*M
@@ -548,16 +555,46 @@ class pc_client(object):
                     if np.absolute(self.smcNDOB_dist_est_inner_tqr)>= self.smcNDOB_th:# swith to compliant mode
                         if self.flag_first_contact ==0: # first contact
                             self.flag_first_contact =1
-                            self.xdc=xd1
+                            # update 1230
+                            # self.xdc=xd1-np.sign(xd1)*self.x1_error_max_value*0.0
+                            self.xdc=self.x1_current-np.sign(self.x1_current)*self.x1_error_max_value*0.0
+                            # self.xdc=np.deg2rad(-25)
                         self.flag_stage =1
+                        self.x1_new_error=self.x1_current-xd1
+                        s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
+                        if np.absolute(s/self.smcNDOB_sat_bound) <=1:
+                            sat_s= s/self.smcNDOB_sat_bound
+                        else:
+                            sat_s= np.sign(s)
+                        # Update u_eq,u_s,u_n
+                        u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
+                        u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                        u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                        # Update smcNDOB estimation 1229
+                        self.smcNDOB_dz_inner = -self.smcNDOB_kw*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner-self.smcNDOB_kp_sig*s)
+                        # #update 1230
+                        # self.smcNDOB_dz_inner = -self.smcNDOB_kw*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)                   
+                        self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
+                        #update 1230
+                        # self.update_z_estimation()
+                        self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kw*s
+                        self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
+                        self.smcNDOB_dist_est_inner_tqr_kw_s=self.smcNDOB_kw*s*M
+                        self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner                    
+                        u_total = u_eq + u_s + u_n # trying to go back to xd_t
+                        self.xd_new=xd1 #stay in compliant mode
                     elif np.absolute(self.smcNDOB_dist_est_inner_tqr)< self.smcNDOB_th: # stay in normal
                         self.flag_stage =0 
                 elif np.absolute(self.x1_error_current) < self.x1_error_max_value: #stay in normal mode
                     self.flag_stage =0
-            elif self.flag_stage==1: # compliant mode
+            elif self.flag_stage==1 or self.flag_stage ==21: # compliant mode
                 dxd1=0.
                 ddxd1=0.
                 xd1=self.xdc# update 1229
+                # xd1=self.x1_current-np.sign(self.x1_current)*self.x1_error_max_value*0.0
+                # xd1=self.xd1_new
+                # if np.absolute(xd1) >= np.absolute(self.x1_current):
+                #     xd1=self.x1_current
                 self.flag_stage =1
                 self.x1_new_error=self.x1_current-xd1
                 s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
@@ -571,7 +608,11 @@ class pc_client(object):
                 u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                 # Update smcNDOB estimation 1229
                 self.smcNDOB_dz_inner = -self.smcNDOB_kw*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner-self.smcNDOB_kp_sig*s)
+                # #update 1230
+                # self.smcNDOB_dz_inner = -self.smcNDOB_kw*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)                   
                 self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
+                #update 1230
+                # self.update_z_estimation()
                 self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kw*s
                 self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
                 self.smcNDOB_dist_est_inner_tqr_kw_s=self.smcNDOB_kw*s*M
@@ -581,13 +622,14 @@ class pc_client(object):
                 if np.absolute(self.smcNDOB_dist_est_inner_tqr)< self.mode_C_to_R_th: # switch to recovery mode
                     if self.flag_first_contact ==1: # first contact
                         self.flag_first_contact =0
-                    self.flag_stage =2
-            elif self.flag_stage==2: #recovery mode
+                    self.flag_stage =12
+            elif self.flag_stage==2 or self.flag_stage==12: #recovery mode
                 self.flag_stage = 2
                 self.xd1_new = self.x1_current-np.sign(self.x1_current-self.xd1)*self.x1_error_max_value
                 dxd1=0.
                 ddxd1=0.
                 xd1=self.xd1_new
+                self.x1_new_error=self.x1_current-xd1
                 s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
                 if np.absolute(s/self.smcNDOB_sat_bound) <=1:
                     sat_s= s/self.smcNDOB_sat_bound
@@ -600,19 +642,21 @@ class pc_client(object):
                 # Update smcNDOB estimation 1229
                 self.smcNDOB_dz_inner = -self.smcNDOB_kw*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner-self.smcNDOB_kp_sig*s)
                 self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
+                #update 1230
+                # self.update_z_estimation()
                 self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kw*s
                 self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
                 self.smcNDOB_dist_est_inner_tqr_kw_s=self.smcNDOB_kw*s*M
                 self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
                 u_total = u_eq + u_s + u_n # trying to go back to xd_t
                 self.xd_new=xd1
-                if np.absolute(self.x1_error_current) >= self.x1_error_max_value: #stay in R mode OR switch to C mode
+                if np.absolute(self.x1_new_error) >= self.x1_error_max_value: #stay in R mode OR switch to C mode
                     if np.absolute(self.smcNDOB_dist_est_inner_tqr) <= self.mode_R_to_C_th: # stay in R mode
                         self.flag_stage = 2
                     elif np.absolute(self.smcNDOB_dist_est_inner_tqr) > self.mode_R_to_C_th: # change to C mode
-                        self.flag_stage = 1
-                elif np.absolute(self.x1_error_current) < self.x1_error_max_value: # switch to normal               
-                    self.flag_stage =0
+                        self.flag_stage = 21
+                elif np.absolute(self.x1_new_error) < self.x1_error_max_value: # switch to normal               
+                    self.flag_stage =20
         cphi= np.cos(phi)
         sphi= np.sin(phi)
         p1_MPa=(u_total/self.alpha0-(0.5*sphi+0.5*np.sqrt(3)*cphi)*pm2_MPa+sphi*pm3_MPa)/(0.5*sphi-0.5*np.sqrt(3)*cphi)
@@ -627,6 +671,7 @@ class pc_client(object):
         self.x1_old=self.x1_current
         self.x1_error_old=self.x1_error_current
         self.t_old=self.t_new
+        # print "C?",self.flag_stage,"xdn:",np.round(np.rad2deg(self.xd_new),1),"xdt(deg)",np.round(np.rad2deg(self.xd1),1),"xt(deg)",np.round(np.rad2deg(self.x1_current),1),"xet(deg)",np.round(np.rad2deg(self.x1_new_error),1),'pm',np.round(self.pd_pm_array[3],1),'u_eq',u_eq,'u_n',u_n,'u_s',u_s,'z',np.round(self.smcNDOB_z_current_inner,0)
         # self.smcNDOB_z_old=self.smcNDOB_z_current
         # print pd_array
         #1229
@@ -709,28 +754,25 @@ class pc_client(object):
         elif p1_psi<=1.0:
             pd_array=np.array([1.0,1.0,1.0])
         else:
-            pd_array=np.array([p1_psi,1.0,1.0])  
-        # # print "uAlpha",uAlpha,"uMin",uMin,"den",(0.5*sphi-0.5*np.sqrt(3)*cphi),"p1_psi",p1_MPa*145.038
-        # if uAlpha >= uMax:
-        #     pd_array=np.array([25.0,1.0,1.0])
-        # elif uAlpha <=uMin:
-        #     pd_array=np.array([1.0,1.0,1.0])
-        # else:
-        #     cphi= np.cos(phi)
-        #     sphi= np.sin(phi)
-        #     p1=0.
-        #     print "den",0.5*sphi-0.5*np.sqrt(3)*cphi
-        #     if 0.5*sphi-0.5*np.sqrt(3)*cphi == 0.:
-        #         pd_array=np.array([1.0,1.0,1.0])
-        #     else:
-        #         p1_MPa=(uAlpha/self.alpha0-(0.5*sphi+0.5*np.sqrt(3)*cphi)*pm2_MPa+sphi*pm3_MPa)/(0.5*sphi-0.5*np.sqrt(3)*cphi)
-        #         pd_array=np.array([p1_MPa*145.038,1.0,1.0])     
+            pd_array=np.array([p1_psi,1.0,1.0])     
         # Iterate x1, x1 error and time stamp
         self.x1_old=self.x1_current
         self.x1_error_old=self.x1_error_current
         self.t_old=self.t_new
         # print pd_array
         self.send_zipped_socket0(pd_array)
+
+    def update_z_estimation(self):
+        if self.smcNDOB_update_iteration==0:
+            self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
+            self.smcNDOB_update_array[1]= self.smcNDOB_z_current_inner
+            self.smcNDOB_update_iteration=1
+        elif self.smcNDOB_update_iteration==1:
+            self.smcNDOB_z_current_inner = (self.smcNDOB_dz_inner*(self.t_new-self.t_old)*2.0 + self.smcNDOB_update_array[1]*4.0 -self.smcNDOB_update_array[0])/3.0
+            self.smcNDOB_update_array[0]=self.smcNDOB_update_array[1]
+            self.smcNDOB_update_array[1]= self.smcNDOB_z_current_inner
+
+            
 
     def positionSumOfSine(self,t):
         xd=0
@@ -770,6 +812,25 @@ class pc_client(object):
             xd=self.x1_t0
             self.flag_ramp_phase=3
         return xd
+
+    # def positionRampFromX0(self,t)
+    #     xd=0.
+    #     # xd=self.x1_t0
+    #     if self.x1_current
+    #     if t <= self.rampAmpAbs/self.rampRateAbs:
+    #         xd= self.x1_t0-self.rampRateAbs*t
+    #         self.flag_ramp_phase=0
+    #     elif t>self.rampAmpAbs/self.rampRateAbs and t<= self.rampAmpAbs/self.rampRateAbs+self.rampFlatTime:
+    #         xd= self.x1_t0-self.rampAmpAbs
+    #         self.flag_ramp_phase=1
+    #     elif t>self.rampAmpAbs/self.rampRateAbs+self.rampFlatTime and t<= (self.rampAmpAbs/self.rampRateAbs)*2.0+self.rampFlatTime:
+    #         xd= self.x1_t0-self.rampAmpAbs +  self.rampRateAbs*(t-(self.rampAmpAbs/self.rampRateAbs+self.rampFlatTime))
+    #         self.flag_ramp_phase=2
+    #     else:
+    #         xd=self.x1_t0-np.radians(5)
+    #         xd=self.x1_t0
+    #         self.flag_ramp_phase=3
+    #     return xd
 
     def positionProfileSelection(self):
         if self.positionProfile_flag==0:

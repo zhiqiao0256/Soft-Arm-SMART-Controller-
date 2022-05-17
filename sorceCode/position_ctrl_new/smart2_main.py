@@ -18,15 +18,15 @@ class pc_client(object):
         """ Select use mocap or not"""
         self.flag_use_mocap=1
 
-        self.flag_control_mode=0# 0: baseline smc; 
-                                # 1: smcndo;
-                                # 2: smart;
-        self.flag_contact_mode=0 
+        self.flag_control_mode=3# 0: baseline smc; 
+                                # 1: smc+ilc;
+                                # 2: smc+spo;
+        self.flag_contact_mode=4 
         """ Initiate ZMQ communication"""
         context = zmq.Context()
         self.socket0 = context.socket(zmq.PUB)
         self.socket0.setsockopt(zmq.CONFLATE,True)
-        self.socket0.bind("tcp://10.203.49.209:4444")## PUB pd to Raspi Client
+        self.socket0.bind("tcp://10.203.53.226:4444")## PUB pd to Raspi Client
 
         self.socket1 = context.socket(zmq.PUB)##PUb to Record
         self.socket1.setsockopt(zmq.CONFLATE,True)
@@ -98,7 +98,7 @@ class pc_client(object):
         self.ilc_delta_t=0.002
         self.ilc_exp_delta_t=0.01
         """Input signal selection"""
-        self.positionProfile_flag=3#  0: sum of sine waves 1: single sine wave, 2: step 3:ramp
+        self.positionProfile_flag=2#  0: sum of sine waves 1: single sine wave, 2: step
         self.trailDuriation=60.0#sec
         # Input sine wave parameters
         self.Amp=np.radians(5)
@@ -203,25 +203,21 @@ class pc_client(object):
     def th_pub_raspi_client_pd(self):
         try:
             if self.flag_reset==1:
-                print("reseting")
                 self.step_response(np.array([3.0,1.0,1.0]),5)
                 self.flag_reset=0
             if self.flag_use_mocap == True:
-
                 self.array2setswithrotation=self.recv_cpp_socket2()
-                print("Work")
             vector_phiTheta=np.array([0., 0.])
             vector_phiTheta=self.getThetaPhiAndr0FromXYZ()
             self.x1_old=vector_phiTheta[1]
-            # self.x1_t0=vector_phiTheta[1]
+            self.x1_t0=vector_phiTheta[1]
             # self.pd_pm_array=self.recv_zipped_socket3()
-            print 1
+            # print 1
             """Input Signal selection"""
             self.t0=time()
             self.t_old=time()-self.t0
             if self.positionProfile_flag==3: # ramp duriation 
                 self.trailDuriation= (self.rampAmpAbs/self.rampRateAbs)*2.0+self.rampFlatTime*2
-            print("Work")
             if self.flag_control_mode == 0: # SMC with input bound
                 self.xd1 =self.positionProfileSelection()
                 print self.xd1
@@ -473,6 +469,7 @@ class pc_client(object):
         # self.array2setswithrotation=self.recv_cpp_socket2()
         # variable ini.
         vector_phiTheta=np.array([0., 0.])
+        delta_u=0.
         phi=0.
         theta=0.
         dtheta=0.
@@ -530,162 +527,16 @@ class pc_client(object):
         # Updata f(x1,x2)
         b_x=(self.alpha0/M) 
         f_x=(self.k0* self.x1_current + (self.b0+C)* self.x2_current + G)/M
+        cphi= np.cos(phi)
+        sphi= np.sin(phi)
 
-        if self.flag_contact_mode==0: # normal smcndo
-            # Update double dot of xd
-            dxd1=self.positionSingleDerevativeSelection()
-            ddxd1=self.positionDoubleDerevativeSelection()
-            # Update SMC 
-            s=self.smcNDOB_lambda*self.x1_error_current+self.x2_current-dxd1
-            # saturation bound for sliding surface
-            if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                sat_s= s/self.smcNDOB_sat_bound
-            else:
-                sat_s= np.sign(s)
-            # Update u_eq,u_s,u_n
-            u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-            u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-            u_n = -1.0/b_x*self.smcNDOB_dist_est
-            self.smcNDOB_u_eq=u_eq
-            self.smcNDOB_u_s=u_s
-            self.smcNDOB_u_n=u_n
-            # Update smcNDOB estimation
-            self.smcNDOB_dz = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est)
-            self.smcNDOB_z_current =self.smcNDOB_z_old + self.smcNDOB_dz*(self.t_new-self.t_old)
-            self.smcNDOB_dist_est = self.smcNDOB_z_current+self.smcNDOB_kp_sig*s
-            self.smcNDOB_dist_est_tqr=self.smcNDOB_dist_est*M
-            # Update uAlpha
-            self.smcNDOB_u_total = u_eq + u_s + u_n
-            u_total=self.smcNDOB_u_total        
+        p1_psi_max=40.0
+        p1_psi_min=1.0
 
-        elif self.flag_contact_mode==1: # fix pressrue
-            # Update double dot of xd
-            dxd1=self.positionSingleDerevativeSelection()
-            ddxd1=self.positionDoubleDerevativeSelection()
-            # Update SMC 
-            s=self.smcNDOB_lambda*self.x1_error_current+self.x2_current-dxd1
-            # saturation bound for sliding surface
-            if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                sat_s= s/self.smcNDOB_sat_bound
-            else:
-                sat_s= np.sign(s)
-            # Update u_eq,u_s,u_n
-            u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-            u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-            u_n = -1.0/b_x*self.smcNDOB_dist_est
-            self.smcNDOB_u_eq=u_eq
-            self.smcNDOB_u_s=u_s
-            self.smcNDOB_u_n=u_n
-            # Update smcNDOB estimation
-            self.smcNDOB_dz = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est)
-            self.smcNDOB_z_current =self.smcNDOB_z_old + self.smcNDOB_dz*(self.t_new-self.t_old)
-            self.smcNDOB_dist_est = self.smcNDOB_z_current+self.smcNDOB_kp_sig*s
-            self.smcNDOB_dist_est_tqr=self.smcNDOB_dist_est*M
-            # Swithcing algorithm based on smcNDOB_th
-            if np.absolute(self.smcNDOB_dist_est_tqr)>= self.smcNDOB_th:
-                if self.flag_first_contact ==0: # first contact
-                    self.u_fix_value=self.smcNDOB_u_total
-                    self.flag_first_contact =1
-                else:
-                    u_total=self.u_fix_value
-            else:
-                self.smcNDOB_u_total = u_eq + u_s + u_n
-                u_total=self.smcNDOB_u_total
-                self.flag_first_contact=0  
+        u_max=self.alpha0*(p1_psi_max/145.038*(0.5*sphi-0.5*np.sqrt(3)*cphi)+(0.5*sphi+0.5*np.sqrt(3)*cphi)*pm2_MPa+sphi*pm3_MPa)
+        u_min=self.alpha0*(p1_psi_min/145.038*(0.5*sphi-0.5*np.sqrt(3)*cphi)+(0.5*sphi+0.5*np.sqrt(3)*cphi)*pm2_MPa+sphi*pm3_MPa)
 
-        elif self.flag_contact_mode ==2: #fix to maximum position errors
-            # Update double dot of xd
-            dxd1=self.positionSingleDerevativeSelection()
-            ddxd1=self.positionDoubleDerevativeSelection()
-            # Update SMC 
-            s=self.smcNDOB_lambda*self.x1_error_current+self.x2_current-dxd1
-            # saturation bound for sliding surface
-            if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                sat_s= s/self.smcNDOB_sat_bound
-            else:
-                sat_s= np.sign(s)
-            # Update u_eq,u_s,u_n
-            u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-            u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-            u_n = -1.0/b_x*self.smcNDOB_dist_est
-            self.smcNDOB_u_eq=u_eq
-            self.smcNDOB_u_s=u_s
-            self.smcNDOB_u_n=u_n
-            # Update smcNDOB estimation
-            self.smcNDOB_dz = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est)
-            self.smcNDOB_z_current =self.smcNDOB_z_old + self.smcNDOB_dz*(self.t_new-self.t_old)
-            self.smcNDOB_dist_est = self.smcNDOB_z_current+self.smcNDOB_kp_sig*s
-            self.smcNDOB_dist_est_tqr=self.smcNDOB_dist_est*M
-            # Swithcing algorithm based on smcNDOB_th
-            if np.absolute(self.smcNDOB_dist_est_tqr)>= self.smcNDOB_th: 
-                if np.absolute(self.x1_error_current) >= self.x1_error_max_value:
-                    if self.flag_first_contact ==0: # first contact
-                        self.xd1_new=self.xd1
-                        self.smcNDOB_dist_est_inner=self.smcNDOB_dist_est
-                        self.smcNDOB_z_old_inner=self.smcNDOB_z_old
-                        self.flag_first_contact =1
-                        self.x1_new_error=0.
-                        self.timer_attampt=np.time()
-                    self.x1_new_error=self.x1_current-self.xd1_new
-                    if np.absolute(self.x1_new_error) >=0.5*self.x1_error_max_value:
-                        dxd1=0.
-                        ddxd1=0.
-                        xd1=self.xd1_new
-                        self.flag_stage =1
-                        s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                        if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                            sat_s= s/self.smcNDOB_sat_bound
-                        else:
-                            sat_s= np.sign(s)
-                        # Update u_eq,u_s,u_n
-                        u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                        u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                        u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                        # Update smcNDOB estimation
-                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                        self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                        self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                        self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                        self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                        u_total = u_eq + u_s + u_n # trying to go back to xd_t
-                        self.xd_new=xd1
-                    elif np.absolute(self.x1_new_error) <0.5*self.x1_error_max_value: # trying to reach xd
-                        self.xd1_new = self.x1_current +np.sign(self.x1_error_current)*self.x1_error_max_value
-                        dxd1=0.
-                        ddxd1=0.
-                        xd1=self.xd1_new
-                        self.flag_stage =2
-                        s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                        if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                            sat_s= s/self.smcNDOB_sat_bound
-                        else:
-                            sat_s= np.sign(s)
-                        # Update u_eq,u_s,u_n
-                        u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                        u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                        u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                        # Update smcNDOB estimation
-                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                        self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                        self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                        self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                        self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                        u_total = u_eq + u_s + u_n
-                        self.xd_new=xd1
-                else:
-                    self.smcNDOB_u_total = u_eq + u_s + u_n
-                    u_total=self.smcNDOB_u_total
-                    self.flag_first_contact=0
-                    self.flag_stage =0
-                    self.xd_new=self.xd1     
-            else:
-                self.smcNDOB_u_total = u_eq + u_s + u_n
-                u_total=self.smcNDOB_u_total
-                self.flag_first_contact=0
-                self.flag_stage =0
-                self.xd_new=self.xd1 
-
-        elif self.flag_contact_mode ==3: #N-C-R
+        if self.flag_contact_mode ==4: #N-C-R-C-R-N
             if self.flag_stage==0: # normal mode
                 self.xd1_new = self.xd1
                 dxd1=self.positionSingleDerevativeSelection()
@@ -702,222 +553,27 @@ class pc_client(object):
                 u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
                 u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
                 u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                # Update smcNDOB estimation
-                self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
                 u_total = u_eq + u_s + u_n
-                if np.absolute(self.x1_error_current) >= self.x1_error_max_value: # swith to compliant mode
-                    if np.absolute(self.smcNDOB_dist_est_inner_tqr)>= self.smcNDOB_th:
-                        if self.flag_first_contact ==0: # first contact
-                            self.xd1_new=self.x1_current
-                            # self.smcNDOB_dist_est_inner=0.
-                            # self.smcNDOB_z_old_inner=0.
-
-                            # self.smcNDOB_dist_est_inner=self.smcNDOB_dist_est
-                            # self.smcNDOB_z_old_inner=self.smcNDOB_z_old
-                            self.flag_first_contact =1
-                            # self.x1_new_error=0.
-                            # self.timer_attampt=time()
-                        self.x1_new_error=self.x1_current-self.xd1_new
-                        # if time()-self.timer_attampt <= self.timer_th:
-                        self.flag_stage =1
-                        dxd1=0.
-                        ddxd1=0.
-                        xd1=self.xd1_new
-                        s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                        if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                            sat_s= s/self.smcNDOB_sat_bound
-                        else:
-                            sat_s= np.sign(s)
-                        # Update u_eq,u_s,u_n
-                        u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                        u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                        u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                        # Update smcNDOB estimation
-                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                        self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                        self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                        self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                        self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                        self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                        u_total = u_eq + u_s + u_n # trying to go back to xd_t
-                        self.xd_new=xd1
-                    elif np.absolute(self.smcNDOB_dist_est_tqr)< self.smcNDOB_th: # stay in normal 
-                        self.xd1_new = self.positionProfileSelection()
-                        dxd1=self.positionSingleDerevativeSelection()
-                        ddxd1=self.positionDoubleDerevativeSelection()
-                        xd1=self.xd1_new
-                        self.flag_stage =0
-                        s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                        if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                            sat_s= s/self.smcNDOB_sat_bound
-                        else:
-                            sat_s= np.sign(s)
-                        # Update u_eq,u_s,u_n
-                        u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                        u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                        u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                        # Update smcNDOB estimation
-                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                        self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                        self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                        self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                        self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                        u_total = u_eq + u_s + u_n
-                        self.xd_new=xd1
-                elif np.absolute(self.x1_error_current) < self.x1_error_max_value:
-                    self.xd1_new = self.positionProfileSelection()
-                    dxd1=self.positionSingleDerevativeSelection()
-                    ddxd1=self.positionDoubleDerevativeSelection()
-                    xd1=self.xd1_new
-                    self.flag_stage =0
-                    s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                    if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                        sat_s= s/self.smcNDOB_sat_bound
-                    else:
-                        sat_s= np.sign(s)
-                    # Update u_eq,u_s,u_n
-                    u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                    u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                    u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                    # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                    self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                    self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                    self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                    self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                    u_total = u_eq + u_s + u_n
-                    self.xd_new=xd1  #stay in normal mode
-            elif self.flag_stage==1: # compliant mode
-                # if np.absolute(self.x1_error_current) >= self.x1_error_max_value: # swith to compliant mode
-                if np.absolute(self.smcNDOB_dist_est_inner_tqr)>= self.mode_C_to_R_th: #stay in compliant
-                    dxd1=0.
-                    ddxd1=0.
-                    xd1=self.xd1_new
-                    self.flag_stage =1
-                    s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                    if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                        sat_s= s/self.smcNDOB_sat_bound
-                    else:
-                        sat_s= np.sign(s)
-                    # Update u_eq,u_s,u_n
-                    u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                    u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                    u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                    # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                    self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                    self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                    self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                    self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                    u_total = u_eq + u_s + u_n # trying to go back to xd_t
-                    self.xd_new=xd1 #stay in compliant mode
-                elif np.absolute(self.smcNDOB_dist_est_inner_tqr)< self.mode_C_to_R_th: # switch to recovery mode
-                    if self.flag_first_contact ==1: # first contact
-                        # self.smcNDOB_dz_inner = 0.
-                        # self.smcNDOB_z_current_inner =0.
-                        # self.smcNDOB_dist_est_inner = 0.
-                        # self.smcNDOB_dist_est_inner_tqr=0.
-                        # self.smcNDOB_z_old_inner=0.
-                        self.flag_first_contact =0
-                    self.xd1_new = self.x1_current-np.sign(self.x1_error_current)*self.x1_error_max_value
-                    dxd1=0.
-                    ddxd1=0.
-                    xd1=self.xd1_new
-                    self.flag_stage =2
-                    s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                    if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                        sat_s= s/self.smcNDOB_sat_bound
-                    else:
-                        sat_s= np.sign(s)
-                    # Update u_eq,u_s,u_n
-                    u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                    u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                    u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                    # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                    self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                    self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                    self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                    self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                    u_total = u_eq + u_s + u_n
-                    self.xd_new=xd1
-            elif self.flag_stage==2: #recovery mode
-                if np.absolute(self.x1_error_current) >= self.x1_error_max_value: # stay in R mode
-                    self.flag_stage = 2
-                    self.xd1_new = self.x1_current-np.sign(self.x1_error_current)*self.x1_error_max_value
-                    dxd1=0.
-                    ddxd1=0.
-                    xd1=self.xd1_new
-                    s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                    if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                        sat_s= s/self.smcNDOB_sat_bound
-                    else:
-                        sat_s= np.sign(s)
-                    # Update u_eq,u_s,u_n
-                    u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                    u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                    u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                    # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                    self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                    self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                    self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                    self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                    self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                    u_total = u_eq + u_s + u_n # trying to go back to xd_t
-                    self.xd_new=xd1
-                elif np.absolute(self.x1_error_current) < self.x1_error_max_value: # switch to normal
-                    self.xd1_new = self.xd1
-                    dxd1=self.positionSingleDerevativeSelection()
-                    ddxd1=self.positionDoubleDerevativeSelection()
-                    xd1=self.xd1_new
-                    self.flag_stage =0
-                    s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                    if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                        sat_s= s/self.smcNDOB_sat_bound
-                    else:
-                        sat_s= np.sign(s)
-                    # Update u_eq,u_s,u_n
-                    u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                    u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                    u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
-                    # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
-                    self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
-                    self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                    self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                    self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                    u_total = u_eq + u_s + u_n
-                    self.xd_new=xd1 
-                    self.xd_new=xd1 # swith to try mode
-        elif self.flag_contact_mode ==4: #N-C-R-C-R-N
-            if self.flag_stage==0: # normal mode
-                self.xd1_new = self.xd1
-                dxd1=self.positionSingleDerevativeSelection()
-                ddxd1=self.positionDoubleDerevativeSelection()
-                xd1=self.xd1_new
-                self.x1_new_error=self.x1_current-self.xd1_new
-                self.x1_error_current=self.x1_current-self.xd1
-                s =self.smcNDOB_lambda*(self.x1_current-xd1) +self.x2_current-dxd1
-                if np.absolute(s/self.smcNDOB_sat_bound) <=1:
-                    sat_s= s/self.smcNDOB_sat_bound
+                if u_total >= u_max:
+                    v=u_max
+                    # delta_u=u_total-u_max
+                elif u_total<=u_min:
+                    v=u_min
+                    # delta_u=u_total-u_min
                 else:
-                    sat_s= np.sign(s)
-                # Update u_eq,u_s,u_n
-                u_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s)
-                u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
-                u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                    v=u_total
+                    # delta_u=0.
+                v_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s+delta_u)
+                v_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                v_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                 # Update smcNDOB estimation
-                self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(-self.smcNDOB_k_sig*s+b_x*(v-v_eq)+self.smcNDOB_dist_est_inner)
                 self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
                 self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
                 self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
                 self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                u_total = u_eq + u_s + u_n
+                # u_total = u_eq + u_s + u_n
+                v_total=v_eq+v_s+v_n
                 if np.absolute(self.x1_error_current) >= self.x1_error_max_value: #stay in normal mode OR switch to R mode
                     if np.absolute(self.smcNDOB_dist_est_inner_tqr)>= self.smcNDOB_th:# swith to compliant mode
                         if self.flag_first_contact ==0: # first contact
@@ -947,13 +603,27 @@ class pc_client(object):
                         u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
                         u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                         # Update smcNDOB estimation
-                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                        u_total = u_eq + u_s + u_n
+                        if u_total >= u_max:
+                            v=u_max
+                            # delta_u=u_total-u_max
+                        elif u_total<=u_min:
+                            v=u_min
+                            # delta_u=u_total-u_min
+                        else:
+                            v=u_total
+                            # delta_u=0.
+                        v_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s+delta_u)
+                        v_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                        v_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                        # Update smcNDOB estimation
+                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(-self.smcNDOB_k_sig*s+b_x*(v-v_eq)+self.smcNDOB_dist_est_inner)
                         self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
                         self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                        self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
                         self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
                         self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                        u_total = u_eq + u_s + u_n # trying to go back to xd_t
+                        # u_total = u_eq + u_s + u_n
+                        v_total=v_eq+v_s+v_n
                         self.xd_new=xd1
                     elif np.absolute(self.smcNDOB_dist_est_tqr)< self.smcNDOB_th: # stay in normal 
                         self.xd1_new = self.positionProfileSelection()
@@ -971,12 +641,27 @@ class pc_client(object):
                         u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
                         u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                         # Update smcNDOB estimation
-                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                        u_total = u_eq + u_s + u_n
+                        if u_total >= u_max:
+                            v=u_max
+                            # delta_u=u_total-u_max
+                        elif u_total<=u_min:
+                            v=u_min
+                            # delta_u=u_total-u_min
+                        else:
+                            v=u_total
+                            # delta_u=0.
+                        v_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s+delta_u)
+                        v_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                        v_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                        # Update smcNDOB estimation
+                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(-self.smcNDOB_k_sig*s+b_x*(v-v_eq)+self.smcNDOB_dist_est_inner)
                         self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
                         self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
                         self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
                         self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                        u_total = u_eq + u_s + u_n
+                        # u_total = u_eq + u_s + u_n
+                        v_total=v_eq+v_s+v_n
                         self.xd_new=xd1
                 elif np.absolute(self.x1_error_current) < self.x1_error_max_value: #stay in normal mode
                     self.xd1_new = self.positionProfileSelection()
@@ -994,12 +679,27 @@ class pc_client(object):
                     u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
                     u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                     # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                    u_total = u_eq + u_s + u_n
+                    if u_total >= u_max:
+                        v=u_max
+                        # delta_u=u_total-u_max
+                    elif u_total<=u_min:
+                        v=u_min
+                        # delta_u=u_total-u_min
+                    else:
+                        v=u_total
+                        # delta_u=0.
+                    v_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s+delta_u)
+                    v_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                    v_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                    # Update smcNDOB estimation
+                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(-self.smcNDOB_k_sig*s+b_x*(v-v_eq)+self.smcNDOB_dist_est_inner)
                     self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
                     self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
                     self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
                     self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                    u_total = u_eq + u_s + u_n
+                    # u_total = u_eq + u_s + u_n
+                    v_total=v_eq+v_s+v_n
                     self.xd_new=xd1  
             elif self.flag_stage==1: # compliant mode
                 if np.absolute(self.smcNDOB_dist_est_inner_tqr)>= self.mode_C_to_R_th: #stay in compliant
@@ -1017,12 +717,27 @@ class pc_client(object):
                     u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
                     u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                     # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                    u_total = u_eq + u_s + u_n
+                    if u_total >= u_max:
+                        v=u_max
+                        # delta_u=u_total-u_max
+                    elif u_total<=u_min:
+                        v=u_min
+                        # delta_u=u_total-u_min
+                    else:
+                        v=u_total
+                        # delta_u=0.
+                    v_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s+delta_u)
+                    v_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                    v_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                    # Update smcNDOB estimation
+                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(-self.smcNDOB_k_sig*s+b_x*(v-v_eq)+self.smcNDOB_dist_est_inner)
                     self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
                     self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                    self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
                     self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
-                    u_total = u_eq + u_s + u_n # trying to go back to xd_t
+                    self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
+                    # u_total = u_eq + u_s + u_n
+                    v_total=v_eq+v_s+v_n
                     self.xd_new=xd1 #stay in compliant mode
                 elif np.absolute(self.smcNDOB_dist_est_inner_tqr)< self.mode_C_to_R_th: # switch to recovery mode
                     if self.flag_first_contact ==1: # first contact
@@ -1047,12 +762,27 @@ class pc_client(object):
                     u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
                     u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                     # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                    u_total = u_eq + u_s + u_n
+                    if u_total >= u_max:
+                        v=u_max
+                        # delta_u=u_total-u_max
+                    elif u_total<=u_min:
+                        v=u_min
+                        # delta_u=u_total-u_min
+                    else:
+                        v=u_total
+                        # delta_u=0.
+                    v_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s+delta_u)
+                    v_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                    v_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                    # Update smcNDOB estimation
+                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(-self.smcNDOB_k_sig*s+b_x*(v-v_eq)+self.smcNDOB_dist_est_inner)
                     self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
                     self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
                     self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
                     self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                    u_total = u_eq + u_s + u_n
+                    # u_total = u_eq + u_s + u_n
+                    v_total=v_eq+v_s+v_n
                     self.xd_new=xd1
             elif self.flag_stage==2: #recovery mode
                 if np.absolute(self.x1_error_current) >= self.x1_error_max_value: #stay in R mode OR switch to C mode
@@ -1072,13 +802,27 @@ class pc_client(object):
                         u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
                         u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                         # Update smcNDOB estimation
-                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                        u_total = u_eq + u_s + u_n
+                        if u_total >= u_max:
+                            v=u_max
+                            # delta_u=u_total-u_max
+                        elif u_total<=u_min:
+                            v=u_min
+                            # delta_u=u_total-u_min
+                        else:
+                            v=u_total
+                            # delta_u=0.
+                        v_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s+delta_u)
+                        v_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                        v_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                        # Update smcNDOB estimation
+                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(-self.smcNDOB_k_sig*s+b_x*(v-v_eq)+self.smcNDOB_dist_est_inner)
                         self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
                         self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                        self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
                         self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
                         self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                        u_total = u_eq + u_s + u_n # trying to go back to xd_t
+                        # u_total = u_eq + u_s + u_n
+                        v_total=v_eq+v_s+v_n
                         self.xd_new=xd1
                     elif np.absolute(self.smcNDOB_dist_est_inner_tqr) > self.mode_R_to_C_th: # change to C mode
                         self.flag_stage = 1
@@ -1096,13 +840,27 @@ class pc_client(object):
                         u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
                         u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                         # Update smcNDOB estimation
-                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                        u_total = u_eq + u_s + u_n
+                        if u_total >= u_max:
+                            v=u_max
+                            # delta_u=u_total-u_max
+                        elif u_total<=u_min:
+                            v=u_min
+                            # delta_u=u_total-u_min
+                        else:
+                            v=u_total
+                            # delta_u=0.
+                        v_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s+delta_u)
+                        v_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                        v_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                        # Update smcNDOB estimation
+                        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(-self.smcNDOB_k_sig*s+b_x*(v-v_eq)+self.smcNDOB_dist_est_inner)
                         self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
                         self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
-                        self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
                         self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
                         self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                        u_total = u_eq + u_s + u_n # trying to go back to xd_t
+                        # u_total = u_eq + u_s + u_n
+                        v_total=v_eq+v_s+v_n
                         self.xd_new=xd1
                 elif np.absolute(self.x1_error_current) < self.x1_error_max_value: # switch to normal
                     self.xd1_new = self.xd1
@@ -1120,17 +878,29 @@ class pc_client(object):
                     u_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
                     u_n = -1.0/b_x*self.smcNDOB_dist_est_inner
                     # Update smcNDOB estimation
-                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(b_x*(u_n+u_s)+self.smcNDOB_dist_est_inner)
+                    u_total = u_eq + u_s + u_n
+                    if u_total >= u_max:
+                        v=u_max
+                        # delta_u=u_total-u_max
+                    elif u_total<=u_min:
+                        v=u_min
+                        # delta_u=u_total-u_min
+                    else:
+                        v=u_total
+                        # delta_u=0.
+                    v_eq = -1.0/b_x*(f_x+self.smcNDOB_lambda*(self.x2_current-dxd1)-ddxd1 + self.smcNDOB_k_sig*s+delta_u)
+                    v_s =  -1.0/b_x*self.smcNDOB_eta*sat_s
+                    v_n = -1.0/b_x*self.smcNDOB_dist_est_inner
+                    # Update smcNDOB estimation
+                    self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig*(-self.smcNDOB_k_sig*s+b_x*(v-v_eq)+self.smcNDOB_dist_est_inner)
                     self.smcNDOB_z_current_inner =self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner*(self.t_new-self.t_old)
                     self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner+self.smcNDOB_kp_sig*s
                     self.smcNDOB_z_old_inner=self.smcNDOB_z_current_inner
                     self.smcNDOB_dist_est_inner_tqr=self.smcNDOB_dist_est_inner*M
-                    u_total = u_eq + u_s + u_n
-                    self.xd_new=xd1 
+                    # u_total = u_eq + u_s + u_n
+                    v_total=v_eq+v_s+v_n
                     self.xd_new=xd1 # swith to try mode
-        cphi= np.cos(phi)
-        sphi= np.sin(phi)
-        p1_MPa=(u_total/self.alpha0-(0.5*sphi+0.5*np.sqrt(3)*cphi)*pm2_MPa+sphi*pm3_MPa)/(0.5*sphi-0.5*np.sqrt(3)*cphi)
+        p1_MPa=(v_total/self.alpha0-(0.5*sphi+0.5*np.sqrt(3)*cphi)*pm2_MPa+sphi*pm3_MPa)/(0.5*sphi-0.5*np.sqrt(3)*cphi)
         p1_psi=p1_MPa*145.038
         self.smcNDOB_p1=p1_psi
         if p1_psi>=self.input_pressure_limit_psi:

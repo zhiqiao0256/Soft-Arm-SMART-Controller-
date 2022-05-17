@@ -18,15 +18,15 @@ class pc_client(object):
         """ Select use mocap or not"""
         self.flag_use_mocap=1
 
-        self.flag_control_mode=0# 0: baseline smc; 
-                                # 1: smcndo;
-                                # 2: smart;
+        self.flag_control_mode=3# 0: baseline smc; 
+                                # 1: smc+ilc;
+                                # 2: smc+spo;
         self.flag_contact_mode=0 
         """ Initiate ZMQ communication"""
         context = zmq.Context()
         self.socket0 = context.socket(zmq.PUB)
         self.socket0.setsockopt(zmq.CONFLATE,True)
-        self.socket0.bind("tcp://10.203.49.209:4444")## PUB pd to Raspi Client
+        self.socket0.bind("tcp://10.203.53.226:4444")## PUB pd to Raspi Client
 
         self.socket1 = context.socket(zmq.PUB)##PUb to Record
         self.socket1.setsockopt(zmq.CONFLATE,True)
@@ -98,7 +98,7 @@ class pc_client(object):
         self.ilc_delta_t=0.002
         self.ilc_exp_delta_t=0.01
         """Input signal selection"""
-        self.positionProfile_flag=3#  0: sum of sine waves 1: single sine wave, 2: step 3:ramp
+        self.positionProfile_flag=2#  0: sum of sine waves 1: single sine wave, 2: step
         self.trailDuriation=60.0#sec
         # Input sine wave parameters
         self.Amp=np.radians(5)
@@ -203,25 +203,21 @@ class pc_client(object):
     def th_pub_raspi_client_pd(self):
         try:
             if self.flag_reset==1:
-                print("reseting")
                 self.step_response(np.array([3.0,1.0,1.0]),5)
                 self.flag_reset=0
             if self.flag_use_mocap == True:
-
                 self.array2setswithrotation=self.recv_cpp_socket2()
-                print("Work")
             vector_phiTheta=np.array([0., 0.])
             vector_phiTheta=self.getThetaPhiAndr0FromXYZ()
             self.x1_old=vector_phiTheta[1]
-            # self.x1_t0=vector_phiTheta[1]
+            self.x1_t0=vector_phiTheta[1]
             # self.pd_pm_array=self.recv_zipped_socket3()
-            print 1
+            # print 1
             """Input Signal selection"""
             self.t0=time()
             self.t_old=time()-self.t0
             if self.positionProfile_flag==3: # ramp duriation 
                 self.trailDuriation= (self.rampAmpAbs/self.rampRateAbs)*2.0+self.rampFlatTime*2
-            print("Work")
             if self.flag_control_mode == 0: # SMC with input bound
                 self.xd1 =self.positionProfileSelection()
                 print self.xd1

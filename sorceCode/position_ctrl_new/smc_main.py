@@ -26,7 +26,7 @@ class pc_client(object):
         context = zmq.Context()
         self.socket0 = context.socket(zmq.PUB)
         self.socket0.setsockopt(zmq.CONFLATE,True)
-        self.socket0.bind("tcp://10.203.49.209:4444")## PUB pd to Raspi Client
+        self.socket0.bind("tcp://10.203.53.226:4444")## PUB pd to Raspi Client
 
         self.socket1 = context.socket(zmq.PUB)##PUb to Record
         self.socket1.setsockopt(zmq.CONFLATE,True)
@@ -203,25 +203,21 @@ class pc_client(object):
     def th_pub_raspi_client_pd(self):
         try:
             if self.flag_reset==1:
-                print("reseting")
                 self.step_response(np.array([3.0,1.0,1.0]),5)
                 self.flag_reset=0
             if self.flag_use_mocap == True:
-
                 self.array2setswithrotation=self.recv_cpp_socket2()
-                print("Work")
             vector_phiTheta=np.array([0., 0.])
             vector_phiTheta=self.getThetaPhiAndr0FromXYZ()
             self.x1_old=vector_phiTheta[1]
-            # self.x1_t0=vector_phiTheta[1]
+            self.x1_t0=vector_phiTheta[1]
             # self.pd_pm_array=self.recv_zipped_socket3()
-            print 1
+            # print 1
             """Input Signal selection"""
             self.t0=time()
             self.t_old=time()-self.t0
             if self.positionProfile_flag==3: # ramp duriation 
                 self.trailDuriation= (self.rampAmpAbs/self.rampRateAbs)*2.0+self.rampFlatTime*2
-            print("Work")
             if self.flag_control_mode == 0: # SMC with input bound
                 self.xd1 =self.positionProfileSelection()
                 print self.xd1
@@ -458,11 +454,11 @@ class pc_client(object):
         p1_MPa=(uAlpha/self.alpha0-(0.5*sphi+0.5*np.sqrt(3)*cphi)*pm2_MPa+sphi*pm3_MPa)/(0.5*sphi-0.5*np.sqrt(3)*cphi)
         p1_psi=p1_MPa*145.038
         if p1_psi>=self.input_pressure_limit_psi:
-            pd_array=np.array([self.input_pressure_limit_psi,1.0,1.0])
+            pd_array=np.array([self.input_pressure_limit_psi,0.0,0.0])
         elif p1_psi<=1.0:
-            pd_array=np.array([1.0,1.0,1.0])
+            pd_array=np.array([0.0,0.0,0.0])
         else:
-            pd_array=np.array([p1_psi,1.0,1.0])
+            pd_array=np.array([p1_psi,0.0,0.0])
         self.x1_old=self.x1_current
         self.x1_error_old=self.x1_error_current
         self.t_old=self.t_new

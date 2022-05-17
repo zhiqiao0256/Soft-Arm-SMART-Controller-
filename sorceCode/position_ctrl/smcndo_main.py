@@ -26,7 +26,7 @@ class pc_client(object):
         context = zmq.Context()
         self.socket0 = context.socket(zmq.PUB)
         self.socket0.setsockopt(zmq.CONFLATE,True)
-        self.socket0.bind("tcp://10.203.53.226:4444")## PUB pd to Raspi Client
+        self.socket0.bind("tcp://10.203.49.136:4444")## PUB pd to Raspi Client
 
         self.socket1 = context.socket(zmq.PUB)##PUb to Record
         self.socket1.setsockopt(zmq.CONFLATE,True)
