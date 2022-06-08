@@ -17,19 +17,20 @@ class allocate_mocapAndtheta(object):
     def __init__(self):
         """ Select use mocap or not"""
         self.flag_use_mocap=1
+        self.p1_off_set_angle=0.0
         """ Initiate ZMQ communication"""
         context = zmq.Context()
         self.socket1 = context.socket(zmq.PUB)
         self.socket1.setsockopt(zmq.CONFLATE,True)
-        self.socket1.bind("tcp://127.0.0.1:6666") ## PUB xyz theta phi for seg1
+        self.socket1.bind("tcp://127.0.0.1:6666") ## PUB xyz theta phi for seg1 and seg2
 
-        self.socket2 = context.socket(zmq.PUB)
-        self.socket2.setsockopt(zmq.CONFLATE,True)
-        self.socket2.bind("tcp://127.0.0.1:7666") ## PUB xyz theta phi for seg2
+        # self.socket2 = context.socket(zmq.PUB)
+        # self.socket2.setsockopt(zmq.CONFLATE,True)
+        # self.socket2.bind("tcp://127.0.0.1:7666") ## PUB xyz theta phi for seg2
 
-        self.socket3 = context.socket(zmq.PUB)
-        self.socket3.setsockopt(zmq.CONFLATE,True)
-        self.socket3.bind("tcp://127.0.0.1:7666") ## PUB xyz theta phi for seg3
+        # self.socket3 = context.socket(zmq.PUB)
+        # self.socket3.setsockopt(zmq.CONFLATE,True)
+        # self.socket3.bind("tcp://127.0.0.1:7666") ## PUB xyz theta phi for seg3
 
         self.socket0 = context.socket(zmq.PUB)##PUb to collection
         self.socket0.setsockopt(zmq.CONFLATE,True)
@@ -64,65 +65,18 @@ class allocate_mocapAndtheta(object):
     def cal_state_var(self):
         try:
             while 1:
-                self.array3setswithrotation=self.recv_cpp_socket00()
                 vector_phiTheta=np.array([0.]*4)
+                self.array3setswithrotation=self.recv_cpp_socket00()
                 vector_phiTheta=self.getThetaPhiAndr0FromXYZ()
                 self.x1_current=vector_phiTheta[0]
                 self.x2_current=vector_phiTheta[1]
                 self.x3_current=vector_phiTheta[2]
                 self.x4_current=vector_phiTheta[3]
+                self.array3setsRecord=np.concatenate((self.array3setswithrotation, self.state_variable_array), axis=None)
+                self.send_zipped_socket0(self.array3setsRecord)
+                self.send_zipped_socket1(vector_phiTheta)
+                # self.send_zipped_socket2(vector_phiTheta[1:3])
         except KeyboardInterrupt:
-            exit()
-    def th_pub_raspi_client_pd(self):
-        try:
-            if self.flag_reset==1:
-                self.loop_timer=time()# reset loop timer
-                self.step_response(np.array([1.0]*4),10)
-                self.flag_reset=0
-            if self.flag_use_mocap == True:
-                self.array3setswithrotation=self.recv_cpp_socket2()
-                print("mocap connected")
-            vector_phiTheta=np.array([0.]*4)
-            vector_phiTheta=self.getThetaPhiAndr0FromXYZ()
-
-            self.x1_current=vector_phiTheta[0]
-            self.x2_current=vector_phiTheta[1]
-            self.x3_current=vector_phiTheta[2]
-            self.x4_current=vector_phiTheta[3]
-            self.t0=time()
-            self.t_old=time()
-            for index_num in range(1,30,5):
-               self.loop_timer=time()
-               # p123=np.random.randint(40, size=3)
-               p1234=np.array([index_num,index_num,1.0,1.0])
-               self.openloopStepPressureCtrl(p1234,10)
-            self.loop_timer=time()# reset loop timer               
-            self.step_response(np.array([0.0]*4),5)
-            self.th1_flag=False
-            self.th2_flag=False
-            exit()
-        except KeyboardInterrupt:
-            self.th1_flag=False
-            self.th2_flag=False
-            exit()
-            print "Press Ctrl+C to Stop"
-        #     print "Press Ctrl+C to Stop"
-            
-    def th_sub_pub_mocap(self):# thread config of read data from mocap and send packed msg to record file.
-        try:
-            while self.run_event.is_set() and self.th2_flag:
-                if self.flag_use_mocap == True:
-                    self.array3setswithrotation=self.recv_cpp_socket00()
-                self.pd_pm_array=self.recv_zipped_socket3()
-                self.array3setsRecord=np.concatenate((self.pd_pm_array, self.array3setswithrotation, self.state_variable_array), axis=None)
-                if self.flag_reset==0:
-                    self.send_zipped_socket1(self.array3setsRecord)
-                    print round(self.t_new,2),self.pd_pm_array
-                # sleep(0.005)
-            exit()
-        except KeyboardInterrupt:
-            self.th1_flag=False
-            self.th2_flag=False
             exit()
 
     def getThetaPhiAndr0FromXYZ(self):
@@ -140,14 +94,14 @@ class allocate_mocapAndtheta(object):
         # adjust top frame w/ local base frame
         vector_base=self.array3setswithrotation[0:3]# base(x,y,z)
         vector_base1=self.array3setswithrotation[7:10]
-        vector_top=self.array3setswithrotation[7:10]-vector_base# top(x,y,z)-base(x,y,z)
-        vector_top1=self.array3setswithrotation[14:17]-vector_base1
+        vector_top=self.array3setswithrotation[7:10]# top(x,y,z)-base(x,y,z)
+        vector_top1=self.array3setswithrotation[14:17]
         # print"v_tip",vector_top
         # Rotate to algorithm frame Rz with -90 deg  Rx=([1.0, 0.0, 0.0],[0.0, 0.0, 1.0],[0.0, -1.0, 0.0])
         tip_camFrame=np.array([0., 0., 0.])
-        tip_camFrame[0]=vector_top[0] # baseFrame x
-        tip_camFrame[1]=vector_top[1] #baseFrame  y
-        tip_camFrame[2]=vector_top[2] # baseFrame z
+        tip_camFrame[0]=vector_top[0] - vector_base[0]# baseFrame x
+        tip_camFrame[1]=vector_top[1] - vector_base[1]#baseFrame  y
+        tip_camFrame[2]=vector_top[2] - vector_base[2]# baseFrame z
         # print(self.array3setswithrotation)
         # Calculate phi rad in [-pi,pi]
         # phi_rad=0.
@@ -159,9 +113,9 @@ class allocate_mocapAndtheta(object):
         #Calculate theta rad using xyz
         theta_rad = 2.0*np.sign(tip_camFrame[2])*np.arccos(tip_camFrame[2]/np.sqrt(tip_camFrame[0]*tip_camFrame[0] + tip_camFrame[1]*tip_camFrame[1] + tip_camFrame[2]*tip_camFrame[2]))      
         tip_camFrame1=np.array([0., 0., 0.])
-        tip_camFrame1[0]=vector_top1[0]
-        tip_camFrame1[1]=vector_top1[1]
-        tip_camFrame1[2]=vector_top1[2]
+        tip_camFrame1[0]=vector_top1[0] - vector_base1[0]
+        tip_camFrame1[1]=vector_top1[1] - vector_base1[1]
+        tip_camFrame1[2]=vector_top1[2] - vector_base1[2]
 
         if np.absolute(tip_camFrame1[0])<0.0001:
             phi_rad1=np.pi/2.0
