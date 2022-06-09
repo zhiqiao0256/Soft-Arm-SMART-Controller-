@@ -38,14 +38,14 @@ class pc_client(object):
 
         if self.flag_use_mocap == True:
             self.socket2.connect("tcp://127.0.0.1:3885")
-            print "Connected to mocap"
+            print ("Connected to mocap")
 
         self.socket3=context.socket(zmq.SUB) ### sub Raspi Client
         self.socket3.setsockopt(zmq.SUBSCRIBE,'')
         self.socket3.setsockopt(zmq.CONFLATE,True)
         # self.socket3.setsockopt(zmq.RCVTIMEO,10000)
         self.socket3.connect("tcp://10.203.54.75:3333")
-        print "Connected to Low"
+        print ("Connected to Low")
 
         """ Format recording """
         self.array2setsRecord=np.array([0.]*41)#t pd1 pd2 pd3 + pm1 +pm2 +pm3 + positon +orintation
@@ -220,7 +220,7 @@ class pc_client(object):
                 self.trailDuriation= (self.rampAmpAbs/self.rampRateAbs)*2.0+self.rampFlatTime*2
             if self.flag_control_mode == 0: # SMC with input bound
                 self.xd1 =self.positionProfileSelection()
-                print self.xd1
+                print (self.xd1)
                 self.x1_error_old=self.xd1-self.x1_old
                 while self.t_old<=self.trailDuriation:
                     self.calculateControlInputWithInputBoundAndSaturation()
