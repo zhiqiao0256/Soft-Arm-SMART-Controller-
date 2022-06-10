@@ -22,7 +22,7 @@ class pc_client(object):
         self.L = 0.185  # segment length m
         self.actuatorWidth = 0.015  # m
         self.R_f = np.sqrt(3.0) / 6 * self.triangleEdgeLength + self.actuatorWidth  # distribution radius of force
-        self.p1_off_set_angle = np.deg2rad(0.0)  # deg
+        self.p1_off_set_angle = np.deg2rad(150.0)  # deg
         self.l_tri = 0.07  # m
         self.alpha0 = 1.1055  # scaler of torque
         self.k0 = 0.4413  # Nm/rad
@@ -54,7 +54,7 @@ class pc_client(object):
 
         """ Format recording """
         self.array3setsRecord = np.array([0.] * 41)  # t pd1 pd2 pd3 + pm1 +pm2 +pm3 + positon +orintation
-        self.pd_pm_array = np.array([0.] * 8)  # pd1 pd2 pd3 + pm1 +pm2 +pm3 (psi)
+        self.pd_pm_array = np.array([0.] * 8)  # pd1 pd2 pd3 pd4 + pm1 +pm2 +pm3 pm4(psi)
         self.array3setswithrotation = np.array([0.] * 14)  # base(x y z qw qx qy qz) top(x1 y1 z1 qw1 qx1 qy1 qz1)
         """ Thearding Setup """
         self.th1_flag = True
@@ -72,6 +72,7 @@ class pc_client(object):
         self.state_error_old = np.array([0.0] * 2)
         self.state_error_deri = np.array([0.0] * 2)
         self.vector_xdc = np.array([0.0]*2)
+        self.vector_phi = np.array([0.0]*2)
         """Input Parameters"""
         """ Position Ramp"""
         self.flag_ramp_phase = 0  #
@@ -79,14 +80,24 @@ class pc_client(object):
         self.rampRateAbs = 2  # deg/s
         self.rampFlatTime = 5  # sec
         """ SMART Conctroller"""
-        self.flag_stage = 0
-        self.smcNDOB_lambda = 1.0
-        self.smcNDOB_k_sig = 1.0
-        self.smcNDOB_eta = 1.0
-        self.smcNDOB_kp_sig = 5.0
+        self.num_of_seg = 2
+        self.flag_stage = np.array([0]*self.num_of_seg)
+        self.smcNDOB_lambda = np.array([1.0]*self.num_of_seg)
+        self.smcNDOB_k_sig =np.array([1.0]*self.num_of_seg)
+        self.smcNDOB_eta = np.array([1.0]*self.num_of_seg)
+        self.smcNDOB_kp_sig = np.array([5.0]*self.num_of_seg)
+        self.smcNDOB_z_current = np.array([0]*self.num_of_seg)
+        self.smcNDOB_z_current_inner = np.array([0]*self.num_of_seg)
+        self.smcNDOB_z_old = np.array([0]*self.num_of_seg)
+        self.smcNDOB_z_old_inner = np.array([0]*self.num_of_seg)
+        self.smcNDOB_dz = np.array([0]*self.num_of_seg)
+        self.smcNDOB_dz_inner = np.array([0]*self.num_of_seg)
+        self.vector_xdc = np.array([0.0]*self.num_of_seg)
+        self.vector_dxdc = np.array([0.0] * self.num_of_seg)
+        self.vector_ddxdc = np.array([0.0] * self.num_of_seg)
         self.m_switch_pos_th = 0.1  # rad
         self.m_switch_tqr_th = 0.4  # Nm
-        self.flag_1st_contact = 0
+        self.flag_1st_contact = np.array([1.0]*self.num_of_seg)
 
     def th_pub_raspi_client_pd(self):
         try:
@@ -123,6 +134,8 @@ class pc_client(object):
                 vector_r0[1] = self.getr0fromPhi(vector_phiTheta[2])
                 self.state_var_current[0] = vector_phiTheta[1]
                 self.state_var_current[1] = vector_phiTheta[3]
+                self.vector_phi[0] = vector_phiTheta[0]
+                self.vector_phi[1] = vector_phiTheta[2]
                 if time() - self.t_old < 0.0001:
                     self.state_var_deri = np.array([0.0] * 2)
                 else:
@@ -141,8 +154,14 @@ class pc_client(object):
                 else:
                     self.state_error_deri = (self.state_error_current - self.state_error_old) / (time() - self.t_old)
                 ################ smart control ########################
-                pd_1 = self.smart(0,self.state_var_current[0], self.state_var_deri[0], vector_MCG_0, vector_xd_0,
-                                  self.state_error_current[0], self.state_error_deri[0], time() - self.t_old)
+                dt=time() - self.t_old
+                pd_array=np.array([0.0]*4)
+                pd_array[0] = self.smart(0,vector_MCG_0, vector_xd_0, dt)
+                pd_array[2] = self.smart(1, vector_MCG_1, vector_xd_1, dt)
+                self.t_old=time()
+                self.state_var_old=self.state_var_current
+                self.state_error_old=self.state_error_current
+                self.send_zipped_socket0(pd_array)
         except KeyboardInterrupt:
             self.th1_flag = False
             self.th2_flag = False
@@ -155,12 +174,12 @@ class pc_client(object):
                 if self.flag_use_mocap == True:
                     self.array3setswithrotation = self.recv_cpp_socket2()
                 self.pd_pm_array = self.recv_zipped_socket3()
-                self.smc_tracking = np.array([self.xd1, self.x1_current])
                 self.smcNDOB_tracking = np.array(
                     [self.smcNDOB_p1, self.smcNDOB_u_total, self.smcNDOB_u_eq, self.smcNDOB_u_s, self.smcNDOB_u_n,
                      self.smcNDOB_dist_est_tqr, self.xd_new, self.flag_stage, self.smcNDOB_dist_est_inner_tqr])
                 self.array3setsRecord = np.concatenate(
-                    (self.pd_pm_array, self.array3setswithrotation, self.smc_tracking, self.smcNDOB_tracking),
+                    (self.pd_pm_array, self.array3setswithrotation, self.state_var_current, self.state_var_deri,
+                     self.state_error_deri),
                     axis=None)
                 if self.flag_reset == 0:
                     self.send_zipped_socket1(self.array3setsRecord)
@@ -282,7 +301,7 @@ class pc_client(object):
             self.flag_ramp_phase = 3
         return np.array([xd, dxd, ddxd])
 
-    def smart(self,segment_num,state_current, state_var_deri, vector_MCG, vector_xd, state_error, state_error_deri, dt):
+    def smart(self,segment_num, vector_MCG, vector_xd,  dt):
         theta = 0.
         dtheta = 0.
         s = 0.
@@ -291,71 +310,123 @@ class pc_client(object):
         G = vector_MCG[2]
         f = 0.
         u_total = 0.
+        ddxd = 0.0
         b_x = (self.alpha0 / M)
-        f_x = (self.k0 * state_current + (self.b0 + C) * state_var_deri + G) / M
-        if segment_num == 0:
-            self.mode_switching_seg1(state_current,vector_xd,state_error,self.vector_s)
-        # update s var
-        s = self.smcNDOB_lambda * state_error + state_error_deri
-        if np.absolute(s / self.smcNDOB_sat_bound) <= 1:
-            sat_s = s / self.smcNDOB_sat_bound
-        else:
-            sat_s = np.sign(s)
-        u_eq = -1.0 / b_x * (f_x + self.smcNDOB_lambda * state_error_deri - vector_xd[2] + self.smcNDOB_k_sig * s)
-        u_s = -1.0 / b_x * self.smcNDOB_eta * sat_s
-        u_n = -1.0 / b_x * self.smcNDOB_dist_est_inner
-        u_total = u_eq + u_s + u_n
-        # Update smcNDOB estimation
-        self.smcNDOB_dz_inner = -self.smcNDOB_kp_sig * (
-                    -self.smcNDOB_k_sig * s + b_x * (u_n + u_s) + self.smcNDOB_dist_est_inner)
-        self.smcNDOB_z_current_inner = self.smcNDOB_z_old_inner + self.smcNDOB_dz_inner * dt
-        self.smcNDOB_dist_est_inner = self.smcNDOB_z_current_inner + self.smcNDOB_kp_sig * s
-        self.smcNDOB_z_old_inner = self.smcNDOB_z_current_inner
-        self.smcNDOB_dist_est_inner_tqr = self.smcNDOB_dist_est_inner * M
-
-        return pd
-
-    def mode_switching_seg1(self, current_state, vector_xd_profile, state_error, smcNDOB_dist_est_tqr):
-        if self.flag_stage == 0:
-            if np.absolute(state_error) >= self.m_switch_pos_th:
-                if np.absolute(smcNDOB_dist_est_tqr) >= self.m_switch_tqr_th:
-                    if self.flag_1st_contact == 0:
-                        self.vector_xdc[0] = current_state
-                        dxd = 0
-                        ddxd = 0
-                    self.flag_stage = 1
+        f_x = (self.k0 * self.state_var_current[segment_num] + (self.b0 + C) * self.state_var_deri[segment_num] + G) / M
+        #### mode switching ####
+        if self.flag_stage[segment_num] == 0:
+            if np.absolute(self.state_error_current[segment_num]) >= self.m_switch_pos_th:
+                if np.absolute(self.smcNDOB_dist_est_inner_tqr[segment_num]) >= self.m_switch_tqr_th:
+                    if self.flag_1st_contact[segment_num] == 0:
+                        self.vector_xdc[segment_num] = self.state_var_current[segment_num]
+                        self.vector_dxdc[segment_num] = 0
+                        self.vector_ddxdc[segment_num] = 0
+                    self.flag_stage[segment_num] = 1
+                    xd = self.vector_xdc[segment_num]
+                    dxd = self.vector_dxdc[segment_num]
+                    ddxd = self.vector_ddxdc[segment_num]
             else:
-                xd = vector_xd_profile[0]
-                dxd = vector_xd_profile[1]
-                ddxd = vector_xd_profile[2]
-        elif self.flag_stage == 1:
-            if np.absolute(smcNDOB_dist_est_tqr) >= self.m_switch_tqr_th:
-                xd = self.vector_xdc[0]
+                xd = vector_xd[0]
+                dxd = vector_xd[1]
+                ddxd = vector_xd[2]
+        elif self.flag_stage[segment_num] == 1:
+            if np.absolute(self.smcNDOB_dist_est_inner_tqr[segment_num]) >= self.m_switch_tqr_th:
+                xd = self.vector_xdc[segment_num]
                 dxd = 0
                 ddxd = 0
             else:
-                if self.flag_1st_contact == 1:
-                    self.flag_1st_contact = 0
-                xd = vector_current_xd[0] - np.sign(state_error)*self.m_switch_pos_th
+                if self.flag_1st_contact[segment_num] == 1:
+                    self.flag_1st_contact[segment_num] = 0
+                xd = self.state_var_current[segment_num] - np.sign(self.state_error_current[segment_num]) * self.m_switch_pos_th
                 dxd = -self.m_switch_pos_th
                 ddxd = 0.0
-                self.flag_stage = 2
+                self.flag_stage[segment_num] = 2
         else:
-            if np.absolute(state_error) >= self.m_switch_pos_th:
-                if np.absolute(smcNDOB_dist_est_tqr) >= self.m_switch_tqr_th:
-                    xd = vector_current_xd[0] - np.sign(state_error) * self.m_switch_pos_th
+            if np.absolute(self.state_error_current[segment_num]) >= self.m_switch_pos_th:
+                if np.absolute(self.smcNDOB_dist_est_inner_tqr[segment_num]) >= self.m_switch_tqr_th:
+                    xd = self.state_var_current[segment_num] - np.sign(self.state_error_current[segment_num]) * self.m_switch_pos_th
                     dxd = -self.m_switch_pos_th
                     ddxd = 0.0
                 else:
-                    self.flag_stage = 1
-                    xd = self.vector_xdc[0]
+                    self.flag_stage[segment_num] = 1
+                    xd = self.vector_xdc[segment_num]
                     dxd = 0
                     ddxd = 0
             else:
-                xd = vector_xd_profile[0]
-                dxd = vector_xd_profile[1]
-                ddxd = vector_xd_profile[2]
-        return np.array([xd, dxd, ddxd])
+                xd = vector_xd[0]
+                dxd = vector_xd[1]
+                ddxd = vector_xd[2]
+
+        s = self.smcNDOB_lambda[segment_num] * self.state_error_current[segment_num] + self.state_error_deri[segment_num]
+        if np.absolute(s / self.smcNDOB_sat_bound[segment_num]) <= 1:
+            sat_s = s / self.smcNDOB_sat_bound[segment_num]
+        else:
+            sat_s = np.sign(s)
+        u_eq = -1.0 / b_x * (f_x + self.smcNDOB_lambda[segment_num] * self.state_error_deri[segment_num] - ddxd + self.smcNDOB_k_sig[segment_num] * s)
+        u_s = -1.0 / b_x * self.smcNDOB_eta[segment_num] * sat_s
+        u_n = -1.0 / b_x * self.smcNDOB_dist_est_inner[segment_num]
+        u_total = u_eq + u_s + u_n
+        # Update smcNDOB estimation
+        self.smcNDOB_dz_inner[segment_num] = -self.smcNDOB_kp_sig[segment_num] * (
+                    -self.smcNDOB_k_sig[segment_num] * s + b_x * (u_n + u_s) + self.smcNDOB_dist_est_inner[segment_num])
+        self.smcNDOB_z_current_inner[segment_num] = self.smcNDOB_z_old_inner[segment_num] + self.smcNDOB_dz_inner[segment_num] * dt
+        self.smcNDOB_dist_est_inner[segment_num] = self.smcNDOB_z_current_inner[segment_num] + self.smcNDOB_kp_sig[segment_num] * s
+        self.smcNDOB_z_old_inner[segment_num] = self.smcNDOB_z_current_inner[segment_num]
+        self.smcNDOB_dist_est_inner_tqr[segment_num] = self.smcNDOB_dist_est_inner[segment_num] * M
+        #### needs to pay attention
+        sphi = np.sin(self.vector_phi[segment_num])
+        cphi = np.cos(self.vector_phi[segment_num])
+        pm2_MPa=self.pd_pm_array[2*self.num_of_seg-1+2*segment_num+2]/145.038
+        pm3_MPa=pm2_MPa
+        p1_MPa=(u_total/self.alpha0-(0.5*sphi+0.5*np.sqrt(3)*cphi)*pm2_MPa+sphi*pm3_MPa)/(0.5*sphi-0.5*np.sqrt(3)*cphi)
+        p1_psi=p1_MPa*145.038
+        if p1_psi<=0.0:
+            p1_psi=0.0
+        elif p1_psi>=40.0:
+            p1_psi=40.0
+        return p1_psi
+
+    # def mode_switching_seg1(self, current_state, vector_xd_profile, state_error, smcNDOB_dist_est_tqr):
+    #     if self.flag_stage == 0:
+    #         if np.absolute(state_error) >= self.m_switch_pos_th:
+    #             if np.absolute(smcNDOB_dist_est_tqr) >= self.m_switch_tqr_th:
+    #                 if self.flag_1st_contact == 0:
+    #                     self.vector_xdc[0] = current_state
+    #                     dxd = 0
+    #                     ddxd = 0
+    #                 self.flag_stage = 1
+    #         else:
+    #             xd = vector_xd_profile[0]
+    #             dxd = vector_xd_profile[1]
+    #             ddxd = vector_xd_profile[2]
+    #     elif self.flag_stage == 1:
+    #         if np.absolute(smcNDOB_dist_est_tqr) >= self.m_switch_tqr_th:
+    #             xd = self.vector_xdc[0]
+    #             dxd = 0
+    #             ddxd = 0
+    #         else:
+    #             if self.flag_1st_contact == 1:
+    #                 self.flag_1st_contact = 0
+    #             xd = vector_current_xd[0] - np.sign(state_error)*self.m_switch_pos_th
+    #             dxd = -self.m_switch_pos_th
+    #             ddxd = 0.0
+    #             self.flag_stage = 2
+    #     else:
+    #         if np.absolute(state_error) >= self.m_switch_pos_th:
+    #             if np.absolute(smcNDOB_dist_est_tqr) >= self.m_switch_tqr_th:
+    #                 xd = vector_current_xd[0] - np.sign(state_error) * self.m_switch_pos_th
+    #                 dxd = -self.m_switch_pos_th
+    #                 ddxd = 0.0
+    #             else:
+    #                 self.flag_stage = 1
+    #                 xd = self.vector_xdc[0]
+    #                 dxd = 0
+    #                 ddxd = 0
+    #         else:
+    #             xd = vector_xd_profile[0]
+    #             dxd = vector_xd_profile[1]
+    #             ddxd = vector_xd_profile[2]
+    #     return np.array([xd, dxd, ddxd])
 
     def send_zipped_socket0(self, obj, flags=0, protocol=-1):
         """pack and compress an object with pickle and zlib."""
