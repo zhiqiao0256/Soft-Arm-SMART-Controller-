@@ -71,7 +71,7 @@ hold on
 plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.x1_exp(s_pt:e_pt,2),'b','LineStyle','-','LineWidth',1)
 ylabel('Angle (rad)')
 xlabel('Time (second)')
-xlim([0,50])
+% xlim([0,50])
 ylim([-0.5,-0.05])
 leg=legend({'${\theta_d}$','$\theta_{m}$'},'Orientation','vertical','Location','north','Units','inches','Interpreter','latex')
 leg.ItemTokenSize = [20,20];
@@ -85,7 +85,7 @@ leg.ItemTokenSize = [20,20];
 ylabel('Disturbance (Nm)')
 xlabel('Time (second)')
 ylim([-0.0,0.5])
-xlim([0,50])
+% xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 %%%% Pressure compare
@@ -101,7 +101,7 @@ leg.ItemTokenSize = [20,20];
 ylabel('Air Pressrue (MPa)')
 xlabel('Time (second)')
 ylim([0,0.25])
-xlim([0,50])
+% xlim([0,50])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
 %% Fwd kinematic 
