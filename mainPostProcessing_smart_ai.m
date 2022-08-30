@@ -52,9 +52,10 @@ else
     fprintf( 'Data loaded \n' );
 end
 %%
-testData= par_set.trial2;
+testData= par_set.trial1;
 s_pt=1;e_pt=length(testData.xd_exp(:,2));
 testData = funcPostProcess(testData,s_pt,e_pt);
+
 rmse=testData.rmse;
 Ep=testData.inputEnergy;
 testData= par_set.trial2;
@@ -67,6 +68,8 @@ s_pt=1;e_pt=length(testData.xd_exp(:,2));
 testData = funcPostProcess(testData,s_pt,e_pt);
 rmse=testData.rmse+rmse;
 Ep=testData.inputEnergy+Ep;
+par_set.flag_fixed_beta=0
+testData = funcGetPhiThetaRifromXYZ(testData,par_set);
 %%%%% 
 rmse=rmse/3
 Ep=Ep/3
@@ -86,7 +89,7 @@ Ep=Ep/3
 % return
 %%
 close all
-testData= par_set.trial3;
+testData= par_set.trial1;
 fig_width=7;
 fig_height=7/4;
 %%% fig 1
@@ -321,3 +324,31 @@ save('smart_kw_high_20.mat','smart');
 smart=[];
 smart=testData;
 save('smart_grape','smart');
+%% eta
+smart=[];
+smart=testData;
+save('smart_eta_base_10.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_eta_low_01.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_eta_high_100.mat','smart');
+%% lambda
+smart=[];
+smart=testData;
+save('smart_lambda_base_10.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_lambda_low_1.mat','smart');
+%%
+smart=[];
+smart=testData;
+save('smart_lambda_high_100.mat','smart');
+%% Openloop sim
+opensim=[];
+opensim=testData;
+save('opensim.mat','opensim');

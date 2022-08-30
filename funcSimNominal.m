@@ -29,7 +29,7 @@ de=zeros(length(timeArray),1);% dot e
 
 m0=0.35;     % segment weight kg
 g=9.8;       % gravity
-L=par_set.L;      % segment length
+L=0.185;      % segment length
 
 
 %% Input signal

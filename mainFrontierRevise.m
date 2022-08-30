@@ -598,3 +598,163 @@ ylim([0,0.3])
 xlim([0,80])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
+
+%% eta NO contact combo 60s
+clear all
+close all
+clc
+smart_eta_base=load('smart_eta_base_10.mat');
+smart_eta_low=load('smart_eta_low_01.mat');
+smart_eta_high=load('smart_eta_high_100.mat');
+
+close all
+testData1= smart_eta_low.smart;
+testData2= smart_eta_base.smart;
+testData3= smart_eta_high.smart;
+fig_width=7;
+fig_height=7/2;
+%%% fig 1
+
+s_pt=1;e_pt=length(testData1.xd_exp(:,2));
+fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+subplot(3,1,1)
+s_pt=1;e_pt=length(testData3.xd_exp(:,2));
+plot(testData3.xd_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.xd_exp(s_pt:e_pt,2),'r','LineStyle','-.','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData1.xd_exp(:,2));
+plot(testData1.x1_exp(s_pt:e_pt,1)-testData1.xd_exp(s_pt,1),testData1.x1_exp(s_pt:e_pt,2),'b','LineStyle',':','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData2.xd_exp(:,2));
+plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.x1_exp(s_pt:e_pt,2),'k','LineStyle','--','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData3.xd_exp(:,2));
+plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.x1_exp(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',1)
+ylabel('Angle (rad)')
+% xlabel('Time (second)')
+xlim([0,60])
+% ylim([-0.9,-0.25])
+leg=legend({'${\theta_d}$','0.1','10','100'},'Orientation','horizontal','Location','north','Units','inches','Interpreter','latex')
+leg.ItemTokenSize = [10,10];
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+% return
+%%%% disturbance
+subplot(3,1,2)
+% fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+s_pt=1;e_pt=length(testData1.xd_exp(:,2));
+plot(testData1.x1_exp(s_pt:e_pt,1)-testData1.xd_exp(s_pt,1),testData1.dist_est_inner_tau(s_pt:e_pt),'b','LineStyle',':','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData2.xd_exp(:,2));
+plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.dist_est_inner_tau(s_pt:e_pt),'k','LineStyle','--','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData3.xd_exp(:,2));
+plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.dist_est_inner_tau(s_pt:e_pt),'r','LineStyle','-','LineWidth',1)
+leg=legend('0.1','5','20','Interpreter','latex','Orientation','horizontal','Location','south')
+leg.ItemTokenSize = [10,10];
+ylabel('Disturbance (Nm)')
+% xlabel('Time (second)')
+% % ylim([-0.0,0.5])
+xlim([0,60])
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+% return
+%%%% Pressure compare
+subplot(3,1,3)
+% fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+s_pt=1;e_pt=length(testData1.xd_exp(:,2));
+plot(testData1.x1_exp(s_pt:e_pt,1)-testData1.xd_exp(s_pt,1),testData1.pm_MPa(s_pt:e_pt,2),'b','LineStyle',':','LineWidth',1)%+0.07
+hold on
+s_pt=1;e_pt=length(testData2.xd_exp(:,2));
+plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.pm_MPa(s_pt:e_pt,2),'k','LineStyle','--','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData3.xd_exp(:,2));
+plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.pm_MPa(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',1)
+hold on
+leg=legend('0.1','5','20','Interpreter','latex','Orientation','horizontal','Location','south')
+leg.ItemTokenSize = [10,10];
+ylabel('Air Pressrue (MPa)')
+% xlabel('Time (second)')
+% ylim([0,0.25])
+xlim([0,60])
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+
+%% lambda NO contact combo 60s
+clear all
+close all
+clc
+smart_lambda_base=load('smart_lambda_base_10.mat');
+smart_lambda_low=load('smart_lambda_low_1.mat');
+smart_lambda_high=load('smart_lambda_high_100.mat');
+
+close all
+testData1= smart_lambda_low.smart;
+testData2= smart_lambda_base.smart;
+testData3= smart_lambda_high.smart;
+fig_width=7;
+fig_height=7/2;
+%%% fig 1
+
+s_pt=1;e_pt=length(testData1.xd_exp(:,2));
+fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+subplot(3,1,1)
+s_pt=1;e_pt=length(testData3.xd_exp(:,2));
+plot(testData3.xd_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.xd_exp(s_pt:e_pt,2),'r','LineStyle','-.','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData1.xd_exp(:,2));
+plot(testData1.x1_exp(s_pt:e_pt,1)-testData1.xd_exp(s_pt,1),testData1.x1_exp(s_pt:e_pt,2),'b','LineStyle',':','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData2.xd_exp(:,2));
+plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.x1_exp(s_pt:e_pt,2),'k','LineStyle','--','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData3.xd_exp(:,2));
+plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.x1_exp(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',1)
+ylabel('Angle (rad)')
+% xlabel('Time (second)')
+xlim([0,60])
+% ylim([-0.9,-0.25])
+leg=legend({'${\theta_d}$','0.1','10','100'},'Orientation','horizontal','Location','north','Units','inches','Interpreter','latex')
+leg.ItemTokenSize = [10,10];
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+% return
+%%%% disturbance
+subplot(3,1,2)
+% fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+s_pt=1;e_pt=length(testData1.xd_exp(:,2));
+plot(testData1.x1_exp(s_pt:e_pt,1)-testData1.xd_exp(s_pt,1),testData1.dist_est_inner_tau(s_pt:e_pt),'b','LineStyle',':','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData2.xd_exp(:,2));
+plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.dist_est_inner_tau(s_pt:e_pt),'k','LineStyle','--','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData3.xd_exp(:,2));
+plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.dist_est_inner_tau(s_pt:e_pt),'r','LineStyle','-','LineWidth',1)
+leg=legend('0.1','5','20','Interpreter','latex','Orientation','horizontal','Location','south')
+leg.ItemTokenSize = [10,10];
+ylabel('Disturbance (Nm)')
+% xlabel('Time (second)')
+% % ylim([-0.0,0.5])
+xlim([0,60])
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
+% return
+%%%% Pressure compare
+subplot(3,1,3)
+% fp=figure('units','inches','Position',[4,4,fig_width,fig_height]);
+s_pt=1;e_pt=length(testData1.xd_exp(:,2));
+plot(testData1.x1_exp(s_pt:e_pt,1)-testData1.xd_exp(s_pt,1),testData1.pm_MPa(s_pt:e_pt,2),'b','LineStyle',':','LineWidth',1)%+0.07
+hold on
+s_pt=1;e_pt=length(testData2.xd_exp(:,2));
+plot(testData2.x1_exp(s_pt:e_pt,1)-testData2.xd_exp(s_pt,1),testData2.pm_MPa(s_pt:e_pt,2),'k','LineStyle','--','LineWidth',1)
+hold on
+s_pt=1;e_pt=length(testData3.xd_exp(:,2));
+plot(testData3.x1_exp(s_pt:e_pt,1)-testData3.xd_exp(s_pt,1),testData3.pm_MPa(s_pt:e_pt,2),'r','LineStyle','-','LineWidth',1)
+hold on
+leg=legend('0.1','5','20','Interpreter','latex','Orientation','horizontal','Location','south')
+leg.ItemTokenSize = [10,10];
+ylabel('Air Pressrue (MPa)')
+% xlabel('Time (second)')
+% ylim([0,0.25])
+xlim([0,60])
+fp.CurrentAxes.FontWeight='Bold';
+fp.CurrentAxes.FontSize=10;
