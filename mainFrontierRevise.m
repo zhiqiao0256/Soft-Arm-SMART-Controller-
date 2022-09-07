@@ -758,3 +758,17 @@ ylabel('Air Pressrue (MPa)')
 xlim([0,60])
 fp.CurrentAxes.FontWeight='Bold';
 fp.CurrentAxes.FontSize=10;
+%% Ai comments on low level part
+open_sim_load = load('opensim.mat');
+testData = open_sim_load.opensim;
+close all
+figure(1)
+plot(testData.pd_MPa(:,1),testData.pd_MPa(:,2))
+hold on
+plot(testData.pm_MPa(:,1),testData.pm_MPa(:,2))
+hold on
+xlim([0 60])
+xlabel('Time (s)')
+ylabel('Air Pressure (MPa)')
+legend('Desired Pressrue','Measurement')
+RMSE=sqrt(sum((testData.pd_MPa(:,2)-testData.pm_MPa(:,2)).^2)/length(testData.pd_MPa(:,2)))
