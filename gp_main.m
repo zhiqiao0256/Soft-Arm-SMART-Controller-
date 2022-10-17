@@ -28,7 +28,7 @@ get(gp_obj_0_order)
 %% 1st order gp  X(k) = f(X(k-1),U), X= [x,y,z,vx,vy,vz], U= [pd1,pd2,pd3]
 %%%% main part
 gp_y=[outputs_mm,outputs_mm_per_s];
-gp_u=[inputs_raw];
+gp_u=[outputs_mm,outputs_mm_per_s,inputs_raw];
 gp_obj_1st_order=iddata(gp_y,gp_u,Ts);
 % set(gp_obj_1st_order,'InputName',{'x';'y';'z';'pd1';'pd2';'pd3'},'OutputName',{'vx','vy','vz'});
 % gp_obj_1st_order.InputUnit = {'mm';'mm';'mm';'psi';'psi';'psi'};
@@ -43,3 +43,9 @@ set(gp_obj_1st_order,'InputName',{'x';'y';'z';'pd1';'pd2';'pd3'},'OutputName',{'
 gp_obj_1st_order.InputUnit = {'mm';'mm';'mm';'psi';'psi';'psi'};
 gp_obj_1st_order.OutputUnit = {'mm/s';'mm/s';'mm/s'};
 get(gp_obj_1st_order)
+%%
+clc
+output= testData.theta_deg(1:1000);
+data_set=table([1:1:1000]',input1(1:1000),output+180,'VariableNames',{'Time Steps','Input pressure setpoint(psi)','Output Angle (deg)'})
+
+
