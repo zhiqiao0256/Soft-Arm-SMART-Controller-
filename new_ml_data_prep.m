@@ -19,21 +19,7 @@ par_set.plot_fwdKinematic = 0;
 % Check data readme.txt for detail input reference
 par_set.Ts=1/40;
 % Geometric para.
-par_set.trianlge_length=70*1e-03;% fabric triangle edge length
-par_set.L=0.185;%actuator length
-par_set.n=4;% # of joints for augmented rigid arm
-par_set.m0=0.35;%kg segment weight
-par_set.g=9.8;%% gravity constant
-par_set.a0=15*1e-03;%% 1/2 of pillow width
-par_set.r_f=sqrt(3)/6*par_set.trianlge_length+par_set.a0; % we assume the force are evenly spread on a cirlce with radius of r_f
-%% Update location of 3 chambers P1, P2, P3
-par_set.p1_angle=150;%deg p1 position w/ the base frame
-% update force position of p1 p2 and p3
-for i =1:3
-    par_set.r_p{i}=[par_set.r_f*cosd(par_set.p1_angle+120*(i-1)),par_set.r_f*sind(par_set.p1_angle+120*(i-1)),0].';
-%     par_set.f_p{i}=588.31*par_set.pm_MPa(:,i+1);
-end
-fprintf('System initialization done \n')
+par_set.offset_mount = 30; %mm;
 %% Read txt file or mat file
 if par_set.flag_read_exp==1
     par_set=funcHighLevelExpPositionTracking(par_set,1);
@@ -74,13 +60,97 @@ plot(testData.tip_exp(:,1),testData.tip_exp(:,4))
 legend("x",'y','z')
 ylabel('meter')
 xlabel('second')
-%%
+%% ground mount
 save('p32_1.mat','testData');
+%% offset mount
+save('np33_1.mat','testData');
 %% combine diff figures
 t0 = load('p30_1.mat');
 t1 = load('p31_1.mat');
 t2 = load('p32_1.mat');
-% t3 = load('p33_1.mat');
+nt0 = load('np30_1.mat');
+nt1 = load('np31_1.mat');
+nt2 = load('np32_1.mat');
+% t3 = load('np33_1.mat');
+%%
+figure(1)
+testData = t0.testData;
+subplot(3,1,1)
+plot(testData.pd_psi(:,1),testData.pd_psi(:,2),'r')
+hold on
+plot(nt0.testData.pd_psi(:,1),nt0.testData.pd_psi(:,2),'b--')
+hold on
+legend("p1",'np1','Location','eastoutside')
+ylabel('psi')
+ylim([-1 21])
+subplot(3,1,2)
+plot(t0.testData.tip_exp(:,1),t0.testData.tip_exp(:,4)-0.016,'r')
+hold on
+plot(t1.testData.tip_exp(:,1),t1.testData.tip_exp(:,4)-0.016,'b')
+hold on
+plot(t2.testData.tip_exp(:,1),t2.testData.tip_exp(:,4)-0.016,'k')
+hold on
+plot(nt0.testData.tip_exp(:,1),nt0.testData.tip_exp(:,4),'r--')
+hold on
+plot(nt1.testData.tip_exp(:,1),nt1.testData.tip_exp(:,4),'b--')
+hold on
+plot(nt2.testData.tip_exp(:,1),nt2.testData.tip_exp(:,4),'k--')
+hold on
+% plot(t3.testData.tip_exp(:,1),t3.testData.tip_exp(:,4))
+legend("z0psi",'z1psi','z2psi',"nz0psi",'nz1psi','nz2psi','Location','eastoutside')
+%% elvation angle theta = 2 * sign(x) * atan(sqrt(x^2 + y^2)/z)
+subplot(3,1,3)
+testData = [];xx=[];yy=[];zz=[];
+testData=t0.testData;
+xx = testData.tip_exp(:,2);
+yy= testData.tip_exp(:,3);
+zz = testData.tip_exp(:,4);
+theta_deg = 2 * sign(xx).*atand(sqrt(xx.^2 + yy.^2)./zz);
+plot(testData.tip_exp(:,1),theta_deg,'r')
+hold on
+testData = [];xx=[];yy=[];zz=[];
+testData=t1.testData;
+xx = testData.tip_exp(:,2);
+yy= testData.tip_exp(:,3);
+zz = testData.tip_exp(:,4);
+theta_deg = 2 * sign(xx).*atand(sqrt(xx.^2 + yy.^2)./zz);
+plot(testData.tip_exp(:,1),theta_deg,'b')
+hold on
+testData = [];xx=[];yy=[];zz=[];
+testData=t2.testData;
+xx = testData.tip_exp(:,2);
+yy= testData.tip_exp(:,3);
+zz = testData.tip_exp(:,4);
+theta_deg = 2 * sign(xx).*atand(sqrt(xx.^2 + yy.^2)./zz);
+plot(testData.tip_exp(:,1),theta_deg,'k')
+hold on
+testData = [];xx=[];yy=[];zz=[];
+testData=nt0.testData;
+xx = testData.tip_exp(:,2);
+yy= testData.tip_exp(:,3);
+zz = testData.tip_exp(:,4);
+theta_deg = 2 * sign(xx).*atand(sqrt(xx.^2 + yy.^2)./zz);
+plot(testData.tip_exp(:,1),theta_deg,'r--')
+hold on
+testData = [];xx=[];yy=[];zz=[];
+testData=nt1.testData;
+xx = testData.tip_exp(:,2);
+yy= testData.tip_exp(:,3);
+zz = testData.tip_exp(:,4);
+theta_deg = 2 * sign(xx).*atand(sqrt(xx.^2 + yy.^2)./zz);
+plot(testData.tip_exp(:,1),theta_deg,'b--')
+hold on
+testData = [];xx=[];yy=[];zz=[];
+testData=nt2.testData;
+xx = testData.tip_exp(:,2);
+yy= testData.tip_exp(:,3);
+zz = testData.tip_exp(:,4);
+theta_deg = 2 * sign(xx).*atand(sqrt(xx.^2 + yy.^2)./zz);
+plot(testData.tip_exp(:,1),theta_deg,'k--')
+hold on
+legend("0psi",'1psi','2psi',"n0psi",'n1psi','n2psi','Location','eastoutside')
+ylabel('angle deg')
+%%
 figure(1)
 testData = t0.testData;
 subplot(3,1,1)

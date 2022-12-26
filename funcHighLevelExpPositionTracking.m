@@ -53,8 +53,16 @@ par.pm_Pa = NoLoad(1:end,1) ; par.pm_Pa(:,2:4) = 1e5 *( NoLoad(1:end,2:4)+par.p_
 par.pm_psi = NoLoad(1:end,1) ; par.pm_psi(:,2:4) = ( NoLoad(1:end,2:4)+par.p_offset);
 par.pm_MPa=NoLoad(1:end,1) ; par.pm_MPa(:,2:4) = 1e-1 *( NoLoad(1:end,2:4)+par.p_offset)* 0.0689476;
 par.f_ex = NoLoad(1:end,1) ; par.f_ex(:,2:7) = 0 ;
-par.tip_exp = NoLoad(1:end,1) ; par.tip_exp(:,2:4) = ( NoLoad(1:end,12:14) - mean(NoLoad(1:end,5:7)) ) ;
-par.base_exp = NoLoad(1:end,1) ; par.base_exp(:,2:4) = ( NoLoad(1:end,5:7) ) ;
+par.tip_exp = NoLoad(1:end,1) ; 
+if par_set.offset_mount > 0
+    par.tip_exp(:,2:4) = ( NoLoad(1:end,12:14) - mean(NoLoad(1:end,5:7)) ) ;
+    par.tip_exp(:,4) = par.tip_exp(:,4) - par_set.offset_mount/1000;
+    par.base_exp = NoLoad(1:end,1) ; par.base_exp(:,2:4) = ( NoLoad(1:end,5:7) );
+    par.base_exp(:,4) = par.base_exp(:,4)+ par_set.offset_mount/1000 ;
+else
+    par.tip_exp(:,2:4) = ( NoLoad(1:end,12:14) - mean(NoLoad(1:end,5:7)) ) ;
+    par.base_exp = NoLoad(1:end,1) ; par.base_exp(:,2:4) = ( NoLoad(1:end,5:7) );
+end
 par.tip_RQ = NoLoad(1:end,1) ; par.tip_RQ(:,2:5) = ( NoLoad(1:end,15:18) ) ;
 if size(NoLoad,2)>=19
     par.xd_exp=NoLoad(1:end,1) ; par.xd_exp(:,2)=NoLoad(1:end,19);
