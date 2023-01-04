@@ -1,0 +1,139 @@
+[0.024s] Invoking command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4
+[0.083s] [35m[1mScanning dependencies of target arm_mocap_pubsub[0m
+[0.128s] [ 50%] [32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o[0m
+[1.871s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:[m[K In member function ‘[01m[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)[m[K’:
+[1.871s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:28:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.871s]    68 |       char* ch_data[21] = {[01;31m[Kx1_mocap[m[K,y1_mocap,z1_mocap,
+[1.872s]       |                            [01;31m[K^~~~~~~~[m[K
+[1.872s]       |                            [01;31m[K|[m[K
+[1.872s]       |                            [01;31m[Kfloat[m[K
+[1.872s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:37:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.872s]    68 |       char* ch_data[21] = {x1_mocap,[01;31m[Ky1_mocap[m[K,z1_mocap,
+[1.873s]       |                                     [01;31m[K^~~~~~~~[m[K
+[1.873s]       |                                     [01;31m[K|[m[K
+[1.873s]       |                                     [01;31m[Kfloat[m[K
+[1.873s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:46:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.873s]    68 |       char* ch_data[21] = {x1_mocap,y1_mocap,[01;31m[Kz1_mocap[m[K,
+[1.873s]       |                                              [01;31m[K^~~~~~~~[m[K
+[1.874s]       |                                              [01;31m[K|[m[K
+[1.874s]       |                                              [01;31m[Kfloat[m[K
+[1.874s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:23:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.874s]    69 |                       [01;31m[Kq1_mocap_x[m[K,q1_mocap_y,q1_mocap_z,q1_mocap_w,
+[1.874s]       |                       [01;31m[K^~~~~~~~~~[m[K
+[1.874s]       |                       [01;31m[K|[m[K
+[1.875s]       |                       [01;31m[Kfloat[m[K
+[1.875s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:34:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.875s]    69 |                       q1_mocap_x,[01;31m[Kq1_mocap_y[m[K,q1_mocap_z,q1_mocap_w,
+[1.875s]       |                                  [01;31m[K^~~~~~~~~~[m[K
+[1.875s]       |                                  [01;31m[K|[m[K
+[1.876s]       |                                  [01;31m[Kfloat[m[K
+[1.876s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:45:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.876s]    69 |                       q1_mocap_x,q1_mocap_y,[01;31m[Kq1_mocap_z[m[K,q1_mocap_w,
+[1.876s]       |                                             [01;31m[K^~~~~~~~~~[m[K
+[1.876s]       |                                             [01;31m[K|[m[K
+[1.876s]       |                                             [01;31m[Kfloat[m[K
+[1.877s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:56:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.877s]    69 |                       q1_mocap_x,q1_mocap_y,q1_mocap_z,[01;31m[Kq1_mocap_w[m[K,
+[1.877s]       |                                                        [01;31m[K^~~~~~~~~~[m[K
+[1.877s]       |                                                        [01;31m[K|[m[K
+[1.877s]       |                                                        [01;31m[Kfloat[m[K
+[1.877s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:23:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.878s]    70 |                       [01;31m[Kx2_mocap[m[K,y2_mocap,z2_mocap,
+[1.878s]       |                       [01;31m[K^~~~~~~~[m[K
+[1.878s]       |                       [01;31m[K|[m[K
+[1.878s]       |                       [01;31m[Kfloat[m[K
+[1.878s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:32:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.879s]    70 |                       x2_mocap,[01;31m[Ky2_mocap[m[K,z2_mocap,
+[1.879s]       |                                [01;31m[K^~~~~~~~[m[K
+[1.879s]       |                                [01;31m[K|[m[K
+[1.879s]       |                                [01;31m[Kfloat[m[K
+[1.879s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:41:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.880s]    70 |                       x2_mocap,y2_mocap,[01;31m[Kz2_mocap[m[K,
+[1.880s]       |                                         [01;31m[K^~~~~~~~[m[K
+[1.880s]       |                                         [01;31m[K|[m[K
+[1.880s]       |                                         [01;31m[Kfloat[m[K
+[1.880s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:23:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.880s]    71 |                       [01;31m[Kq2_mocap_x[m[K,q2_mocap_y,q2_mocap_z,q2_mocap_w,
+[1.881s]       |                       [01;31m[K^~~~~~~~~~[m[K
+[1.881s]       |                       [01;31m[K|[m[K
+[1.881s]       |                       [01;31m[Kfloat[m[K
+[1.881s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:34:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.881s]    71 |                       q2_mocap_x,[01;31m[Kq2_mocap_y[m[K,q2_mocap_z,q2_mocap_w,
+[1.881s]       |                                  [01;31m[K^~~~~~~~~~[m[K
+[1.882s]       |                                  [01;31m[K|[m[K
+[1.882s]       |                                  [01;31m[Kfloat[m[K
+[1.882s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:45:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.882s]    71 |                       q2_mocap_x,q2_mocap_y,[01;31m[Kq2_mocap_z[m[K,q2_mocap_w,
+[1.882s]       |                                             [01;31m[K^~~~~~~~~~[m[K
+[1.882s]       |                                             [01;31m[K|[m[K
+[1.883s]       |                                             [01;31m[Kfloat[m[K
+[1.883s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:56:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.883s]    71 |                       q2_mocap_x,q2_mocap_y,q2_mocap_z,[01;31m[Kq2_mocap_w[m[K,
+[1.883s]       |                                                        [01;31m[K^~~~~~~~~~[m[K
+[1.883s]       |                                                        [01;31m[K|[m[K
+[1.883s]       |                                                        [01;31m[Kfloat[m[K
+[1.884s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:23:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.884s]    72 |                       [01;31m[Kx3_mocap[m[K,y3_mocap,z3_mocap,
+[1.884s]       |                       [01;31m[K^~~~~~~~[m[K
+[1.884s]       |                       [01;31m[K|[m[K
+[1.884s]       |                       [01;31m[Kfloat[m[K
+[1.884s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:32:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.885s]    72 |                       x3_mocap,[01;31m[Ky3_mocap[m[K,z3_mocap,
+[1.885s]       |                                [01;31m[K^~~~~~~~[m[K
+[1.885s]       |                                [01;31m[K|[m[K
+[1.885s]       |                                [01;31m[Kfloat[m[K
+[1.885s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:41:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.886s]    72 |                       x3_mocap,y3_mocap,[01;31m[Kz3_mocap[m[K,
+[1.886s]       |                                         [01;31m[K^~~~~~~~[m[K
+[1.886s]       |                                         [01;31m[K|[m[K
+[1.886s]       |                                         [01;31m[Kfloat[m[K
+[1.886s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:23:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.887s]    73 |                       [01;31m[Kq3_mocap_x[m[K,q3_mocap_y,q3_mocap_z,q3_mocap_w
+[1.887s]       |                       [01;31m[K^~~~~~~~~~[m[K
+[1.887s]       |                       [01;31m[K|[m[K
+[1.887s]       |                       [01;31m[Kfloat[m[K
+[1.888s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:34:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.888s]    73 |                       q3_mocap_x,[01;31m[Kq3_mocap_y[m[K,q3_mocap_z,q3_mocap_w
+[1.888s]       |                                  [01;31m[K^~~~~~~~~~[m[K
+[1.888s]       |                                  [01;31m[K|[m[K
+[1.888s]       |                                  [01;31m[Kfloat[m[K
+[1.889s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:45:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.889s]    73 |                       q3_mocap_x,q3_mocap_y,[01;31m[Kq3_mocap_z[m[K,q3_mocap_w
+[1.889s]       |                                             [01;31m[K^~~~~~~~~~[m[K
+[1.889s]       |                                             [01;31m[K|[m[K
+[1.889s]       |                                             [01;31m[Kfloat[m[K
+[1.890s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:56:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar*[m[K’ in initialization
+[1.890s]    73 |                       q3_mocap_x,q3_mocap_y,q3_mocap_z,[01;31m[Kq3_mocap_w[m[K
+[1.890s]       |                                                        [01;31m[K^~~~~~~~~~[m[K
+[1.890s]       |                                                        [01;31m[K|[m[K
+[1.890s]       |                                                        [01;31m[Kfloat[m[K
+[1.891s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:28:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kchar**[m[K’ to ‘[01m[Kconst char*[m[K’
+[1.891s]    75 |       size_t size = strlen([01;31m[Kch_data[m[K);
+[1.891s]       |                            [01;31m[K^~~~~~~[m[K
+[1.891s]       |                            [01;31m[K|[m[K
+[1.891s]       |                            [01;31m[Kchar**[m[K
+[1.892s] In file included from [01m[K/opt/ros/foxy/include/rcutils/error_handling.h:34[m[K,
+[1.892s]                  from [01m[K/opt/ros/foxy/include/rcutils/logging.h:23[m[K,
+[1.892s]                  from [01m[K/opt/ros/foxy/include/rmw/types.h:28[m[K,
+[1.892s]                  from [01m[K/opt/ros/foxy/include/rcl/types.h:18[m[K,
+[1.892s]                  from [01m[K/opt/ros/foxy/include/rcl/arguments.h:20[m[K,
+[1.893s]                  from [01m[K/opt/ros/foxy/include/rcl/context.h:26[m[K,
+[1.893s]                  from [01m[K/opt/ros/foxy/include/rcl/guard_condition.h:24[m[K,
+[1.893s]                  from [01m[K/opt/ros/foxy/include/rclcpp/executor.hpp:29[m[K,
+[1.893s]                  from [01m[K/opt/ros/foxy/include/rclcpp/executors/multi_threaded_executor.hpp:26[m[K,
+[1.893s]                  from [01m[K/opt/ros/foxy/include/rclcpp/executors.hpp:21[m[K,
+[1.893s]                  from [01m[K/opt/ros/foxy/include/rclcpp/rclcpp.hpp:146[m[K,
+[1.894s]                  from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:8[m[K:
+[1.894s] [01m[K/usr/include/string.h:385:35:[m[K [01;36m[Knote: [m[K  initializing argument 1 of ‘[01m[Ksize_t strlen(const char*)[m[K’
+[1.894s]   385 | extern size_t strlen ([01;36m[Kconst char *__s[m[K)
+[1.894s]       |                       [01;36m[K~~~~~~~~~~~~^~~[m[K
+[1.894s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:77:47:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Kpublisher[m[K’
+[1.895s]    77 |       std::memcpy(message.data(),ch_data,size)
+[1.895s]       |                                               [01;31m[K^[m[K
+[1.895s]       |                                               [32m[K;[m[K
+[1.895s]    78 |       [32m[Kpublisher[m[K.send(message);
+[1.895s]       |       [32m[K~~~~~~~~~[m[K                                
+[3.750s] make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1
+[3.750s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2
+[3.751s] make: *** [Makefile:141: all] Error 2
+[3.754s] Invoked command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4

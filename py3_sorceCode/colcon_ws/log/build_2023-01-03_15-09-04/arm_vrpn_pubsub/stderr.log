@@ -1,0 +1,11 @@
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:[m[K In member function ‘[01m[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:86:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ before ‘[01m[K;[m[K’ token
+   75 | g = [32m[K{[m[Kstd::to_string(x1_mocap)+ "," + std::to_string(y1_mocap)[01;31m[K;[m[K}
+      |     [32m[K~[m[K                                                        [01;31m[K^[m[K
+
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdata[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   68 |       float [01;35m[Kdata[m[K[21] = {x1_mocap,y1_mocap,z1_mocap,
+      |             [01;35m[K^~~~[m[K
+make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Interrupt
+make: *** [Makefile:141: all] Interrupt

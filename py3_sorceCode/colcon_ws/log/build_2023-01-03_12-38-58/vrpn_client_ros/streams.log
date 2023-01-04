@@ -1,0 +1,100 @@
+[0.024s] Invoking command in '/home/zq/colcon_ws/build/vrpn_client_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake /home/zq/colcon_ws/src/vrpn_client_ros-ros2 -DCMAKE_INSTALL_PREFIX=/home/zq/colcon_ws/install/vrpn_client_ros
+[0.102s] -- The C compiler identification is GNU 9.4.0
+[0.180s] -- The CXX compiler identification is GNU 9.4.0
+[0.186s] -- Check for working C compiler: /usr/bin/cc
+[0.282s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.283s] -- Detecting C compiler ABI info
+[0.379s] -- Detecting C compiler ABI info - done
+[0.396s] -- Detecting C compile features
+[0.397s] -- Detecting C compile features - done
+[0.401s] -- Check for working CXX compiler: /usr/bin/c++
+[0.510s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.511s] -- Detecting CXX compiler ABI info
+[0.623s] -- Detecting CXX compiler ABI info - done
+[0.639s] -- Detecting CXX compile features
+[0.639s] -- Detecting CXX compile features - done
+[0.643s] -- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.679s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.679s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.926s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.930s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.939s] -- Found rosidl_adapter: 1.3.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[1.085s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[1.125s] -- Found FastRTPS: /opt/ros/foxy/include  
+[1.234s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.275s] -- Found quatlib: /home/zq/colcon_ws/install/vrpn/lib/libquat.a  
+[1.276s] -- Looking for pthread.h
+[1.377s] -- Looking for pthread.h - found
+[1.377s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.480s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[1.481s] -- Looking for pthread_create in pthreads
+[1.564s] -- Looking for pthread_create in pthreads - not found
+[1.564s] -- Looking for pthread_create in pthread
+[1.664s] -- Looking for pthread_create in pthread - found
+[1.666s] -- Found Threads: TRUE  
+[1.667s] -- Found VRPN: /home/zq/colcon_ws/install/vrpn/lib/libvrpn.a  
+[1.669s] -- Found rclcpp: 2.4.2 (/opt/ros/foxy/share/rclcpp/cmake)
+[1.754s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.756s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.960s] -- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)
+[2.009s] -- Found tf2: 0.13.13 (/opt/ros/foxy/share/tf2/cmake)
+[2.025s] -- Found tf2_ros: 0.13.13 (/opt/ros/foxy/share/tf2_ros/cmake)
+[2.475s] -- Found ament_lint_auto: 0.9.7 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[2.579s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.581s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[2.582s] -- Configured cppcheck include dirs: /home/zq/colcon_ws/src/vrpn_client_ros-ros2/include
+[2.582s] -- Configured cppcheck exclude dirs and/or files: 
+[2.583s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[2.584s] -- Configured cpplint exclude dirs and/or files: 
+[2.584s] -- Added test 'flake8' to check Python code syntax and style conventions
+[2.585s] -- Added test 'lint_cmake' to check CMake code style
+[2.586s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[2.588s] -- Added test 'uncrustify' to check C / C++ code style
+[2.588s] -- Configured uncrustify additional arguments: 
+[2.589s] -- Added test 'xmllint' to check XML markup files
+[2.596s] -- Configuring done
+[2.626s] -- Generating done
+[2.628s] -- Build files have been written to: /home/zq/colcon_ws/build/vrpn_client_ros
+[2.642s] Invoked command in '/home/zq/colcon_ws/build/vrpn_client_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake /home/zq/colcon_ws/src/vrpn_client_ros-ros2 -DCMAKE_INSTALL_PREFIX=/home/zq/colcon_ws/install/vrpn_client_ros
+[2.646s] Invoking command in '/home/zq/colcon_ws/build/vrpn_client_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/vrpn_client_ros -- -j4 -l4
+[2.704s] [35m[1mScanning dependencies of target vrpn_client_ros[0m
+[2.789s] [ 16%] [32mBuilding CXX object CMakeFiles/vrpn_client_ros.dir/src/vrpn_client_ros.cpp.o[0m
+[7.319s] [ 33%] [32m[1mLinking CXX static library libvrpn_client_ros.a[0m
+[7.405s] [ 33%] Built target vrpn_client_ros
+[7.420s] [35m[1mScanning dependencies of target vrpn_tracker_node[0m
+[7.421s] [35m[1mScanning dependencies of target vrpn_client_node[0m
+[7.484s] [ 50%] [32mBuilding CXX object CMakeFiles/vrpn_client_node.dir/src/vrpn_client_node.cpp.o[0m
+[7.484s] [ 66%] [32mBuilding CXX object CMakeFiles/vrpn_tracker_node.dir/src/vrpn_tracker_node.cpp.o[0m
+[9.861s] [ 83%] [32m[1mLinking CXX executable vrpn_tracker_node[0m
+[9.864s] [100%] [32m[1mLinking CXX executable vrpn_client_node[0m
+[10.276s] [100%] Built target vrpn_client_node
+[10.279s] [100%] Built target vrpn_tracker_node
+[10.295s] Invoked command in '/home/zq/colcon_ws/build/vrpn_client_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/vrpn_client_ros -- -j4 -l4
+[10.351s] Invoking command in '/home/zq/colcon_ws/build/vrpn_client_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/zq/colcon_ws/build/vrpn_client_ros
+[10.364s] -- Install configuration: ""
+[10.364s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros//launch
+[10.364s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros//launch/sample.launch.py
+[10.366s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros//config
+[10.366s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros//config/sample.params.yaml
+[10.366s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/lib/libvrpn_client_ros.a
+[10.370s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/lib/vrpn_client_ros/vrpn_tracker_node
+[10.374s] -- Set runtime path of "/home/zq/colcon_ws/install/vrpn_client_ros/lib/vrpn_client_ros/vrpn_tracker_node" to ""
+[10.374s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/lib/vrpn_client_ros/vrpn_client_node
+[10.378s] -- Set runtime path of "/home/zq/colcon_ws/install/vrpn_client_ros/lib/vrpn_client_ros/vrpn_client_node" to ""
+[10.378s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/ament_index/resource_index/package_run_dependencies/vrpn_client_ros
+[10.378s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/ament_index/resource_index/parent_prefix_path/vrpn_client_ros
+[10.379s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/environment/ament_prefix_path.sh
+[10.379s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/environment/ament_prefix_path.dsv
+[10.379s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/environment/path.sh
+[10.379s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/environment/path.dsv
+[10.380s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/local_setup.bash
+[10.380s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/local_setup.sh
+[10.380s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/local_setup.zsh
+[10.380s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/local_setup.dsv
+[10.381s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/package.dsv
+[10.381s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/ament_index/resource_index/packages/vrpn_client_ros
+[10.381s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/cmake/ament_cmake_export_dependencies-extras.cmake
+[10.382s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/cmake/vrpn_client_rosConfig.cmake
+[10.382s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/cmake/vrpn_client_rosConfig-version.cmake
+[10.382s] -- Installing: /home/zq/colcon_ws/install/vrpn_client_ros/share/vrpn_client_ros/package.xml
+[10.386s] Invoked command in '/home/zq/colcon_ws/build/vrpn_client_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/zq/colcon_ws/build/vrpn_client_ros

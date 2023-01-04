@@ -1,0 +1,10 @@
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:[m[K In member function ‘[01m[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:76:30:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K;[m[K’ before ‘[01m[Kstd[m[K’
+   76 |                              [01;31m[Kstd[m[K::to_string(q1_mocap_x)+","+std::to_string(q1_mocap_y)+","+std::to_string(q1_mocap_z)+","+std::to_string(q1_mocap_w)+"," ;
+      |                              [01;31m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdata[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   68 |       float [01;35m[Kdata[m[K[21] = {x1_mocap,y1_mocap,z1_mocap,
+      |             [01;35m[K^~~~[m[K
+make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

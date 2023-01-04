@@ -1,0 +1,68 @@
+[0.020s] Invoking command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake /home/zq/colcon_ws/src/arm_vrpn-main -DCMAKE_INSTALL_PREFIX=/home/zq/colcon_ws/install/arm_vrpn_pubsub
+[0.104s] -- The C compiler identification is GNU 9.4.0
+[0.183s] -- The CXX compiler identification is GNU 9.4.0
+[0.189s] -- Check for working C compiler: /usr/bin/cc
+[0.285s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.286s] -- Detecting C compiler ABI info
+[0.382s] -- Detecting C compiler ABI info - done
+[0.397s] -- Detecting C compile features
+[0.397s] -- Detecting C compile features - done
+[0.401s] -- Check for working CXX compiler: /usr/bin/c++
+[0.510s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.512s] -- Detecting CXX compiler ABI info
+[0.623s] -- Detecting CXX compiler ABI info - done
+[0.639s] -- Detecting CXX compile features
+[0.639s] -- Detecting CXX compile features - done
+[0.650s] -- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.682s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.682s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.933s] -- Found std_msgs: 2.0.5 (/opt/ros/foxy/share/std_msgs/cmake)
+[0.975s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.984s] -- Found rosidl_adapter: 1.3.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[1.108s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[1.149s] -- Found FastRTPS: /opt/ros/foxy/include  
+[1.259s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.330s] -- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)
+[1.381s] -- Found tf2: 0.13.13 (/opt/ros/foxy/share/tf2/cmake)
+[1.397s] -- Found tf2_ros: 0.13.13 (/opt/ros/foxy/share/tf2_ros/cmake)
+[1.479s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.481s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.482s] -- Looking for pthread.h
+[1.583s] -- Looking for pthread.h - found
+[1.584s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.687s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[1.687s] -- Looking for pthread_create in pthreads
+[1.769s] -- Looking for pthread_create in pthreads - not found
+[1.769s] -- Looking for pthread_create in pthread
+[1.871s] -- Looking for pthread_create in pthread - found
+[1.872s] -- Found Threads: TRUE  
+[2.575s] -- Configuring done
+[2.591s] -- Generating done
+[2.593s] -- Build files have been written to: /home/zq/colcon_ws/build/arm_vrpn_pubsub
+[2.605s] Invoked command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake /home/zq/colcon_ws/src/arm_vrpn-main -DCMAKE_INSTALL_PREFIX=/home/zq/colcon_ws/install/arm_vrpn_pubsub
+[2.609s] Invoking command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4
+[2.666s] [35m[1mScanning dependencies of target arm_mocap_pubsub[0m
+[2.720s] [ 50%] [32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o[0m
+[8.728s] [100%] [32m[1mLinking CXX executable arm_mocap_pubsub[0m
+[9.151s] [100%] Built target arm_mocap_pubsub
+[9.167s] Invoked command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4
+[9.216s] Invoking command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/zq/colcon_ws/build/arm_vrpn_pubsub
+[9.230s] -- Install configuration: ""
+[9.231s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/lib/arm_vrpn_pubsub/arm_mocap_pubsub
+[9.234s] -- Set runtime path of "/home/zq/colcon_ws/install/arm_vrpn_pubsub/lib/arm_vrpn_pubsub/arm_mocap_pubsub" to ""
+[9.234s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/ament_index/resource_index/package_run_dependencies/arm_vrpn_pubsub
+[9.234s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/ament_index/resource_index/parent_prefix_path/arm_vrpn_pubsub
+[9.235s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/ament_prefix_path.sh
+[9.235s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/ament_prefix_path.dsv
+[9.236s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/path.sh
+[9.236s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/path.dsv
+[9.236s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.bash
+[9.236s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.sh
+[9.237s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.zsh
+[9.238s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.dsv
+[9.238s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/package.dsv
+[9.238s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/ament_index/resource_index/packages/arm_vrpn_pubsub
+[9.238s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/cmake/arm_vrpn_pubsubConfig.cmake
+[9.239s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/cmake/arm_vrpn_pubsubConfig-version.cmake
+[9.239s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/package.xml
+[9.242s] Invoked command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/zq/colcon_ws/build/arm_vrpn_pubsub

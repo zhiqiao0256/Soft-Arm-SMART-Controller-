@@ -1,0 +1,15 @@
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:[m[K In member function ‘[01m[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:77:45:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kstr_buffer(std::string&)[m[K’
+   77 |       publisher.send(zmq::str_buffer(str_msg[01;31m[K)[m[K);
+      |                                             [01;31m[K^[m[K
+In file included from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:10[m[K:
+[01m[K/usr/local/include/zmq.hpp:1350:24:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class Char, long unsigned int N> constexpr zmq::const_buffer zmq::str_buffer(const Char (&)[N])[m[K’
+ 1350 | constexpr const_buffer [01;36m[Kstr_buffer[m[K(const Char (&data)[N]) noexcept
+      |                        [01;36m[K^~~~~~~~~~[m[K
+[01m[K/usr/local/include/zmq.hpp:1350:24:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:77:45:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst Char [N][m[K’ and ‘[01m[Kstd::string[m[K’ {aka ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’}
+   77 |       publisher.send(zmq::str_buffer(str_msg[01;36m[K)[m[K);
+      |                                             [01;36m[K^[m[K
+make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

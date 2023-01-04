@@ -1,0 +1,160 @@
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:[m[K In member function ‘[01m[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:27:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kx1_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   68 |       char ch_data[21] = {[01;35m[Kx1_mocap[m[K,y1_mocap,z1_mocap,
+      |                           [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:36:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Ky1_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   68 |       char ch_data[21] = {x1_mocap,[01;35m[Ky1_mocap[m[K,z1_mocap,
+      |                                    [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:45:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kz1_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   68 |       char ch_data[21] = {x1_mocap,y1_mocap,[01;35m[Kz1_mocap[m[K,
+      |                                             [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq1_mocap_x[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   69 |                       [01;35m[Kq1_mocap_x[m[K,q1_mocap_y,q1_mocap_z,q1_mocap_w,
+      |                       [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:34:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq1_mocap_y[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   69 |                       q1_mocap_x,[01;35m[Kq1_mocap_y[m[K,q1_mocap_z,q1_mocap_w,
+      |                                  [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:45:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq1_mocap_z[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   69 |                       q1_mocap_x,q1_mocap_y,[01;35m[Kq1_mocap_z[m[K,q1_mocap_w,
+      |                                             [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:56:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq1_mocap_w[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   69 |                       q1_mocap_x,q1_mocap_y,q1_mocap_z,[01;35m[Kq1_mocap_w[m[K,
+      |                                                        [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kx2_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   70 |                       [01;35m[Kx2_mocap[m[K,y2_mocap,z2_mocap,
+      |                       [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:32:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Ky2_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   70 |                       x2_mocap,[01;35m[Ky2_mocap[m[K,z2_mocap,
+      |                                [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:41:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kz2_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   70 |                       x2_mocap,y2_mocap,[01;35m[Kz2_mocap[m[K,
+      |                                         [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq2_mocap_x[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   71 |                       [01;35m[Kq2_mocap_x[m[K,q2_mocap_y,q2_mocap_z,q2_mocap_w,
+      |                       [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:34:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq2_mocap_y[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   71 |                       q2_mocap_x,[01;35m[Kq2_mocap_y[m[K,q2_mocap_z,q2_mocap_w,
+      |                                  [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:45:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq2_mocap_z[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   71 |                       q2_mocap_x,q2_mocap_y,[01;35m[Kq2_mocap_z[m[K,q2_mocap_w,
+      |                                             [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:56:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq2_mocap_w[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   71 |                       q2_mocap_x,q2_mocap_y,q2_mocap_z,[01;35m[Kq2_mocap_w[m[K,
+      |                                                        [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kx3_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   72 |                       [01;35m[Kx3_mocap[m[K,y3_mocap,z3_mocap,
+      |                       [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:32:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Ky3_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   72 |                       x3_mocap,[01;35m[Ky3_mocap[m[K,z3_mocap,
+      |                                [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:41:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kz3_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   72 |                       x3_mocap,y3_mocap,[01;35m[Kz3_mocap[m[K,
+      |                                         [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq3_mocap_x[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   73 |                       [01;35m[Kq3_mocap_x[m[K,q3_mocap_y,q3_mocap_z,q3_mocap_w
+      |                       [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:34:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq3_mocap_y[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   73 |                       q3_mocap_x,[01;35m[Kq3_mocap_y[m[K,q3_mocap_z,q3_mocap_w
+      |                                  [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:45:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq3_mocap_z[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   73 |                       q3_mocap_x,q3_mocap_y,[01;35m[Kq3_mocap_z[m[K,q3_mocap_w
+      |                                             [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:56:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq3_mocap_w[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   73 |                       q3_mocap_x,q3_mocap_y,q3_mocap_z,[01;35m[Kq3_mocap_w[m[K
+      |                                                        [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:51:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kto_string(char [21])[m[K’
+   75 |       std::string str_msg = std::to_string(ch_data[01;31m[K)[m[K
+      |                                                   [01;31m[K^[m[K
+In file included from [01m[K/usr/include/c++/9/string:55[m[K,
+                 from [01m[K/usr/include/c++/9/stdexcept:39[m[K,
+                 from [01m[K/usr/include/c++/9/array:39[m[K,
+                 from [01m[K/usr/include/c++/9/tuple:39[m[K,
+                 from [01m[K/usr/include/c++/9/functional:54[m[K,
+                 from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:2[m[K:
+[01m[K/usr/include/c++/9/bits/basic_string.h:6549:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::string std::__cxx11::to_string(int)[m[K’ <near match>
+ 6549 |   [01;36m[Kto_string[m[K(int __val)
+      |   [01;36m[K^~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/basic_string.h:6549:3:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:44:[m[K [01;31m[Kerror: [m[Kinvalid conversion from ‘[01m[Kchar*[m[K’ to ‘[01m[Kint[m[K’ [[01;31m[K-fpermissive[m[K]
+   75 |       std::string str_msg = std::to_string([01;31m[Kch_data[m[K)
+      |                                            [01;31m[K^~~~~~~[m[K
+      |                                            [01;31m[K|[m[K
+      |                                            [01;31m[Kchar*[m[K
+In file included from [01m[K/usr/include/c++/9/string:55[m[K,
+                 from [01m[K/usr/include/c++/9/stdexcept:39[m[K,
+                 from [01m[K/usr/include/c++/9/array:39[m[K,
+                 from [01m[K/usr/include/c++/9/tuple:39[m[K,
+                 from [01m[K/usr/include/c++/9/functional:54[m[K,
+                 from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:2[m[K:
+[01m[K/usr/include/c++/9/bits/basic_string.h:6554:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::string std::__cxx11::to_string(unsigned int)[m[K’ <near match>
+ 6554 |   [01;36m[Kto_string[m[K(unsigned __val)
+      |   [01;36m[K^~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/basic_string.h:6554:3:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:44:[m[K [01;31m[Kerror: [m[Kinvalid conversion from ‘[01m[Kchar*[m[K’ to ‘[01m[Kunsigned int[m[K’ [[01;31m[K-fpermissive[m[K]
+   75 |       std::string str_msg = std::to_string([01;31m[Kch_data[m[K)
+      |                                            [01;31m[K^~~~~~~[m[K
+      |                                            [01;31m[K|[m[K
+      |                                            [01;31m[Kchar*[m[K
+In file included from [01m[K/usr/include/c++/9/string:55[m[K,
+                 from [01m[K/usr/include/c++/9/stdexcept:39[m[K,
+                 from [01m[K/usr/include/c++/9/array:39[m[K,
+                 from [01m[K/usr/include/c++/9/tuple:39[m[K,
+                 from [01m[K/usr/include/c++/9/functional:54[m[K,
+                 from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:2[m[K:
+[01m[K/usr/include/c++/9/bits/basic_string.h:6560:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::string std::__cxx11::to_string(long int)[m[K’ <near match>
+ 6560 |   [01;36m[Kto_string[m[K(long __val)
+      |   [01;36m[K^~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/basic_string.h:6560:3:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:44:[m[K [01;31m[Kerror: [m[Kinvalid conversion from ‘[01m[Kchar*[m[K’ to ‘[01m[Klong int[m[K’ [[01;31m[K-fpermissive[m[K]
+   75 |       std::string str_msg = std::to_string([01;31m[Kch_data[m[K)
+      |                                            [01;31m[K^~~~~~~[m[K
+      |                                            [01;31m[K|[m[K
+      |                                            [01;31m[Kchar*[m[K
+In file included from [01m[K/usr/include/c++/9/string:55[m[K,
+                 from [01m[K/usr/include/c++/9/stdexcept:39[m[K,
+                 from [01m[K/usr/include/c++/9/array:39[m[K,
+                 from [01m[K/usr/include/c++/9/tuple:39[m[K,
+                 from [01m[K/usr/include/c++/9/functional:54[m[K,
+                 from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:2[m[K:
+[01m[K/usr/include/c++/9/bits/basic_string.h:6565:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::string std::__cxx11::to_string(long unsigned int)[m[K’ <near match>
+ 6565 |   [01;36m[Kto_string[m[K(unsigned long __val)
+      |   [01;36m[K^~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/basic_string.h:6565:3:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:44:[m[K [01;31m[Kerror: [m[Kinvalid conversion from ‘[01m[Kchar*[m[K’ to ‘[01m[Klong unsigned int[m[K’ [[01;31m[K-fpermissive[m[K]
+   75 |       std::string str_msg = std::to_string([01;31m[Kch_data[m[K)
+      |                                            [01;31m[K^~~~~~~[m[K
+      |                                            [01;31m[K|[m[K
+      |                                            [01;31m[Kchar*[m[K
+In file included from [01m[K/usr/include/c++/9/string:55[m[K,
+                 from [01m[K/usr/include/c++/9/stdexcept:39[m[K,
+                 from [01m[K/usr/include/c++/9/array:39[m[K,
+                 from [01m[K/usr/include/c++/9/tuple:39[m[K,
+                 from [01m[K/usr/include/c++/9/functional:54[m[K,
+                 from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:2[m[K:
+[01m[K/usr/include/c++/9/bits/basic_string.h:6571:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::string std::__cxx11::to_string(long long int)[m[K’ <near match>
+ 6571 |   [01;36m[Kto_string[m[K(long long __val)
+      |   [01;36m[K^~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/basic_string.h:6571:3:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:44:[m[K [01;31m[Kerror: [m[Kinvalid conversion from ‘[01m[Kchar*[m[K’ to ‘[01m[Klong long int[m[K’ [[01;31m[K-fpermissive[m[K]
+   75 |       std::string str_msg = std::to_string([01;31m[Kch_data[m[K)
+      |                                            [01;31m[K^~~~~~~[m[K
+      |                                            [01;31m[K|[m[K
+      |                                            [01;31m[Kchar*[m[K
+In file included from [01m[K/usr/include/c++/9/string:55[m[K,
+                 from [01m[K/usr/include/c++/9/stdexcept:39[m[K,
+                 from [01m[K/usr/include/c++/9/array:39[m[K,
+                 from [01m[K/usr/include/c++/9/tuple:39[m[K,
+                 from [01m[K/usr/include/c++/9/functional:54[m[K,
+                 from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:2[m[K:
+[01m[K/usr/include/c++/9/bits/basic_string.h:6577:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::string std::__cxx11::to_string(long long unsigned int)[m[K’ <near match>
+ 6577 |   [01;36m[Kto_string[m[K(unsigned long long __val)
+      |   [01;36m[K^~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/bits/basic_string.h:6577:3:[m[K [01;36m[Knote: [m[K  conversion of argument 1 would be ill-formed:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:44:[m[K [01;31m[Kerror: [m[Kinvalid conversion from ‘[01m[Kchar*[m[K’ to ‘[01m[Klong long unsigned int[m[K’ [[01;31m[K-fpermissive[m[K]
+   75 |       std::string str_msg = std::to_string([01;31m[Kch_data[m[K)
+      |                                            [01;31m[K^~~~~~~[m[K
+      |                                            [01;31m[K|[m[K
+      |                                            [01;31m[Kchar*[m[K
+make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

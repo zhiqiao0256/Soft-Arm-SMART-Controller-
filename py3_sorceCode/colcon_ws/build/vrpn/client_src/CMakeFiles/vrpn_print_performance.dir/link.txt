@@ -1,0 +1,1 @@
+/usr/bin/c++   -fPIC -O2 -g -DNDEBUG  -rdynamic CMakeFiles/vrpn_print_performance.dir/vrpn_print_performance.C.o  -o vrpn_print_performance  ../libvrpn.a ../quat/libquat.a -lm -lpthread 

@@ -1,0 +1,1233 @@
+[0.000000] (-) TimerEvent: {}
+[0.000283] (-) JobUnselected: {'identifier': 'arm_vrpn_pubsub'}
+[0.000340] (-) JobUnselected: {'identifier': 'vrpn_client_ros'}
+[0.000371] (vrpn) JobQueued: {'identifier': 'vrpn', 'dependencies': OrderedDict()}
+[0.000715] (vrpn) JobStarted: {'identifier': 'vrpn'}
+[0.022055] (vrpn) JobProgress: {'identifier': 'vrpn', 'progress': 'cmake'}
+[0.022508] (vrpn) Command: {'cmd': ['/usr/bin/cmake', '/home/zq/colcon_ws/src/vrpn-ros2', '-DCMAKE_INSTALL_PREFIX=/home/zq/colcon_ws/install/vrpn'], 'cwd': '/home/zq/colcon_ws/build/vrpn', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'zq'), ('SSH_AGENT_PID', '1062'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/zq'), ('OLDPWD', '/home/zq/colcon_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '840'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/zq/colcon_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'zq'), ('JOURNAL_STREAM', '8:35592'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/zq/colcon_ws/install/vrpn/lib/x86_64-linux-gnu/pkgconfig:/home/zq/colcon_ws/install/vrpn/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'zq'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/zq/colcon_ws/install/vrpn/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/zq:@/tmp/.ICE-unix/1128,unix/zq:/tmp/.ICE-unix/1128'), ('INVOCATION_ID', '37ff8d7386ac47b68a2281876ca4ccff'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3004cade_e504_48c3_9559_328beb6192c2'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.367'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/zq/colcon_ws/build/vrpn'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/vrpn:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy')]), 'shell': False}
+[0.098970] (-) TimerEvent: {}
+[0.199590] (-) TimerEvent: {}
+[0.300215] (-) TimerEvent: {}
+[0.325023] (vrpn) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.400403] (-) TimerEvent: {}
+[0.501001] (-) TimerEvent: {}
+[0.568425] (vrpn) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.581294] (vrpn) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.601116] (-) TimerEvent: {}
+[0.679782] (vrpn) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.681629] (vrpn) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.701238] (-) TimerEvent: {}
+[0.778076] (vrpn) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.799683] (vrpn) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.800469] (vrpn) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.801313] (-) TimerEvent: {}
+[0.807866] (vrpn) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[0.901476] (-) TimerEvent: {}
+[0.918842] (vrpn) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[0.920444] (vrpn) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.001620] (-) TimerEvent: {}
+[1.029965] (vrpn) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.049558] (vrpn) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.050713] (vrpn) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.101803] (-) TimerEvent: {}
+[1.202479] (-) TimerEvent: {}
+[1.223449] (vrpn) StdoutLine: {'line': b'-- Configuring the VRPN suite version 07.34 using the CMake-based build system\n'}
+[1.224067] (vrpn) StdoutLine: {'line': b'\n'}
+[1.224974] (vrpn) StderrLine: {'line': b'CMake Warning (dev) at CMakeLists.txt:160 (option):\n'}
+[1.226293] (vrpn) StderrLine: {'line': b'  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake\n'}
+[1.226702] (vrpn) StderrLine: {'line': b'  --help-policy CMP0077" for policy details.  Use the cmake_policy command to\n'}
+[1.227083] (vrpn) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[1.227467] (vrpn) StderrLine: {'line': b'\n'}
+[1.227835] (vrpn) StderrLine: {'line': b'  For compatibility with older versions of CMake, option is clearing the\n'}
+[1.228109] (vrpn) StderrLine: {'line': b"  normal variable 'VRPN_BUILD_CLIENT_LIBRARY'.\n"}
+[1.228354] (vrpn) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[1.228704] (vrpn) StderrLine: {'line': b'\n'}
+[1.229008] (vrpn) StderrLine: {'line': b'CMake Warning (dev) at CMakeLists.txt:163 (option):\n'}
+[1.229314] (vrpn) StderrLine: {'line': b'  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake\n'}
+[1.229624] (vrpn) StderrLine: {'line': b'  --help-policy CMP0077" for policy details.  Use the cmake_policy command to\n'}
+[1.229932] (vrpn) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[1.230229] (vrpn) StderrLine: {'line': b'\n'}
+[1.230556] (vrpn) StderrLine: {'line': b'  For compatibility with older versions of CMake, option is clearing the\n'}
+[1.230903] (vrpn) StderrLine: {'line': b"  normal variable 'VRPN_BUILD_SERVER_LIBRARY'.\n"}
+[1.231245] (vrpn) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[1.231554] (vrpn) StderrLine: {'line': b'\n'}
+[1.231889] (vrpn) StderrLine: {'line': b'CMake Warning (dev) at CMakeLists.txt:168 (option):\n'}
+[1.232297] (vrpn) StderrLine: {'line': b'  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake\n'}
+[1.232671] (vrpn) StderrLine: {'line': b'  --help-policy CMP0077" for policy details.  Use the cmake_policy command to\n'}
+[1.233054] (vrpn) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[1.233412] (vrpn) StderrLine: {'line': b'\n'}
+[1.233706] (vrpn) StderrLine: {'line': b'  For compatibility with older versions of CMake, option is clearing the\n'}
+[1.233991] (vrpn) StderrLine: {'line': b"  normal variable 'VRPN_BUILD_CLIENTS'.\n"}
+[1.234279] (vrpn) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[1.234639] (vrpn) StderrLine: {'line': b'\n'}
+[1.234958] (vrpn) StderrLine: {'line': b'CMake Warning (dev) at CMakeLists.txt:169 (option):\n'}
+[1.235267] (vrpn) StderrLine: {'line': b'  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake\n'}
+[1.235559] (vrpn) StderrLine: {'line': b'  --help-policy CMP0077" for policy details.  Use the cmake_policy command to\n'}
+[1.235861] (vrpn) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[1.236233] (vrpn) StderrLine: {'line': b'\n'}
+[1.236553] (vrpn) StderrLine: {'line': b'  For compatibility with older versions of CMake, option is clearing the\n'}
+[1.236852] (vrpn) StderrLine: {'line': b"  normal variable 'VRPN_BUILD_SERVERS'.\n"}
+[1.237149] (vrpn) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[1.237444] (vrpn) StderrLine: {'line': b'\n'}
+[1.237696] (vrpn) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.302607] (-) TimerEvent: {}
+[1.348845] (vrpn) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.349524] (vrpn) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.402776] (-) TimerEvent: {}
+[1.463926] (vrpn) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[1.464607] (vrpn) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[1.502911] (-) TimerEvent: {}
+[1.548899] (vrpn) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[1.549204] (vrpn) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[1.603056] (-) TimerEvent: {}
+[1.647296] (vrpn) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[1.649020] (vrpn) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.649411] (vrpn) StdoutLine: {'line': b'-- Now searching for auto-configurable optional packages...\n'}
+[1.649572] (vrpn) StdoutLine: {'line': b'\n'}
+[1.659309] (vrpn) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.683058] (vrpn) StdoutLine: {'line': b'--   Found libusb-1.0, version 1.0.23\n'}
+[1.703239] (-) TimerEvent: {}
+[1.757641] (vrpn) StdoutLine: {'line': b'-- Found Libusb1: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  \n'}
+[1.766316] (vrpn) StdoutLine: {'line': b'-- Could NOT find SWIG (missing: SWIG_EXECUTABLE SWIG_DIR) \n'}
+[1.785505] (vrpn) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found version "3.8.10") \n'}
+[1.786078] (vrpn) StderrLine: {'line': b'CMake Warning (dev) at cmake/OptionRequires.cmake:46 (option):\n'}
+[1.786487] (vrpn) StderrLine: {'line': b'  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake\n'}
+[1.786858] (vrpn) StderrLine: {'line': b'  --help-policy CMP0077" for policy details.  Use the cmake_policy command to\n'}
+[1.787053] (vrpn) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[1.787214] (vrpn) StderrLine: {'line': b'\n'}
+[1.787389] (vrpn) StderrLine: {'line': b'  For compatibility with older versions of CMake, option is clearing the\n'}
+[1.787578] (vrpn) StderrLine: {'line': b"  normal variable 'VRPN_BUILD_PYTHON'.\n"}
+[1.787780] (vrpn) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[1.787993] (vrpn) StderrLine: {'line': b'  CMakeLists.txt:345 (option_requires)\n'}
+[1.788188] (vrpn) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[1.788404] (vrpn) StderrLine: {'line': b'\n'}
+[1.792436] (vrpn) StdoutLine: {'line': b'-- Could NOT find Java (missing: Java_JAVA_EXECUTABLE Java_JAVAC_EXECUTABLE Java_JAR_EXECUTABLE Java_JAVADOC_EXECUTABLE Java_JAVAH_EXECUTABLE Development) \n'}
+[1.803347] (-) TimerEvent: {}
+[1.806820] (vrpn) StdoutLine: {'line': b'-- Could NOT find JNI (missing: JAVA_AWT_LIBRARY JAVA_JVM_LIBRARY JAVA_INCLUDE_PATH JAVA_INCLUDE_PATH2 JAVA_AWT_INCLUDE_PATH) \n'}
+[1.807641] (vrpn) StderrLine: {'line': b'CMake Warning (dev) at cmake/OptionRequires.cmake:46 (option):\n'}
+[1.807922] (vrpn) StderrLine: {'line': b'  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake\n'}
+[1.808051] (vrpn) StderrLine: {'line': b'  --help-policy CMP0077" for policy details.  Use the cmake_policy command to\n'}
+[1.808177] (vrpn) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[1.808285] (vrpn) StderrLine: {'line': b'\n'}
+[1.808431] (vrpn) StderrLine: {'line': b'  For compatibility with older versions of CMake, option is clearing the\n'}
+[1.808576] (vrpn) StderrLine: {'line': b"  normal variable 'VRPN_BUILD_JAVA'.\n"}
+[1.808718] (vrpn) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[1.808889] (vrpn) StderrLine: {'line': b'  CMakeLists.txt:374 (option_requires)\n'}
+[1.809026] (vrpn) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[1.809124] (vrpn) StderrLine: {'line': b'\n'}
+[1.903490] (-) TimerEvent: {}
+[2.003807] (-) TimerEvent: {}
+[2.034262] (vrpn) StdoutLine: {'line': b'-- Found MPI_C: /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so (found version "3.1") \n'}
+[2.103952] (-) TimerEvent: {}
+[2.204253] (-) TimerEvent: {}
+[2.304676] (-) TimerEvent: {}
+[2.405053] (-) TimerEvent: {}
+[2.505394] (-) TimerEvent: {}
+[2.605747] (-) TimerEvent: {}
+[2.706062] (-) TimerEvent: {}
+[2.806475] (-) TimerEvent: {}
+[2.906866] (-) TimerEvent: {}
+[3.007216] (-) TimerEvent: {}
+[3.107561] (-) TimerEvent: {}
+[3.207895] (-) TimerEvent: {}
+[3.308246] (-) TimerEvent: {}
+[3.408594] (-) TimerEvent: {}
+[3.508921] (-) TimerEvent: {}
+[3.599541] (vrpn) StdoutLine: {'line': b'-- Found MPI_CXX: /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so (found version "3.1") \n'}
+[3.600717] (vrpn) StdoutLine: {'line': b'-- Found MPI: TRUE (found version "3.1")  \n'}
+[3.609068] (-) TimerEvent: {}
+[3.624633] (vrpn) StdoutLine: {'line': b'-- Could NOT find Modbus (missing: MODBUS_LIBRARY MODBUS_INCLUDE_DIR) \n'}
+[3.667295] (vrpn) StdoutLine: {'line': b'-- Could NOT find OpenHaptics (missing: HDAPI_LIBRARY HDAPI_INCLUDE_DIR HDAPI_HDU_INCLUDE_DIR HDAPI_HDU_LIBRARY HLAPI_INCLUDE_DIR HLAPI_LIBRARY HLAPI_HLU_INCLUDE_DIR HLAPI_HLU_LIBRARY HDAPI_PHANToMIO_LIBRARY HDAPI_HDU_SOURCE_DIR HLAPI_HLU_SOURCE_DIR) \n'}
+[3.672657] (vrpn) StdoutLine: {'line': b'-- Could NOT find GHOST (missing: GHOST_LIBRARY GHOST_INCLUDE_DIR) \n'}
+[3.675495] (vrpn) StdoutLine: {'line': b'-- Found I2CDEV: /usr/include  \n'}
+[3.680617] (vrpn) StdoutLine: {'line': b'-- Could NOT find WiiUse (missing: WIIUSE_LIBRARY WIIUSE_INCLUDE_DIR) \n'}
+[3.689353] (vrpn) StdoutLine: {'line': b'-- Could NOT find LibNifalcon (missing: LIBNIFALCON_LIBRARY LIBNIFALCON_INCLUDE_DIR) \n'}
+[3.693281] (vrpn) StdoutLine: {'line': b'-- Could NOT find GPM (missing: GPM_LIBRARY GPM_INCLUDE_DIR) \n'}
+[3.699757] (vrpn) StdoutLine: {'line': b'-- Could NOT find InterSense (missing: INTERSENSE_LIBRARY INTERSENSE_INCLUDE_DIR) \n'}
+[3.703603] (vrpn) StdoutLine: {'line': b'-- Could NOT find NIDAQmx (missing: NIDAQMX_LIBRARY NIDAQMX_INCLUDE_DIR) \n'}
+[3.707995] (vrpn) StdoutLine: {'line': b'-- Could NOT find ViewPoint (missing: VIEWPOINT_LIBRARY VIEWPOINT_INCLUDE_DIR) \n'}
+[3.709128] (vrpn) StdoutLine: {'line': b'-- Looking for C++ include linux/joystick.h\n'}
+[3.709374] (-) TimerEvent: {}
+[3.809671] (-) TimerEvent: {}
+[3.833729] (vrpn) StdoutLine: {'line': b'-- Looking for C++ include linux/joystick.h - found\n'}
+[3.834652] (vrpn) StdoutLine: {'line': b'-- Looking for C++ include linux/input.h\n'}
+[3.909790] (-) TimerEvent: {}
+[3.955443] (vrpn) StdoutLine: {'line': b'-- Looking for C++ include linux/input.h - found\n'}
+[3.968920] (vrpn) StdoutLine: {'line': b'-- Found Perl: /usr/bin/perl (found version "5.30.0") \n'}
+[3.969742] (vrpn) StdoutLine: {'line': b'-- Checking for perl module Parse::RecDescent\n'}
+[3.973726] (vrpn) StdoutLine: {'line': b'-- Checking for perl module Parse::RecDescent - failed\n'}
+[3.975623] (vrpn) StdoutLine: {'line': b'-- Could NOT find PerlModules (missing: PERLMODULES_PARSE_RECDESCENT_MODULE) \n'}
+[3.981673] (vrpn) StdoutLine: {'line': b'-- Could NOT find LibFreespace (missing: LIBFREESPACE_LIBRARY LIBFREESPACE_INCLUDE_DIR) \n'}
+[3.986934] (vrpn) StdoutLine: {'line': b'-- Found quatlib: quat  \n'}
+[3.991167] (vrpn) StdoutLine: {'line': b'-- Could NOT find ColibriApi (missing: COLIBRIAPI_LIBRARY COLIBRIAPI_INCLUDE_DIR) \n'}
+[4.009922] (-) TimerEvent: {}
+[4.021668] (vrpn) StdoutLine: {'line': b'-- Could NOT find GLUT (missing: GLUT_glut_LIBRARY GLUT_INCLUDE_DIR) \n'}
+[4.029774] (vrpn) StderrLine: {'line': b'CMake Warning (dev) at /usr/share/cmake-3.16/Modules/FindOpenGL.cmake:275 (message):\n'}
+[4.030112] (vrpn) StderrLine: {'line': b'  Policy CMP0072 is not set: FindOpenGL prefers GLVND by default when\n'}
+[4.030324] (vrpn) StderrLine: {'line': b'  available.  Run "cmake --help-policy CMP0072" for policy details.  Use the\n'}
+[4.030500] (vrpn) StderrLine: {'line': b'  cmake_policy command to set the policy and suppress this warning.\n'}
+[4.030789] (vrpn) StderrLine: {'line': b'\n'}
+[4.031024] (vrpn) StderrLine: {'line': b'  FindOpenGL found both a legacy GL library:\n'}
+[4.031326] (vrpn) StderrLine: {'line': b'\n'}
+[4.031668] (vrpn) StderrLine: {'line': b'    OPENGL_gl_LIBRARY: /usr/lib/x86_64-linux-gnu/libGL.so\n'}
+[4.031787] (vrpn) StderrLine: {'line': b'\n'}
+[4.031888] (vrpn) StderrLine: {'line': b'  and GLVND libraries for OpenGL and GLX:\n'}
+[4.031986] (vrpn) StderrLine: {'line': b'\n'}
+[4.032087] (vrpn) StderrLine: {'line': b'    OPENGL_opengl_LIBRARY: /usr/lib/x86_64-linux-gnu/libOpenGL.so\n'}
+[4.032232] (vrpn) StderrLine: {'line': b'    OPENGL_glx_LIBRARY: /usr/lib/x86_64-linux-gnu/libGLX.so\n'}
+[4.032468] (vrpn) StderrLine: {'line': b'\n'}
+[4.032616] (vrpn) StderrLine: {'line': b'  OpenGL_GL_PREFERENCE has not been set to "GLVND" or "LEGACY", so for\n'}
+[4.032786] (vrpn) StderrLine: {'line': b'  compatibility with CMake 3.10 and below the legacy GL library will be used.\n'}
+[4.032898] (vrpn) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[4.032999] (vrpn) StderrLine: {'line': b'  client_src/CMakeLists.txt:26 (find_package)\n'}
+[4.033137] (vrpn) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[4.033236] (vrpn) StderrLine: {'line': b'\n'}
+[4.033331] (vrpn) StdoutLine: {'line': b'-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so   \n'}
+[4.037978] (vrpn) StderrLine: {'line': b'CMake Warning (dev) at /usr/share/cmake-3.16/Modules/FindOpenGL.cmake:275 (message):\n'}
+[4.038304] (vrpn) StderrLine: {'line': b'  Policy CMP0072 is not set: FindOpenGL prefers GLVND by default when\n'}
+[4.038535] (vrpn) StderrLine: {'line': b'  available.  Run "cmake --help-policy CMP0072" for policy details.  Use the\n'}
+[4.038692] (vrpn) StderrLine: {'line': b'  cmake_policy command to set the policy and suppress this warning.\n'}
+[4.038854] (vrpn) StderrLine: {'line': b'\n'}
+[4.039045] (vrpn) StderrLine: {'line': b'  FindOpenGL found both a legacy GL library:\n'}
+[4.039271] (vrpn) StderrLine: {'line': b'\n'}
+[4.039495] (vrpn) StderrLine: {'line': b'    OPENGL_gl_LIBRARY: /usr/lib/x86_64-linux-gnu/libGL.so\n'}
+[4.039686] (vrpn) StderrLine: {'line': b'\n'}
+[4.039895] (vrpn) StderrLine: {'line': b'  and GLVND libraries for OpenGL and GLX:\n'}
+[4.040163] (vrpn) StderrLine: {'line': b'\n'}
+[4.040362] (vrpn) StderrLine: {'line': b'    OPENGL_opengl_LIBRARY: /usr/lib/x86_64-linux-gnu/libOpenGL.so\n'}
+[4.040590] (vrpn) StderrLine: {'line': b'    OPENGL_glx_LIBRARY: /usr/lib/x86_64-linux-gnu/libGLX.so\n'}
+[4.040803] (vrpn) StderrLine: {'line': b'\n'}
+[4.041024] (vrpn) StderrLine: {'line': b'  OpenGL_GL_PREFERENCE has not been set to "GLVND" or "LEGACY", so for\n'}
+[4.041195] (vrpn) StderrLine: {'line': b'  compatibility with CMake 3.10 and below the legacy GL library will be used.\n'}
+[4.041374] (vrpn) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[4.041556] (vrpn) StderrLine: {'line': b'  server_src/CMakeLists.txt:27 (find_package)\n'}
+[4.041740] (vrpn) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[4.041925] (vrpn) StderrLine: {'line': b'\n'}
+[4.067830] (vrpn) StdoutLine: {'line': b'-- Dashboard scripts have been generated for automatic nightly and continuous builds.\n'}
+[4.068186] (vrpn) StdoutLine: {'line': b'-- You can add these sample lines to your crontab:\n'}
+[4.071017] (vrpn) StdoutLine: {'line': b'-- \n'}
+[4.071375] (vrpn) StdoutLine: {'line': b'\n'}
+[4.071599] (vrpn) StdoutLine: {'line': b'15 0 * * * "/usr/bin/ctest" -S "/home/zq/colcon_ws/build/vrpn/Dashboards-zq-zq/runNightly.cmake" \n'}
+[4.071784] (vrpn) StdoutLine: {'line': b'15 * * * * "/usr/bin/ctest" -S "/home/zq/colcon_ws/build/vrpn/Dashboards-zq-zq/runContinuous.cmake" \n'}
+[4.071987] (vrpn) StdoutLine: {'line': b'\n'}
+[4.072136] (vrpn) StdoutLine: {'line': b'or run this command for an one-off experimental test build:\n'}
+[4.072334] (vrpn) StdoutLine: {'line': b'"/usr/bin/ctest" -S "/home/zq/colcon_ws/build/vrpn/Dashboards-zq-zq/runExperimental.cmake" -VV\n'}
+[4.072541] (vrpn) StdoutLine: {'line': b'\n'}
+[4.072740] (vrpn) StdoutLine: {'line': b'-- \n'}
+[4.103968] (vrpn) StdoutLine: {'line': b'-- Configuring done\n'}
+[4.110058] (-) TimerEvent: {}
+[4.191574] (vrpn) StdoutLine: {'line': b'-- Generating done\n'}
+[4.198020] (vrpn) StdoutLine: {'line': b'-- Build files have been written to: /home/zq/colcon_ws/build/vrpn\n'}
+[4.209976] (vrpn) CommandEnded: {'returncode': 0}
+[4.210647] (-) TimerEvent: {}
+[4.211179] (vrpn) JobProgress: {'identifier': 'vrpn', 'progress': 'build'}
+[4.212237] (vrpn) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/zq/colcon_ws/build/vrpn', '--', '-j4', '-l4'], 'cwd': '/home/zq/colcon_ws/build/vrpn', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'zq'), ('SSH_AGENT_PID', '1062'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/zq'), ('OLDPWD', '/home/zq/colcon_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '840'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/zq/colcon_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'zq'), ('JOURNAL_STREAM', '8:35592'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/zq/colcon_ws/install/vrpn/lib/x86_64-linux-gnu/pkgconfig:/home/zq/colcon_ws/install/vrpn/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'zq'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/zq/colcon_ws/install/vrpn/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/zq:@/tmp/.ICE-unix/1128,unix/zq:/tmp/.ICE-unix/1128'), ('INVOCATION_ID', '37ff8d7386ac47b68a2281876ca4ccff'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3004cade_e504_48c3_9559_328beb6192c2'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.367'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/zq/colcon_ws/build/vrpn'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/vrpn:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy')]), 'shell': False}
+[4.282601] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target quat\x1b[0m\n'}
+[4.283159] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn_atmel\x1b[0m\n'}
+[4.283364] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn_timecode_generator\x1b[0m\n'}
+[4.283548] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target gpsnmea\x1b[0m\n'}
+[4.308674] (vrpn) StdoutLine: {'line': b'[  1%] \x1b[32mBuilding C object quat/CMakeFiles/quat.dir/matrix.c.o\x1b[0m\n'}
+[4.310382] (vrpn) StdoutLine: {'line': b'[  1%] \x1b[32mBuilding CXX object gpsnmealib/CMakeFiles/gpsnmea.dir/latLonCoord.C.o\x1b[0m\n'}
+[4.310793] (-) TimerEvent: {}
+[4.316058] (vrpn) StdoutLine: {'line': b'[  1%] \x1b[32mBuilding CXX object atmellib/CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_helper.C.o\x1b[0m\n'}
+[4.318471] (vrpn) StdoutLine: {'line': b'[  2%] \x1b[32mBuilding CXX object server_src/timecode_generator_server/CMakeFiles/vrpn_timecode_generator.dir/vrpn_timecode_generator.cpp.o\x1b[0m\n'}
+[4.364924] (vrpn) StdoutLine: {'line': b'[  2%] \x1b[32m\x1b[1mLinking CXX static library libvrpn_timecode_generator.a\x1b[0m\n'}
+[4.410912] (-) TimerEvent: {}
+[4.436247] (vrpn) StdoutLine: {'line': b'[  2%] Built target vrpn_timecode_generator\n'}
+[4.457736] (vrpn) StdoutLine: {'line': b'[  3%] \x1b[32mBuilding CXX object atmellib/CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_iobasic.C.o\x1b[0m\n'}
+[4.461312] (vrpn) StdoutLine: {'line': b'[  3%] \x1b[32mBuilding CXX object atmellib/CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_openclose.C.o\x1b[0m\n'}
+[4.511043] (-) TimerEvent: {}
+[4.520539] (vrpn) StdoutLine: {'line': b'[  3%] \x1b[32mBuilding C object quat/CMakeFiles/quat.dir/quat.c.o\x1b[0m\n'}
+[4.585417] (vrpn) StdoutLine: {'line': b'[  4%] \x1b[32mBuilding CXX object atmellib/CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_register.C.o\x1b[0m\n'}
+[4.611166] (-) TimerEvent: {}
+[4.662586] (vrpn) StdoutLine: {'line': b'[  4%] \x1b[32mBuilding CXX object atmellib/CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_tester.C.o\x1b[0m\n'}
+[4.687051] (vrpn) StdoutLine: {'line': b'[  5%] \x1b[32mBuilding C object quat/CMakeFiles/quat.dir/vector.c.o\x1b[0m\n'}
+[4.711295] (-) TimerEvent: {}
+[4.725142] (vrpn) StdoutLine: {'line': b'[  6%] \x1b[32m\x1b[1mLinking CXX static library libvrpn_atmel.a\x1b[0m\n'}
+[4.794018] (vrpn) StdoutLine: {'line': b'[  6%] Built target vrpn_atmel\n'}
+[4.811422] (-) TimerEvent: {}
+[4.814554] (vrpn) StdoutLine: {'line': b'[  6%] \x1b[32mBuilding C object quat/CMakeFiles/quat.dir/xyzquat.c.o\x1b[0m\n'}
+[4.825510] (vrpn) StdoutLine: {'line': b'[  7%] \x1b[32mBuilding CXX object gpsnmealib/CMakeFiles/gpsnmea.dir/nmeaParser.C.o\x1b[0m\n'}
+[4.905336] (vrpn) StdoutLine: {'line': b'[  7%] \x1b[32mBuilding CXX object gpsnmealib/CMakeFiles/gpsnmea.dir/typedCoord.C.o\x1b[0m\n'}
+[4.911547] (-) TimerEvent: {}
+[4.987333] (vrpn) StdoutLine: {'line': b'[  8%] \x1b[32m\x1b[1mLinking C static library libquat.a\x1b[0m\n'}
+[5.011690] (-) TimerEvent: {}
+[5.059020] (vrpn) StdoutLine: {'line': b'[  8%] Built target quat\n'}
+[5.082507] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn\x1b[0m\n'}
+[5.111807] (-) TimerEvent: {}
+[5.152328] (vrpn) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding CXX object gpsnmealib/CMakeFiles/gpsnmea.dir/utmCoord.C.o\x1b[0m\n'}
+[5.169087] (vrpn) StdoutLine: {'line': b'[ 10%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Analog.C.o\x1b[0m\n'}
+[5.211933] (-) TimerEvent: {}
+[5.312396] (-) TimerEvent: {}
+[5.412907] (-) TimerEvent: {}
+[5.455156] (vrpn) StdoutLine: {'line': b'[ 10%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Analog_Output.C.o\x1b[0m\n'}
+[5.513029] (-) TimerEvent: {}
+[5.519508] (vrpn) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Assert.C.o\x1b[0m\n'}
+[5.600060] (vrpn) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Auxiliary_Logger.C.o\x1b[0m\n'}
+[5.613151] (-) TimerEvent: {}
+[5.713624] (-) TimerEvent: {}
+[5.814160] (-) TimerEvent: {}
+[5.835601] (vrpn) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_BaseClass.C.o\x1b[0m\n'}
+[5.905096] (vrpn) StdoutLine: {'line': b'[ 12%] \x1b[32m\x1b[1mLinking CXX static library libgpsnmea.a\x1b[0m\n'}
+[5.914296] (-) TimerEvent: {}
+[5.981972] (vrpn) StdoutLine: {'line': b'[ 12%] Built target gpsnmea\n'}
+[6.012547] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpnserver\x1b[0m\n'}
+[6.014428] (-) TimerEvent: {}
+[6.114891] (-) TimerEvent: {}
+[6.200770] (vrpn) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Button.C.o\x1b[0m\n'}
+[6.215003] (-) TimerEvent: {}
+[6.315377] (-) TimerEvent: {}
+[6.322850] (vrpn) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Analog.C.o\x1b[0m\n'}
+[6.367569] (vrpn) StdoutLine: {'line': b'[ 13%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Connection.C.o\x1b[0m\n'}
+[6.415504] (-) TimerEvent: {}
+[6.434758] (vrpn) StdoutLine: {'line': b'[ 13%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Dial.C.o\x1b[0m\n'}
+[6.515636] (-) TimerEvent: {}
+[6.616138] (-) TimerEvent: {}
+[6.716684] (-) TimerEvent: {}
+[6.817232] (-) TimerEvent: {}
+[6.917768] (-) TimerEvent: {}
+[6.993758] (vrpn) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_EndpointContainer.C.o\x1b[0m\n'}
+[7.017876] (-) TimerEvent: {}
+[7.053602] (vrpn) StdoutLine: {'line': b'[ 15%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Analog_Output.C.o\x1b[0m\n'}
+[7.102252] (vrpn) StdoutLine: {'line': b'[ 15%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_FileConnection.C.o\x1b[0m\n'}
+[7.118002] (-) TimerEvent: {}
+[7.218405] (-) TimerEvent: {}
+[7.318846] (-) TimerEvent: {}
+[7.419275] (-) TimerEvent: {}
+[7.519704] (-) TimerEvent: {}
+[7.620122] (-) TimerEvent: {}
+[7.652986] (vrpn) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_FileController.C.o\x1b[0m\n'}
+[7.720259] (-) TimerEvent: {}
+[7.775566] (vrpn) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Assert.C.o\x1b[0m\n'}
+[7.820392] (-) TimerEvent: {}
+[7.832412] (vrpn) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_ForceDevice.C.o\x1b[0m\n'}
+[7.858004] (vrpn) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Auxiliary_Logger.C.o\x1b[0m\n'}
+[7.920532] (-) TimerEvent: {}
+[8.002344] (vrpn) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Forwarder.C.o\x1b[0m\n'}
+[8.020679] (-) TimerEvent: {}
+[8.121166] (-) TimerEvent: {}
+[8.221703] (-) TimerEvent: {}
+[8.322278] (-) TimerEvent: {}
+[8.422813] (-) TimerEvent: {}
+[8.441635] (vrpn) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_ForwarderController.C.o\x1b[0m\n'}
+[8.522953] (-) TimerEvent: {}
+[8.589855] (vrpn) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_BaseClass.C.o\x1b[0m\n'}
+[8.623082] (-) TimerEvent: {}
+[8.723476] (-) TimerEvent: {}
+[8.823900] (-) TimerEvent: {}
+[8.924330] (-) TimerEvent: {}
+[8.927860] (vrpn) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_FunctionGenerator.C.o\x1b[0m\n'}
+[9.024458] (-) TimerEvent: {}
+[9.124960] (-) TimerEvent: {}
+[9.161046] (vrpn) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Button.C.o\x1b[0m\n'}
+[9.225090] (-) TimerEvent: {}
+[9.325561] (-) TimerEvent: {}
+[9.426107] (-) TimerEvent: {}
+[9.526634] (-) TimerEvent: {}
+[9.627195] (-) TimerEvent: {}
+[9.696036] (vrpn) StdoutLine: {'line': b'[ 20%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Imager.C.o\x1b[0m\n'}
+[9.727319] (-) TimerEvent: {}
+[9.827785] (-) TimerEvent: {}
+[9.928335] (-) TimerEvent: {}
+[9.998927] (vrpn) StdoutLine: {'line': b'[ 20%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_LamportClock.C.o\x1b[0m\n'}
+[10.028449] (-) TimerEvent: {}
+[10.128932] (-) TimerEvent: {}
+[10.134520] (vrpn) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Mutex.C.o\x1b[0m\n'}
+[10.229051] (-) TimerEvent: {}
+[10.329524] (-) TimerEvent: {}
+[10.430062] (-) TimerEvent: {}
+[10.440078] (vrpn) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Connection.C.o\x1b[0m\n'}
+[10.530200] (-) TimerEvent: {}
+[10.573102] (vrpn) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Poser.C.o\x1b[0m\n'}
+[10.630324] (-) TimerEvent: {}
+[10.730804] (-) TimerEvent: {}
+[10.831352] (-) TimerEvent: {}
+[10.931884] (-) TimerEvent: {}
+[10.943537] (vrpn) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/string.h:495\x1b[m\x1b[K,\n'}
+[10.943969] (vrpn) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:2\x1b[m\x1b[K:\n'}
+[10.944223] (vrpn) StderrLine: {'line': b'In function \xe2\x80\x98\x1b[01m\x1b[Kchar* strncpy(char*, const char*, size_t)\x1b[m\x1b[K\xe2\x80\x99,\n'}
+[10.944452] (vrpn) StderrLine: {'line': b'    inlined from \xe2\x80\x98\x1b[01m\x1b[Kvoid vrpn_PeerMutex::init(const char*)\x1b[m\x1b[K\xe2\x80\x99 at \x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:1393:12\x1b[m\x1b[K:\n'}
+[10.944672] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/bits/string_fortified.h:106:34:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kchar* __builtin_strncpy(char*, const char*, long unsigned int)\x1b[m\x1b[K\xe2\x80\x99 specified bound depends on the length of the source argument [\x1b[01;35m\x1b[K-Wstringop-overflow=\x1b[m\x1b[K]\n'}
+[10.944936] (vrpn) StderrLine: {'line': b'  106 |   return \x1b[01;35m\x1b[K__builtin___strncpy_chk (__dest, __src, __len, __bos (__dest))\x1b[m\x1b[K;\n'}
+[10.945155] (vrpn) StderrLine: {'line': b'      |          \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.945364] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrpn_PeerMutex::init(const char*)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[10.945598] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:1393:12:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Klength computed here\n'}
+[10.945806] (vrpn) StderrLine: {'line': b' 1393 |     \x1b[01;36m\x1b[Kstrncpy(d_mutexName, name, strlen(name))\x1b[m\x1b[K;\n'}
+[10.946009] (vrpn) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[11.032024] (-) TimerEvent: {}
+[11.069870] (vrpn) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_RedundantTransmission.C.o\x1b[0m\n'}
+[11.132151] (-) TimerEvent: {}
+[11.232624] (-) TimerEvent: {}
+[11.333175] (-) TimerEvent: {}
+[11.385960] (vrpn) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Serial.C.o\x1b[0m\n'}
+[11.433306] (-) TimerEvent: {}
+[11.533818] (-) TimerEvent: {}
+[11.634213] (-) TimerEvent: {}
+[11.645482] (vrpn) StdoutLine: {'line': b'[ 23%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_SerialPort.C.o\x1b[0m\n'}
+[11.731410] (vrpn) StdoutLine: {'line': b'[ 23%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Shared.C.o\x1b[0m\n'}
+[11.734327] (-) TimerEvent: {}
+[11.822437] (vrpn) StdoutLine: {'line': b'[ 24%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_SharedObject.C.o\x1b[0m\n'}
+[11.837308] (-) TimerEvent: {}
+[11.937798] (-) TimerEvent: {}
+[12.038334] (-) TimerEvent: {}
+[12.138877] (-) TimerEvent: {}
+[12.144433] (vrpn) StdoutLine: {'line': b'[ 24%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Sound.C.o\x1b[0m\n'}
+[12.238999] (-) TimerEvent: {}
+[12.339399] (-) TimerEvent: {}
+[12.439798] (-) TimerEvent: {}
+[12.540197] (-) TimerEvent: {}
+[12.635541] (vrpn) StdoutLine: {'line': b'[ 24%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Text.C.o\x1b[0m\n'}
+[12.640329] (-) TimerEvent: {}
+[12.740839] (-) TimerEvent: {}
+[12.841275] (-) TimerEvent: {}
+[12.854181] (vrpn) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Thread.C.o\x1b[0m\n'}
+[12.941402] (-) TimerEvent: {}
+[13.041797] (-) TimerEvent: {}
+[13.042932] (vrpn) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/vrpn.dir/vrpn_Tracker.C.o\x1b[0m\n'}
+[13.143023] (-) TimerEvent: {}
+[13.186752] (vrpn) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Dial.C.o\x1b[0m\n'}
+[13.243152] (-) TimerEvent: {}
+[13.343615] (-) TimerEvent: {}
+[13.444042] (-) TimerEvent: {}
+[13.544456] (-) TimerEvent: {}
+[13.592041] (vrpn) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_EndpointContainer.C.o\x1b[0m\n'}
+[13.644584] (-) TimerEvent: {}
+[13.684247] (vrpn) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_FileConnection.C.o\x1b[0m\n'}
+[13.744721] (-) TimerEvent: {}
+[13.761730] (vrpn) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_FileController.C.o\x1b[0m\n'}
+[13.844849] (-) TimerEvent: {}
+[13.945333] (-) TimerEvent: {}
+[14.045892] (-) TimerEvent: {}
+[14.102226] (vrpn) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_ForceDevice.C.o\x1b[0m\n'}
+[14.146021] (-) TimerEvent: {}
+[14.230003] (vrpn) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Forwarder.C.o\x1b[0m\n'}
+[14.246150] (-) TimerEvent: {}
+[14.346549] (-) TimerEvent: {}
+[14.417472] (vrpn) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_ForwarderController.C.o\x1b[0m\n'}
+[14.446696] (-) TimerEvent: {}
+[14.547100] (-) TimerEvent: {}
+[14.647530] (-) TimerEvent: {}
+[14.683089] (vrpn) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_FunctionGenerator.C.o\x1b[0m\n'}
+[14.747657] (-) TimerEvent: {}
+[14.848071] (-) TimerEvent: {}
+[14.879254] (vrpn) StdoutLine: {'line': b'[ 30%] \x1b[32m\x1b[1mLinking CXX static library libvrpn.a\x1b[0m\n'}
+[14.905723] (vrpn) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Imager.C.o\x1b[0m\n'}
+[14.948199] (-) TimerEvent: {}
+[15.025597] (vrpn) StdoutLine: {'line': b'[ 30%] Built target vrpn\n'}
+[15.048333] (-) TimerEvent: {}
+[15.049036] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target c_interface_example\x1b[0m\n'}
+[15.077623] (vrpn) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding C object client_src/CMakeFiles/c_interface_example.dir/c_interface_example.c.o\x1b[0m\n'}
+[15.148463] (-) TimerEvent: {}
+[15.160419] (vrpn) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object client_src/CMakeFiles/c_interface_example.dir/c_interface.cpp.o\x1b[0m\n'}
+[15.248593] (-) TimerEvent: {}
+[15.349003] (-) TimerEvent: {}
+[15.449422] (-) TimerEvent: {}
+[15.533397] (vrpn) StdoutLine: {'line': b'[ 31%] \x1b[32m\x1b[1mLinking CXX executable c_interface_example\x1b[0m\n'}
+[15.549549] (-) TimerEvent: {}
+[15.649946] (-) TimerEvent: {}
+[15.750384] (-) TimerEvent: {}
+[15.757023] (vrpn) StdoutLine: {'line': b'[ 31%] Built target c_interface_example\n'}
+[15.781908] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target run_auxiliary_logger\x1b[0m\n'}
+[15.810000] (vrpn) StdoutLine: {'line': b'[ 31%] \x1b[32mBuilding CXX object client_src/CMakeFiles/run_auxiliary_logger.dir/run_auxiliary_logger.C.o\x1b[0m\n'}
+[15.850621] (-) TimerEvent: {}
+[15.950988] (-) TimerEvent: {}
+[16.051383] (-) TimerEvent: {}
+[16.151772] (-) TimerEvent: {}
+[16.222914] (vrpn) StdoutLine: {'line': b'[ 31%] \x1b[32m\x1b[1mLinking CXX executable run_auxiliary_logger\x1b[0m\n'}
+[16.251901] (-) TimerEvent: {}
+[16.319983] (vrpn) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_LamportClock.C.o\x1b[0m\n'}
+[16.327025] (vrpn) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Mutex.C.o\x1b[0m\n'}
+[16.352109] (-) TimerEvent: {}
+[16.438355] (vrpn) StdoutLine: {'line': b'[ 32%] Built target run_auxiliary_logger\n'}
+[16.452229] (-) TimerEvent: {}
+[16.461814] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn_print_devices\x1b[0m\n'}
+[16.468376] (vrpn) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Poser.C.o\x1b[0m\n'}
+[16.490094] (vrpn) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object client_src/CMakeFiles/vrpn_print_devices.dir/vrpn_print_devices.C.o\x1b[0m\n'}
+[16.552364] (-) TimerEvent: {}
+[16.652845] (-) TimerEvent: {}
+[16.753387] (-) TimerEvent: {}
+[16.853803] (-) TimerEvent: {}
+[16.954220] (-) TimerEvent: {}
+[16.981063] (vrpn) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_RedundantTransmission.C.o\x1b[0m\n'}
+[17.054351] (-) TimerEvent: {}
+[17.154743] (-) TimerEvent: {}
+[17.196053] (vrpn) StdoutLine: {'line': b'[ 34%] \x1b[32m\x1b[1mLinking CXX executable vrpn_print_devices\x1b[0m\n'}
+[17.202175] (vrpn) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/string.h:495\x1b[m\x1b[K,\n'}
+[17.202592] (vrpn) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:2\x1b[m\x1b[K:\n'}
+[17.202835] (vrpn) StderrLine: {'line': b'In function \xe2\x80\x98\x1b[01m\x1b[Kchar* strncpy(char*, const char*, size_t)\x1b[m\x1b[K\xe2\x80\x99,\n'}
+[17.203051] (vrpn) StderrLine: {'line': b'    inlined from \xe2\x80\x98\x1b[01m\x1b[Kvoid vrpn_PeerMutex::init(const char*)\x1b[m\x1b[K\xe2\x80\x99 at \x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:1393:12\x1b[m\x1b[K:\n'}
+[17.203277] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/bits/string_fortified.h:106:34:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kchar* __builtin_strncpy(char*, const char*, long unsigned int)\x1b[m\x1b[K\xe2\x80\x99 specified bound depends on the length of the source argument [\x1b[01;35m\x1b[K-Wstringop-overflow=\x1b[m\x1b[K]\n'}
+[17.203494] (vrpn) StderrLine: {'line': b'  106 |   return \x1b[01;35m\x1b[K__builtin___strncpy_chk (__dest, __src, __len, __bos (__dest))\x1b[m\x1b[K;\n'}
+[17.203707] (vrpn) StderrLine: {'line': b'      |          \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[17.203912] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrpn_PeerMutex::init(const char*)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[17.204114] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:1393:12:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Klength computed here\n'}
+[17.204323] (vrpn) StderrLine: {'line': b' 1393 |     \x1b[01;36m\x1b[Kstrncpy(d_mutexName, name, strlen(name))\x1b[m\x1b[K;\n'}
+[17.204526] (vrpn) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[17.254895] (-) TimerEvent: {}
+[17.317881] (vrpn) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Serial.C.o\x1b[0m\n'}
+[17.327828] (vrpn) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_SerialPort.C.o\x1b[0m\n'}
+[17.355022] (-) TimerEvent: {}
+[17.438389] (vrpn) StdoutLine: {'line': b'[ 35%] Built target vrpn_print_devices\n'}
+[17.455148] (-) TimerEvent: {}
+[17.461468] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn_print_performance\x1b[0m\n'}
+[17.490988] (vrpn) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding CXX object client_src/CMakeFiles/vrpn_print_performance.dir/vrpn_print_performance.C.o\x1b[0m\n'}
+[17.555282] (-) TimerEvent: {}
+[17.591784] (vrpn) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Shared.C.o\x1b[0m\n'}
+[17.655418] (-) TimerEvent: {}
+[17.661590] (vrpn) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_SharedObject.C.o\x1b[0m\n'}
+[17.755546] (-) TimerEvent: {}
+[17.856036] (-) TimerEvent: {}
+[17.956585] (-) TimerEvent: {}
+[18.011472] (vrpn) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Sound.C.o\x1b[0m\n'}
+[18.056710] (-) TimerEvent: {}
+[18.157195] (-) TimerEvent: {}
+[18.256267] (vrpn) StdoutLine: {'line': b'[ 38%] \x1b[32m\x1b[1mLinking CXX executable vrpn_print_performance\x1b[0m\n'}
+[18.257288] (-) TimerEvent: {}
+[18.309112] (vrpn) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Text.C.o\x1b[0m\n'}
+[18.357428] (-) TimerEvent: {}
+[18.457921] (-) TimerEvent: {}
+[18.493969] (vrpn) StdoutLine: {'line': b'[ 38%] Built target vrpn_print_performance\n'}
+[18.517400] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn_print_messages\x1b[0m\n'}
+[18.544549] (vrpn) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding CXX object client_src/CMakeFiles/vrpn_print_messages.dir/vrpn_print_messages.C.o\x1b[0m\n'}
+[18.558058] (-) TimerEvent: {}
+[18.658542] (-) TimerEvent: {}
+[18.717287] (vrpn) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Thread.C.o\x1b[0m\n'}
+[18.748660] (vrpn) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker.C.o\x1b[0m\n'}
+[18.758674] (-) TimerEvent: {}
+[18.859175] (-) TimerEvent: {}
+[18.891855] (vrpn) StdoutLine: {'line': b'[ 40%] \x1b[32m\x1b[1mLinking CXX executable vrpn_print_messages\x1b[0m\n'}
+[18.959313] (-) TimerEvent: {}
+[19.043669] (vrpn) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_3DConnexion.C.o\x1b[0m\n'}
+[19.059443] (-) TimerEvent: {}
+[19.111873] (vrpn) StdoutLine: {'line': b'[ 40%] Built target vrpn_print_messages\n'}
+[19.135885] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn_average_analogs\x1b[0m\n'}
+[19.159581] (-) TimerEvent: {}
+[19.168857] (vrpn) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object client_src/CMakeFiles/vrpn_average_analogs.dir/vrpn_average_analogs.C.o\x1b[0m\n'}
+[19.259723] (-) TimerEvent: {}
+[19.360185] (-) TimerEvent: {}
+[19.460740] (-) TimerEvent: {}
+[19.561270] (-) TimerEvent: {}
+[19.661674] (-) TimerEvent: {}
+[19.762079] (-) TimerEvent: {}
+[19.767374] (vrpn) StdoutLine: {'line': b'[ 40%] \x1b[32m\x1b[1mLinking CXX executable vrpn_average_analogs\x1b[0m\n'}
+[19.853251] (vrpn) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_3DMicroscribe.C.o\x1b[0m\n'}
+[19.862216] (-) TimerEvent: {}
+[19.962691] (-) TimerEvent: {}
+[19.987630] (vrpn) StdoutLine: {'line': b'[ 41%] Built target vrpn_average_analogs\n'}
+[20.009380] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn_streamPrint\x1b[0m\n'}
+[20.043545] (vrpn) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object util/printStream/CMakeFiles/vrpn_streamPrint.dir/vrpn_streamPrint.cpp.o\x1b[0m\n'}
+[20.062813] (-) TimerEvent: {}
+[20.130553] (vrpn) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_3Space.C.o\x1b[0m\n'}
+[20.162960] (-) TimerEvent: {}
+[20.263332] (-) TimerEvent: {}
+[20.363736] (-) TimerEvent: {}
+[20.408120] (vrpn) StdoutLine: {'line': b'[ 43%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_5DT16.C.o\x1b[0m\n'}
+[20.463870] (-) TimerEvent: {}
+[20.489779] (vrpn) StdoutLine: {'line': b'[ 43%] \x1b[32m\x1b[1mLinking CXX executable vrpn_streamPrint\x1b[0m\n'}
+[20.564013] (-) TimerEvent: {}
+[20.666815] (-) TimerEvent: {}
+[20.709182] (vrpn) StdoutLine: {'line': b'[ 43%] Built target vrpn_streamPrint\n'}
+[20.709701] (vrpn) StdoutLine: {'line': b'[ 43%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Adafruit.C.o\x1b[0m\n'}
+[20.732316] (vrpn) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_ADBox.C.o\x1b[0m\n'}
+[20.766940] (-) TimerEvent: {}
+[20.820506] (vrpn) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Analog_5dt.C.o\x1b[0m\n'}
+[20.867077] (-) TimerEvent: {}
+[20.967532] (-) TimerEvent: {}
+[20.991494] (vrpn) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Analog_5dtUSB.C.o\x1b[0m\n'}
+[21.067654] (-) TimerEvent: {}
+[21.168142] (-) TimerEvent: {}
+[21.210626] (vrpn) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Analog_Radamec_SPI.C.o\x1b[0m\n'}
+[21.268285] (-) TimerEvent: {}
+[21.368802] (-) TimerEvent: {}
+[21.439080] (vrpn) StdoutLine: {'line': b'[ 46%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Analog_USDigital_A2.C.o\x1b[0m\n'}
+[21.468899] (-) TimerEvent: {}
+[21.494639] (vrpn) StdoutLine: {'line': b'[ 46%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Atmel.C.o\x1b[0m\n'}
+[21.569015] (-) TimerEvent: {}
+[21.669500] (-) TimerEvent: {}
+[21.770046] (-) TimerEvent: {}
+[21.784613] (vrpn) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_BiosciencesTools.C.o\x1b[0m\n'}
+[21.824046] (vrpn) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Button_NI_DIO24.C.o\x1b[0m\n'}
+[21.870180] (-) TimerEvent: {}
+[21.970577] (-) TimerEvent: {}
+[22.071013] (-) TimerEvent: {}
+[22.130802] (vrpn) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Button_USB.cpp.o\x1b[0m\n'}
+[22.171136] (-) TimerEvent: {}
+[22.179768] (vrpn) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_CerealBox.C.o\x1b[0m\n'}
+[22.219049] (vrpn) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_CHProducts_Controller_Raw.C.o\x1b[0m\n'}
+[22.271260] (-) TimerEvent: {}
+[22.331770] (vrpn) StdoutLine: {'line': b'[ 49%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Contour.C.o\x1b[0m\n'}
+[22.371386] (-) TimerEvent: {}
+[22.463327] (vrpn) StdoutLine: {'line': b'[ 49%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_DevInput.C.o\x1b[0m\n'}
+[22.471522] (-) TimerEvent: {}
+[22.571957] (-) TimerEvent: {}
+[22.672487] (-) TimerEvent: {}
+[22.773721] (-) TimerEvent: {}
+[22.821301] (vrpn) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_DirectXFFJoystick.C.o\x1b[0m\n'}
+[22.871853] (vrpn) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_DirectXRumblePad.C.o\x1b[0m\n'}
+[22.873835] (-) TimerEvent: {}
+[22.916893] (vrpn) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_DreamCheeky.C.o\x1b[0m\n'}
+[22.973987] (-) TimerEvent: {}
+[23.053405] (vrpn) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Dyna.C.o\x1b[0m\n'}
+[23.074108] (-) TimerEvent: {}
+[23.174576] (-) TimerEvent: {}
+[23.275119] (-) TimerEvent: {}
+[23.279772] (vrpn) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Event_Analog.C.o\x1b[0m\n'}
+[23.375241] (-) TimerEvent: {}
+[23.454721] (vrpn) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Event.C.o\x1b[0m\n'}
+[23.475369] (-) TimerEvent: {}
+[23.535547] (vrpn) StdoutLine: {'line': b'[ 53%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Event_Mouse.C.o\x1b[0m\n'}
+[23.575490] (-) TimerEvent: {}
+[23.605445] (vrpn) StdoutLine: {'line': b'[ 53%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Flock.C.o\x1b[0m\n'}
+[23.675623] (-) TimerEvent: {}
+[23.776028] (-) TimerEvent: {}
+[23.803761] (vrpn) StdoutLine: {'line': b'[ 53%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Flock_Parallel.C.o\x1b[0m\n'}
+[23.876169] (-) TimerEvent: {}
+[23.976560] (-) TimerEvent: {}
+[23.995599] (vrpn) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_ForceDeviceServer.C.o\x1b[0m\n'}
+[24.078774] (-) TimerEvent: {}
+[24.179260] (-) TimerEvent: {}
+[24.209904] (vrpn) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Freespace.C.o\x1b[0m\n'}
+[24.251758] (vrpn) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Futaba.C.o\x1b[0m\n'}
+[24.279388] (-) TimerEvent: {}
+[24.369869] (vrpn) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_GlobalHapticsOrb.C.o\x1b[0m\n'}
+[24.379516] (-) TimerEvent: {}
+[24.397127] (vrpn) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Griffin.C.o\x1b[0m\n'}
+[24.479655] (-) TimerEvent: {}
+[24.580129] (-) TimerEvent: {}
+[24.680615] (-) TimerEvent: {}
+[24.707252] (vrpn) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_HumanInterface.C.o\x1b[0m\n'}
+[24.780755] (-) TimerEvent: {}
+[24.881162] (-) TimerEvent: {}
+[24.906985] (vrpn) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_IDEA.C.o\x1b[0m\n'}
+[24.981305] (-) TimerEvent: {}
+[24.992013] (vrpn) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Imager_Stream_Buffer.C.o\x1b[0m\n'}
+[25.000556] (vrpn) StdoutLine: {'line': b'[ 58%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_ImmersionBox.C.o\x1b[0m\n'}
+[25.081421] (-) TimerEvent: {}
+[25.134264] (vrpn) StdoutLine: {'line': b'[ 58%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_inertiamouse.C.o\x1b[0m\n'}
+[25.181539] (-) TimerEvent: {}
+[25.281941] (-) TimerEvent: {}
+[25.382363] (-) TimerEvent: {}
+[25.482797] (-) TimerEvent: {}
+[25.583223] (-) TimerEvent: {}
+[25.683646] (-) TimerEvent: {}
+[25.715897] (vrpn) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_JoyFly.C.o\x1b[0m\n'}
+[25.758308] (vrpn) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Joylin.C.o\x1b[0m\n'}
+[25.783775] (-) TimerEvent: {}
+[25.884236] (-) TimerEvent: {}
+[25.972564] (vrpn) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Joywin32.C.o\x1b[0m\n'}
+[25.985419] (-) TimerEvent: {}
+[26.014788] (vrpn) StdoutLine: {'line': b'[ 60%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Keyboard.C.o\x1b[0m\n'}
+[26.057141] (vrpn) StdoutLine: {'line': b'[ 60%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Laputa.C.o\x1b[0m\n'}
+[26.085553] (-) TimerEvent: {}
+[26.185964] (-) TimerEvent: {}
+[26.233719] (vrpn) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_LUDL.C.o\x1b[0m\n'}
+[26.286088] (-) TimerEvent: {}
+[26.325019] (vrpn) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Logitech_Controller_Raw.C.o\x1b[0m\n'}
+[26.386224] (-) TimerEvent: {}
+[26.416315] (vrpn) StdoutLine: {'line': b'[ 62%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Magellan.C.o\x1b[0m\n'}
+[26.486360] (-) TimerEvent: {}
+[26.586793] (-) TimerEvent: {}
+[26.618193] (vrpn) StdoutLine: {'line': b'[ 62%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Microsoft_Controller_Raw.C.o\x1b[0m\n'}
+[26.686926] (-) TimerEvent: {}
+[26.787345] (-) TimerEvent: {}
+[26.887750] (-) TimerEvent: {}
+[26.951194] (vrpn) StdoutLine: {'line': b'[ 63%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Mouse.C.o\x1b[0m\n'}
+[26.987869] (-) TimerEvent: {}
+[27.060616] (vrpn) StdoutLine: {'line': b'[ 63%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_NationalInstruments.C.o\x1b[0m\n'}
+[27.087994] (-) TimerEvent: {}
+[27.124577] (vrpn) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Nidaq.C.o\x1b[0m\n'}
+[27.169686] (vrpn) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_nikon_controls.C.o\x1b[0m\n'}
+[27.188123] (-) TimerEvent: {}
+[27.288527] (-) TimerEvent: {}
+[27.388966] (-) TimerEvent: {}
+[27.445208] (vrpn) StdoutLine: {'line': b'[ 65%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_nVidia_shield_controller.C.o\x1b[0m\n'}
+[27.489089] (-) TimerEvent: {}
+[27.589478] (-) TimerEvent: {}
+[27.689893] (-) TimerEvent: {}
+[27.714035] (vrpn) StdoutLine: {'line': b'[ 65%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Oculus.C.o\x1b[0m\n'}
+[27.790015] (-) TimerEvent: {}
+[27.844688] (vrpn) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_OzzMaker.C.o\x1b[0m\n'}
+[27.890145] (-) TimerEvent: {}
+[27.990549] (-) TimerEvent: {}
+[28.090975] (-) TimerEvent: {}
+[28.191401] (-) TimerEvent: {}
+[28.291847] (-) TimerEvent: {}
+[28.348575] (vrpn) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_OmegaTemperature.C.o\x1b[0m\n'}
+[28.391964] (-) TimerEvent: {}
+[28.434379] (vrpn) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Poser_Analog.C.o\x1b[0m\n'}
+[28.469117] (vrpn) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Poser_Tek4662.C.o\x1b[0m\n'}
+[28.492086] (-) TimerEvent: {}
+[28.592511] (-) TimerEvent: {}
+[28.687766] (vrpn) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_raw_sgibox.C.o\x1b[0m\n'}
+[28.692640] (-) TimerEvent: {}
+[28.724045] (vrpn) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Retrolink.C.o\x1b[0m\n'}
+[28.792774] (-) TimerEvent: {}
+[28.831106] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrpn_Poser_Tek4662::reset()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[28.831532] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:180:51:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstrlen\x1b[m\x1b[K\xe2\x80\x99 argument missing terminating nul [\x1b[01;35m\x1b[K-Wstringop-overflow=\x1b[m\x1b[K]\n'}
+[28.831774] (vrpn) StderrLine: {'line': b'  180 |   vrpn_write_characters( d_serial_fd, GIN, strlen(\x1b[01;35m\x1b[K(const char*)GIN\x1b[m\x1b[K) );\n'}
+[28.831968] (vrpn) StderrLine: {'line': b'      |                                                   \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[28.832160] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kreferenced argument declared here\n'}
+[28.832354] (vrpn) StderrLine: {'line': b"   42 | const unsigned char \x1b[01;36m\x1b[KGIN\x1b[m\x1b[K[] = { ESC, DEVICE, 'M' };\n"}
+[28.832556] (vrpn) StderrLine: {'line': b'      |                     \x1b[01;36m\x1b[K^~~\x1b[m\x1b[K\n'}
+[28.836019] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrpn_Poser_Tek4662::run()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[28.836617] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:256:52:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstrlen\x1b[m\x1b[K\xe2\x80\x99 argument missing terminating nul [\x1b[01;35m\x1b[K-Wstringop-overflow=\x1b[m\x1b[K]\n'}
+[28.836921] (vrpn) StderrLine: {'line': b'  256 |     vrpn_write_characters(d_serial_fd, GIN, strlen(\x1b[01;35m\x1b[K(const char*)GIN\x1b[m\x1b[K) );\n'}
+[28.837156] (vrpn) StderrLine: {'line': b'      |                                                    \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[28.837361] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kreferenced argument declared here\n'}
+[28.837563] (vrpn) StderrLine: {'line': b"   42 | const unsigned char \x1b[01;36m\x1b[KGIN\x1b[m\x1b[K[] = { ESC, DEVICE, 'M' };\n"}
+[28.837759] (vrpn) StderrLine: {'line': b'      |                     \x1b[01;36m\x1b[K^~~\x1b[m\x1b[K\n'}
+[28.838349] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:341:54:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstrlen\x1b[m\x1b[K\xe2\x80\x99 argument missing terminating nul [\x1b[01;35m\x1b[K-Wstringop-overflow=\x1b[m\x1b[K]\n'}
+[28.838671] (vrpn) StderrLine: {'line': b'  341 |       vrpn_write_characters(d_serial_fd, GIN, strlen(\x1b[01;35m\x1b[K(const char*)GIN\x1b[m\x1b[K) );\n'}
+[28.838872] (vrpn) StderrLine: {'line': b'      |                                                      \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[28.839057] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kreferenced argument declared here\n'}
+[28.839242] (vrpn) StderrLine: {'line': b"   42 | const unsigned char \x1b[01;36m\x1b[KGIN\x1b[m\x1b[K[] = { ESC, DEVICE, 'M' };\n"}
+[28.839431] (vrpn) StderrLine: {'line': b'      |                     \x1b[01;36m\x1b[K^~~\x1b[m\x1b[K\n'}
+[28.852310] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrpn_Poser_Tek4662::reset()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[28.852685] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:180:64:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstrlen\x1b[m\x1b[K\xe2\x80\x99 argument missing terminating nul [\x1b[01;35m\x1b[K-Wstringop-overflow=\x1b[m\x1b[K]\n'}
+[28.853030] (vrpn) StderrLine: {'line': b'  180 |   vrpn_write_characters( d_serial_fd, GIN, strlen((const char*)\x1b[01;35m\x1b[KGIN\x1b[m\x1b[K) );\n'}
+[28.853383] (vrpn) StderrLine: {'line': b'      |                                                                \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[28.853918] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kreferenced argument declared here\n'}
+[28.854197] (vrpn) StderrLine: {'line': b"   42 | const unsigned char \x1b[01;36m\x1b[KGIN\x1b[m\x1b[K[] = { ESC, DEVICE, 'M' };\n"}
+[28.854448] (vrpn) StderrLine: {'line': b'      |                     \x1b[01;36m\x1b[K^~~\x1b[m\x1b[K\n'}
+[28.858246] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid vrpn_Poser_Tek4662::run()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[28.858635] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:256:65:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstrlen\x1b[m\x1b[K\xe2\x80\x99 argument missing terminating nul [\x1b[01;35m\x1b[K-Wstringop-overflow=\x1b[m\x1b[K]\n'}
+[28.858896] (vrpn) StderrLine: {'line': b'  256 |     vrpn_write_characters(d_serial_fd, GIN, strlen((const char*)\x1b[01;35m\x1b[KGIN\x1b[m\x1b[K) );\n'}
+[28.859136] (vrpn) StderrLine: {'line': b'      |                                                                 \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[28.859359] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kreferenced argument declared here\n'}
+[28.859576] (vrpn) StderrLine: {'line': b"   42 | const unsigned char \x1b[01;36m\x1b[KGIN\x1b[m\x1b[K[] = { ESC, DEVICE, 'M' };\n"}
+[28.859784] (vrpn) StderrLine: {'line': b'      |                     \x1b[01;36m\x1b[K^~~\x1b[m\x1b[K\n'}
+[28.860808] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:341:67:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstrlen\x1b[m\x1b[K\xe2\x80\x99 argument missing terminating nul [\x1b[01;35m\x1b[K-Wstringop-overflow=\x1b[m\x1b[K]\n'}
+[28.861183] (vrpn) StderrLine: {'line': b'  341 |       vrpn_write_characters(d_serial_fd, GIN, strlen((const char*)\x1b[01;35m\x1b[KGIN\x1b[m\x1b[K) );\n'}
+[28.861414] (vrpn) StderrLine: {'line': b'      |                                                                   \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[28.861648] (vrpn) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kreferenced argument declared here\n'}
+[28.861866] (vrpn) StderrLine: {'line': b"   42 | const unsigned char \x1b[01;36m\x1b[KGIN\x1b[m\x1b[K[] = { ESC, DEVICE, 'M' };\n"}
+[28.862079] (vrpn) StderrLine: {'line': b'      |                     \x1b[01;36m\x1b[K^~~\x1b[m\x1b[K\n'}
+[28.892853] (-) TimerEvent: {}
+[28.993259] (-) TimerEvent: {}
+[29.090189] (vrpn) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Saitek_Controller_Raw.C.o\x1b[0m\n'}
+[29.093374] (-) TimerEvent: {}
+[29.179010] (vrpn) StdoutLine: {'line': b'[ 69%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_sgibox.C.o\x1b[0m\n'}
+[29.193502] (-) TimerEvent: {}
+[29.222894] (vrpn) StdoutLine: {'line': b'[ 69%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Spaceball.C.o\x1b[0m\n'}
+[29.241656] (vrpn) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Streaming_Arduino.C.o\x1b[0m\n'}
+[29.293632] (-) TimerEvent: {}
+[29.394030] (-) TimerEvent: {}
+[29.494445] (-) TimerEvent: {}
+[29.594885] (-) TimerEvent: {}
+[29.639844] (vrpn) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tng3.C.o\x1b[0m\n'}
+[29.695010] (-) TimerEvent: {}
+[29.739809] (vrpn) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_3DMouse.C.o\x1b[0m\n'}
+[29.795150] (-) TimerEvent: {}
+[29.855256] (vrpn) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_AnalogFly.C.o\x1b[0m\n'}
+[29.895276] (-) TimerEvent: {}
+[29.995752] (-) TimerEvent: {}
+[30.096161] (-) TimerEvent: {}
+[30.196569] (-) TimerEvent: {}
+[30.250591] (vrpn) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_ButtonFly.C.o\x1b[0m\n'}
+[30.296697] (-) TimerEvent: {}
+[30.386527] (vrpn) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_Crossbow.C.o\x1b[0m\n'}
+[30.396851] (-) TimerEvent: {}
+[30.497222] (-) TimerEvent: {}
+[30.597638] (-) TimerEvent: {}
+[30.698066] (-) TimerEvent: {}
+[30.726631] (vrpn) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_DTrack.C.o\x1b[0m\n'}
+[30.779248] (vrpn) StdoutLine: {'line': b'[ 73%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_Fastrak.C.o\x1b[0m\n'}
+[30.798202] (-) TimerEvent: {}
+[30.898675] (-) TimerEvent: {}
+[30.999087] (-) TimerEvent: {}
+[31.044735] (vrpn) StdoutLine: {'line': b'[ 73%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_Filter.C.o\x1b[0m\n'}
+[31.066168] (vrpn) StdoutLine: {'line': b'[ 74%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_GameTrak.C.o\x1b[0m\n'}
+[31.099212] (-) TimerEvent: {}
+[31.199634] (-) TimerEvent: {}
+[31.300077] (-) TimerEvent: {}
+[31.400500] (-) TimerEvent: {}
+[31.500923] (-) TimerEvent: {}
+[31.595532] (vrpn) StdoutLine: {'line': b'[ 74%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_GPS.C.o\x1b[0m\n'}
+[31.601039] (-) TimerEvent: {}
+[31.632639] (vrpn) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_IMU.C.o\x1b[0m\n'}
+[31.701154] (-) TimerEvent: {}
+[31.801537] (-) TimerEvent: {}
+[31.901969] (-) TimerEvent: {}
+[32.002390] (-) TimerEvent: {}
+[32.102819] (-) TimerEvent: {}
+[32.204245] (-) TimerEvent: {}
+[32.304661] (-) TimerEvent: {}
+[32.402616] (vrpn) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_isense.C.o\x1b[0m\n'}
+[32.404784] (-) TimerEvent: {}
+[32.450681] (vrpn) StdoutLine: {'line': b'[ 76%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_Isotrak.C.o\x1b[0m\n'}
+[32.504900] (-) TimerEvent: {}
+[32.605304] (-) TimerEvent: {}
+[32.705726] (-) TimerEvent: {}
+[32.726178] (vrpn) StdoutLine: {'line': b'[ 76%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_JsonNet.C.o\x1b[0m\n'}
+[32.805847] (-) TimerEvent: {}
+[32.840508] (vrpn) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_Liberty.C.o\x1b[0m\n'}
+[32.905974] (-) TimerEvent: {}
+[32.986797] (vrpn) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_MotionNode.C.o\x1b[0m\n'}
+[33.006107] (-) TimerEvent: {}
+[33.106579] (-) TimerEvent: {}
+[33.142833] (vrpn) StdoutLine: {'line': b'[ 78%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_NDI_Polaris.C.o\x1b[0m\n'}
+[33.206701] (-) TimerEvent: {}
+[33.307190] (-) TimerEvent: {}
+[33.321061] (vrpn) StdoutLine: {'line': b'[ 78%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_NovintFalcon.C.o\x1b[0m\n'}
+[33.365233] (vrpn) StdoutLine: {'line': b'[ 78%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_OSVRHackerDevKit.C.o\x1b[0m\n'}
+[33.407321] (-) TimerEvent: {}
+[33.507790] (-) TimerEvent: {}
+[33.569765] (vrpn) StdoutLine: {'line': b'[ 79%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_PDI.C.o\x1b[0m\n'}
+[33.607920] (-) TimerEvent: {}
+[33.708404] (-) TimerEvent: {}
+[33.713003] (vrpn) StdoutLine: {'line': b'[ 79%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_PhaseSpace.C.o\x1b[0m\n'}
+[33.808537] (-) TimerEvent: {}
+[33.903916] (vrpn) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_RazerHydra.C.o\x1b[0m\n'}
+[33.908661] (-) TimerEvent: {}
+[34.009125] (-) TimerEvent: {}
+[34.109548] (-) TimerEvent: {}
+[34.209983] (-) TimerEvent: {}
+[34.310397] (-) TimerEvent: {}
+[34.319383] (vrpn) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_ThalmicLabsMyo.C.o\x1b[0m\n'}
+[34.366207] (vrpn) StdoutLine: {'line': b'[ 81%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_SpacePoint.C.o\x1b[0m\n'}
+[34.410524] (-) TimerEvent: {}
+[34.511021] (-) TimerEvent: {}
+[34.606321] (vrpn) StdoutLine: {'line': b'[ 81%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_Wintracker.C.o\x1b[0m\n'}
+[34.611139] (-) TimerEvent: {}
+[34.711548] (-) TimerEvent: {}
+[34.811992] (-) TimerEvent: {}
+[34.912398] (-) TimerEvent: {}
+[34.923441] (vrpn) StdoutLine: {'line': b'[ 82%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_Colibri.C.o\x1b[0m\n'}
+[35.012526] (-) TimerEvent: {}
+[35.066706] (vrpn) StdoutLine: {'line': b'[ 82%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_TrivisioColibri.C.o\x1b[0m\n'}
+[35.109974] (vrpn) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_WiimoteHead.C.o\x1b[0m\n'}
+[35.112661] (-) TimerEvent: {}
+[35.213070] (-) TimerEvent: {}
+[35.313491] (-) TimerEvent: {}
+[35.413904] (-) TimerEvent: {}
+[35.438623] (vrpn) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_zSight.C.o\x1b[0m\n'}
+[35.482285] (vrpn) StdoutLine: {'line': b'[ 84%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_ViewPoint.C.o\x1b[0m\n'}
+[35.514028] (-) TimerEvent: {}
+[35.526947] (vrpn) StdoutLine: {'line': b'[ 84%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_UNC_Joystick.C.o\x1b[0m\n'}
+[35.614158] (-) TimerEvent: {}
+[35.714013] (vrpn) StdoutLine: {'line': b'[ 84%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_VPJoystick.C.o\x1b[0m\n'}
+[35.714399] (-) TimerEvent: {}
+[35.814723] (-) TimerEvent: {}
+[35.915146] (-) TimerEvent: {}
+[35.995163] (vrpn) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Wanda.C.o\x1b[0m\n'}
+[36.015273] (-) TimerEvent: {}
+[36.110882] (vrpn) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_WiiMote.C.o\x1b[0m\n'}
+[36.115391] (-) TimerEvent: {}
+[36.154502] (vrpn) StdoutLine: {'line': b'[ 86%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_XInputGamepad.C.o\x1b[0m\n'}
+[36.199058] (vrpn) StdoutLine: {'line': b'[ 86%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Xkeys.C.o\x1b[0m\n'}
+[36.215530] (-) TimerEvent: {}
+[36.251157] (vrpn) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Tracker_LibertyHS.C.o\x1b[0m\n'}
+[36.299677] (vrpn) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_YEI_3Space.C.o\x1b[0m\n'}
+[36.315649] (-) TimerEvent: {}
+[36.416113] (-) TimerEvent: {}
+[36.516656] (-) TimerEvent: {}
+[36.561683] (vrpn) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/vrpn_Zaber.C.o\x1b[0m\n'}
+[36.616808] (-) TimerEvent: {}
+[36.717290] (-) TimerEvent: {}
+[36.817824] (-) TimerEvent: {}
+[36.918372] (-) TimerEvent: {}
+[37.018923] (-) TimerEvent: {}
+[37.034215] (vrpn) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/server_src/vrpn_Generic_server_object.C.o\x1b[0m\n'}
+[37.119047] (-) TimerEvent: {}
+[37.184443] (vrpn) StdoutLine: {'line': b'[ 89%] \x1b[32mBuilding C object CMakeFiles/vrpnserver.dir/submodules/hidapi/libusb/hid.c.o\x1b[0m\n'}
+[37.219177] (-) TimerEvent: {}
+[37.319660] (-) TimerEvent: {}
+[37.420213] (-) TimerEvent: {}
+[37.455769] (vrpn) StdoutLine: {'line': b'[ 89%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/submodules/jsoncpp/src/lib_json/json_reader.cpp.o\x1b[0m\n'}
+[37.520343] (-) TimerEvent: {}
+[37.620839] (-) TimerEvent: {}
+[37.695861] (vrpn) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/submodules/jsoncpp/src/lib_json/json_value.cpp.o\x1b[0m\n'}
+[37.720959] (-) TimerEvent: {}
+[37.821355] (-) TimerEvent: {}
+[37.921766] (-) TimerEvent: {}
+[38.022214] (-) TimerEvent: {}
+[38.122647] (-) TimerEvent: {}
+[38.223216] (-) TimerEvent: {}
+[38.323762] (-) TimerEvent: {}
+[38.424312] (-) TimerEvent: {}
+[38.491749] (vrpn) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding CXX object CMakeFiles/vrpnserver.dir/submodules/jsoncpp/src/lib_json/json_writer.cpp.o\x1b[0m\n'}
+[38.524449] (-) TimerEvent: {}
+[38.624896] (-) TimerEvent: {}
+[38.725278] (-) TimerEvent: {}
+[38.825674] (-) TimerEvent: {}
+[38.926074] (-) TimerEvent: {}
+[39.026476] (-) TimerEvent: {}
+[39.126878] (-) TimerEvent: {}
+[39.227285] (-) TimerEvent: {}
+[39.327699] (-) TimerEvent: {}
+[39.428101] (-) TimerEvent: {}
+[39.528509] (-) TimerEvent: {}
+[39.628906] (-) TimerEvent: {}
+[39.729289] (-) TimerEvent: {}
+[39.829686] (-) TimerEvent: {}
+[39.930079] (-) TimerEvent: {}
+[40.030483] (-) TimerEvent: {}
+[40.130880] (-) TimerEvent: {}
+[40.231267] (-) TimerEvent: {}
+[40.331676] (-) TimerEvent: {}
+[40.432085] (-) TimerEvent: {}
+[40.532505] (-) TimerEvent: {}
+[40.632913] (-) TimerEvent: {}
+[40.733453] (-) TimerEvent: {}
+[40.833788] (-) TimerEvent: {}
+[40.934207] (-) TimerEvent: {}
+[41.034535] (-) TimerEvent: {}
+[41.134909] (-) TimerEvent: {}
+[41.235461] (-) TimerEvent: {}
+[41.335814] (-) TimerEvent: {}
+[41.436154] (-) TimerEvent: {}
+[41.536516] (-) TimerEvent: {}
+[41.636853] (-) TimerEvent: {}
+[41.737188] (-) TimerEvent: {}
+[41.837517] (-) TimerEvent: {}
+[41.937893] (-) TimerEvent: {}
+[42.038198] (-) TimerEvent: {}
+[42.138540] (-) TimerEvent: {}
+[42.238879] (-) TimerEvent: {}
+[42.339223] (-) TimerEvent: {}
+[42.439550] (-) TimerEvent: {}
+[42.539891] (-) TimerEvent: {}
+[42.640222] (-) TimerEvent: {}
+[42.740598] (-) TimerEvent: {}
+[42.840957] (-) TimerEvent: {}
+[42.941300] (-) TimerEvent: {}
+[43.041639] (-) TimerEvent: {}
+[43.141963] (-) TimerEvent: {}
+[43.242308] (-) TimerEvent: {}
+[43.342653] (-) TimerEvent: {}
+[43.442994] (-) TimerEvent: {}
+[43.543332] (-) TimerEvent: {}
+[43.643668] (-) TimerEvent: {}
+[43.743988] (-) TimerEvent: {}
+[43.844341] (-) TimerEvent: {}
+[43.944675] (-) TimerEvent: {}
+[44.045014] (-) TimerEvent: {}
+[44.145357] (-) TimerEvent: {}
+[44.245665] (-) TimerEvent: {}
+[44.345990] (-) TimerEvent: {}
+[44.446337] (-) TimerEvent: {}
+[44.546680] (-) TimerEvent: {}
+[44.647013] (-) TimerEvent: {}
+[44.747383] (-) TimerEvent: {}
+[44.847735] (-) TimerEvent: {}
+[44.948083] (-) TimerEvent: {}
+[45.048430] (-) TimerEvent: {}
+[45.148732] (-) TimerEvent: {}
+[45.249145] (-) TimerEvent: {}
+[45.349515] (-) TimerEvent: {}
+[45.449878] (-) TimerEvent: {}
+[45.491805] (vrpn) StdoutLine: {'line': b'[ 91%] \x1b[32m\x1b[1mLinking CXX static library libvrpnserver.a\x1b[0m\n'}
+[45.550027] (-) TimerEvent: {}
+[45.650454] (-) TimerEvent: {}
+[45.751032] (-) TimerEvent: {}
+[45.843822] (vrpn) StdoutLine: {'line': b'[ 91%] Built target vrpnserver\n'}
+[45.851154] (-) TimerEvent: {}
+[45.860138] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn-python\x1b[0m\n'}
+[45.860513] (vrpn) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target vrpn_server\x1b[0m\n'}
+[45.880462] (vrpn) StdoutLine: {'line': b'[ 92%] \x1b[32mBuilding CXX object server_src/CMakeFiles/vrpn_server.dir/vrpn.C.o\x1b[0m\n'}
+[45.951280] (-) TimerEvent: {}
+[45.975652] (vrpn) StdoutLine: {'line': b'[ 93%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/Device.cpp.o\x1b[0m\n'}
+[45.977046] (vrpn) StdoutLine: {'line': b'[ 93%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/Base.cpp.o\x1b[0m\n'}
+[45.978478] (vrpn) StdoutLine: {'line': b'[ 93%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/Connection.cpp.o\x1b[0m\n'}
+[46.051404] (-) TimerEvent: {}
+[46.151761] (-) TimerEvent: {}
+[46.252146] (-) TimerEvent: {}
+[46.352555] (-) TimerEvent: {}
+[46.452950] (-) TimerEvent: {}
+[46.553355] (-) TimerEvent: {}
+[46.653755] (-) TimerEvent: {}
+[46.754156] (-) TimerEvent: {}
+[46.777416] (vrpn) StdoutLine: {'line': b'[ 93%] \x1b[32m\x1b[1mLinking CXX executable vrpn_server\x1b[0m\n'}
+[46.844423] (vrpn) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/callback.cpp.o\x1b[0m\n'}
+[46.854279] (-) TimerEvent: {}
+[46.905704] (vrpn) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/interface.cpp.o\x1b[0m\n'}
+[46.954415] (-) TimerEvent: {}
+[47.054776] (-) TimerEvent: {}
+[47.155145] (-) TimerEvent: {}
+[47.253449] (vrpn) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/quaternion/quaternion.cpp.o\x1b[0m\n'}
+[47.255255] (-) TimerEvent: {}
+[47.355652] (-) TimerEvent: {}
+[47.456075] (-) TimerEvent: {}
+[47.522192] (vrpn) StdoutLine: {'line': b'[ 95%] Built target vrpn_server\n'}
+[47.541820] (vrpn) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/receiver/Analog.cpp.o\x1b[0m\n'}
+[47.556210] (-) TimerEvent: {}
+[47.656620] (-) TimerEvent: {}
+[47.746636] (vrpn) StdoutLine: {'line': b'[ 96%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/receiver/Button.cpp.o\x1b[0m\n'}
+[47.756752] (-) TimerEvent: {}
+[47.858338] (-) TimerEvent: {}
+[47.958874] (-) TimerEvent: {}
+[48.021292] (vrpn) StdoutLine: {'line': b'[ 96%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/receiver/Dial.cpp.o\x1b[0m\n'}
+[48.059005] (-) TimerEvent: {}
+[48.159477] (-) TimerEvent: {}
+[48.211567] (vrpn) StdoutLine: {'line': b'[ 97%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/receiver/Text_Receiver.cpp.o\x1b[0m\n'}
+[48.259604] (-) TimerEvent: {}
+[48.360009] (-) TimerEvent: {}
+[48.460429] (-) TimerEvent: {}
+[48.560850] (-) TimerEvent: {}
+[48.661289] (-) TimerEvent: {}
+[48.739078] (vrpn) StdoutLine: {'line': b'[ 97%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/receiver/Tracker.cpp.o\x1b[0m\n'}
+[48.761411] (-) TimerEvent: {}
+[48.861895] (-) TimerEvent: {}
+[48.955342] (vrpn) StdoutLine: {'line': b'[ 97%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/receiver/receiver.cpp.o\x1b[0m\n'}
+[48.962022] (-) TimerEvent: {}
+[49.062493] (-) TimerEvent: {}
+[49.163026] (-) TimerEvent: {}
+[49.186139] (vrpn) StdoutLine: {'line': b'[ 98%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/sender/Poser.cpp.o\x1b[0m\n'}
+[49.263158] (-) TimerEvent: {}
+[49.363636] (-) TimerEvent: {}
+[49.432015] (vrpn) StdoutLine: {'line': b'[ 98%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/sender/Text_Sender.cpp.o\x1b[0m\n'}
+[49.463757] (-) TimerEvent: {}
+[49.564155] (-) TimerEvent: {}
+[49.664587] (-) TimerEvent: {}
+[49.765005] (-) TimerEvent: {}
+[49.865434] (-) TimerEvent: {}
+[49.965864] (-) TimerEvent: {}
+[50.066305] (-) TimerEvent: {}
+[50.166712] (-) TimerEvent: {}
+[50.267135] (-) TimerEvent: {}
+[50.367558] (-) TimerEvent: {}
+[50.467979] (-) TimerEvent: {}
+[50.568492] (-) TimerEvent: {}
+[50.585457] (vrpn) StdoutLine: {'line': b'[ 99%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/sender/sender.cpp.o\x1b[0m\n'}
+[50.603583] (vrpn) StdoutLine: {'line': b'[ 99%] \x1b[32mBuilding CXX object python/CMakeFiles/vrpn-python.dir/tools.cpp.o\x1b[0m\n'}
+[50.668615] (-) TimerEvent: {}
+[50.769041] (-) TimerEvent: {}
+[50.869547] (-) TimerEvent: {}
+[50.970063] (-) TimerEvent: {}
+[51.070436] (-) TimerEvent: {}
+[51.170805] (-) TimerEvent: {}
+[51.271164] (-) TimerEvent: {}
+[51.371521] (-) TimerEvent: {}
+[51.471874] (-) TimerEvent: {}
+[51.572218] (-) TimerEvent: {}
+[51.672539] (-) TimerEvent: {}
+[51.713670] (vrpn) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared module vrpn.so\x1b[0m\n'}
+[51.772669] (-) TimerEvent: {}
+[51.873142] (-) TimerEvent: {}
+[51.926361] (vrpn) StdoutLine: {'line': b'[100%] Built target vrpn-python\n'}
+[51.945380] (vrpn) CommandEnded: {'returncode': 0}
+[51.973326] (-) TimerEvent: {}
+[52.073845] (-) TimerEvent: {}
+[52.174359] (-) TimerEvent: {}
+[52.274673] (-) TimerEvent: {}
+[52.364335] (vrpn) JobProgress: {'identifier': 'vrpn', 'progress': 'install'}
+[52.374867] (-) TimerEvent: {}
+[52.379451] (vrpn) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/zq/colcon_ws/build/vrpn'], 'cwd': '/home/zq/colcon_ws/build/vrpn', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'zq'), ('SSH_AGENT_PID', '1062'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/zq'), ('OLDPWD', '/home/zq/colcon_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '840'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/zq/colcon_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'zq'), ('JOURNAL_STREAM', '8:35592'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/zq/colcon_ws/install/vrpn/lib/x86_64-linux-gnu/pkgconfig:/home/zq/colcon_ws/install/vrpn/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'zq'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/zq/colcon_ws/install/vrpn/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/zq:@/tmp/.ICE-unix/1128,unix/zq:/tmp/.ICE-unix/1128'), ('INVOCATION_ID', '37ff8d7386ac47b68a2281876ca4ccff'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3004cade_e504_48c3_9559_328beb6192c2'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.367'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/zq/colcon_ws/build/vrpn'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/vrpn:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy')]), 'shell': False}
+[52.394180] (vrpn) StdoutLine: {'line': b'-- Install configuration: "RelWithDebInfo"\n'}
+[52.394623] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/lib/libvrpnserver.a\n'}
+[52.441814] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Configure.h\n'}
+[52.442153] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Analog.h\n'}
+[52.442369] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Analog_Output.h\n'}
+[52.442542] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Assert.h\n'}
+[52.442744] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Auxiliary_Logger.h\n'}
+[52.442980] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_BaseClass.h\n'}
+[52.443149] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Button.h\n'}
+[52.443355] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Connection.h\n'}
+[52.443530] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_ConnectionPtr.h\n'}
+[52.445245] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Dial.h\n'}
+[52.445903] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_EndpointContainer.h\n'}
+[52.446561] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_FileConnection.h\n'}
+[52.447101] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_FileController.h\n'}
+[52.447835] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_ForceDevice.h\n'}
+[52.448442] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_ForwarderController.h\n'}
+[52.449276] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Forwarder.h\n'}
+[52.449827] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_FunctionGenerator.h\n'}
+[52.450505] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Imager.h\n'}
+[52.451074] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_LamportClock.h\n'}
+[52.451668] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Log.h\n'}
+[52.452177] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_MainloopContainer.h\n'}
+[52.452634] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_MainloopObject.h\n'}
+[52.453128] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Mutex.h\n'}
+[52.453613] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_OwningPtr.h\n'}
+[52.455173] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_RedundantTransmission.h\n'}
+[52.455832] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_SendTextMessageStreamProxy.h\n'}
+[52.456295] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Serial.h\n'}
+[52.456710] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_SerialPort.h\n'}
+[52.457329] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Shared.h\n'}
+[52.457756] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_SharedObject.h\n'}
+[52.458306] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Sound.h\n'}
+[52.458764] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Text.h\n'}
+[52.459114] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Thread.h\n'}
+[52.459445] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker.h\n'}
+[52.459707] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Types.h\n'}
+[52.460024] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_WindowsH.h\n'}
+[52.460345] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_3DConnexion.h\n'}
+[52.460715] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_3DMicroscribe.h\n'}
+[52.461175] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_3Space.h\n'}
+[52.461472] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_5DT16.h\n'}
+[52.461861] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Adafruit.h\n'}
+[52.462190] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_ADBox.h\n'}
+[52.462501] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Analog_5dt.h\n'}
+[52.462916] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Analog_5dtUSB.h\n'}
+[52.463233] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Analog_Radamec_SPI.h\n'}
+[52.463542] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Analog_USDigital_A2.h\n'}
+[52.463866] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Atmel.h\n'}
+[52.464181] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_BiosciencesTools.h\n'}
+[52.464442] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Button_NI_DIO24.h\n'}
+[52.464717] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Button_USB.h\n'}
+[52.464992] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_CerealBox.h\n'}
+[52.465244] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_CHProducts_Controller_Raw.h\n'}
+[52.465543] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Contour.h\n'}
+[52.465831] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_DevInput.h\n'}
+[52.466096] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_DirectXFFJoystick.h\n'}
+[52.466352] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_DirectXRumblePad.h\n'}
+[52.466606] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_DreamCheeky.h\n'}
+[52.466866] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Dyna.h\n'}
+[52.467124] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Event_Analog.h\n'}
+[52.467399] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Event.h\n'}
+[52.467621] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Event_Mouse.h\n'}
+[52.467841] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Flock.h\n'}
+[52.468061] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Flock_Parallel.h\n'}
+[52.468284] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_ForceDeviceServer.h\n'}
+[52.468504] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Freespace.h\n'}
+[52.468726] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_FunctionGenerator.h\n'}
+[52.468980] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Futaba.h\n'}
+[52.469210] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_GlobalHapticsOrb.h\n'}
+[52.469419] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Griffin.h\n'}
+[52.469617] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_HashST.h\n'}
+[52.470162] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_HumanInterface.h\n'}
+[52.470411] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_IDEA.h\n'}
+[52.470633] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Imager_Stream_Buffer.h\n'}
+[52.470868] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_ImmersionBox.h\n'}
+[52.471115] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_inertiamouse.h\n'}
+[52.471350] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_JoyFly.h\n'}
+[52.471577] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Joylin.h\n'}
+[52.471792] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Joywin32.h\n'}
+[52.472088] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Keyboard.h\n'}
+[52.472318] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Logitech_Controller_Raw.h\n'}
+[52.472536] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Laputa.h\n'}
+[52.472799] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_LUDL.h\n'}
+[52.473597] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Magellan.h\n'}
+[52.473868] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_MessageMacros.h\n'}
+[52.474141] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Microsoft_Controller_Raw.h\n'}
+[52.474551] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Mouse.h\n'}
+[52.474887] (-) TimerEvent: {}
+[52.475261] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_NationalInstruments.h\n'}
+[52.475534] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Nidaq.h\n'}
+[52.475843] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_nikon_controls.h\n'}
+[52.476181] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_nVidia_shield_controller.h\n'}
+[52.476523] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Oculus.h\n'}
+[52.476905] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_OmegaTemperature.h\n'}
+[52.477236] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_OneEuroFilter.h\n'}
+[52.477526] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_OzzMaker.h\n'}
+[52.477854] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Poser_Analog.h\n'}
+[52.478160] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Poser.h\n'}
+[52.478465] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Poser_Tek4662.h\n'}
+[52.478703] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_raw_sgibox.h\n'}
+[52.478879] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Retrolink.h\n'}
+[52.479199] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Saitek_Controller_Raw.h\n'}
+[52.479398] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_sgibox.h\n'}
+[52.479557] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Spaceball.h\n'}
+[52.479776] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Streaming_Arduino.h\n'}
+[52.479932] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tng3.h\n'}
+[52.480183] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_3DMouse.h\n'}
+[52.480338] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_AnalogFly.h\n'}
+[52.480550] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_ButtonFly.h\n'}
+[52.480743] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_Crossbow.h\n'}
+[52.480943] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_DTrack.h\n'}
+[52.481102] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_Fastrak.h\n'}
+[52.481314] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_Filter.h\n'}
+[52.481534] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_GameTrak.h\n'}
+[52.481784] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_GPS.h\n'}
+[52.481931] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_IMU.h\n'}
+[52.482076] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_isense.h\n'}
+[52.482386] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_Isotrak.h\n'}
+[52.482683] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_JsonNet.h\n'}
+[52.482834] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_Liberty.h\n'}
+[52.482988] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_MotionNode.h\n'}
+[52.483189] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_NDI_Polaris.h\n'}
+[52.483376] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_NovintFalcon.h\n'}
+[52.483521] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_OSVRHackerDevKit.h\n'}
+[52.483671] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_PDI.h\n'}
+[52.483813] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_PhaseSpace.h\n'}
+[52.483956] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_RazerHydra.h\n'}
+[52.484097] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_ThalmicLabsMyo.h\n'}
+[52.484239] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_SpacePoint.h\n'}
+[52.484382] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_Wintracker.h\n'}
+[52.484523] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_Colibri.h\n'}
+[52.484665] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_TrivisioColibri.h\n'}
+[52.484822] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_WiimoteHead.h\n'}
+[52.484931] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_zSight.h\n'}
+[52.485085] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_ViewPoint.h\n'}
+[52.485228] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_UNC_Joystick.h\n'}
+[52.485370] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_VPJoystick.h\n'}
+[52.485512] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Wanda.h\n'}
+[52.485654] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_WiiMote.h\n'}
+[52.485795] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_XInputGamepad.h\n'}
+[52.485937] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Xkeys.h\n'}
+[52.486078] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker_LibertyHS.h\n'}
+[52.486219] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_YEI_3Space.h\n'}
+[52.486360] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Zaber.h\n'}
+[52.486541] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_Generic_server_object.h\n'}
+[52.486710] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/share/vrpn/package.xml\n'}
+[52.486855] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/share/vrpn/cmake/VRPNConfig.cmake\n'}
+[52.486998] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/share/quatlib/cmake/quatlibConfig.cmake\n'}
+[52.487139] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/lib/libvrpn.a\n'}
+[52.495028] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Configure.h\n'}
+[52.495773] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Analog.h\n'}
+[52.496065] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Analog_Output.h\n'}
+[52.496454] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Assert.h\n'}
+[52.496606] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Auxiliary_Logger.h\n'}
+[52.496753] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_BaseClass.h\n'}
+[52.497034] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Button.h\n'}
+[52.497197] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Connection.h\n'}
+[52.497455] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_ConnectionPtr.h\n'}
+[52.497603] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Dial.h\n'}
+[52.497761] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_EndpointContainer.h\n'}
+[52.497985] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_FileConnection.h\n'}
+[52.498130] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_FileController.h\n'}
+[52.498273] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_ForceDevice.h\n'}
+[52.498415] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_ForwarderController.h\n'}
+[52.498561] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Forwarder.h\n'}
+[52.498746] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_FunctionGenerator.h\n'}
+[52.498890] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Imager.h\n'}
+[52.499089] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_LamportClock.h\n'}
+[52.499244] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Log.h\n'}
+[52.499433] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_MainloopContainer.h\n'}
+[52.499577] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_MainloopObject.h\n'}
+[52.499728] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Mutex.h\n'}
+[52.499928] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_OwningPtr.h\n'}
+[52.500087] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_RedundantTransmission.h\n'}
+[52.500234] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_SendTextMessageStreamProxy.h\n'}
+[52.500377] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Serial.h\n'}
+[52.500519] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_SerialPort.h\n'}
+[52.500660] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Shared.h\n'}
+[52.500820] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_SharedObject.h\n'}
+[52.500921] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Sound.h\n'}
+[52.501015] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Text.h\n'}
+[52.501108] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Thread.h\n'}
+[52.501201] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Tracker.h\n'}
+[52.501301] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_Types.h\n'}
+[52.501491] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/vrpn_WindowsH.h\n'}
+[52.501644] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/lib/libquat.a\n'}
+[52.501834] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/quat.h\n'}
+[52.502021] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/lib/libquat.a\n'}
+[52.502167] (vrpn) StdoutLine: {'line': b'-- Up-to-date: /home/zq/colcon_ws/install/vrpn/include/quat.h\n'}
+[52.502310] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/lib/libvrpn_atmel.a\n'}
+[52.502463] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_atmellib_errno.h\n'}
+[52.502608] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_atmellib.h\n'}
+[52.502807] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/lib/libgpsnmea.a\n'}
+[52.502950] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/nmeaParser.h\n'}
+[52.503094] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/utmCoord.h\n'}
+[52.503251] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/latLonCoord.h\n'}
+[52.503397] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/bin/c_interface_example\n'}
+[52.505540] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/bin/vrpn_average_analogs\n'}
+[52.507738] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/bin/vrpn_print_devices\n'}
+[52.510270] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/bin/vrpn_print_performance\n'}
+[52.512576] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/bin/vrpn_print_messages\n'}
+[52.514032] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/bin/run_auxiliary_logger\n'}
+[52.515992] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/bin/vrpn_server\n'}
+[52.533868] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/etc/vrpn.cfg\n'}
+[52.534659] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/share/vrpn-07.34/vrpn.cfg.sample\n'}
+[52.535426] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/lib/libvrpn_timecode_generator.a\n'}
+[52.535782] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/include/vrpn_timecode_generator.h\n'}
+[52.536371] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/bin/vrpn_streamPrint\n'}
+[52.538621] (vrpn) StdoutLine: {'line': b'-- Installing: /home/zq/colcon_ws/install/vrpn/lib/python3.8/dist-packages/vrpn.so\n'}
+[52.547018] (vrpn) CommandEnded: {'returncode': 0}
+[52.575110] (-) TimerEvent: {}
+[52.675569] (-) TimerEvent: {}
+[52.775970] (-) TimerEvent: {}
+[52.876529] (-) TimerEvent: {}
+[52.978730] (-) TimerEvent: {}
+[53.011537] (vrpn) JobEnded: {'identifier': 'vrpn', 'rc': 0}
+[53.012964] (-) EventReactorShutdown: {}

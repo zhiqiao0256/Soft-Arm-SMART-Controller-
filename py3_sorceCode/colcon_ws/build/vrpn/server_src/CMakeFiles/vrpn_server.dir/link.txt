@@ -1,0 +1,1 @@
+/usr/bin/c++   -fPIC -O2 -g -DNDEBUG  -rdynamic CMakeFiles/vrpn_server.dir/vrpn.C.o  -o vrpn_server  ../libvrpnserver.a timecode_generator_server/libvrpn_timecode_generator.a ../atmellib/libvrpn_atmel.a ../gpsnmealib/libgpsnmea.a ../quat/libquat.a -lm -lpthread -lusb-1.0 -lrt 

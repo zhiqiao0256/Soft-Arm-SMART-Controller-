@@ -1,0 +1,20 @@
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:101:23:[m[K [01;31m[Kerror: [m[K‘[01m[Kctx[m[K’ is not a type
+  101 |     zmq::socket_t pub([01;31m[Kctx[m[K, ZMQ_PUB);
+      |                       [01;31m[K^~~[m[K
+In file included from [01m[K/usr/local/include/zmq.hpp:36[m[K,
+                 from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:10[m[K:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:101:28:[m[K [01;31m[Kerror: [m[Kexpected identifier before numeric constant
+  101 |     zmq::socket_t pub(ctx, [01;31m[KZMQ_PUB[m[K);
+      |                            [01;31m[K^~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:101:28:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K...[m[K’ before numeric constant
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:[m[K In constructor ‘[01m[KMocapzmq_pub::Mocapzmq_pub()[m[K’:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:42:7:[m[K [01;31m[Kerror: [m[Kinvalid use of member function ‘[01m[Kzmq::socket_t Mocapzmq_pub::pub(int, int)[m[K’ (did you forget the ‘[01m[K()[m[K’ ?)
+   42 |       [01;31m[Kpub[m[K.bind("tcp://127.0.0.1:3885");
+      |       [01;31m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:[m[K In member function ‘[01m[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:59:7:[m[K [01;31m[Kerror: [m[K‘[01m[Kzmq_pub[m[K’ was not declared in this scope
+   59 |       [01;31m[Kzmq_pub[m[K.send(zmq::str_buffer("Hello"));
+      |       [01;31m[K^~~~~~~[m[K
+make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

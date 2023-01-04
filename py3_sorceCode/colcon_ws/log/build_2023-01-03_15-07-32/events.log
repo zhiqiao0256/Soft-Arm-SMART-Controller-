@@ -1,0 +1,147 @@
+[0.000000] (-) TimerEvent: {}
+[0.000763] (-) JobUnselected: {'identifier': 'vrpn'}
+[0.000859] (-) JobUnselected: {'identifier': 'vrpn_client_ros'}
+[0.001147] (arm_vrpn_pubsub) JobQueued: {'identifier': 'arm_vrpn_pubsub', 'dependencies': OrderedDict()}
+[0.001191] (arm_vrpn_pubsub) JobStarted: {'identifier': 'arm_vrpn_pubsub'}
+[0.018235] (arm_vrpn_pubsub) JobProgress: {'identifier': 'arm_vrpn_pubsub', 'progress': 'cmake'}
+[0.019855] (arm_vrpn_pubsub) JobProgress: {'identifier': 'arm_vrpn_pubsub', 'progress': 'build'}
+[0.021355] (arm_vrpn_pubsub) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/zq/colcon_ws/build/arm_vrpn_pubsub', '--', '-j4', '-l4'], 'cwd': '/home/zq/colcon_ws/build/arm_vrpn_pubsub', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'zq'), ('SSH_AGENT_PID', '1062'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/zq'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '840'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/zq/colcon_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'zq'), ('JOURNAL_STREAM', '8:35592'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/zq/colcon_ws/install/vrpn/lib/x86_64-linux-gnu/pkgconfig:/home/zq/colcon_ws/install/vrpn/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'zq'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/zq/colcon_ws/install/vrpn/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/zq:@/tmp/.ICE-unix/1128,unix/zq:/tmp/.ICE-unix/1128'), ('INVOCATION_ID', '37ff8d7386ac47b68a2281876ca4ccff'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/08d905dc_71ce_4c0d_b1bf_4fb60956b902'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.471'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/zq/colcon_ws/build/arm_vrpn_pubsub'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/vrpn:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy')]), 'shell': False}
+[0.086674] (arm_vrpn_pubsub) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target arm_mocap_pubsub\x1b[0m\n'}
+[0.097908] (-) TimerEvent: {}
+[0.130740] (arm_vrpn_pubsub) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o\x1b[0m\n'}
+[0.198054] (-) TimerEvent: {}
+[0.298382] (-) TimerEvent: {}
+[0.398719] (-) TimerEvent: {}
+[0.499062] (-) TimerEvent: {}
+[0.599415] (-) TimerEvent: {}
+[0.699755] (-) TimerEvent: {}
+[0.800097] (-) TimerEvent: {}
+[0.900437] (-) TimerEvent: {}
+[1.000924] (-) TimerEvent: {}
+[1.101267] (-) TimerEvent: {}
+[1.201611] (-) TimerEvent: {}
+[1.301958] (-) TimerEvent: {}
+[1.402282] (-) TimerEvent: {}
+[1.502573] (-) TimerEvent: {}
+[1.602879] (-) TimerEvent: {}
+[1.703205] (-) TimerEvent: {}
+[1.803559] (-) TimerEvent: {}
+[1.853797] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.854754] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:38:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<char>::basic_string(long unsigned int)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.855897] (arm_vrpn_pubsub) StderrLine: {'line': b'   75 |       std::string str_msg(sizeof data\x1b[01;31m\x1b[K)\x1b[m\x1b[K;\n'}
+[1.856123] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                      \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[1.856350] (arm_vrpn_pubsub) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/9/string:55\x1b[m\x1b[K,\n'}
+[1.856537] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/stdexcept:39\x1b[m\x1b[K,\n'}
+[1.856751] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/array:39\x1b[m\x1b[K,\n'}
+[1.856952] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/tuple:39\x1b[m\x1b[K,\n'}
+[1.857117] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/functional:54\x1b[m\x1b[K,\n'}
+[1.857279] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:2\x1b[m\x1b[K:\n'}
+[1.857446] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:629:9:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class _InputIterator, class> std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.857619] (arm_vrpn_pubsub) StderrLine: {'line': b'  629 |         \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(_InputIterator __beg, _InputIterator __end,\n'}
+[1.857779] (arm_vrpn_pubsub) StderrLine: {'line': b'      |         \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.857903] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:629:9:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[1.858055] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:38:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 1 provided\n'}
+[1.858190] (arm_vrpn_pubsub) StderrLine: {'line': b'   75 |       std::string str_msg(sizeof data\x1b[01;36m\x1b[K)\x1b[m\x1b[K;\n'}
+[1.858321] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                      \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[1.858479] (arm_vrpn_pubsub) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/9/string:55\x1b[m\x1b[K,\n'}
+[1.858657] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/stdexcept:39\x1b[m\x1b[K,\n'}
+[1.858836] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/array:39\x1b[m\x1b[K,\n'}
+[1.859019] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/tuple:39\x1b[m\x1b[K,\n'}
+[1.859190] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/functional:54\x1b[m\x1b[K,\n'}
+[1.859370] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:2\x1b[m\x1b[K:\n'}
+[1.859584] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:591:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&&, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.859758] (arm_vrpn_pubsub) StderrLine: {'line': b'  591 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(basic_string&& __str, const _Alloc& __a)\n'}
+[1.859904] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.860036] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:591:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 2 arguments, 1 provided\n'}
+[1.860203] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:587:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.860387] (arm_vrpn_pubsub) StderrLine: {'line': b'  587 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(const basic_string& __str, const _Alloc& __a)\n'}
+[1.860582] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.860750] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:587:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 2 arguments, 1 provided\n'}
+[1.860944] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:583:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::initializer_list<_Tp>, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.861142] (arm_vrpn_pubsub) StderrLine: {'line': b'  583 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(initializer_list<_CharT> __l, const _Alloc& __a = _Alloc())\n'}
+[1.861322] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.861474] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:583:45:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kstd::initializer_list<char>\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.861659] (arm_vrpn_pubsub) StderrLine: {'line': b'  583 |       basic_string(\x1b[01;36m\x1b[Kinitializer_list<_CharT> __l\x1b[m\x1b[K, const _Alloc& __a = _Alloc())\n'}
+[1.861821] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                    \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[1.861981] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:556:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.862155] (arm_vrpn_pubsub) StderrLine: {'line': b'  556 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(basic_string&& __str) noexcept\n'}
+[1.862320] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.862477] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:556:35:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<char>&&\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.862650] (arm_vrpn_pubsub) StderrLine: {'line': b'  556 |       basic_string(\x1b[01;36m\x1b[Kbasic_string&& __str\x1b[m\x1b[K) noexcept\n'}
+[1.862814] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                    \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[1.862974] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:544:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, _CharT, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.863155] (arm_vrpn_pubsub) StderrLine: {'line': b'  544 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(size_type __n, _CharT __c, const _Alloc& __a = _Alloc())\n'}
+[1.863321] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.863482] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:544:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 1 provided\n'}
+[1.863644] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:529:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _CharT*, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]\x1b[m\x1b[K\xe2\x80\x99 <near match>\n'}
+[1.863814] (arm_vrpn_pubsub) StderrLine: {'line': b'  529 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(const _CharT* __s, const _Alloc& __a = _Alloc())\n'}
+[1.863975] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.864133] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:529:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  conversion of argument 1 would be ill-formed:\n'}
+[1.864341] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:75:27:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kinvalid conversion from \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kconst char*\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;31m\x1b[K-fpermissive\x1b[m\x1b[K]\n'}
+[1.864568] (arm_vrpn_pubsub) StderrLine: {'line': b'   75 |       std::string str_msg(\x1b[01;31m\x1b[Ksizeof data\x1b[m\x1b[K);\n'}
+[1.864776] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                           \x1b[01;31m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.864976] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                           \x1b[01;31m\x1b[K|\x1b[m\x1b[K\n'}
+[1.865172] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                           \x1b[01;31m\x1b[Klong unsigned int\x1b[m\x1b[K\n'}
+[1.865334] (arm_vrpn_pubsub) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/9/string:55\x1b[m\x1b[K,\n'}
+[1.865492] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/stdexcept:39\x1b[m\x1b[K,\n'}
+[1.865659] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/array:39\x1b[m\x1b[K,\n'}
+[1.865813] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/tuple:39\x1b[m\x1b[K,\n'}
+[1.865981] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/functional:54\x1b[m\x1b[K,\n'}
+[1.866133] (arm_vrpn_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:2\x1b[m\x1b[K:\n'}
+[1.866296] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:514:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _CharT*, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.866471] (arm_vrpn_pubsub) StderrLine: {'line': b'  514 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(const _CharT* __s, size_type __n,\n'}
+[1.866642] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.866807] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:514:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 1 provided\n'}
+[1.866973] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:496:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.867157] (arm_vrpn_pubsub) StderrLine: {'line': b'  496 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(const basic_string& __str, size_type __pos,\n'}
+[1.867323] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.867508] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:496:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 4 arguments, 1 provided\n'}
+[1.867713] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:480:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.867943] (arm_vrpn_pubsub) StderrLine: {'line': b'  480 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(const basic_string& __str, size_type __pos,\n'}
+[1.868143] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.868341] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:480:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 1 provided\n'}
+[1.868577] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:465:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.868824] (arm_vrpn_pubsub) StderrLine: {'line': b'  465 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(const basic_string& __str, size_type __pos,\n'}
+[1.869059] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.869267] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:465:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 1 provided\n'}
+[1.869448] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:452:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.869641] (arm_vrpn_pubsub) StderrLine: {'line': b'  452 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(const basic_string& __str)\n'}
+[1.869813] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.870009] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:452:40:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kconst std::__cxx11::basic_string<char>&\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.870322] (arm_vrpn_pubsub) StderrLine: {'line': b'  452 |       basic_string(\x1b[01;36m\x1b[Kconst basic_string& __str\x1b[m\x1b[K)\n'}
+[1.870545] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                    \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[1.870846] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:444:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.871094] (arm_vrpn_pubsub) StderrLine: {'line': b'  444 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K(const _Alloc& __a) _GLIBCXX_NOEXCEPT\n'}
+[1.871282] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.871466] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:444:34:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kconst std::allocator<char>&\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.871692] (arm_vrpn_pubsub) StderrLine: {'line': b'  444 |       basic_string(\x1b[01;36m\x1b[Kconst _Alloc& __a\x1b[m\x1b[K) _GLIBCXX_NOEXCEPT\n'}
+[1.871881] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                    \x1b[01;36m\x1b[K~~~~~~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[1.872043] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:435:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.872299] (arm_vrpn_pubsub) StderrLine: {'line': b'  435 |       \x1b[01;36m\x1b[Kbasic_string\x1b[m\x1b[K()\n'}
+[1.872450] (arm_vrpn_pubsub) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.872625] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/bits/basic_string.h:435:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 0 arguments, 1 provided\n'}
+[1.903702] (-) TimerEvent: {}
+[2.004034] (-) TimerEvent: {}
+[2.104392] (-) TimerEvent: {}
+[2.204741] (-) TimerEvent: {}
+[2.305075] (-) TimerEvent: {}
+[2.405426] (-) TimerEvent: {}
+[2.505976] (-) TimerEvent: {}
+[2.606320] (-) TimerEvent: {}
+[2.706681] (-) TimerEvent: {}
+[2.807097] (-) TimerEvent: {}
+[2.907462] (-) TimerEvent: {}
+[3.007765] (-) TimerEvent: {}
+[3.108150] (-) TimerEvent: {}
+[3.208520] (-) TimerEvent: {}
+[3.308867] (-) TimerEvent: {}
+[3.409208] (-) TimerEvent: {}
+[3.509556] (-) TimerEvent: {}
+[3.609947] (-) TimerEvent: {}
+[3.681573] (arm_vrpn_pubsub) StderrLine: {'line': b'make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1\n'}
+[3.681991] (arm_vrpn_pubsub) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2\n'}
+[3.682293] (arm_vrpn_pubsub) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[3.684849] (arm_vrpn_pubsub) CommandEnded: {'returncode': 2}
+[3.710348] (-) TimerEvent: {}
+[3.742874] (arm_vrpn_pubsub) JobEnded: {'identifier': 'arm_vrpn_pubsub', 'rc': 2}
+[3.754059] (-) EventReactorShutdown: {}

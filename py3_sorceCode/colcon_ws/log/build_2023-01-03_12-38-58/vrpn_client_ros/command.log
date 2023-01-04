@@ -1,0 +1,6 @@
+Invoking command in '/home/zq/colcon_ws/build/vrpn_client_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake /home/zq/colcon_ws/src/vrpn_client_ros-ros2 -DCMAKE_INSTALL_PREFIX=/home/zq/colcon_ws/install/vrpn_client_ros
+Invoked command in '/home/zq/colcon_ws/build/vrpn_client_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake /home/zq/colcon_ws/src/vrpn_client_ros-ros2 -DCMAKE_INSTALL_PREFIX=/home/zq/colcon_ws/install/vrpn_client_ros
+Invoking command in '/home/zq/colcon_ws/build/vrpn_client_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/vrpn_client_ros -- -j4 -l4
+Invoked command in '/home/zq/colcon_ws/build/vrpn_client_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/vrpn_client_ros -- -j4 -l4
+Invoking command in '/home/zq/colcon_ws/build/vrpn_client_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/zq/colcon_ws/build/vrpn_client_ros
+Invoked command in '/home/zq/colcon_ws/build/vrpn_client_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/zq/colcon_ws/build/vrpn_client_ros

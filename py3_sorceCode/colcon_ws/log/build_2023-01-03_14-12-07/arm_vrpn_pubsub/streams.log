@@ -1,0 +1,19 @@
+[0.022s] Invoking command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4
+[0.086s] [35m[1mScanning dependencies of target arm_mocap_pubsub[0m
+[0.129s] [ 50%] [32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o[0m
+[1.859s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:[m[K In member function ‘[01m[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)[m[K’:
+[1.859s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:77:45:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kstr_buffer(std::string&)[m[K’
+[1.860s]    77 |       publisher.send(zmq::str_buffer(str_msg[01;31m[K)[m[K);
+[1.860s]       |                                             [01;31m[K^[m[K
+[1.860s] In file included from [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:10[m[K:
+[1.860s] [01m[K/usr/local/include/zmq.hpp:1350:24:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class Char, long unsigned int N> constexpr zmq::const_buffer zmq::str_buffer(const Char (&)[N])[m[K’
+[1.861s]  1350 | constexpr const_buffer [01;36m[Kstr_buffer[m[K(const Char (&data)[N]) noexcept
+[1.861s]       |                        [01;36m[K^~~~~~~~~~[m[K
+[1.861s] [01m[K/usr/local/include/zmq.hpp:1350:24:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.861s] [01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:77:45:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst Char [N][m[K’ and ‘[01m[Kstd::string[m[K’ {aka ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’}
+[1.861s]    77 |       publisher.send(zmq::str_buffer(str_msg[01;36m[K)[m[K);
+[1.861s]       |                                             [01;36m[K^[m[K
+[3.698s] make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1
+[3.698s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2
+[3.698s] make: *** [Makefile:141: all] Error 2
+[3.704s] Invoked command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4

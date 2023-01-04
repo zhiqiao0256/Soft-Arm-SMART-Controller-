@@ -1,0 +1,2 @@
+Invoking command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4
+Invoked command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4

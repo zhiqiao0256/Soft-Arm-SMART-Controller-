@@ -1,0 +1,160 @@
+CMake Warning (dev) at CMakeLists.txt:160 (option):
+  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake
+  --help-policy CMP0077" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+  For compatibility with older versions of CMake, option is clearing the
+  normal variable 'VRPN_BUILD_CLIENT_LIBRARY'.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:163 (option):
+  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake
+  --help-policy CMP0077" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+  For compatibility with older versions of CMake, option is clearing the
+  normal variable 'VRPN_BUILD_SERVER_LIBRARY'.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:168 (option):
+  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake
+  --help-policy CMP0077" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+  For compatibility with older versions of CMake, option is clearing the
+  normal variable 'VRPN_BUILD_CLIENTS'.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:169 (option):
+  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake
+  --help-policy CMP0077" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+  For compatibility with older versions of CMake, option is clearing the
+  normal variable 'VRPN_BUILD_SERVERS'.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at cmake/OptionRequires.cmake:46 (option):
+  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake
+  --help-policy CMP0077" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+  For compatibility with older versions of CMake, option is clearing the
+  normal variable 'VRPN_BUILD_PYTHON'.
+Call Stack (most recent call first):
+  CMakeLists.txt:345 (option_requires)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at cmake/OptionRequires.cmake:46 (option):
+  Policy CMP0077 is not set: option() honors normal variables.  Run "cmake
+  --help-policy CMP0077" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+  For compatibility with older versions of CMake, option is clearing the
+  normal variable 'VRPN_BUILD_JAVA'.
+Call Stack (most recent call first):
+  CMakeLists.txt:374 (option_requires)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.16/Modules/FindOpenGL.cmake:275 (message):
+  Policy CMP0072 is not set: FindOpenGL prefers GLVND by default when
+  available.  Run "cmake --help-policy CMP0072" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  FindOpenGL found both a legacy GL library:
+
+    OPENGL_gl_LIBRARY: /usr/lib/x86_64-linux-gnu/libGL.so
+
+  and GLVND libraries for OpenGL and GLX:
+
+    OPENGL_opengl_LIBRARY: /usr/lib/x86_64-linux-gnu/libOpenGL.so
+    OPENGL_glx_LIBRARY: /usr/lib/x86_64-linux-gnu/libGLX.so
+
+  OpenGL_GL_PREFERENCE has not been set to "GLVND" or "LEGACY", so for
+  compatibility with CMake 3.10 and below the legacy GL library will be used.
+Call Stack (most recent call first):
+  client_src/CMakeLists.txt:26 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at /usr/share/cmake-3.16/Modules/FindOpenGL.cmake:275 (message):
+  Policy CMP0072 is not set: FindOpenGL prefers GLVND by default when
+  available.  Run "cmake --help-policy CMP0072" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  FindOpenGL found both a legacy GL library:
+
+    OPENGL_gl_LIBRARY: /usr/lib/x86_64-linux-gnu/libGL.so
+
+  and GLVND libraries for OpenGL and GLX:
+
+    OPENGL_opengl_LIBRARY: /usr/lib/x86_64-linux-gnu/libOpenGL.so
+    OPENGL_glx_LIBRARY: /usr/lib/x86_64-linux-gnu/libGLX.so
+
+  OpenGL_GL_PREFERENCE has not been set to "GLVND" or "LEGACY", so for
+  compatibility with CMake 3.10 and below the legacy GL library will be used.
+Call Stack (most recent call first):
+  server_src/CMakeLists.txt:27 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+In file included from [01m[K/usr/include/string.h:495[m[K,
+                 from [01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:2[m[K:
+In function ‘[01m[Kchar* strncpy(char*, const char*, size_t)[m[K’,
+    inlined from ‘[01m[Kvoid vrpn_PeerMutex::init(const char*)[m[K’ at [01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:1393:12[m[K:
+[01m[K/usr/include/x86_64-linux-gnu/bits/string_fortified.h:106:34:[m[K [01;35m[Kwarning: [m[K‘[01m[Kchar* __builtin_strncpy(char*, const char*, long unsigned int)[m[K’ specified bound depends on the length of the source argument [[01;35m[K-Wstringop-overflow=[m[K]
+  106 |   return [01;35m[K__builtin___strncpy_chk (__dest, __src, __len, __bos (__dest))[m[K;
+      |          [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:[m[K In member function ‘[01m[Kvoid vrpn_PeerMutex::init(const char*)[m[K’:
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:1393:12:[m[K [01;36m[Knote: [m[Klength computed here
+ 1393 |     [01;36m[Kstrncpy(d_mutexName, name, strlen(name))[m[K;
+      |     [01;36m[K~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/string.h:495[m[K,
+                 from [01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:2[m[K:
+In function ‘[01m[Kchar* strncpy(char*, const char*, size_t)[m[K’,
+    inlined from ‘[01m[Kvoid vrpn_PeerMutex::init(const char*)[m[K’ at [01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:1393:12[m[K:
+[01m[K/usr/include/x86_64-linux-gnu/bits/string_fortified.h:106:34:[m[K [01;35m[Kwarning: [m[K‘[01m[Kchar* __builtin_strncpy(char*, const char*, long unsigned int)[m[K’ specified bound depends on the length of the source argument [[01;35m[K-Wstringop-overflow=[m[K]
+  106 |   return [01;35m[K__builtin___strncpy_chk (__dest, __src, __len, __bos (__dest))[m[K;
+      |          [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:[m[K In member function ‘[01m[Kvoid vrpn_PeerMutex::init(const char*)[m[K’:
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Mutex.C:1393:12:[m[K [01;36m[Knote: [m[Klength computed here
+ 1393 |     [01;36m[Kstrncpy(d_mutexName, name, strlen(name))[m[K;
+      |     [01;36m[K~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:[m[K In member function ‘[01m[Kvoid vrpn_Poser_Tek4662::reset()[m[K’:
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:180:51:[m[K [01;35m[Kwarning: [m[K‘[01m[Kstrlen[m[K’ argument missing terminating nul [[01;35m[K-Wstringop-overflow=[m[K]
+  180 |   vrpn_write_characters( d_serial_fd, GIN, strlen([01;35m[K(const char*)GIN[m[K) );
+      |                                                   [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:[m[K [01;36m[Knote: [m[Kreferenced argument declared here
+   42 | const unsigned char [01;36m[KGIN[m[K[] = { ESC, DEVICE, 'M' };
+      |                     [01;36m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:[m[K In member function ‘[01m[Kvoid vrpn_Poser_Tek4662::run()[m[K’:
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:256:52:[m[K [01;35m[Kwarning: [m[K‘[01m[Kstrlen[m[K’ argument missing terminating nul [[01;35m[K-Wstringop-overflow=[m[K]
+  256 |     vrpn_write_characters(d_serial_fd, GIN, strlen([01;35m[K(const char*)GIN[m[K) );
+      |                                                    [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:[m[K [01;36m[Knote: [m[Kreferenced argument declared here
+   42 | const unsigned char [01;36m[KGIN[m[K[] = { ESC, DEVICE, 'M' };
+      |                     [01;36m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:341:54:[m[K [01;35m[Kwarning: [m[K‘[01m[Kstrlen[m[K’ argument missing terminating nul [[01;35m[K-Wstringop-overflow=[m[K]
+  341 |       vrpn_write_characters(d_serial_fd, GIN, strlen([01;35m[K(const char*)GIN[m[K) );
+      |                                                      [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:[m[K [01;36m[Knote: [m[Kreferenced argument declared here
+   42 | const unsigned char [01;36m[KGIN[m[K[] = { ESC, DEVICE, 'M' };
+      |                     [01;36m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:[m[K In member function ‘[01m[Kvoid vrpn_Poser_Tek4662::reset()[m[K’:
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:180:64:[m[K [01;35m[Kwarning: [m[K‘[01m[Kstrlen[m[K’ argument missing terminating nul [[01;35m[K-Wstringop-overflow=[m[K]
+  180 |   vrpn_write_characters( d_serial_fd, GIN, strlen((const char*)[01;35m[KGIN[m[K) );
+      |                                                                [01;35m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:[m[K [01;36m[Knote: [m[Kreferenced argument declared here
+   42 | const unsigned char [01;36m[KGIN[m[K[] = { ESC, DEVICE, 'M' };
+      |                     [01;36m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:[m[K In member function ‘[01m[Kvoid vrpn_Poser_Tek4662::run()[m[K’:
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:256:65:[m[K [01;35m[Kwarning: [m[K‘[01m[Kstrlen[m[K’ argument missing terminating nul [[01;35m[K-Wstringop-overflow=[m[K]
+  256 |     vrpn_write_characters(d_serial_fd, GIN, strlen((const char*)[01;35m[KGIN[m[K) );
+      |                                                                 [01;35m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:[m[K [01;36m[Knote: [m[Kreferenced argument declared here
+   42 | const unsigned char [01;36m[KGIN[m[K[] = { ESC, DEVICE, 'M' };
+      |                     [01;36m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:341:67:[m[K [01;35m[Kwarning: [m[K‘[01m[Kstrlen[m[K’ argument missing terminating nul [[01;35m[K-Wstringop-overflow=[m[K]
+  341 |       vrpn_write_characters(d_serial_fd, GIN, strlen((const char*)[01;35m[KGIN[m[K) );
+      |                                                                   [01;35m[K^~~[m[K
+[01m[K/home/zq/colcon_ws/src/vrpn-ros2/vrpn_Poser_Tek4662.C:42:21:[m[K [01;36m[Knote: [m[Kreferenced argument declared here
+   42 | const unsigned char [01;36m[KGIN[m[K[] = { ESC, DEVICE, 'M' };
+      |                     [01;36m[K^~~[m[K

@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zq/colcon_ws/src/vrpn-ros2/client_src/c_interface.h
+
+/home/zq/colcon_ws/src/vrpn-ros2/client_src/c_interface_example.c
+stdio.h
+-
+c_interface.h
+/home/zq/colcon_ws/src/vrpn-ros2/client_src/c_interface.h
+

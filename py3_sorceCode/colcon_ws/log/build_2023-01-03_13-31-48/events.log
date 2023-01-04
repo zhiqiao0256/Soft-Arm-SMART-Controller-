@@ -1,0 +1,84 @@
+[0.000000] (-) TimerEvent: {}
+[0.000854] (-) JobUnselected: {'identifier': 'vrpn'}
+[0.000928] (-) JobUnselected: {'identifier': 'vrpn_client_ros'}
+[0.000979] (arm_vrpn_pubsub) JobQueued: {'identifier': 'arm_vrpn_pubsub', 'dependencies': OrderedDict()}
+[0.001008] (arm_vrpn_pubsub) JobStarted: {'identifier': 'arm_vrpn_pubsub'}
+[0.017727] (arm_vrpn_pubsub) JobProgress: {'identifier': 'arm_vrpn_pubsub', 'progress': 'cmake'}
+[0.018922] (arm_vrpn_pubsub) JobProgress: {'identifier': 'arm_vrpn_pubsub', 'progress': 'build'}
+[0.020237] (arm_vrpn_pubsub) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/zq/colcon_ws/build/arm_vrpn_pubsub', '--', '-j4', '-l4'], 'cwd': '/home/zq/colcon_ws/build/arm_vrpn_pubsub', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'zq'), ('SSH_AGENT_PID', '1062'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/zq'), ('OLDPWD', '/home/zq'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '840'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/zq/colcon_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'zq'), ('JOURNAL_STREAM', '8:38145'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/zq/colcon_ws/install/vrpn/lib/x86_64-linux-gnu/pkgconfig:/home/zq/colcon_ws/install/vrpn/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'zq'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/zq/colcon_ws/install/vrpn/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/zq:@/tmp/.ICE-unix/1128,unix/zq:/tmp/.ICE-unix/1128'), ('INVOCATION_ID', 'acaeb2675b8442399e789f3ef904b8ec'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/4da4de18_4557_4b57_80f6_319c07ad6b63'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.451'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/zq/colcon_ws/build/arm_vrpn_pubsub'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/vrpn:/opt/ros/foxy')]), 'shell': False}
+[0.061022] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.093560] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.099495] (-) TimerEvent: {}
+[0.199872] (-) TimerEvent: {}
+[0.300178] (-) TimerEvent: {}
+[0.324611] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Found std_msgs: 2.0.5 (/opt/ros/foxy/share/std_msgs/cmake)\n'}
+[0.353237] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.358126] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.400315] (-) TimerEvent: {}
+[0.500648] (-) TimerEvent: {}
+[0.521403] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.581589] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)\n'}
+[0.600758] (-) TimerEvent: {}
+[0.627248] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Found tf2: 0.13.13 (/opt/ros/foxy/share/tf2/cmake)\n'}
+[0.641695] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Found tf2_ros: 0.13.13 (/opt/ros/foxy/share/tf2_ros/cmake)\n'}
+[0.700891] (-) TimerEvent: {}
+[0.720363] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[0.722276] (arm_vrpn_pubsub) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.801026] (-) TimerEvent: {}
+[0.901350] (-) TimerEvent: {}
+[1.001667] (-) TimerEvent: {}
+[1.102004] (-) TimerEvent: {}
+[1.202310] (-) TimerEvent: {}
+[1.302642] (-) TimerEvent: {}
+[1.397779] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.402785] (-) TimerEvent: {}
+[1.413796] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Generating done\n'}
+[1.417476] (arm_vrpn_pubsub) StdoutLine: {'line': b'-- Build files have been written to: /home/zq/colcon_ws/build/arm_vrpn_pubsub\n'}
+[1.476222] (arm_vrpn_pubsub) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o\x1b[0m\n'}
+[1.502916] (-) TimerEvent: {}
+[1.603244] (-) TimerEvent: {}
+[1.703595] (-) TimerEvent: {}
+[1.803940] (-) TimerEvent: {}
+[1.904290] (-) TimerEvent: {}
+[2.004623] (-) TimerEvent: {}
+[2.104974] (-) TimerEvent: {}
+[2.205318] (-) TimerEvent: {}
+[2.305659] (-) TimerEvent: {}
+[2.406001] (-) TimerEvent: {}
+[2.506352] (-) TimerEvent: {}
+[2.606705] (-) TimerEvent: {}
+[2.707058] (-) TimerEvent: {}
+[2.807406] (-) TimerEvent: {}
+[2.907752] (-) TimerEvent: {}
+[3.008105] (-) TimerEvent: {}
+[3.108466] (-) TimerEvent: {}
+[3.132062] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:31:5:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kpublisher\x1b[m\x1b[K\xe2\x80\x99 does not name a type\n'}
+[3.132346] (arm_vrpn_pubsub) StderrLine: {'line': b'   31 |     \x1b[01;31m\x1b[Kpublisher\x1b[m\x1b[K.bind("tcp://127.0.0.1:3885");\n'}
+[3.132528] (arm_vrpn_pubsub) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[3.132891] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:32:5:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kpublisher\x1b[m\x1b[K\xe2\x80\x99 does not name a type\n'}
+[3.133056] (arm_vrpn_pubsub) StderrLine: {'line': b'   32 |     \x1b[01;31m\x1b[Kpublisher\x1b[m\x1b[K.send(zmq::str_buffer("Hello"));\n'}
+[3.133184] (arm_vrpn_pubsub) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[3.208585] (-) TimerEvent: {}
+[3.308922] (-) TimerEvent: {}
+[3.409272] (-) TimerEvent: {}
+[3.509617] (-) TimerEvent: {}
+[3.609959] (-) TimerEvent: {}
+[3.710305] (-) TimerEvent: {}
+[3.810659] (-) TimerEvent: {}
+[3.911017] (-) TimerEvent: {}
+[4.011384] (-) TimerEvent: {}
+[4.111775] (-) TimerEvent: {}
+[4.212113] (-) TimerEvent: {}
+[4.312475] (-) TimerEvent: {}
+[4.412821] (-) TimerEvent: {}
+[4.513167] (-) TimerEvent: {}
+[4.613506] (-) TimerEvent: {}
+[4.713850] (-) TimerEvent: {}
+[4.814183] (-) TimerEvent: {}
+[4.914563] (-) TimerEvent: {}
+[4.945266] (arm_vrpn_pubsub) StderrLine: {'line': b'make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1\n'}
+[4.945630] (arm_vrpn_pubsub) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2\n'}
+[4.945861] (arm_vrpn_pubsub) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[4.949060] (arm_vrpn_pubsub) CommandEnded: {'returncode': 2}
+[5.000691] (arm_vrpn_pubsub) JobEnded: {'identifier': 'arm_vrpn_pubsub', 'rc': 2}
+[5.013071] (-) EventReactorShutdown: {}

@@ -1,0 +1,100 @@
+[0.000000] (-) TimerEvent: {}
+[0.001254] (-) JobUnselected: {'identifier': 'vrpn'}
+[0.001309] (-) JobUnselected: {'identifier': 'vrpn_client_ros'}
+[0.001352] (arm_vrpn_pubsub) JobQueued: {'identifier': 'arm_vrpn_pubsub', 'dependencies': OrderedDict()}
+[0.001408] (arm_vrpn_pubsub) JobStarted: {'identifier': 'arm_vrpn_pubsub'}
+[0.020717] (arm_vrpn_pubsub) JobProgress: {'identifier': 'arm_vrpn_pubsub', 'progress': 'cmake'}
+[0.021728] (arm_vrpn_pubsub) JobProgress: {'identifier': 'arm_vrpn_pubsub', 'progress': 'build'}
+[0.022822] (arm_vrpn_pubsub) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/zq/colcon_ws/build/arm_vrpn_pubsub', '--', '-j4', '-l4'], 'cwd': '/home/zq/colcon_ws/build/arm_vrpn_pubsub', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'zq'), ('SSH_AGENT_PID', '1062'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/zq'), ('OLDPWD', '/home/zq/colcon_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '840'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/zq/colcon_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'zq'), ('JOURNAL_STREAM', '8:35592'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/zq/colcon_ws/install/vrpn/lib/x86_64-linux-gnu/pkgconfig:/home/zq/colcon_ws/install/vrpn/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'zq'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/zq/colcon_ws/install/vrpn/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/zq:@/tmp/.ICE-unix/1128,unix/zq:/tmp/.ICE-unix/1128'), ('INVOCATION_ID', '37ff8d7386ac47b68a2281876ca4ccff'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3004cade_e504_48c3_9559_328beb6192c2'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.367'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/zq/colcon_ws/build/arm_vrpn_pubsub'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/vrpn:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy')]), 'shell': False}
+[0.087734] (arm_vrpn_pubsub) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target arm_mocap_pubsub\x1b[0m\n'}
+[0.099616] (-) TimerEvent: {}
+[0.131382] (arm_vrpn_pubsub) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o\x1b[0m\n'}
+[0.199764] (-) TimerEvent: {}
+[0.300114] (-) TimerEvent: {}
+[0.400466] (-) TimerEvent: {}
+[0.500820] (-) TimerEvent: {}
+[0.601178] (-) TimerEvent: {}
+[0.701529] (-) TimerEvent: {}
+[0.801875] (-) TimerEvent: {}
+[0.902252] (-) TimerEvent: {}
+[1.002603] (-) TimerEvent: {}
+[1.102958] (-) TimerEvent: {}
+[1.203302] (-) TimerEvent: {}
+[1.303657] (-) TimerEvent: {}
+[1.403972] (-) TimerEvent: {}
+[1.504326] (-) TimerEvent: {}
+[1.604670] (-) TimerEvent: {}
+[1.705020] (-) TimerEvent: {}
+[1.805369] (-) TimerEvent: {}
+[1.905716] (-) TimerEvent: {}
+[2.006074] (-) TimerEvent: {}
+[2.106434] (-) TimerEvent: {}
+[2.206777] (-) TimerEvent: {}
+[2.307124] (-) TimerEvent: {}
+[2.407469] (-) TimerEvent: {}
+[2.507826] (-) TimerEvent: {}
+[2.608176] (-) TimerEvent: {}
+[2.708734] (-) TimerEvent: {}
+[2.809152] (-) TimerEvent: {}
+[2.909499] (-) TimerEvent: {}
+[3.009841] (-) TimerEvent: {}
+[3.110182] (-) TimerEvent: {}
+[3.210586] (-) TimerEvent: {}
+[3.310949] (-) TimerEvent: {}
+[3.411290] (-) TimerEvent: {}
+[3.511639] (-) TimerEvent: {}
+[3.611976] (-) TimerEvent: {}
+[3.712342] (-) TimerEvent: {}
+[3.812730] (-) TimerEvent: {}
+[3.913136] (-) TimerEvent: {}
+[4.013479] (-) TimerEvent: {}
+[4.113830] (-) TimerEvent: {}
+[4.214165] (-) TimerEvent: {}
+[4.314517] (-) TimerEvent: {}
+[4.414863] (-) TimerEvent: {}
+[4.515209] (-) TimerEvent: {}
+[4.615556] (-) TimerEvent: {}
+[4.715906] (-) TimerEvent: {}
+[4.816251] (-) TimerEvent: {}
+[4.916596] (-) TimerEvent: {}
+[5.016944] (-) TimerEvent: {}
+[5.117298] (-) TimerEvent: {}
+[5.217643] (-) TimerEvent: {}
+[5.317966] (-) TimerEvent: {}
+[5.418333] (-) TimerEvent: {}
+[5.518684] (-) TimerEvent: {}
+[5.619027] (-) TimerEvent: {}
+[5.719382] (-) TimerEvent: {}
+[5.819721] (-) TimerEvent: {}
+[5.920077] (-) TimerEvent: {}
+[6.020436] (-) TimerEvent: {}
+[6.120832] (-) TimerEvent: {}
+[6.146613] (arm_vrpn_pubsub) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable arm_mocap_pubsub\x1b[0m\n'}
+[6.220997] (-) TimerEvent: {}
+[6.321349] (-) TimerEvent: {}
+[6.421716] (-) TimerEvent: {}
+[6.522093] (-) TimerEvent: {}
+[6.526586] (arm_vrpn_pubsub) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::error_t::error_t()':\n"}
+[6.527301] (arm_vrpn_pubsub) StderrLine: {'line': b"arm_mocap_pubsub.cpp:(.text._ZN3zmq7error_tC2Ev[_ZN3zmq7error_tC5Ev]+0x2b): undefined reference to `zmq_errno'\n"}
+[6.527980] (arm_vrpn_pubsub) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::error_t::what() const':\n"}
+[6.528201] (arm_vrpn_pubsub) StderrLine: {'line': b"arm_mocap_pubsub.cpp:(.text._ZNK3zmq7error_t4whatEv[_ZNK3zmq7error_t4whatEv]+0x1a): undefined reference to `zmq_strerror'\n"}
+[6.528406] (arm_vrpn_pubsub) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::context_t::context_t()':\n"}
+[6.528578] (arm_vrpn_pubsub) StderrLine: {'line': b"arm_mocap_pubsub.cpp:(.text._ZN3zmq9context_tC2Ev[_ZN3zmq9context_tC5Ev]+0x12): undefined reference to `zmq_ctx_new'\n"}
+[6.528744] (arm_vrpn_pubsub) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::context_t::close()':\n"}
+[6.528902] (arm_vrpn_pubsub) StderrLine: {'line': b"arm_mocap_pubsub.cpp:(.text._ZN3zmq9context_t5closeEv[_ZN3zmq9context_t5closeEv]+0x27): undefined reference to `zmq_ctx_term'\n"}
+[6.529058] (arm_vrpn_pubsub) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::detail::socket_base::bind(char const*)':\n"}
+[6.529214] (arm_vrpn_pubsub) StderrLine: {'line': b"arm_mocap_pubsub.cpp:(.text._ZN3zmq6detail11socket_base4bindEPKc[_ZN3zmq6detail11socket_base4bindEPKc]+0x27): undefined reference to `zmq_bind'\n"}
+[6.529328] (arm_vrpn_pubsub) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::detail::socket_base::send(zmq::const_buffer, zmq::send_flags)':\n"}
+[6.529439] (arm_vrpn_pubsub) StderrLine: {'line': b"arm_mocap_pubsub.cpp:(.text._ZN3zmq6detail11socket_base4sendENS_12const_bufferENS_10send_flagsE[_ZN3zmq6detail11socket_base4sendENS_12const_bufferENS_10send_flagsE]+0x65): undefined reference to `zmq_send'\n"}
+[6.529556] (arm_vrpn_pubsub) StderrLine: {'line': b"/usr/bin/ld: arm_mocap_pubsub.cpp:(.text._ZN3zmq6detail11socket_base4sendENS_12const_bufferENS_10send_flagsE[_ZN3zmq6detail11socket_base4sendENS_12const_bufferENS_10send_flagsE]+0x92): undefined reference to `zmq_errno'\n"}
+[6.529671] (arm_vrpn_pubsub) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::socket_t::socket_t(zmq::context_t&, int)':\n"}
+[6.529830] (arm_vrpn_pubsub) StderrLine: {'line': b"arm_mocap_pubsub.cpp:(.text._ZN3zmq8socket_tC2ERNS_9context_tEi[_ZN3zmq8socket_tC5ERNS_9context_tEi]+0x34): undefined reference to `zmq_socket'\n"}
+[6.529988] (arm_vrpn_pubsub) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::socket_t::close()':\n"}
+[6.530225] (arm_vrpn_pubsub) StderrLine: {'line': b"arm_mocap_pubsub.cpp:(.text._ZN3zmq8socket_t5closeEv[_ZN3zmq8socket_t5closeEv]+0x27): undefined reference to `zmq_close'\n"}
+[6.530423] (arm_vrpn_pubsub) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[6.530578] (arm_vrpn_pubsub) StderrLine: {'line': b'make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:166: arm_mocap_pubsub] Error 1\n'}
+[6.530839] (arm_vrpn_pubsub) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2\n'}
+[6.532846] (arm_vrpn_pubsub) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[6.534049] (arm_vrpn_pubsub) CommandEnded: {'returncode': 2}
+[6.588056] (arm_vrpn_pubsub) JobEnded: {'identifier': 'arm_vrpn_pubsub', 'rc': 2}
+[6.599575] (-) EventReactorShutdown: {}

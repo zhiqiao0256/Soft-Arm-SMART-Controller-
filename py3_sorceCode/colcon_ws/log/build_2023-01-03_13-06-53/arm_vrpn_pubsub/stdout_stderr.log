@@ -1,0 +1,11 @@
+[35m[1mScanning dependencies of target arm_mocap_pubsub[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o[0m
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:31:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpublisher[m[K’ does not name a type
+   31 |     [01;31m[Kpublisher[m[K.bind("tcp://127.0.0.1:3885");
+      |     [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:32:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpublisher[m[K’ does not name a type
+   32 |     [01;31m[Kpublisher[m[K.send(zmq::str_buffer("Hello"));
+      |     [01;31m[K^~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

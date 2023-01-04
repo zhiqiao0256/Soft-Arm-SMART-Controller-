@@ -1,0 +1,129 @@
+[0.000000] (-) TimerEvent: {}
+[0.000390] (-) JobUnselected: {'identifier': 'vrpn'}
+[0.000718] (-) JobUnselected: {'identifier': 'vrpn_client_ros'}
+[0.000983] (arm_vrpn_pubsub) JobQueued: {'identifier': 'arm_vrpn_pubsub', 'dependencies': OrderedDict()}
+[0.001352] (arm_vrpn_pubsub) JobStarted: {'identifier': 'arm_vrpn_pubsub'}
+[0.019156] (arm_vrpn_pubsub) JobProgress: {'identifier': 'arm_vrpn_pubsub', 'progress': 'cmake'}
+[0.020425] (arm_vrpn_pubsub) JobProgress: {'identifier': 'arm_vrpn_pubsub', 'progress': 'build'}
+[0.021516] (arm_vrpn_pubsub) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/zq/colcon_ws/build/arm_vrpn_pubsub', '--', '-j4', '-l4'], 'cwd': '/home/zq/colcon_ws/build/arm_vrpn_pubsub', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'zq'), ('SSH_AGENT_PID', '1062'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/zq'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '840'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/zq/colcon_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'zq'), ('JOURNAL_STREAM', '8:35592'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/zq/colcon_ws/install/vrpn/lib/x86_64-linux-gnu/pkgconfig:/home/zq/colcon_ws/install/vrpn/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'zq'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/zq/colcon_ws/install/vrpn/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/zq:@/tmp/.ICE-unix/1128,unix/zq:/tmp/.ICE-unix/1128'), ('INVOCATION_ID', '37ff8d7386ac47b68a2281876ca4ccff'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/08d905dc_71ce_4c0d_b1bf_4fb60956b902'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.471'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/zq/colcon_ws/build/arm_vrpn_pubsub'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=25df893a9483c5d043fee25463adc66a'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/zq/colcon_ws/install/vrpn_client_ros:/home/zq/colcon_ws/install/vrpn:/home/zq/colcon_ws/install/arm_vrpn_pubsub:/opt/ros/foxy')]), 'shell': False}
+[0.087287] (arm_vrpn_pubsub) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target arm_mocap_pubsub\x1b[0m\n'}
+[0.100391] (-) TimerEvent: {}
+[0.133911] (arm_vrpn_pubsub) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o\x1b[0m\n'}
+[0.200496] (-) TimerEvent: {}
+[0.300835] (-) TimerEvent: {}
+[0.401205] (-) TimerEvent: {}
+[0.501563] (-) TimerEvent: {}
+[0.601907] (-) TimerEvent: {}
+[0.702272] (-) TimerEvent: {}
+[0.802638] (-) TimerEvent: {}
+[0.902995] (-) TimerEvent: {}
+[1.003393] (-) TimerEvent: {}
+[1.103731] (-) TimerEvent: {}
+[1.204073] (-) TimerEvent: {}
+[1.304420] (-) TimerEvent: {}
+[1.404755] (-) TimerEvent: {}
+[1.505104] (-) TimerEvent: {}
+[1.605455] (-) TimerEvent: {}
+[1.705974] (-) TimerEvent: {}
+[1.806321] (-) TimerEvent: {}
+[1.906665] (-) TimerEvent: {}
+[1.912124] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.913090] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:27:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kx1_mocap\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.913301] (arm_vrpn_pubsub) StderrLine: {'line': b'   68 |       char ch_data[21] = {\x1b[01;35m\x1b[Kx1_mocap\x1b[m\x1b[K,y1_mocap,z1_mocap,\n'}
+[1.913472] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                           \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[1.913631] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:36:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Ky1_mocap\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.913798] (arm_vrpn_pubsub) StderrLine: {'line': b'   68 |       char ch_data[21] = {x1_mocap,\x1b[01;35m\x1b[Ky1_mocap\x1b[m\x1b[K,z1_mocap,\n'}
+[1.913959] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                    \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[1.914118] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:45:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kz1_mocap\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.914287] (arm_vrpn_pubsub) StderrLine: {'line': b'   68 |       char ch_data[21] = {x1_mocap,y1_mocap,\x1b[01;35m\x1b[Kz1_mocap\x1b[m\x1b[K,\n'}
+[1.914463] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[1.914623] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq1_mocap_x\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.914788] (arm_vrpn_pubsub) StderrLine: {'line': b'   69 |                       \x1b[01;35m\x1b[Kq1_mocap_x\x1b[m\x1b[K,q1_mocap_y,q1_mocap_z,q1_mocap_w,\n'}
+[1.914933] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                       \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.915057] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:34:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq1_mocap_y\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.915185] (arm_vrpn_pubsub) StderrLine: {'line': b'   69 |                       q1_mocap_x,\x1b[01;35m\x1b[Kq1_mocap_y\x1b[m\x1b[K,q1_mocap_z,q1_mocap_w,\n'}
+[1.915311] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                  \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.915483] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:45:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq1_mocap_z\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.915639] (arm_vrpn_pubsub) StderrLine: {'line': b'   69 |                       q1_mocap_x,q1_mocap_y,\x1b[01;35m\x1b[Kq1_mocap_z\x1b[m\x1b[K,q1_mocap_w,\n'}
+[1.915794] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                             \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.915947] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:56:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq1_mocap_w\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.916108] (arm_vrpn_pubsub) StderrLine: {'line': b'   69 |                       q1_mocap_x,q1_mocap_y,q1_mocap_z,\x1b[01;35m\x1b[Kq1_mocap_w\x1b[m\x1b[K,\n'}
+[1.916263] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                                        \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.916418] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kx2_mocap\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.916588] (arm_vrpn_pubsub) StderrLine: {'line': b'   70 |                       \x1b[01;35m\x1b[Kx2_mocap\x1b[m\x1b[K,y2_mocap,z2_mocap,\n'}
+[1.916758] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                       \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[1.916911] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Ky2_mocap\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.917086] (arm_vrpn_pubsub) StderrLine: {'line': b'   70 |                       x2_mocap,\x1b[01;35m\x1b[Ky2_mocap\x1b[m\x1b[K,z2_mocap,\n'}
+[1.917219] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[1.917370] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kz2_mocap\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.917556] (arm_vrpn_pubsub) StderrLine: {'line': b'   70 |                       x2_mocap,y2_mocap,\x1b[01;35m\x1b[Kz2_mocap\x1b[m\x1b[K,\n'}
+[1.917716] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                         \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[1.917928] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq2_mocap_x\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.918097] (arm_vrpn_pubsub) StderrLine: {'line': b'   71 |                       \x1b[01;35m\x1b[Kq2_mocap_x\x1b[m\x1b[K,q2_mocap_y,q2_mocap_z,q2_mocap_w,\n'}
+[1.918252] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                       \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.918405] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:34:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq2_mocap_y\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.918569] (arm_vrpn_pubsub) StderrLine: {'line': b'   71 |                       q2_mocap_x,\x1b[01;35m\x1b[Kq2_mocap_y\x1b[m\x1b[K,q2_mocap_z,q2_mocap_w,\n'}
+[1.918727] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                  \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.918884] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:45:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq2_mocap_z\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.919060] (arm_vrpn_pubsub) StderrLine: {'line': b'   71 |                       q2_mocap_x,q2_mocap_y,\x1b[01;35m\x1b[Kq2_mocap_z\x1b[m\x1b[K,q2_mocap_w,\n'}
+[1.919223] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                             \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.919390] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:56:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq2_mocap_w\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.919573] (arm_vrpn_pubsub) StderrLine: {'line': b'   71 |                       q2_mocap_x,q2_mocap_y,q2_mocap_z,\x1b[01;35m\x1b[Kq2_mocap_w\x1b[m\x1b[K,\n'}
+[1.920113] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                                        \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.920321] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kx3_mocap\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.920504] (arm_vrpn_pubsub) StderrLine: {'line': b'   72 |                       \x1b[01;35m\x1b[Kx3_mocap\x1b[m\x1b[K,y3_mocap,z3_mocap,\n'}
+[1.920670] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                       \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[1.920824] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Ky3_mocap\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.920999] (arm_vrpn_pubsub) StderrLine: {'line': b'   72 |                       x3_mocap,\x1b[01;35m\x1b[Ky3_mocap\x1b[m\x1b[K,z3_mocap,\n'}
+[1.921164] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[1.921329] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kz3_mocap\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.921503] (arm_vrpn_pubsub) StderrLine: {'line': b'   72 |                       x3_mocap,y3_mocap,\x1b[01;35m\x1b[Kz3_mocap\x1b[m\x1b[K,\n'}
+[1.921720] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                         \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[1.921903] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq3_mocap_x\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.922487] (arm_vrpn_pubsub) StderrLine: {'line': b'   73 |                       \x1b[01;35m\x1b[Kq3_mocap_x\x1b[m\x1b[K,q3_mocap_y,q3_mocap_z,q3_mocap_w\n'}
+[1.922755] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                       \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.922938] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:34:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq3_mocap_y\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.923110] (arm_vrpn_pubsub) StderrLine: {'line': b'   73 |                       q3_mocap_x,\x1b[01;35m\x1b[Kq3_mocap_y\x1b[m\x1b[K,q3_mocap_z,q3_mocap_w\n'}
+[1.923279] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                  \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.923474] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:45:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq3_mocap_z\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.923709] (arm_vrpn_pubsub) StderrLine: {'line': b'   73 |                       q3_mocap_x,q3_mocap_y,\x1b[01;35m\x1b[Kq3_mocap_z\x1b[m\x1b[K,q3_mocap_w\n'}
+[1.923923] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                             \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.924092] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:56:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Knarrowing conversion of \xe2\x80\x98\x1b[01m\x1b[Kq3_mocap_w\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[Kfloat\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kchar\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wnarrowing\x1b[m\x1b[K]\n'}
+[1.924273] (arm_vrpn_pubsub) StderrLine: {'line': b'   73 |                       q3_mocap_x,q3_mocap_y,q3_mocap_z,\x1b[01;35m\x1b[Kq3_mocap_w\x1b[m\x1b[K\n'}
+[1.924440] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                                        \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.924607] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:81:45:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kstr_buffer(std::string&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.924789] (arm_vrpn_pubsub) StderrLine: {'line': b'   81 |       publisher.send(zmq::str_buffer(str_msg\x1b[01;31m\x1b[K)\x1b[m\x1b[K)\n'}
+[1.924962] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                             \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[1.925137] (arm_vrpn_pubsub) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:10\x1b[m\x1b[K:\n'}
+[1.925326] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/zmq.hpp:1350:24:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class Char, long unsigned int N> constexpr zmq::const_buffer zmq::str_buffer(const Char (&)[N])\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.925514] (arm_vrpn_pubsub) StderrLine: {'line': b' 1350 | constexpr const_buffer \x1b[01;36m\x1b[Kstr_buffer\x1b[m\x1b[K(const Char (&data)[N]) noexcept\n'}
+[1.925691] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                        \x1b[01;36m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.925872] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/zmq.hpp:1350:24:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[1.926055] (arm_vrpn_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:81:45:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  mismatched types \xe2\x80\x98\x1b[01m\x1b[Kconst Char [N]\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::string\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<char>\x1b[m\x1b[K\xe2\x80\x99}\n'}
+[1.926239] (arm_vrpn_pubsub) StderrLine: {'line': b'   81 |       publisher.send(zmq::str_buffer(str_msg\x1b[01;36m\x1b[K)\x1b[m\x1b[K)\n'}
+[1.926469] (arm_vrpn_pubsub) StderrLine: {'line': b'      |                                             \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[2.006788] (-) TimerEvent: {}
+[2.107271] (-) TimerEvent: {}
+[2.207686] (-) TimerEvent: {}
+[2.308066] (-) TimerEvent: {}
+[2.408431] (-) TimerEvent: {}
+[2.508753] (-) TimerEvent: {}
+[2.609080] (-) TimerEvent: {}
+[2.709443] (-) TimerEvent: {}
+[2.809829] (-) TimerEvent: {}
+[2.910177] (-) TimerEvent: {}
+[3.010570] (-) TimerEvent: {}
+[3.110978] (-) TimerEvent: {}
+[3.211543] (-) TimerEvent: {}
+[3.311940] (-) TimerEvent: {}
+[3.412335] (-) TimerEvent: {}
+[3.512749] (-) TimerEvent: {}
+[3.613132] (-) TimerEvent: {}
+[3.713523] (-) TimerEvent: {}
+[3.782173] (arm_vrpn_pubsub) StderrLine: {'line': b'make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:63: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o] Error 1\n'}
+[3.782520] (arm_vrpn_pubsub) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2\n'}
+[3.782828] (arm_vrpn_pubsub) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[3.785999] (arm_vrpn_pubsub) CommandEnded: {'returncode': 2}
+[3.813738] (-) TimerEvent: {}
+[3.854883] (arm_vrpn_pubsub) JobEnded: {'identifier': 'arm_vrpn_pubsub', 'rc': 2}
+[3.865717] (-) EventReactorShutdown: {}

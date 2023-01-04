@@ -1,0 +1,26 @@
+[0.025s] Invoking command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4
+[0.085s] [35m[1mScanning dependencies of target arm_mocap_pubsub[0m
+[0.128s] [ 50%] [32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o[0m
+[6.138s] [100%] [32m[1mLinking CXX executable arm_mocap_pubsub[0m
+[6.600s] [100%] Built target arm_mocap_pubsub
+[6.617s] Invoked command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4
+[6.670s] Invoking command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/zq/colcon_ws/build/arm_vrpn_pubsub
+[6.682s] -- Install configuration: ""
+[6.682s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/lib/arm_vrpn_pubsub/arm_mocap_pubsub
+[6.685s] -- Set runtime path of "/home/zq/colcon_ws/install/arm_vrpn_pubsub/lib/arm_vrpn_pubsub/arm_mocap_pubsub" to ""
+[6.685s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/ament_index/resource_index/package_run_dependencies/arm_vrpn_pubsub
+[6.686s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/ament_index/resource_index/parent_prefix_path/arm_vrpn_pubsub
+[6.686s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/ament_prefix_path.sh
+[6.686s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/ament_prefix_path.dsv
+[6.687s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/path.sh
+[6.687s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/path.dsv
+[6.687s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.bash
+[6.687s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.sh
+[6.688s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.zsh
+[6.688s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.dsv
+[6.688s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/package.dsv
+[6.688s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/ament_index/resource_index/packages/arm_vrpn_pubsub
+[6.689s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/cmake/arm_vrpn_pubsubConfig.cmake
+[6.689s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/cmake/arm_vrpn_pubsubConfig-version.cmake
+[6.689s] -- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/package.xml
+[6.693s] Invoked command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/zq/colcon_ws/build/arm_vrpn_pubsub

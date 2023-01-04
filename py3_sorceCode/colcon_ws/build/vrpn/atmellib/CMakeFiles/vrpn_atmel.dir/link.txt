@@ -1,0 +1,2 @@
+/usr/bin/ar qc libvrpn_atmel.a  CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_helper.C.o CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_iobasic.C.o CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_openclose.C.o CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_register.C.o CMakeFiles/vrpn_atmel.dir/vrpn_atmellib_tester.C.o
+/usr/bin/ranlib libvrpn_atmel.a

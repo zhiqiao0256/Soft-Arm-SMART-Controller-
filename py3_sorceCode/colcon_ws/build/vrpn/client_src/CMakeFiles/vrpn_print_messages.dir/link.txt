@@ -1,0 +1,1 @@
+/usr/bin/c++   -fPIC -O2 -g -DNDEBUG  -rdynamic CMakeFiles/vrpn_print_messages.dir/vrpn_print_messages.C.o  -o vrpn_print_messages  ../libvrpn.a ../quat/libquat.a -lm -lpthread 

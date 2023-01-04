@@ -1,0 +1,26 @@
+[0.025s] Invoking command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4
+[0.087s] [35m[1mScanning dependencies of target arm_mocap_pubsub[0m
+[0.130s] [ 50%] [32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o[0m
+[6.145s] [100%] [32m[1mLinking CXX executable arm_mocap_pubsub[0m
+[6.526s] /usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::error_t::error_t()':
+[6.526s] arm_mocap_pubsub.cpp:(.text._ZN3zmq7error_tC2Ev[_ZN3zmq7error_tC5Ev]+0x2b): undefined reference to `zmq_errno'
+[6.527s] /usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::error_t::what() const':
+[6.527s] arm_mocap_pubsub.cpp:(.text._ZNK3zmq7error_t4whatEv[_ZNK3zmq7error_t4whatEv]+0x1a): undefined reference to `zmq_strerror'
+[6.527s] /usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::context_t::context_t()':
+[6.527s] arm_mocap_pubsub.cpp:(.text._ZN3zmq9context_tC2Ev[_ZN3zmq9context_tC5Ev]+0x12): undefined reference to `zmq_ctx_new'
+[6.527s] /usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::context_t::close()':
+[6.528s] arm_mocap_pubsub.cpp:(.text._ZN3zmq9context_t5closeEv[_ZN3zmq9context_t5closeEv]+0x27): undefined reference to `zmq_ctx_term'
+[6.528s] /usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::detail::socket_base::bind(char const*)':
+[6.528s] arm_mocap_pubsub.cpp:(.text._ZN3zmq6detail11socket_base4bindEPKc[_ZN3zmq6detail11socket_base4bindEPKc]+0x27): undefined reference to `zmq_bind'
+[6.528s] /usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::detail::socket_base::send(zmq::const_buffer, zmq::send_flags)':
+[6.528s] arm_mocap_pubsub.cpp:(.text._ZN3zmq6detail11socket_base4sendENS_12const_bufferENS_10send_flagsE[_ZN3zmq6detail11socket_base4sendENS_12const_bufferENS_10send_flagsE]+0x65): undefined reference to `zmq_send'
+[6.528s] /usr/bin/ld: arm_mocap_pubsub.cpp:(.text._ZN3zmq6detail11socket_base4sendENS_12const_bufferENS_10send_flagsE[_ZN3zmq6detail11socket_base4sendENS_12const_bufferENS_10send_flagsE]+0x92): undefined reference to `zmq_errno'
+[6.528s] /usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::socket_t::socket_t(zmq::context_t&, int)':
+[6.529s] arm_mocap_pubsub.cpp:(.text._ZN3zmq8socket_tC2ERNS_9context_tEi[_ZN3zmq8socket_tC5ERNS_9context_tEi]+0x34): undefined reference to `zmq_socket'
+[6.529s] /usr/bin/ld: CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o: in function `zmq::socket_t::close()':
+[6.529s] arm_mocap_pubsub.cpp:(.text._ZN3zmq8socket_t5closeEv[_ZN3zmq8socket_t5closeEv]+0x27): undefined reference to `zmq_close'
+[6.529s] collect2: error: ld returned 1 exit status
+[6.529s] make[2]: *** [CMakeFiles/arm_mocap_pubsub.dir/build.make:166: arm_mocap_pubsub] Error 1
+[6.530s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/arm_mocap_pubsub.dir/all] Error 2
+[6.532s] make: *** [Makefile:141: all] Error 2
+[6.533s] Invoked command in '/home/zq/colcon_ws/build/arm_vrpn_pubsub' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/zq/colcon_ws/build/arm_vrpn_pubsub -- -j4 -l4

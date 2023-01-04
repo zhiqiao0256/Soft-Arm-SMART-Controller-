@@ -1,0 +1,15 @@
+source;share/vrpn/hook/cmake_prefix_path.ps1
+source;share/vrpn/hook/cmake_prefix_path.dsv
+source;share/vrpn/hook/cmake_prefix_path.sh
+source;share/vrpn/hook/path.ps1
+source;share/vrpn/hook/path.dsv
+source;share/vrpn/hook/path.sh
+source;share/vrpn/hook/pythonscriptspath.ps1
+source;share/vrpn/hook/pythonscriptspath.dsv
+source;share/vrpn/hook/pythonscriptspath.sh
+source;share/vrpn/hook/pkg_config_path.ps1
+source;share/vrpn/hook/pkg_config_path.dsv
+source;share/vrpn/hook/pkg_config_path.sh
+source;share/vrpn/hook/pkg_config_path_multiarch.ps1
+source;share/vrpn/hook/pkg_config_path_multiarch.dsv
+source;share/vrpn/hook/pkg_config_path_multiarch.sh

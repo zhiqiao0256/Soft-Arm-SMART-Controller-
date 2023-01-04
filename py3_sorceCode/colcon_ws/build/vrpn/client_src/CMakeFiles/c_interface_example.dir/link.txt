@@ -1,0 +1,1 @@
+/usr/bin/c++   -fPIC -O2 -g -DNDEBUG  -rdynamic CMakeFiles/c_interface_example.dir/c_interface_example.c.o CMakeFiles/c_interface_example.dir/c_interface.cpp.o  -o c_interface_example  ../libvrpn.a ../quat/libquat.a -lm -lpthread 

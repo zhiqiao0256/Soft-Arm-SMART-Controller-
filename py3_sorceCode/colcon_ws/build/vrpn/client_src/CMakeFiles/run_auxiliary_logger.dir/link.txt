@@ -1,0 +1,1 @@
+/usr/bin/c++   -fPIC -O2 -g -DNDEBUG  -rdynamic CMakeFiles/run_auxiliary_logger.dir/run_auxiliary_logger.C.o  -o run_auxiliary_logger  ../libvrpn.a ../quat/libquat.a -lm -lpthread 

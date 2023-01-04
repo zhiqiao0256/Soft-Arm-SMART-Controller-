@@ -1,0 +1,86 @@
+[35m[1mScanning dependencies of target arm_mocap_pubsub[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/arm_mocap_pubsub.dir/src/arm_mocap_pubsub.cpp.o[0m
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:[m[K In member function ‘[01m[Kvoid Mocapzmq_pub::topic_callback1(geometry_msgs::msg::PoseStamped_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:27:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kx1_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   68 |       char ch_data[21] = {[01;35m[Kx1_mocap[m[K,y1_mocap,z1_mocap,
+      |                           [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:36:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Ky1_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   68 |       char ch_data[21] = {x1_mocap,[01;35m[Ky1_mocap[m[K,z1_mocap,
+      |                                    [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:68:45:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kz1_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   68 |       char ch_data[21] = {x1_mocap,y1_mocap,[01;35m[Kz1_mocap[m[K,
+      |                                             [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq1_mocap_x[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   69 |                       [01;35m[Kq1_mocap_x[m[K,q1_mocap_y,q1_mocap_z,q1_mocap_w,
+      |                       [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:34:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq1_mocap_y[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   69 |                       q1_mocap_x,[01;35m[Kq1_mocap_y[m[K,q1_mocap_z,q1_mocap_w,
+      |                                  [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:45:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq1_mocap_z[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   69 |                       q1_mocap_x,q1_mocap_y,[01;35m[Kq1_mocap_z[m[K,q1_mocap_w,
+      |                                             [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:69:56:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq1_mocap_w[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   69 |                       q1_mocap_x,q1_mocap_y,q1_mocap_z,[01;35m[Kq1_mocap_w[m[K,
+      |                                                        [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kx2_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   70 |                       [01;35m[Kx2_mocap[m[K,y2_mocap,z2_mocap,
+      |                       [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:32:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Ky2_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   70 |                       x2_mocap,[01;35m[Ky2_mocap[m[K,z2_mocap,
+      |                                [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:70:41:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kz2_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   70 |                       x2_mocap,y2_mocap,[01;35m[Kz2_mocap[m[K,
+      |                                         [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq2_mocap_x[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   71 |                       [01;35m[Kq2_mocap_x[m[K,q2_mocap_y,q2_mocap_z,q2_mocap_w,
+      |                       [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:34:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq2_mocap_y[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   71 |                       q2_mocap_x,[01;35m[Kq2_mocap_y[m[K,q2_mocap_z,q2_mocap_w,
+      |                                  [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:45:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq2_mocap_z[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   71 |                       q2_mocap_x,q2_mocap_y,[01;35m[Kq2_mocap_z[m[K,q2_mocap_w,
+      |                                             [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:71:56:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq2_mocap_w[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   71 |                       q2_mocap_x,q2_mocap_y,q2_mocap_z,[01;35m[Kq2_mocap_w[m[K,
+      |                                                        [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kx3_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   72 |                       [01;35m[Kx3_mocap[m[K,y3_mocap,z3_mocap,
+      |                       [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:32:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Ky3_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   72 |                       x3_mocap,[01;35m[Ky3_mocap[m[K,z3_mocap,
+      |                                [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:72:41:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kz3_mocap[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   72 |                       x3_mocap,y3_mocap,[01;35m[Kz3_mocap[m[K,
+      |                                         [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:23:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq3_mocap_x[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   73 |                       [01;35m[Kq3_mocap_x[m[K,q3_mocap_y,q3_mocap_z,q3_mocap_w
+      |                       [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:34:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq3_mocap_y[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   73 |                       q3_mocap_x,[01;35m[Kq3_mocap_y[m[K,q3_mocap_z,q3_mocap_w
+      |                                  [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:45:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq3_mocap_z[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   73 |                       q3_mocap_x,q3_mocap_y,[01;35m[Kq3_mocap_z[m[K,q3_mocap_w
+      |                                             [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zq/colcon_ws/src/arm_vrpn-main/src/arm_mocap_pubsub.cpp:73:56:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[Kq3_mocap_w[m[K’ from ‘[01m[Kfloat[m[K’ to ‘[01m[Kchar[m[K’ [[01;35m[K-Wnarrowing[m[K]
+   73 |                       q3_mocap_x,q3_mocap_y,q3_mocap_z,[01;35m[Kq3_mocap_w[m[K
+      |                                                        [01;35m[K^~~~~~~~~~[m[K
+[100%] [32m[1mLinking CXX executable arm_mocap_pubsub[0m
+[100%] Built target arm_mocap_pubsub
+-- Install configuration: ""
+-- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/lib/arm_vrpn_pubsub/arm_mocap_pubsub
+-- Set runtime path of "/home/zq/colcon_ws/install/arm_vrpn_pubsub/lib/arm_vrpn_pubsub/arm_mocap_pubsub" to ""
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/ament_index/resource_index/package_run_dependencies/arm_vrpn_pubsub
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/ament_index/resource_index/parent_prefix_path/arm_vrpn_pubsub
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/ament_prefix_path.sh
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/path.sh
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/environment/path.dsv
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.bash
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.sh
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.zsh
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/local_setup.dsv
+-- Installing: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/package.dsv
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/ament_index/resource_index/packages/arm_vrpn_pubsub
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/cmake/arm_vrpn_pubsubConfig.cmake
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/cmake/arm_vrpn_pubsubConfig-version.cmake
+-- Up-to-date: /home/zq/colcon_ws/install/arm_vrpn_pubsub/share/arm_vrpn_pubsub/package.xml
