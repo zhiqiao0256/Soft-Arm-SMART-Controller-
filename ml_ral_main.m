@@ -16,7 +16,7 @@ par_set.flag_read_exp = 1;
 %flag for plotting fwd kinematic results
 par_set.plot_fwdKinematic = 0;
 % Check data readme.txt for detail input reference
-par_set.Ts=1/40;
+par_set.Ts=1/30;
 
 par_set.L=0.185;%actuator length
 par_set.n=4;% # of joints for augmented rigid arm
